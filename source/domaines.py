@@ -55,7 +55,8 @@ DOMAINES = {
  "Alimentation, métiers de bouche": {
   "Boulangerie, pâtisserie": ["10.71C", "10.71D", "47.24Z"],
   "Boucherie, charcuterie, poissonnerie": ["47.22Z", "10.13B", "47.23Z"],
-  "Chocolaterie, glacier, traiteur": ["10.82Z", "10.52Z", "56.21Z"],
+  "Traiteurs": ["56.21Z"],
+  "Chocolaterie, confiserie, glaces": ["10.82Z", "10.52Z"],
   "Primeur, fromagerie, épicerie fine, cave": ["47.21Z", "47.25Z", "47.29Z"],
  },
  "Hôtellerie, restauration": {

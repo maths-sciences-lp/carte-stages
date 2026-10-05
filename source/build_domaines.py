@@ -1,6 +1,7 @@
 import json,re,os,unicodedata,collections,sys
 from domaines import DOMAINES
 from aides import ALIAS, ICON, FAMILLES
+from adresses import nettoie
 OUT=sys.argv[1] if len(sys.argv)>1 else 'www2'
 os.makedirs(OUT+'/data',exist_ok=True)
 def slug(s):
@@ -25,7 +26,10 @@ for line in open('idf/etablissements.jsonl'):
     if not r['la']: skip['sans position']+=1; continue
     k=sec_of.get(r['c']) or sec_of.get(r['q'])
     nom=re.sub(r'\s+',' ',r['n']).strip(); nom=re.sub(r'(\([^()]*\))(\s*\1)+',r'\1',nom); nom=re.sub(r'^(.+?) \(\1\)$',r'\1',nom); ens=r['e'] if r['e'] and r['e'].upper() not in nom.upper() else ''
-    by[k][r['s']]=[nom,ens,r['ad'] or '',round(float(r['la']),5),round(float(r['lo']),5),EK.index(r['t'])+1 if r['t'] in EFF else 0,1 if r['r'] else 0,r['s']]
+    ens=ens.split(', ')[0] if ens else ''
+    adr,rep=nettoie(r['ad'] or '')
+    if adr: adr=adr[0].upper()+adr[1:]
+    by[k][r['s']]=[nom,ens,adr,round(float(r['la']),5),round(float(r['lo']),5),EK.index(r['t'])+1 if r['t'] in EFF else 0,1 if r['r'] else 0,r['s'],rep]
 tot=0
 for ent in index:
     for s in ent['s']:

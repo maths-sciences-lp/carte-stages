@@ -49,11 +49,11 @@ a{color:var(--acc)}
 .tile .ic{font-size:28px;line-height:1}
 .choice{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:var(--okbg);color:var(--ink);border:1px solid #cde6df}
 .choice b{flex:1}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:48px;padding:10px 16px;border-radius:10px;border:0;background:var(--btn);color:var(--btnfg);font-weight:600;cursor:pointer;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 16px;border-radius:10px;border:0;background:var(--btn);color:var(--btnfg);font-weight:600;cursor:pointer;text-decoration:none}
 .btn.light{background:var(--soft);color:var(--fg);border:1px solid var(--line)}
 .btn.small{min-height:40px;padding:6px 12px;font-size:15px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.chip{display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:6px 12px;border-radius:21px;border:2px solid var(--line);background:var(--card);cursor:pointer;font-size:15px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:6px 12px;border-radius:21px;border:2px solid var(--line);background:var(--card);cursor:pointer;font-size:15px}
 .chip[aria-pressed=true]{border-color:var(--acc);background:var(--accbg);font-weight:600}
 .dot{width:12px;height:12px;border-radius:50%;flex:none;display:inline-block}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
@@ -78,6 +78,9 @@ dialog li{margin:6px 0}
 .pop b{font-size:16px}
 .pop .btns{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .pop .btn{min-height:40px;font-size:14px;color:var(--btnfg)}
+.pop .btn.light{color:var(--fg)}
+.leaflet-popup-content{margin:12px 14px}
+.em{font-size:1.05em;line-height:1}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg)}
 .start{background:#15314f;color:#fff;font-weight:700;border-radius:8px;padding:3px 8px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4);font-size:14px}
 @media (max-width:900px){
@@ -106,7 +109,7 @@ dialog li{margin:6px 0}
    <h2><span class="num">1</span> Ta formation</h2>
    <div id="pick">
     <div class="field">
-     <input class="in" id="f" type="search" placeholder="Exemple : CAP cuisine, MELEC, ASSP…" autocomplete="off" aria-label="Ta formation">
+     <input class="in" id="f" type="search" placeholder="Ex. : cuisine, MELEC, vente…" autocomplete="off" aria-label="Ta formation">
      <div class="sug" id="fsug" hidden></div>
     </div>
     <button class="link" id="nosais">Je ne sais pas → je choisis un domaine</button>
@@ -122,15 +125,15 @@ dialog li{margin:6px 0}
   <section class="step" id="s2">
    <h2><span class="num">2</span> D’où tu pars ?</h2>
    <div class="row" id="fromrow">
-    <button class="chip" data-from="maison" aria-pressed="true">🏠 De chez moi</button>
-    <button class="chip" data-from="lycee" aria-pressed="false">🏫 De mon lycée</button>
+    <button class="chip" data-from="maison" aria-pressed="true"><span class="em" aria-hidden="true">🏠</span><span>De chez moi</span></button>
+    <button class="chip" data-from="lycee" aria-pressed="false"><span class="em" aria-hidden="true">🏫</span><span>De mon lycée</span></button>
    </div>
    <div id="pmaison">
     <div class="field" style="margin-top:10px">
      <input class="in" id="adr" type="search" placeholder="Ton adresse (rue et ville)" autocomplete="off" aria-label="Ton adresse">
      <div class="sug" id="asug" hidden></div>
     </div>
-    <div class="row" style="margin-top:8px"><button class="btn light" id="geo">📍 Me localiser</button></div>
+    <div class="row" style="margin-top:8px"><button class="btn light" id="geo"><span class="em" aria-hidden="true">📍</span><span>Me localiser</span></button></div>
     <div class="msg" id="amsg"></div>
    </div>
    <div id="plycee" hidden>
@@ -149,7 +152,7 @@ dialog li{margin:6px 0}
     <div class="msg">Distance maximale :</div>
     <div class="chips" id="dists"></div>
     <div class="count" id="count"></div>
-    <div class="tabs"><button class="btn" id="tl" aria-pressed="true">📋 Liste</button><button class="btn" id="tc" aria-pressed="false">🗺️ Carte</button></div>
+    <div class="tabs"><button class="btn" id="tl" aria-pressed="true"><span class="em" aria-hidden="true">📋</span><span>Liste</span></button><button class="btn" id="tc" aria-pressed="false"><span class="em" aria-hidden="true">🗺️</span><span>Carte</span></button></div>
    </div>
   </section>
   <div id="list"></div>
@@ -182,6 +185,10 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
 const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
+const dtxt=k=>k<0.05?'juste à côté':fmt(k)+' km';
+const POPOPT={maxWidth:Math.min(260,window.innerWidth-90),autoPanPaddingTopLeft:[56,16],autoPanPaddingBottomRight:[16,16]};
+const em=(i,t)=>`<span class="em" aria-hidden="true">${i}</span><span>${t}</span>`;
+const titreP=p=>p.e||p.n;
 const PAL=['#d35400','#1f6fb2','#8e44ad','#16a085','#c0392b','#7d5a2b','#b7950b','#2e7d32','#5d6d7e','#e84393','#00838f','#6d4c41','#3949ab'];
 let booted=false, IDX=null, P=[], sel=null, on=new Set(), COL={}, LBL={}, dist=5, shown=40;
 const CACHE={}, pts={maison:null,lycee:null}, mks={}; let from='maison';
@@ -198,21 +205,25 @@ const origin=()=>pts[from];
 function dk(p,o){const r=Math.PI/180,a=Math.sin((p.la-o.la)*r/2)**2+Math.cos(p.la*r)*Math.cos(o.la*r)*Math.sin((p.lo-o.lo)*r/2)**2;return 12742*Math.asin(Math.sqrt(a));}
 function links(p){
  const o=origin();
- const tel=`https://www.google.com/search?q=${encodeURIComponent(p.n+' '+(p.ad||'')+' téléphone')}`;
+ const tel=`https://www.google.com/search?q=${encodeURIComponent(titreP(p)+' '+(p.ad||'')+' téléphone')}`;
  const go=`https://www.google.com/maps/dir/?api=1${o?`&origin=${o.la},${o.lo}`:''}&destination=${encodeURIComponent(p.ad||p.n)}&travelmode=transit`;
  return {tel,go};
 }
 function pop(p){
  const {tel,go}=links(p), o=origin();
- return `<div class="pop"><b>${esc(p.n)}</b>${p.e?`<div>${esc(p.e)}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${o?`<div><b>${fmt(p.k)} km</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}
- <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">📞 Trouver le numéro</a><a class="btn" target="_blank" rel="noopener" href="${go}">🚌 Y aller</a><a class="btn light" target="_blank" rel="noopener" href="https://annuaire-entreprises.data.gouv.fr/etablissement/${esc(p.s)}">ℹ️ Fiche officielle</a></div></div>`;
+ return `<div class="pop"><b>${esc(titreP(p))}</b>${p.e?`<div class="msg" style="margin:0">${esc(p.n)}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${p.rp?`<div class="msg" style="margin:0">${esc(p.rp)}</div>`:''}${o?`<div><b>${dtxt(p.k)}</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}
+ <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><a class="btn light" target="_blank" rel="noopener" href="https://annuaire-entreprises.data.gouv.fr/etablissement/${esc(p.s)}">${em('ℹ️','Fiche officielle')}</a></div></div>`;
 }
-function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]?IDX.eff[r[5]-1]:'',s:r[7],f:k};
- p.mk=L.circleMarker([p.la,p.lo],{radius:8,color:'#fff',weight:2,fillColor:COL[k],fillOpacity:.95}).bindPopup(()=>pop(p),{maxWidth:280});return p;}
+function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]>=9?'grande entreprise (groupe)':(r[5]?IDX.eff[r[5]-1]:''),s:r[7],f:k,rp:r[8]||''};
+ p.tri=norm(titreP(p)); p.tri0=/^[a-z]/.test(p.tri)?0:1;
+ p.mk=L.circleMarker([p.la,p.lo],{radius:8,color:'#fff',weight:2,fillColor:COL[k],fillOpacity:.95}).bindPopup(()=>pop(p),POPOPT);return p;}
 async function loadSec(k){ if(!CACHE[k]) CACHE[k]=fetch('data/'+k+'.json').then(r=>{if(!r.ok)throw 0;return r.json();}).then(rows=>rows.map(r=>mkP(r,k))); return CACHE[k]; }
 
 // ---------- étape 1 : formation ou domaine
 const secName={};
+function lev(a,b){const m=a.length,n=b.length;if(Math.abs(m-n)>2)return 9;let pr=Array.from({length:n+1},(_,j)=>j);
+ for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(pr[j]+1,c[j-1]+1,pr[j-1]+(a[i-1]===b[j-1]?0:1));pr=c;}return pr[n];}
+function proche(w,t){if(t.length<4)return false; if(t.startsWith(w.slice(0,Math.max(4,w.length-1))))return true; return lev(w,t)<=(w.length>=8?2:1);}
 function forms(){return IDX.formations;}
 function showSug(box,items,render,pick){
  box.innerHTML=items.map((x,i)=>`<button type="button" data-i="${i}">${render(x)}</button>`).join('');
@@ -223,7 +234,9 @@ $('f').addEventListener('input',()=>{
  const q=norm($('f').value).trim(); if(q.length<2){$('fsug').hidden=true;return;}
  const ws=q.split(/\s+/);
  const res=forms().map(x=>{const hay=norm(x.t+' '+x.n+' '+x.a);const al=norm(x.a).split(/\s+/);
-   let sc=0; for(const w of ws){ if(!hay.includes(w)) return null; if(al.includes(w)) sc+=7; if(norm(x.n).startsWith(w)) sc+=4; }
+   if(!x.toks) x.toks=hay.split(/[^a-z0-9]+/).filter(Boolean);
+   let sc=0; for(const w of ws){ if(!hay.includes(w)){ if(w.length>=5&&x.toks.some(t=>proche(w,t))){sc+=1;continue;} return null; }
+     if(al.includes(w)) sc+=7; if(norm(x.n).startsWith(w)) sc+=4; }
    const nn=norm(x.n), nt=norm(x.t+' '+x.n); if(nn===q||nt===q) sc+=20; else if(nn.startsWith(q)||nt.startsWith(q)) sc+=2;
    return [sc,x];}).filter(Boolean).sort((a,b)=>b[0]-a[0]||a[1].n.localeCompare(b[1].n)).slice(0,8).map(z=>z[1]);
  if(!res.length){$('fsug').innerHTML='<div class="msg" style="padding:12px">Rien trouvé. Essaie un autre mot, ou choisis un domaine en dessous.</div>';$('fsug').hidden=false;$('fsug').onclick=null;return;}
@@ -313,24 +326,24 @@ function render(loading){
  if(o){ring.setLatLng([o.la,o.lo]).addTo(map);ring.setRadius(dist?dist*1000:0);P.forEach(p=>p.k=dk(p,o));} else ring.remove();
  let vis=P.filter(p=>on.has(p.f)&&(!o||!dist||p.k<=dist));
  cl.clearLayers(); cl.addLayers(vis.map(p=>p.mk));
- if(o) vis.sort((a,b)=>a.k-b.k); else vis.sort((a,b)=>a.n.localeCompare(b.n));
+ if(o) vis.sort((a,b)=>a.k-b.k); else vis.sort((a,b)=>a.tri0-b.tri0||a.tri.localeCompare(b.tri));
  const n=vis.length;
  $('count').textContent=n? `${n.toLocaleString('fr-FR')} entreprise${n>1?'s':''}${o&&dist?` à moins de ${dist} km`:''}` : 'Aucune entreprise';
  let h='';
  if(!o) h+=`<div class="empty">👉 ${from==='lycee'?'Choisis ton lycée':'Indique ton adresse'} (étape 2) pour voir les entreprises <b>les plus proches</b>.</div>`;
  if(!n&&o&&dist) h+=`<div class="empty">Aucune entreprise à moins de ${dist} km. Choisis une distance plus grande.</div>`;
  h+=vis.slice(0,shown).map(p=>{const {tel,go}=links(p);return `<div class="card">
-  <div class="nm">${esc(p.n)}</div>${p.e?`<div class="msg" style="margin-top:0">${esc(p.e)}</div>`:''}
-  <div class="meta"><span><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</span>${o?`<span class="km">📍 ${fmt(p.k)} km</span>`:''}</div>
-  <div class="meta">${esc(p.ad)}${p.t?` · ${esc(p.t)}`:''}</div>
-  <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">📞 Trouver le numéro</a><a class="btn" target="_blank" rel="noopener" href="${go}">🚌 Y aller</a><button class="btn light" data-s="${p.s}">🗺️ Sur la carte</button></div></div>`;}).join('');
+  <div class="nm">${esc(titreP(p))}</div>${p.e?`<div class="msg" style="margin-top:0">${esc(p.n)}</div>`:''}
+  <div class="meta"><span><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</span>${o?`<span class="km">📍 ${dtxt(p.k)}</span>`:''}</div>
+  <div class="meta">${esc(p.ad)}</div>${p.rp?`<div class="meta">${esc(p.rp)}</div>`:''}${p.t?`<div class="meta">Taille : ${esc(p.t)}</div>`:''}
+  <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><button class="btn light" data-s="${p.s}">${em('🗺️','Sur la carte')}</button></div></div>`;}).join('');
  if(n>shown) h+=`<button class="btn light more" id="more">Voir ${Math.min(40,n-shown)} entreprises de plus</button>`;
  $('list').innerHTML=h;
  const m=$('more'); if(m) m.onclick=()=>{shown+=40;render();};
 }
 $('list').addEventListener('click',e=>{const b=e.target.closest('button[data-s]');if(!b)return;const p=P.find(x=>x.s===b.dataset.s);if(!p)return;
  if(window.innerWidth<=900){vue(true);$('s3').scrollIntoView({block:'start'});}
- setTimeout(()=>{map.invalidateSize();map.setView([p.la,p.lo],17,{animate:false});L.popup({maxWidth:280,offset:[0,-4]}).setLatLng([p.la,p.lo]).setContent(pop(p)).openOn(map);},150);});
+ setTimeout(()=>{map.invalidateSize();map.setView([p.la,p.lo],17,{animate:false});L.popup(Object.assign({offset:[0,-4]},POPOPT)).setLatLng([p.la,p.lo]).setContent(pop(p)).openOn(map);},150);});
 
 // ---------- aide, lien de classe, démarrage
 $('aide').onclick=()=>$('dlg').showModal();

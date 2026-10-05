@@ -86,7 +86,7 @@
 "Construction, maçonnerie, gros œuvre"
 ],
 "CAP chocolaterie-confiserie": [
-"Chocolaterie, glacier, traiteur",
+"Chocolaterie, confiserie, glaces",
 "Boulangerie, pâtisserie"
 ],
 "CAP commercialisation et services en hôtel-café-restaurant": [
@@ -143,7 +143,7 @@
 "Restauration collective (cantines, entreprises)",
 "Hôtels",
 "Restauration rapide",
-"Chocolaterie, glacier, traiteur"
+"Traiteurs"
 ],
 "CAP décoration en céramique": [
 "Céramique, verre d'art, instruments de musique"
@@ -312,7 +312,8 @@
 ],
 "CAP pâtissier": [
 "Boulangerie, pâtisserie",
-"Chocolaterie, glacier, traiteur",
+"Chocolaterie, confiserie, glaces",
+"Traiteurs",
 "Restaurants",
 "Hôtels"
 ],
@@ -451,7 +452,8 @@
 ],
 "bac pro boulanger-pâtissier": [
 "Boulangerie, pâtisserie",
-"Chocolaterie, glacier, traiteur"
+"Chocolaterie, confiserie, glaces",
+"Traiteurs"
 ],
 "bac pro carrossier peintre automobile": [
 "Garages, carrosseries (voitures)",
@@ -481,7 +483,7 @@
 "Restaurants",
 "Hôtels",
 "Restauration collective (cantines, entreprises)",
-"Chocolaterie, glacier, traiteur"
+"Traiteurs"
 ],
 "bac pro cybersécurité, informatique et réseaux, électronique": [
 "Services informatiques, réseaux",
