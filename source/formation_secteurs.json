@@ -1,0 +1,753 @@
+{
+"CAP accessoiriste réalisateur": [
+"Spectacle, musées, bibliothèques",
+"Audiovisuel, cinéma, son"
+],
+"CAP accompagnant éducatif petite enfance": [
+"Crèches, petite enfance",
+"Loisirs, animation",
+"Mairies, administrations"
+],
+"CAP agent accompagnant au grand âge": [
+"Personnes âgées (EHPAD, résidences)",
+"Aide à domicile",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP agent de la qualité de l'eau": [
+"Production et distribution d'énergie",
+"Déchets, recyclage, assainissement",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP agent de propreté et d'hygiène": [
+"Nettoyage, propreté",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP agent de sécurité": [
+"Sécurité privée, surveillance",
+"Supermarchés, grandes surfaces",
+"Mairies, administrations"
+],
+"CAP agricole – production (intitulé à préciser)": [
+"Horticulture, maraîchage, agriculture",
+"Paysagistes, espaces verts"
+],
+"CAP agricole – services (intitulé à préciser)": [
+"Aide à domicile",
+"Personnes âgées (EHPAD, résidences)",
+"Supérettes, alimentation générale"
+],
+"CAP art et techniques de la bijouterie-joaillerie option bijouterie sertissage": [
+"Bijouterie, horlogerie"
+],
+"CAP art et techniques de la bijouterie-joaillerie option bijouterie-joaillerie": [
+"Bijouterie, horlogerie"
+],
+"CAP art et techniques de la bijouterie-joaillerie option polissage finition": [
+"Bijouterie, horlogerie"
+],
+"CAP arts de la broderie": [
+"Couture, confection",
+"Tapisserie, décoration textile"
+],
+"CAP arts de la reliure": [
+"Imprimerie, prépresse, reliure"
+],
+"CAP arts et techniques du verre option décorateur sur verre": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
+],
+"CAP arts et techniques du verre option vitrailliste": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
+],
+"CAP aéronautique option avionique": [
+"Aéronautique",
+"Électronique, matériel électrique"
+],
+"CAP boulanger": [
+"Boulangerie, pâtisserie",
+"Supermarchés, grandes surfaces"
+],
+"CAP bronzier option A monteur en bronze": [
+"Bijouterie, horlogerie",
+"Chaudronnerie, soudure, structures métalliques",
+"Céramique, verre d'art, instruments de musique"
+],
+"CAP carreleur mosaïste": [
+"Peinture, plâtre, carrelage, sols, isolation",
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP carrossier automobile": [
+"Garages, carrosseries (voitures)",
+"Poids lourds, utilitaires"
+],
+"CAP charpentier bois": [
+"Menuiserie, agencement, serrurerie",
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP chocolaterie-confiserie": [
+"Chocolaterie, glacier, traiteur",
+"Boulangerie, pâtisserie"
+],
+"CAP commercialisation et services en hôtel-café-restaurant": [
+"Restaurants",
+"Cafés, bars",
+"Hôtels"
+],
+"CAP conducteur agent d'accueil en autobus et autocar": [
+"Transport de voyageurs"
+],
+"CAP conducteur d'engins de travaux publics et carrières": [
+"Travaux publics, routes, réseaux",
+"Construction, maçonnerie, gros œuvre",
+"Matériels agricoles, engins de chantier"
+],
+"CAP conducteur d'installations de production": [
+"Usinage, mécanique, outillage",
+"Chimie, pharmacie, cosmétiques, papier",
+"Industrie agroalimentaire",
+"Plastique, verre, matériaux"
+],
+"CAP conducteur livreur de marchandises": [
+"Transport de marchandises, livraison",
+"Entrepôts, logistique"
+],
+"CAP conducteur routier de marchandises": [
+"Transport de marchandises, livraison",
+"Entrepôts, logistique"
+],
+"CAP conducteur routier de marchandises option livraisons de proximité": [
+"Transport de marchandises, livraison",
+"Entrepôts, logistique"
+],
+"CAP constructeur de routes et d'aménagements urbains": [
+"Travaux publics, routes, réseaux",
+"Paysagistes, espaces verts"
+],
+"CAP constructeur de réseaux de canalisations de travaux publics": [
+"Travaux publics, routes, réseaux",
+"Déchets, recyclage, assainissement"
+],
+"CAP cordonnerie multiservice": [
+"Cuir, maroquinerie, cordonnerie"
+],
+"CAP couvreur": [
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP crémier-fromager": [
+"Primeur, fromagerie, épicerie fine, cave",
+"Supermarchés, grandes surfaces"
+],
+"CAP cuisine": [
+"Restaurants",
+"Restauration collective (cantines, entreprises)",
+"Hôtels",
+"Restauration rapide",
+"Chocolaterie, glacier, traiteur"
+],
+"CAP décoration en céramique": [
+"Céramique, verre d'art, instruments de musique"
+],
+"CAP employé technique de laboratoire": [
+"Hôpitaux, cliniques, laboratoires",
+"Chimie, pharmacie, cosmétiques, papier"
+],
+"CAP esthétique cosmétique parfumerie": [
+"Esthétique, soins de beauté",
+"Parfumerie, cosmétiques",
+"Coiffure"
+],
+"CAP ferronnier d'art": [
+"Chaudronnerie, soudure, structures métalliques",
+"Menuiserie, agencement, serrurerie"
+],
+"CAP fleuriste": [
+"Fleuristes, jardineries"
+],
+"CAP fourrure": [
+"Couture, confection",
+"Cuir, maroquinerie, cordonnerie"
+],
+"CAP horlogerie": [
+"Bijouterie, horlogerie"
+],
+"CAP industries chimiques": [
+"Chimie, pharmacie, cosmétiques, papier"
+],
+"CAP installateur en froid et conditionnement d'air": [
+"Plomberie, chauffage, climatisation, froid",
+"Maintenance d'équipements, ascenseurs"
+],
+"CAP interventions en maintenance technique des bâtiments": [
+"Maintenance d'équipements, ascenseurs",
+"Électricité du bâtiment",
+"Plomberie, chauffage, climatisation, froid",
+"Agences immobilières, gestion de logements",
+"Mairies, administrations"
+],
+"CAP maintenance des matériels option A matériels agricoles": [
+"Matériels agricoles, engins de chantier",
+"Horticulture, maraîchage, agriculture"
+],
+"CAP maintenance des matériels option B matériels de construction et de manutention": [
+"Matériels agricoles, engins de chantier",
+"Poids lourds, utilitaires",
+"Travaux publics, routes, réseaux"
+],
+"CAP maintenance des matériels option C matériels d'espaces verts": [
+"Matériels agricoles, engins de chantier",
+"Paysagistes, espaces verts"
+],
+"CAP maintenance des véhicules option motocycles": [
+"Motos, scooters",
+"Concessionnaires, vente de véhicules et pièces"
+],
+"CAP maintenance des véhicules option véhicules de transport routier": [
+"Poids lourds, utilitaires",
+"Transport de voyageurs"
+],
+"CAP maintenance des véhicules option véhicules légers": [
+"Garages, carrosseries (voitures)",
+"Concessionnaires, vente de véhicules et pièces"
+],
+"CAP mareyage": [
+"Boucherie, charcuterie, poissonnerie",
+"Supermarchés, grandes surfaces"
+],
+"CAP maroquinerie": [
+"Cuir, maroquinerie, cordonnerie"
+],
+"CAP maçon": [
+"Construction, maçonnerie, gros œuvre",
+"Peinture, plâtre, carrelage, sols, isolation"
+],
+"CAP menuisier aluminium-verre": [
+"Menuiserie, agencement, serrurerie",
+"Plastique, verre, matériaux"
+],
+"CAP menuisier fabricant": [
+"Menuiserie, agencement, serrurerie",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"CAP menuisier installateur": [
+"Menuiserie, agencement, serrurerie",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"CAP modèles et moules céramiques": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
+],
+"CAP monteur en installations sanitaires": [
+"Plomberie, chauffage, climatisation, froid"
+],
+"CAP monteur en installations thermiques": [
+"Plomberie, chauffage, climatisation, froid",
+"Maintenance d'équipements, ascenseurs"
+],
+"CAP métallier": [
+"Menuiserie, agencement, serrurerie",
+"Chaudronnerie, soudure, structures métalliques"
+],
+"CAP métiers de l'enseigne et de la signalétique": [
+"Publicité, enseignes, design graphique",
+"Imprimerie, prépresse, reliure"
+],
+"CAP métiers de l'entretien des textiles option A blanchisserie": [
+"Pressing, blanchisserie, retouches",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP métiers de l'entretien des textiles option B pressing": [
+"Pressing, blanchisserie, retouches"
+],
+"CAP métiers de la coiffure": [
+"Coiffure"
+],
+"CAP métiers de la mode - chapelier-modiste": [
+"Couture, confection",
+"Vêtements, chaussures, accessoires",
+"Spectacle, musées, bibliothèques"
+],
+"CAP métiers de la mode - vêtement flou": [
+"Couture, confection",
+"Pressing, blanchisserie, retouches",
+"Vêtements, chaussures, accessoires"
+],
+"CAP métiers de la mode - vêtement tailleur": [
+"Couture, confection",
+"Pressing, blanchisserie, retouches",
+"Vêtements, chaussures, accessoires"
+],
+"CAP opérateur en appareillage orthopédique-spécialité orthoprothèse": [
+"Pharmacie, optique, prothèses",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP opérateur en appareillage orthopédique-spécialité podo-orthèse": [
+"Pharmacie, optique, prothèses",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP opérateur, opératrice logistique": [
+"Entrepôts, logistique",
+"Transport de marchandises, livraison",
+"Supermarchés, grandes surfaces"
+],
+"CAP outillages en outils à découper et à emboutir": [
+"Usinage, mécanique, outillage",
+"Chaudronnerie, soudure, structures métalliques"
+],
+"CAP peintre applicateur de revêtements": [
+"Peinture, plâtre, carrelage, sols, isolation"
+],
+"CAP peintre automobile": [
+"Garages, carrosseries (voitures)",
+"Poids lourds, utilitaires"
+],
+"CAP production et service en restaurations (rapide, collective, cafétéria)": [
+"Restauration collective (cantines, entreprises)",
+"Restauration rapide",
+"Restaurants"
+],
+"CAP propreté et prévention des biocontaminations": [
+"Nettoyage, propreté",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP pâtissier": [
+"Boulangerie, pâtisserie",
+"Chocolaterie, glacier, traiteur",
+"Restaurants",
+"Hôtels"
+],
+"CAP réalisations industrielles en chaudronnerie ou soudage option A chaudronnerie": [
+"Chaudronnerie, soudure, structures métalliques",
+"Usinage, mécanique, outillage"
+],
+"CAP réalisations industrielles en chaudronnerie ou soudage option B soudage": [
+"Chaudronnerie, soudure, structures métalliques",
+"Usinage, mécanique, outillage"
+],
+"CAP signalétique et décors graphiques": [
+"Publicité, enseignes, design graphique",
+"Imprimerie, prépresse, reliure"
+],
+"CAP souffleur de verre option verrerie scientifique": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP staffeur ornemaniste": [
+"Peinture, plâtre, carrelage, sols, isolation",
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP sérigraphie industrielle": [
+"Imprimerie, prépresse, reliure",
+"Publicité, enseignes, design graphique",
+"Couture, confection"
+],
+"CAP tailleur de pierre": [
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP tournage en céramique": [
+"Céramique, verre d'art, instruments de musique"
+],
+"CAP valorisation des matières et propreté des espaces urbains": [
+"Déchets, recyclage, assainissement",
+"Nettoyage, propreté",
+"Mairies, administrations"
+],
+"CAP vêtement de peau": [
+"Couture, confection",
+"Cuir, maroquinerie, cordonnerie"
+],
+"CAP ébéniste": [
+"Ébénisterie, meubles, restauration de meubles",
+"Menuiserie, agencement, serrurerie"
+],
+"CAP électricien": [
+"Électricité du bâtiment",
+"Maintenance d'équipements, ascenseurs"
+],
+"CAP équipier polyvalent du commerce": [
+"Supermarchés, grandes surfaces",
+"Supérettes, alimentation générale",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
+"Vêtements, chaussures, accessoires"
+],
+"CAPa jardinier-paysagiste": [
+"Paysagistes, espaces verts",
+"Fleuristes, jardineries",
+"Mairies, administrations"
+],
+"CAPa métiers de l'agriculture": [
+"Horticulture, maraîchage, agriculture",
+"Fleuristes, jardineries"
+],
+"bac pro accompagnement, soins et services à la personne": [
+"Personnes âgées (EHPAD, résidences)",
+"Handicap (foyers, ESAT, IME)",
+"Crèches, petite enfance",
+"Hôpitaux, cliniques, laboratoires",
+"Aide à domicile"
+],
+"bac pro aménagement et finition du bâtiment": [
+"Peinture, plâtre, carrelage, sols, isolation",
+"Menuiserie, agencement, serrurerie"
+],
+"bac pro aménagements paysagers": [
+"Paysagistes, espaces verts",
+"Mairies, administrations"
+],
+"bac pro animation-enfance et personnes âgées": [
+"Loisirs, animation",
+"Personnes âgées (EHPAD, résidences)",
+"Crèches, petite enfance",
+"Mairies, administrations",
+"Associations (animation, solidarité)"
+],
+"bac pro artisanat et métiers d'art option communication visuelle plurimédia": [
+"Publicité, enseignes, design graphique",
+"Imprimerie, prépresse, reliure",
+"Photographie"
+],
+"bac pro artisanat et métiers d'art option marchandisage visuel": [
+"Vêtements, chaussures, accessoires",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
+"Supermarchés, grandes surfaces",
+"Publicité, enseignes, design graphique"
+],
+"bac pro artisanat et métiers d'art option métiers de l'enseigne et de la signalétique": [
+"Publicité, enseignes, design graphique",
+"Imprimerie, prépresse, reliure"
+],
+"bac pro artisanat et métiers d'art option tapissier d'ameublement": [
+"Tapisserie, décoration textile",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"bac pro artisanat et métiers d'art option verrerie scientifique et technique": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux",
+"Hôpitaux, cliniques, laboratoires"
+],
+"bac pro assistance à la gestion des organisations et de leurs activités": [
+"Comptabilité, conseil, gestion",
+"Mairies, administrations",
+"Secrétariat, accueil, centres d'appels",
+"Banques, assurances",
+"Agences immobilières, gestion de logements",
+"Intérim, recrutement"
+],
+"bac pro aviation générale": [
+"Aéronautique"
+],
+"bac pro aéronautique option avionique": [
+"Aéronautique",
+"Électronique, matériel électrique"
+],
+"bac pro aéronautique option structure": [
+"Aéronautique",
+"Chaudronnerie, soudure, structures métalliques"
+],
+"bac pro aéronautique option systèmes": [
+"Aéronautique",
+"Usinage, mécanique, outillage"
+],
+"bac pro boulanger-pâtissier": [
+"Boulangerie, pâtisserie",
+"Chocolaterie, glacier, traiteur"
+],
+"bac pro carrossier peintre automobile": [
+"Garages, carrosseries (voitures)",
+"Poids lourds, utilitaires"
+],
+"bac pro commercialisation et services en restauration": [
+"Restaurants",
+"Hôtels",
+"Cafés, bars",
+"Restauration collective (cantines, entreprises)"
+],
+"bac pro conducteur routier de marchandises": [
+"Transport de marchandises, livraison",
+"Entrepôts, logistique"
+],
+"bac pro conduite de productions horticoles (arbres, arbustes, fruits, fleurs, légumes)": [
+"Horticulture, maraîchage, agriculture",
+"Fleuristes, jardineries",
+"Paysagistes, espaces verts"
+],
+"bac pro construction et aménagement de véhicules": [
+"Poids lourds, utilitaires",
+"Chaudronnerie, soudure, structures métalliques",
+"Garages, carrosseries (voitures)"
+],
+"bac pro cuisine": [
+"Restaurants",
+"Hôtels",
+"Restauration collective (cantines, entreprises)",
+"Chocolaterie, glacier, traiteur"
+],
+"bac pro cybersécurité, informatique et réseaux, électronique": [
+"Services informatiques, réseaux",
+"Réparation d'ordinateurs et de téléphones",
+"Télécommunications",
+"Électronique, matériel électrique"
+],
+"bac pro esthétique cosmétique parfumerie": [
+"Esthétique, soins de beauté",
+"Parfumerie, cosmétiques"
+],
+"bac pro façonnage de produits imprimés, routage": [
+"Imprimerie, prépresse, reliure"
+],
+"bac pro gestion des pollutions et protection de l'environnement": [
+"Déchets, recyclage, assainissement",
+"Nettoyage, propreté",
+"Mairies, administrations"
+],
+"bac pro géomètre": [
+"Géomètres-experts, topographie",
+"Bureaux d'études, économistes de la construction",
+"Travaux publics, routes, réseaux"
+],
+"bac pro hygiène, propreté, stérilisation": [
+"Nettoyage, propreté",
+"Hôpitaux, cliniques, laboratoires"
+],
+"bac pro installateur en chauffage, climatisation et énergies renouvelables": [
+"Plomberie, chauffage, climatisation, froid",
+"Maintenance d'équipements, ascenseurs",
+"Production et distribution d'énergie"
+],
+"bac pro interventions sur le patrimoine bâti option A maçonnerie": [
+"Construction, maçonnerie, gros œuvre",
+"Peinture, plâtre, carrelage, sols, isolation"
+],
+"bac pro interventions sur le patrimoine bâti option C couverture": [
+"Construction, maçonnerie, gros œuvre"
+],
+"bac pro laboratoire contrôle qualité": [
+"Hôpitaux, cliniques, laboratoires",
+"Chimie, pharmacie, cosmétiques, papier",
+"Industrie agroalimentaire"
+],
+"bac pro maintenance des matériels option A matériels agricoles": [
+"Matériels agricoles, engins de chantier",
+"Horticulture, maraîchage, agriculture"
+],
+"bac pro maintenance des matériels option B matériels de construction et de manutention": [
+"Matériels agricoles, engins de chantier",
+"Poids lourds, utilitaires",
+"Travaux publics, routes, réseaux"
+],
+"bac pro maintenance des matériels option C matériels d'espaces verts": [
+"Matériels agricoles, engins de chantier",
+"Paysagistes, espaces verts"
+],
+"bac pro maintenance des systèmes de production connectés": [
+"Maintenance d'équipements, ascenseurs",
+"Usinage, mécanique, outillage",
+"Électronique, matériel électrique",
+"Industrie agroalimentaire",
+"Chimie, pharmacie, cosmétiques, papier"
+],
+"bac pro maintenance des véhicules option motocycles": [
+"Motos, scooters",
+"Concessionnaires, vente de véhicules et pièces"
+],
+"bac pro maintenance des véhicules option véhicules de transport routier": [
+"Poids lourds, utilitaires",
+"Transport de voyageurs"
+],
+"bac pro maintenance des véhicules option véhicules légers": [
+"Garages, carrosseries (voitures)",
+"Concessionnaires, vente de véhicules et pièces"
+],
+"bac pro maintenance et efficacité énergétique": [
+"Plomberie, chauffage, climatisation, froid",
+"Maintenance d'équipements, ascenseurs",
+"Production et distribution d'énergie"
+],
+"bac pro maintenance nautique": [
+"Bateaux, nautisme"
+],
+"bac pro menuiserie aluminium-verre": [
+"Menuiserie, agencement, serrurerie",
+"Plastique, verre, matériaux"
+],
+"bac pro microtechniques": [
+"Électronique, matériel électrique",
+"Usinage, mécanique, outillage",
+"Bijouterie, horlogerie"
+],
+"bac pro modélisation et prototypage 3D": [
+"Usinage, mécanique, outillage",
+"Bureaux d'études, économistes de la construction",
+"Plastique, verre, matériaux"
+],
+"bac pro métiers de l'accueil": [
+"Secrétariat, accueil, centres d'appels",
+"Hôtels",
+"Mairies, administrations",
+"Spectacle, musées, bibliothèques",
+"Supermarchés, grandes surfaces",
+"Banques, assurances"
+],
+"bac pro métiers de l'électricité et de ses environnements connectés": [
+"Électricité du bâtiment",
+"Maintenance d'équipements, ascenseurs",
+"Télécommunications",
+"Production et distribution d'énergie"
+],
+"bac pro métiers de la coiffure": [
+"Coiffure"
+],
+"bac pro métiers de la couture et de la confection": [
+"Couture, confection",
+"Pressing, blanchisserie, retouches",
+"Vêtements, chaussures, accessoires"
+],
+"bac pro métiers de la logistique": [
+"Entrepôts, logistique",
+"Transport de marchandises, livraison",
+"Supermarchés, grandes surfaces"
+],
+"bac pro métiers de la mode – vêtement": [
+"Couture, confection",
+"Vêtements, chaussures, accessoires"
+],
+"bac pro métiers de la sécurité": [
+"Sécurité privée, surveillance",
+"Mairies, administrations"
+],
+"bac pro métiers du commerce et de la vente option A animation et gestion de l'espace commercial": [
+"Supermarchés, grandes surfaces",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
+"Vêtements, chaussures, accessoires",
+"Supérettes, alimentation générale"
+],
+"bac pro métiers du commerce et de la vente option B prospection clientèle et valorisation de l'offre commerciale": [
+"Commerce de gros (entre entreprises)",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
+"Concessionnaires, vente de véhicules et pièces",
+"Agences immobilières, gestion de logements",
+"Banques, assurances"
+],
+"bac pro métiers du cuir option maroquinerie": [
+"Cuir, maroquinerie, cordonnerie"
+],
+"bac pro métiers du froid et des énergies renouvelables": [
+"Plomberie, chauffage, climatisation, froid",
+"Maintenance d'équipements, ascenseurs"
+],
+"bac pro optique lunetterie": [
+"Pharmacie, optique, prothèses"
+],
+"bac pro organisation de transport de marchandises": [
+"Transport de marchandises, livraison",
+"Entrepôts, logistique"
+],
+"bac pro organisation et réalisation du gros oeuvre": [
+"Construction, maçonnerie, gros œuvre",
+"Travaux publics, routes, réseaux"
+],
+"bac pro ouvrages du bâtiment : métallerie": [
+"Menuiserie, agencement, serrurerie",
+"Chaudronnerie, soudure, structures métalliques"
+],
+"bac pro perruquier posticheur": [
+"Coiffure",
+"Spectacle, musées, bibliothèques"
+],
+"bac pro photographie": [
+"Photographie",
+"Publicité, enseignes, design graphique",
+"Audiovisuel, cinéma, son"
+],
+"bac pro pilote de ligne de production": [
+"Usinage, mécanique, outillage",
+"Industrie agroalimentaire",
+"Chimie, pharmacie, cosmétiques, papier",
+"Plastique, verre, matériaux"
+],
+"bac pro procédés de la chimie, de l'eau et des papiers-cartons": [
+"Chimie, pharmacie, cosmétiques, papier",
+"Production et distribution d'énergie",
+"Déchets, recyclage, assainissement"
+],
+"bac pro production en industries pharmaceutiques, alimentaires et cosmétiques": [
+"Chimie, pharmacie, cosmétiques, papier",
+"Industrie agroalimentaire"
+],
+"bac pro réalisation de produits imprimés et plurimédia option A productions graphiques": [
+"Imprimerie, prépresse, reliure",
+"Publicité, enseignes, design graphique"
+],
+"bac pro réalisation de produits imprimés et plurimédia option B productions imprimées": [
+"Imprimerie, prépresse, reliure"
+],
+"bac pro technicien conseil vente en alimentation (produits alimentaires et boissons)": [
+"Primeur, fromagerie, épicerie fine, cave",
+"Supermarchés, grandes surfaces",
+"Supérettes, alimentation générale",
+"Boucherie, charcuterie, poissonnerie"
+],
+"bac pro technicien conseil vente univers jardinerie": [
+"Fleuristes, jardineries",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)"
+],
+"bac pro technicien constructeur bois": [
+"Menuiserie, agencement, serrurerie",
+"Construction, maçonnerie, gros œuvre"
+],
+"bac pro technicien d'études du bâtiment option A études et économie": [
+"Bureaux d'études, économistes de la construction",
+"Architectes",
+"Construction, maçonnerie, gros œuvre"
+],
+"bac pro technicien d'études du bâtiment option B assistant en architecture": [
+"Architectes",
+"Bureaux d'études, économistes de la construction"
+],
+"bac pro technicien de fabrication bois et matériaux associés": [
+"Menuiserie, agencement, serrurerie",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"bac pro technicien en appareillage orthopédique": [
+"Pharmacie, optique, prothèses",
+"Hôpitaux, cliniques, laboratoires"
+],
+"bac pro technicien en chaudronnerie industrielle": [
+"Chaudronnerie, soudure, structures métalliques",
+"Usinage, mécanique, outillage"
+],
+"bac pro technicien en prothèse dentaire": [
+"Pharmacie, optique, prothèses"
+],
+"bac pro technicien en réalisation de produits mécaniques option réalisation et maintenance des outillages": [
+"Usinage, mécanique, outillage",
+"Chaudronnerie, soudure, structures métalliques"
+],
+"bac pro technicien en réalisation de produits mécaniques option réalisation et suivi de productions": [
+"Usinage, mécanique, outillage",
+"Chaudronnerie, soudure, structures métalliques"
+],
+"bac pro technicien menuisier agenceur": [
+"Menuiserie, agencement, serrurerie",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"bac pro technicien modeleur": [
+"Usinage, mécanique, outillage",
+"Plastique, verre, matériaux"
+],
+"bac pro traitements des matériaux": [
+"Chaudronnerie, soudure, structures métalliques",
+"Usinage, mécanique, outillage",
+"Plastique, verre, matériaux"
+],
+"bac pro travaux publics": [
+"Travaux publics, routes, réseaux",
+"Construction, maçonnerie, gros œuvre"
+],
+"bac pro étude et réalisation d'agencement": [
+"Menuiserie, agencement, serrurerie",
+"Ébénisterie, meubles, restauration de meubles",
+"Architectes"
+]
+}

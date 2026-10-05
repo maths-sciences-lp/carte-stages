@@ -1,8 +1,7 @@
-# Fabrication
+# Fabrication de « Trouve ton stage »
 
-Depuis ce dossier :
-
-1. `python3 prospect.py` puis `python3 prospect2.py` : interroge l'API Recherche d'entreprises (base Sirene) et écrit `prospects.json`.
-2. `python3 build_public.py` : écrit `../index.html` à partir de `public_template.html`.
-
-Filtres : établissements actifs de Paris (75) et de Seine-Saint-Denis (93), sociétés d'au moins un salarié, données diffusibles, entrepreneurs individuels exclus.
+1. `formations.py` puis `formations2.py` : liste des CAP et bacs pro des lycées d'Île-de-France (effectifs du ministère, rentrée 2025, `fr-en-lycee_pro-effectifs-niveau-sexe-mef`) avec les noms Onisep (`Idéo-Formations initiales en France`).
+2. `domaines.py` : 19 domaines, 80 secteurs, codes d'activité NAF. `formation_secteurs.json` : secteurs conseillés pour chaque formation (table relue à la main). `aides.py` : sigles tapés par les élèves, images des domaines, familles de métiers de 2nde.
+3. `telecharger.py` : établissements actifs d'Île-de-France, sociétés d'au moins un salarié, via l'API Recherche d'entreprises (`limite_matching_etablissements=100`). Reprend là où il s'est arrêté (`idf/fait.txt`).
+4. `build_domaines.py <dossier>` : écrit `data/` (un fichier par secteur, `index.json`, `lycees.json` depuis l'annuaire de l'éducation). Exclut les entrepreneurs individuels et les données non diffusibles.
+5. `public3_template.html` est copié tel quel en `index.html`.
