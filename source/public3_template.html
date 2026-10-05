@@ -181,6 +181,7 @@ dialog li{margin:6px 0}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 <script>
+const DV='2026-10-06'; // à changer à chaque mise à jour des données
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
@@ -217,7 +218,7 @@ function pop(p){
 function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]>=9?'grande entreprise (groupe)':(r[5]?IDX.eff[r[5]-1]:''),s:r[7],f:k,rp:r[8]||''};
  p.tri=norm(titreP(p)); p.tri0=/^[a-z]/.test(p.tri)?0:1;
  p.mk=L.circleMarker([p.la,p.lo],{radius:8,color:'#fff',weight:2,fillColor:COL[k],fillOpacity:.95}).bindPopup(()=>pop(p),POPOPT);return p;}
-async function loadSec(k){ if(!CACHE[k]) CACHE[k]=fetch('data/'+k+'.json').then(r=>{if(!r.ok)throw 0;return r.json();}).then(rows=>rows.map(r=>mkP(r,k))); return CACHE[k]; }
+async function loadSec(k){ if(!CACHE[k]) CACHE[k]=fetch('data/'+k+'.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}).then(rows=>rows.map(r=>mkP(r,k))); return CACHE[k]; }
 
 // ---------- étape 1 : formation ou domaine
 const secName={};
@@ -290,7 +291,7 @@ $('fromrow').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!
  syncFrom(); shown=40; render(); const o=pts[from]; if(o) map.setView([o.la,o.lo],13); else (from==='maison'?$('adr'):$('lyc')).focus();});
 // choix du lycée parmi les lycées d'Île-de-France qui proposent un CAP ou un bac pro
 let LY=[];
-fetch('data/lycees.json').then(r=>r.json()).then(j=>{LY=j;LY.forEach(l=>l.key=norm(l.n+' '+l.c+' '+l.p));initLycee();}).catch(()=>{});
+fetch('data/lycees.json?v='+DV).then(r=>r.json()).then(j=>{LY=j;LY.forEach(l=>l.key=norm(l.n+' '+l.c+' '+l.p));initLycee();}).catch(()=>{});
 $('lyc').addEventListener('input',()=>{const q=norm($('lyc').value).trim();if(q.length<2){$('lsug').hidden=true;return;}
  const ws=q.split(/\s+/); const res=LY.filter(l=>ws.every(w=>l.key.includes(w))).slice(0,8);
  if(!res.length){$('lsug').innerHTML='<div class="msg" style="padding:12px">Lycée pas trouvé. Essaie le nom de ta ville.</div>';$('lsug').hidden=false;$('lsug').onclick=null;return;}
@@ -350,7 +351,7 @@ $('aide').onclick=()=>$('dlg').showModal();
 function setHash(){const h=new URLSearchParams(location.hash.slice(1)); if(booted){h.delete('f'); h.delete('d');} if(pts.lycee&&pts.lycee.u){h.delete('lycee');h.set('ly',pts.lycee.u);}
  if(booted&&sel&&sel.type==='f') h.set('f',sel.x.k); if(booted&&sel&&sel.type==='d') h.set('d',sel.i);
  try{history.replaceState(null,'','#'+h.toString().replace(/%2C/g,','));}catch(e){}}
-fetch('data/index.json').then(r=>r.json()).then(j=>{IDX=j;
+fetch('data/index.json?v='+DV).then(r=>r.json()).then(j=>{IDX=j;
  j.domaines.forEach(d=>d.s.forEach(s=>secName[s.k]=s.n));
  $('tiles').innerHTML=j.domaines.map((d,i)=>`<button class="tile" data-i="${i}"><span class="ic">${d.i}</span><span>${esc(d.d)}</span></button>`).join('');
  $('tiles').onclick=e=>{const b=e.target.closest('.tile');if(b)choose({type:'d',i:+b.dataset.i});};
