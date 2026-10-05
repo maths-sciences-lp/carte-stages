@@ -1,6 +1,6 @@
 import json,re,os,unicodedata,collections,sys
-from domaines import DOMAINES
-from aides import ALIAS, ICON, FAMILLES
+from domaines import DOMAINES, MOTS_CLES, SOURCES_MOTS_CLES
+from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
 from adresses import nettoie
 OUT=sys.argv[1] if len(sys.argv)>1 else 'www2'
 os.makedirs(OUT+'/data',exist_ok=True)
@@ -30,6 +30,18 @@ for line in open('idf/etablissements.jsonl'):
     adr,rep=nettoie(r['ad'] or '')
     if adr: adr=adr[0].upper()+adr[1:]
     by[k][r['s']]=[nom,ens,adr,round(float(r['la']),5),round(float(r['lo']),5),EK.index(r['t'])+1 if r['t'] in EFF else 0,1 if r['r'] else 0,r['s'],rep]
+# secteurs complétés par mots-clés (noms et enseignes), seulement depuis les domaines techniques
+src={slug(x) for d,secs in DOMAINES.items() if d in SOURCES_MOTS_CLES for x in secs}
+ajouts={}
+for nomsec,rx in MOTS_CLES.items():
+    k=slug(nomsec); rxc=re.compile(rx); n0=len(by.get(k,{}))
+    for sec,rows in list(by.items()):
+        if sec==k or sec not in src: continue
+        for sir,row in rows.items():
+            t=(row[0]+' '+row[1]).upper()
+            if rxc.search(t) and 'ENSEIGNEMENT' not in t: by[k][sir]=row
+    ajouts[nomsec]=len(by[k])-n0
+print('ajouts par mots-clés :',ajouts)
 tot=0
 for ent in index:
     for s in ent['s']:
@@ -43,8 +55,10 @@ for n,secs in sorted(M.items(),key=lambda x:x[0].lower()):
     court=n[4:] if n.startswith('CAP ') else n[5:] if n.startswith('CAPa ') else n[8:] if n.startswith('bac pro ') else n
     forms.append({'n':court[0].upper()+court[1:],'t':t+('a' if n.startswith('CAPa') else ''),'s':[name2k[x] for x in secs],'a':ALIAS.get(n,''),'k':slug(n)})
 for n,(a,lst) in FAMILLES.items():
-    secs=list(dict.fromkeys(name2k[x] for b in lst for x in M[b]))
+    secs=[name2k[x] for x in FAMILLES_SECTEURS[n]] if n in FAMILLES_SECTEURS else list(dict.fromkeys(name2k[x] for b in lst for x in M[b]))
     forms.append({'n':n,'t':'2nde pro','s':secs,'a':a,'k':slug('2nde '+n)})
+for n,(t,a,secs) in AUTRES.items():
+    forms.append({'n':n,'t':t,'s':[name2k[x] for x in secs],'a':a,'k':slug(t+' '+n)})
 json.dump({'domaines':index,'formations':forms,'eff':list(EFF.values()),'date':'5 octobre 2026'},open(f'{OUT}/data/index.json','w'),ensure_ascii=False,separators=(',',':'))
 print(tot,dict(skip))
 

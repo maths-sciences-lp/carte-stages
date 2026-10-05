@@ -181,7 +181,7 @@ dialog li{margin:6px 0}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 <script>
-const DV='2026-10-06'; // à changer à chaque mise à jour des données
+const DV='2026-10-06b'; // à changer à chaque mise à jour des données
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
@@ -257,7 +257,7 @@ async function choose(c){
  $('chosenTxt').textContent=title; $('pick').hidden=true; $('chosen').hidden=false; $('tiles').hidden=true;
  $('secs').innerHTML=keys.map(k=>`<button class="chip" data-k="${k}" aria-pressed="true"><span class="dot" style="background:${COL[k]}"></span>${esc(secName[k])}</button>`).join('');
  setHash(); P=[]; $('count').textContent='Chargement…'; render(true);
- try{ const parts=await Promise.all(keys.map(loadSec)); if(sel!==c) return; P=parts.flat(); }
+ try{ const parts=await Promise.all(keys.map(loadSec)); if(sel!==c) return; const vu=new Set(); P=parts.flat().filter(p=>!vu.has(p.s)&&vu.add(p.s)); }
  catch(e){ $('count').textContent='Chargement impossible : vérifie ta connexion.'; return; }
  render();
  if(window.innerWidth<=900) $('s2').scrollIntoView({behavior:'smooth',block:'start'});

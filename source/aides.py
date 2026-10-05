@@ -100,3 +100,14 @@ FAMILLES = {
  "Industries graphiques et communication": ("2nde industries graphiques", ["bac pro réalisation de produits imprimés et plurimédia option A productions graphiques", "bac pro réalisation de produits imprimés et plurimédia option B productions imprimées", "bac pro façonnage de produits imprimés, routage"]),
  "Aéronautique": ("2nde aéronautique", ["bac pro aéronautique option avionique", "bac pro aéronautique option structure", "bac pro aéronautique option systèmes", "bac pro aviation générale"]),
 }
+
+# Autres diplômes du lycée (hors CAP / bac pro) : brevets des métiers d'art
+AUTRES = {
+ "Ébéniste": ("BMA", "BMA ébéniste ébénisterie", ["Ébénisterie, meubles, restauration de meubles", "Menuiserie, agencement, serrurerie", "Tapisserie, décoration textile"]),
+ "Arts graphiques option signalétique": ("BMA", "BMA signalétique enseigne graphisme", ["Enseignes, signalétique, marquage", "Imprimerie, prépresse, reliure", "Publicité, design graphique"]),
+}
+
+# Secteurs imposés pour une famille de 2nde (au lieu de la réunion des secteurs de ses bacs pro)
+FAMILLES_SECTEURS = {
+ "Agencement, menuiserie et ameublement (MAMA)": ["Menuiserie, agencement, serrurerie", "Ébénisterie, meubles, restauration de meubles", "Tapisserie, décoration textile"],
+}

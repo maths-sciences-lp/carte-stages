@@ -249,8 +249,9 @@
 "Chaudronnerie, soudure, structures métalliques"
 ],
 "CAP métiers de l'enseigne et de la signalétique": [
-"Publicité, enseignes, design graphique",
-"Imprimerie, prépresse, reliure"
+"Enseignes, signalétique, marquage",
+"Imprimerie, prépresse, reliure",
+"Publicité, design graphique"
 ],
 "CAP métiers de l'entretien des textiles option A blanchisserie": [
 "Pressing, blanchisserie, retouches",
@@ -326,8 +327,9 @@
 "Usinage, mécanique, outillage"
 ],
 "CAP signalétique et décors graphiques": [
-"Publicité, enseignes, design graphique",
-"Imprimerie, prépresse, reliure"
+"Enseignes, signalétique, marquage",
+"Imprimerie, prépresse, reliure",
+"Publicité, design graphique"
 ],
 "CAP souffleur de verre option verrerie scientifique": [
 "Céramique, verre d'art, instruments de musique",
@@ -340,7 +342,7 @@
 ],
 "CAP sérigraphie industrielle": [
 "Imprimerie, prépresse, reliure",
-"Publicité, enseignes, design graphique",
+"Publicité, design graphique",
 "Couture, confection"
 ],
 "CAP tailleur de pierre": [
@@ -404,7 +406,7 @@
 "Associations (animation, solidarité)"
 ],
 "bac pro artisanat et métiers d'art option communication visuelle plurimédia": [
-"Publicité, enseignes, design graphique",
+"Publicité, design graphique",
 "Imprimerie, prépresse, reliure",
 "Photographie"
 ],
@@ -412,11 +414,12 @@
 "Vêtements, chaussures, accessoires",
 "Magasins spécialisés (bricolage, maison, sport, high-tech…)",
 "Supermarchés, grandes surfaces",
-"Publicité, enseignes, design graphique"
+"Publicité, design graphique"
 ],
 "bac pro artisanat et métiers d'art option métiers de l'enseigne et de la signalétique": [
-"Publicité, enseignes, design graphique",
-"Imprimerie, prépresse, reliure"
+"Enseignes, signalétique, marquage",
+"Imprimerie, prépresse, reliure",
+"Publicité, design graphique"
 ],
 "bac pro artisanat et métiers d'art option tapissier d'ameublement": [
 "Tapisserie, décoration textile",
@@ -659,7 +662,7 @@
 ],
 "bac pro photographie": [
 "Photographie",
-"Publicité, enseignes, design graphique",
+"Publicité, design graphique",
 "Audiovisuel, cinéma, son"
 ],
 "bac pro pilote de ligne de production": [
@@ -679,7 +682,7 @@
 ],
 "bac pro réalisation de produits imprimés et plurimédia option A productions graphiques": [
 "Imprimerie, prépresse, reliure",
-"Publicité, enseignes, design graphique"
+"Publicité, design graphique"
 ],
 "bac pro réalisation de produits imprimés et plurimédia option B productions imprimées": [
 "Imprimerie, prépresse, reliure"
@@ -749,7 +752,6 @@
 ],
 "bac pro étude et réalisation d'agencement": [
 "Menuiserie, agencement, serrurerie",
-"Ébénisterie, meubles, restauration de meubles",
-"Architectes"
+"Ébénisterie, meubles, restauration de meubles"
 ]
 }

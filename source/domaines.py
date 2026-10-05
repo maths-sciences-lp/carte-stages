@@ -41,7 +41,8 @@ DOMAINES = {
  },
  "Communication visuelle, impression, audiovisuel": {
   "Imprimerie, prépresse, reliure": ["18.11Z", "18.12Z", "18.13Z", "18.14Z"],
-  "Publicité, enseignes, design graphique": ["73.11Z", "73.12Z", "74.10Z"],
+  "Enseignes, signalétique, marquage": [],
+  "Publicité, design graphique": ["73.11Z", "73.12Z", "74.10Z"],
   "Photographie": ["74.20Z"],
   "Audiovisuel, cinéma, son": ["59.11A", "59.11B", "59.11C", "59.12Z", "59.20Z", "60.20A"],
  },
@@ -121,4 +122,15 @@ DOMAINES = {
   "Spectacle, musées, bibliothèques": ["90.01Z", "90.02Z", "90.04Z", "91.01Z", "91.02Z"],
   "Associations (animation, solidarité)": ["94.99Z"],
  },
+}
+
+# Repérage par le nom ou l'enseigne : complète un secteur avec des entreprises classées ailleurs
+# (sources limitées aux domaines techniques, pour éviter « Lissac Enseigne », chaîne d'opticiens)
+SOURCES_MOTS_CLES = ["Bâtiment et travaux publics", "Énergie, électricité, chauffage", "Industrie, mécanique, métallerie",
+ "Bois, ameublement, métiers d'art", "Communication visuelle, impression, audiovisuel"]
+MOTS_CLES = {
+ "Enseignes, signalétique, marquage": r"\b(ENSEIGNES?|SIGNALETIQUES?|SIGNALISATION|MARQUAGES?|COVERING|ADHESIFS?|LETTRAGES?|SERIGRAPH\w*|STICKERS?|PLV|GRAVURES?)\b",
+ "Menuiserie, agencement, serrurerie": r"\b(AGENCEMENTS?|AGENCEUR|MENUISERIES?|MENUISIER|EBENISTERIE|EBENISTE)\b",
+ "Plomberie, chauffage, climatisation, froid": r"\b(CHAUFFAGE|CLIMATISATION|CLIMATIQUE|THERMIQUE|PLOMBERIE|PLOMBIER|FRIGORIFIQUE|POMPES? A CHALEUR)\b",
+ "Géomètres-experts, topographie": r"\b(GEOMETRES?|TOPOGRAPH\w*)\b",
 }
