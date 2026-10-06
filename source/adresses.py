@@ -20,7 +20,15 @@ def _cap(w,first):
 def titre(s,debut=True):
     ws=s.split(); return ' '.join(_cap(w,debut and i==0) for i,w in enumerate(ws))
 TYP='|'.join(sorted(TYPES,key=len,reverse=True))
-RX=re.compile(r'(?:(\d+[A-Z]?(?:\s?(?:BIS|TER))?)\s+)?\b('+TYP+r')\b(?!.*\b\d+[A-Z]?\s+(?:'+TYP+r')\b)\s+(.+?)\s+(\d{5})\s+(.+)$')
+RX=re.compile(r'(?:(\d+(?:\s?(?:BIS|TER|QUATER|[A-Z])\b)?)\s+)?\b('+TYP+r')\b(?!.*\b\d+[A-Z]?\s+(?:'+TYP+r')\b)\s+(.+?)\s+(\d{5})\s+(.+)$')
+MOTS_VIDES={'GRANDE','GRAND','PETITE','PETIT','VIEUX','BIS','TER','APPARTEMENT','APPT','APT','APP','RDC','REZ-DE-CHAUSSEE','HALL','CENTRA','CELLULE',
+ 'ESC','ESCALIER','LOGEMENT','NUMERO','ETG','TSA','MAISON','PARIS','FRANCE','LOT','CAP','PAVILLON'}
+IND={'B':'bis','BIS':'bis','T':'ter','TER':'ter','Q':'quater','QUATER':'quater','C':'quinquies'}
+def numero(n):
+    """« 12 B » -> « 12 bis », « 114 T » -> « 114 ter », « 12 A » -> « 12 A »."""
+    m=re.fullmatch(r'(\d+)\s?(BIS|TER|QUATER|[A-Z])?',n)
+    if not m or not m.group(2): return n
+    return m.group(1)+' '+IND.get(m.group(2),m.group(2))
 def nettoie(a):
     a=re.sub(r'\s+',' ',(a or '').upper()).strip()
     for rx,rep in ABBR: a=re.sub(rx,rep,a)
@@ -29,7 +37,7 @@ def nettoie(a):
     cp_ville=re.search(r'(\d{5})\s+(.+)$',a)
     if m:
         num,typ,nom,cp,ville=m.groups()
-        rue=((num+' ') if num else '')+TYPES[typ]+' '+titre(nom,False)
+        rue=((numero(num)+' ') if num else '')+TYPES[typ]+' '+titre(nom,False)
         avant=a[:m.start()].strip()
         if not num: avant=re.sub(r'\b\d+[A-Z]?$','',avant).strip()
         principal=f'{rue}, {cp} {titre(ville)}'
@@ -43,6 +51,10 @@ def nettoie(a):
     avant=re.sub(r'(^|\s)[\d\-/ ]+(?=\s|$)',' ',avant)
     avant=re.sub(r'\s+',' ',avant).strip(' -,')
     if re.fullmatch(r"(ET|ANGLE|LIEU-DIT|UNIT|LOCAL|LOT|BUREAU|BATIMENT|ETAGE|BOITE|PORTE)?",avant): avant=''
+    # reste sans sens pour un élève : lettres isolées ou sigles de 2 lettres (« A », « AU », « RN », « CD », « CX »…)
+    if all(len(w)<=2 for w in avant.replace('-',' ').split()): avant=''
+    # un seul mot qui ne situe rien (étage, appartement, « grande »…) : on n'affiche pas
+    if len(avant.split())==1 and (re.search(r'\d',avant) or avant in MOTS_VIDES): avant=''
     rep=titre(avant)
     for g in ('Centre Commercial','Zone Industrielle',"Zone d'Activites",'Lieu-Dit'): rep=rep.replace(g,g.lower())
     if rep: rep=rep[0].upper()+rep[1:]

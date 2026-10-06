@@ -191,7 +191,7 @@ dialog li{margin:6px 0}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 <script>
-const DV='2026-10-07-lba'; // à changer à chaque mise à jour des données
+const DV='2026-10-07b'; // à changer à chaque mise à jour des données
 // Statistiques anonymes (même compte GoatCounter que le site, sans cookie) : jamais d'adresse ni de position.
 const GC='https://maths-sciences.goatcounter.com/count', GC_ON=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)&&location.protocol!=='file:';
 if(GC_ON){const g=document.createElement('script');g.async=true;g.dataset.goatcounter=GC;g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}
@@ -209,32 +209,32 @@ const titreP=p=>p.e||p.n;
 const PAL=['#d35400','#1f6fb2','#8e44ad','#16a085','#c0392b','#7d5a2b','#b7950b','#2e7d32','#5d6d7e','#e84393','#00838f','#6d4c41','#3949ab'];
 let booted=false, IDX=null, P=[], sel=null, on=new Set(), COL={}, LBL={}, dist=5, shown=40;
 const CACHE={}, pts={maison:null,lycee:null}, mks={}; let from='maison';
-let LBA=null;
+// La bonne alternance : un petit fichier par secteur (data/lba/<secteur>.json), chargé avec le secteur.
+// Badge « recruteur potentiel » affiché 31 jours au plus après l'export ; offres masquées à leur expiration
+// (ou après 7 jours si elles n'en ont pas). La carte Sirene fonctionne aussi sans ces fichiers.
+let LBA=null; const LBAC={}, DAY=86400000;
+const lbaAge=()=>{const d=LBA&&Date.parse(LBA.updated_at);return Number.isFinite(d)?Date.now()-d:Infinity;};
 function lbaFor(p){
- if(!LBA||!LBA.companies)return null;
- const date=Date.parse(LBA.updated_at), age=Date.now()-date;
- if(!Number.isFinite(date)||age<0||age>7*86400000)return null;
- const x=LBA.companies[p.s]; if(!x)return null;
- const jobs=(Array.isArray(x.jobs)?x.jobs:[]).filter(j=>j&&(!j.expiration||Date.parse(j.expiration)>Date.now()));
- return {recruiter:x.recruiter,jobs};
+ if(!LBA)return null; const x=LBAC[p.f]&&LBAC[p.f][p.s]; if(!x)return null; const age=lbaAge();
+ const recruiter=age>=0&&age<=(LBA.recruiter_max_age_days||31)*DAY?x.recruiter:null;
+ const jobs=(Array.isArray(x.jobs)?x.jobs:[]).filter(j=>j&&(j.expiration?Date.parse(j.expiration)>Date.now():age<=(LBA.offer_max_age_days||7)*DAY));
+ return {recruiter,jobs};
 }
 function lbaUrl(u){try{const x=new URL(u);return x.protocol==='https:'&&!x.username&&!x.password?esc(x.href):'';}catch(e){return '';}}
 function lbaHtml(p){
  const x=lbaFor(p); if(!x)return '';
- const recruiter=lbaUrl(x.recruiter);
+ const recruiter=lbaUrl(x.recruiter||'');
  const jobs=x.jobs.filter(j=>lbaUrl(j.url));
  if(!recruiter&&!jobs.length)return '';
- return `<div class="lba-box">${recruiter?`<div class="badge">Recruteur potentiel en alternance</div><a href="${recruiter}" target="_blank" rel="noopener">Voir la fiche La Bonne Alternance ↗</a>`:''}${jobs.length?`<details><summary>Offres d’alternance : tous métiers (${jobs.length})</summary><ul>${jobs.map(j=>`<li><a href="${lbaUrl(j.url)}" target="_blank" rel="noopener">${esc(j.title)} ↗</a></li>`).join('')}</ul><div>Vérifie le métier et le diplôme demandés dans chaque offre.</div></details>`:''}</div>`;
+ return `<div class="lba-box">${recruiter?`<div class="badge">🎓 Recruteur potentiel en alternance</div><a href="${recruiter}" target="_blank" rel="noopener">Voir sur La bonne alternance ↗</a>`:''}${jobs.length?`<details><summary>Offres d’alternance en cours : tous métiers (${jobs.length})</summary><ul>${jobs.map(j=>`<li><a href="${lbaUrl(j.url)}" target="_blank" rel="noopener">${esc(j.title)} ↗</a></li>`).join('')}</ul><div>Vérifie le métier et le diplôme demandés dans chaque offre.</div></details>`:''}</div>`;
 }
-fetch('data/lba-index.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>{
- LBA=j;
- const date=Date.parse(j.updated_at),age=Date.now()-date;
- if(Number.isFinite(date)&&age>=0&&age<=7*86400000){
-  const f=$('lba-source');f.hidden=false;
-  f.textContent='Indications d’alternance : La Bonne Alternance, données du '+new Date(date).toLocaleDateString('fr-FR')+'. Un recruteur potentiel ne garantit pas un accueil en PFMP. ';
- }
+const lbaSec=k=>LBAC[k]?Promise.resolve(LBAC[k]):fetch('data/lba/'+k+'.json?v='+DV).then(r=>r.ok?r.json():{}).catch(()=>({})).then(j=>LBAC[k]=j);
+fetch('data/lba/meta.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>{
+ LBA=j; const d=Date.parse(j.updated_at);
+ if(lbaAge()<=(j.recruiter_max_age_days||31)*DAY){const f=$('lba-source');f.hidden=false;
+  f.innerHTML='Indications d’alternance : <a href="https://labonnealternance.apprentissage.beta.gouv.fr" target="_blank" rel="noopener">La bonne alternance</a> (service public de l’alternance), données du '+new Date(d).toLocaleDateString('fr-FR')+'. Un recruteur en alternance ne garantit pas un accueil en PFMP.<br>';}
  if(booted&&P.length)render();
-}).catch(()=>{}); // La carte Sirene fonctionne aussi sans cet enrichissement.
+}).catch(()=>{});
 
 // ---------- carte (sur téléphone, la carte se place sous la liste, avant le bas de page)
 if(window.innerWidth<=900) $('panel').insertBefore($('map'),document.querySelector('footer'));
@@ -260,7 +260,7 @@ function pop(p){
 function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]>=9?'grande entreprise (groupe)':(r[5]?IDX.eff[r[5]-1]:''),s:r[7],f:k,rp:r[8]||''};
  p.tri=norm(titreP(p)); p.tri0=/^[a-z]/.test(p.tri)?0:1;
  p.mk=L.circleMarker([p.la,p.lo],{radius:8,color:'#fff',weight:2,fillColor:COL[k],fillOpacity:.95}).bindPopup(()=>pop(p),POPOPT);return p;}
-async function loadSec(k){ if(!CACHE[k]) CACHE[k]=fetch('data/'+k+'.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}).then(rows=>rows.map(r=>mkP(r,k))); return CACHE[k]; }
+async function loadSec(k){ if(!CACHE[k]) CACHE[k]=Promise.all([fetch('data/'+k+'.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}),lbaSec(k)]).then(([rows])=>rows.map(r=>mkP(r,k))); return CACHE[k]; }
 
 // ---------- étape 1 : formation ou domaine
 const secName={};
@@ -388,6 +388,7 @@ function render(loading){
 }
 document.addEventListener('click',e=>{const a=e.target.closest('a.btn');if(!a)return;const t=a.textContent;
  if(t.includes('Trouver le numéro'))stat('clic/numero','Clic : trouver le numéro'); else if(t.includes('Y aller'))stat('clic/trajet','Clic : trajet'); else if(t.includes('Fiche officielle'))stat('clic/fiche','Clic : fiche officielle');},true);
+document.addEventListener('click',e=>{const a=e.target.closest('.lba-box a');if(a)stat(a.closest('li')?'clic/lba-offre':'clic/lba','Clic : La bonne alternance');},true);
 $('list').addEventListener('click',e=>{const b=e.target.closest('button[data-s]');if(!b)return;const p=P.find(x=>x.s===b.dataset.s);if(!p)return;
  if(window.innerWidth<=900){vue(true);$('s3').scrollIntoView({block:'start'});}
  setTimeout(()=>{map.invalidateSize();map.setView([p.la,p.lo],17,{animate:false});L.popup(Object.assign({offset:[0,-4]},POPOPT)).setLatLng([p.la,p.lo]).setContent(pop(p)).openOn(map);},150);});

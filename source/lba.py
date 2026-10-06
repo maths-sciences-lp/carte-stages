@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import sys
 import tempfile
 import urllib.error
@@ -20,6 +21,10 @@ import urllib.request
 ROOT = Path(__file__).resolve().parents[1]
 KEY_FILE = Path.home() / 'Library/Application Support/carte-stages/lba-api-key'
 EXPORT_API = 'https://api.apprentissage.beta.gouv.fr/api/job/v1/export'
+# Durées d'affichage côté page : le badge « recruteur potentiel » évolue lentement,
+# les offres ont leur propre date d'expiration (sinon masquées après 7 jours).
+RECRUITER_MAX_AGE = 31
+OFFER_MAX_AGE = 7
 
 
 def records(stream):
@@ -99,11 +104,15 @@ def safe_url(value):
 
 
 def catalogue(root):
+    """SIRET déjà affichés par la carte -> secteurs (fichiers data/<secteur>.json) où ils figurent."""
     idx = json.loads((root / 'data/index.json').read_text())
     paths = {s['k'] for d in idx['domaines'] for s in d['s']}
-    return {str(r[7]) for k in paths
-            for r in json.loads((root / 'data' / (k + '.json')).read_text())
-            if len(r) > 7 and re.fullmatch(r'\d{14}', str(r[7]))}
+    out = {}
+    for k in sorted(paths):
+        for r in json.loads((root / 'data' / (k + '.json')).read_text()):
+            if len(r) > 7 and re.fullmatch(r'\d{14}', str(r[7])):
+                out.setdefault(str(r[7]), set()).add(k)
+    return out
 
 
 def enrich(rows, allowed, now):
@@ -149,16 +158,14 @@ def enrich(rows, allowed, now):
         counts['jobs'] += 1
         # Au plus trois liens par entreprise, sans CV ni coordonnées personnelles.
         if len(jobs) < 3:
-            jobs.append(dict(title=offer['title'], url=url, expiration=expiration,
-                             romes=offer.get('rome_codes') or [],
-                             diploma=diploma.get('european')))
+            jobs.append(dict(title=offer['title'], url=url, expiration=expiration))
     return companies, counts
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=ROOT)
-    parser.add_argument('--write', action='store_true', help='Écrire data/lba-index.json.')
+    parser.add_argument('--write', action='store_true', help='Écrire data/lba/ (un fichier par secteur).')
     parser.add_argument('--input', type=Path, help='Analyser un export JSON local, sans API.')
     args = parser.parse_args()
     now = datetime.now(timezone.utc)
@@ -182,25 +189,34 @@ def main():
         companies, counts = enrich(records(stream), allowed, now)
     if counts['opportunities'] == 0:
         raise ValueError('Export vide : conserver le dernier enrichissement.')
-    result = dict(source='La Bonne Alternance', updated_at=updated,
-                  retrieved_at=now.isoformat(), max_age_days=7,
-                  companies=dict(sorted(companies.items())), counts=counts)
-    print(json.dumps(dict(counts, matched_companies=len(companies)), ensure_ascii=False), flush=True)
+    meta = dict(source='La Bonne Alternance', updated_at=updated, retrieved_at=now.isoformat(),
+                recruiter_max_age_days=RECRUITER_MAX_AGE, offer_max_age_days=OFFER_MAX_AGE, counts=counts)
+    par_secteur = {}
+    for siret, entry in companies.items():
+        for k in allowed[siret]:
+            par_secteur.setdefault(k, {})[siret] = entry
+    print(json.dumps(dict(counts, matched_companies=len(companies), sectors=len(par_secteur)), ensure_ascii=False), flush=True)
     if not args.write:
         print('Dry-run : aucun fichier modifié.')
         return
-    target = args.root / 'data/lba-index.json'
-    fd, tmp = tempfile.mkstemp(prefix='lba-', suffix='.tmp', dir=target.parent)
+    # Écriture dans un dossier temporaire, puis remplacement d'un bloc : jamais de mélange ancien/nouveau.
+    target = args.root / 'data/lba'
+    tmp = Path(tempfile.mkdtemp(prefix='lba-', dir=args.root / 'data'))
     try:
-        with os.fdopen(fd, 'w') as f:
-            json.dump(result, f, ensure_ascii=False, separators=(',', ':'))
-            f.write('\n')
-        os.chmod(tmp, 0o644)
+        for k, entries in par_secteur.items():
+            (tmp / (k + '.json')).write_text(json.dumps(dict(sorted(entries.items())), ensure_ascii=False, separators=(',', ':')) + '\n')
+        (tmp / 'meta.json').write_text(json.dumps(meta, ensure_ascii=False, separators=(',', ':')) + '\n')
+        for f in tmp.iterdir():
+            os.chmod(f, 0o644)
+        os.chmod(tmp, 0o755)
+        old = args.root / 'data/lba.old'
+        if target.exists():
+            os.replace(target, old)
         os.replace(tmp, target)
+        shutil.rmtree(old, ignore_errors=True)
     finally:
-        if os.path.exists(tmp):
-            os.unlink(tmp)
-    print('Écrit : data/lba-index.json', flush=True)
+        shutil.rmtree(tmp, ignore_errors=True)
+    print(f'Écrit : data/lba/ ({len(par_secteur)} secteurs + meta.json)', flush=True)
 
 
 if __name__ == '__main__':

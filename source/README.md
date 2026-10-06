@@ -26,7 +26,7 @@ le HTML, un argument de commande ou un fichier publié.
 
 ```sh
 python3 source/lba.py          # dry-run : bilan seulement
-python3 source/lba.py --write  # écrit seulement data/lba-index.json
+python3 source/lba.py --write  # écrit seulement data/lba/ (un fichier par secteur + meta.json)
 ```
 
 Le fichier public contient les liens des recruteurs potentiels et au plus trois
@@ -38,13 +38,16 @@ intitulé est affiché et l'élève est invité à vérifier métier et diplôme
 
 Les badges sont des pistes d'alternance, pas une garantie de stage en PFMP. Leur
 affichage ne change ni l'ordre par distance ni les entreprises disponibles.
-L'enrichissement est facultatif : si le fichier manque ou échoue au chargement,
-la carte Sirene reste utilisable. Les liens d'offres expirées sont masqués ; tout
-l'enrichissement est masqué après sept jours depuis la date de l'export. Les
-données LBA sont renouvelées quotidiennement par leur service : relancer le
-script avant une diffusion, changer `DV` dans `index.html` et recopier la page
-dans `source/public3_template.html`. Sans mise à jour et publication régulières,
-les indications disparaîtront au bout de sept jours.
+L'enrichissement est facultatif : si les fichiers manquent ou échouent au chargement,
+la carte Sirene reste utilisable. Chaque secteur a son petit fichier
+`data/lba/<secteur>.json`, chargé seulement quand l'élève choisit ce secteur ;
+`data/lba/meta.json` donne la date de l'export. Le badge « recruteur potentiel »
+est masqué 31 jours après cette date ; chaque offre est masquée à sa date
+d'expiration (ou 7 jours après l'export si elle n'en a pas).
+
+Les données LBA sont renouvelées quotidiennement par leur service : relancer le
+script avant une diffusion (au moins une fois par mois), changer `DV` dans
+`index.html` et recopier la page dans `source/public3_template.html`.
 
 Documentation officielle :
 https://api.apprentissage.beta.gouv.fr/fr/explorer/recherche-offre
