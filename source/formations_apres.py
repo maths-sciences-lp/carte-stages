@@ -4,6 +4,15 @@ def load(f): return [x for x in csv.DictReader(open(f,encoding='utf-8-sig'),deli
 rows=load('sup2.csv')+load('605340ddc19a9.csv')
 by=collections.defaultdict(list)
 for x in rows: by[x['Formation (FOR) libellé'].lower()].append(x)
+import re
+def frais(s):
+    s=(s or '').strip()
+    if not s: return ''
+    m=re.search(r'\((\d+) euros par an(.*?)\)',s)
+    if m:
+        n=f"{int(m.group(1)):,}".replace(',','\u202f')
+        return f"{n} € par an"+(f" ({m.group(2).strip(' ,')})" if m.group(2).strip(' ,') else '')
+    return s
 def cap1(s): return s[:1].upper()+s[1:]
 out={'date':'6 octobre 2026','lycee':{'n':'Lycée Eugène Hénaff','lat':48.874884,'lon':2.430721},'classes':[]}
 statuts=collections.Counter()
@@ -20,7 +29,7 @@ for k,(court,lib,forid,suites) in SUITES.items():
             if u in seen: continue
             statuts[x['ENS statut']]+=1
             seen[u]=dict(n=x["Lieu d'enseignement (ENS) libellé"],st=x['ENS statut'],a=x['ENS adresse'],cp=x['ENS code postal'],v=x['ENS commune'],
-                lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'])
+                lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']))
             f=f or dict(n=cap1(s),t=x['FOR type'],o=x['FOR URL et ID Onisep'],d=x['AF durée cycle standard'])
         f['e']=list(seen.values()); cl['f'].append(f)
     out['classes'].append(cl)

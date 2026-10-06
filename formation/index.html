@@ -88,6 +88,7 @@ const GC='https://maths-sciences.goatcounter.com/count', GC_ON=!/^(localhost|127
 function stat(c,t){if(!GC_ON)return;const q='?p='+encodeURIComponent('formation/'+c)+'&t='+encodeURIComponent(t||c)+'&e=true&rnd='+Math.random().toString(36).slice(2);if(navigator.sendBeacon)navigator.sendBeacon(GC+q);else(new Image()).src=GC+q;}
 let D=null, cls=null, off=new Set(), dep=null, map=null, layer=null;
 const km=(a,b,c,d)=>{const R=6371,t=Math.PI/180,x=(c-a)*t,y=(d-b)*t,h=Math.sin(x/2)**2+Math.cos(a*t)*Math.cos(c*t)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h));};
+const statut=s=>({'public':'Public','privé sous contrat':'Privé sous contrat','privé hors contrat':'Privé hors contrat'})[s]||'Privé';
 const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
 const GROUPES=[['Bac pro',c=>c.n.startsWith('Bac pro')],['CAP',c=>c.n.startsWith('CAP')],['BMA',c=>c.n.startsWith('BMA')]];
 function drawClasses(){let h='';for(const[g,fn] of GROUPES){h+=`<div class="sub">${g}</div><div class="grid">`;for(const c of D.classes.filter(fn))h+=`<button class="cl" data-k="${c.k}" aria-pressed="${cls&&cls.k===c.k}">${esc(c.n)}</button>`;h+='</div>';}
@@ -104,8 +105,8 @@ function origine(){return dep||{lat:D.lycee.lat,lon:D.lycee.lon,n:D.lycee.n};}
 function lignes(){const o=origine(),L=[];cls.f.forEach((f,i)=>{if(off.has(i))return;for(const e of f.e)L.push({f,e,d:km(o.lat,o.lon,e.lat,e.lon)});});return L.sort((a,b)=>a.d-b.d);}
 function draw(){if(!cls)return;const o=origine(),L=lignes();
  $('list').innerHTML=L.length?L.map(({f,e,d})=>{const prive=/priv/.test(e.st);const go=`https://www.google.com/maps/dir/?api=1&origin=${o.lat},${o.lon}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
-  const fiche=e.af||e.o;return `<div class="it"><div class="f">${esc(f.n)}</div><h3>${esc(e.n)}<span class="tag ${prive?'prive':''}">${prive?'Privé':'Public'}</span></h3>
-  <div class="d">📍 ${d<0.05?'Ton lycée':fmt(d)+' km'}</div><div class="m">${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>
+  const fiche=e.af||e.o;return `<div class="it"><div class="f">${esc(f.n)}</div><h3>${esc(e.n)}<span class="tag ${prive?'prive':''}">${esc(statut(e.st))}</span></h3>
+  <div class="d">📍 ${d<0.05?'Ton lycée':fmt(d)+' km'}</div><div class="m">${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}
   <div class="row"><a class="btn" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a><a class="btn light" href="${esc(fiche)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche Onisep</a>${e.w?`<a class="btn light" href="${esc(/^http/.test(e.w)?e.w:'https://'+e.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}</div></div>`;}).join(''):'<p class="msg">Coche au moins une formation.</p>';
  $('list').querySelectorAll('a[data-s]').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Clic : '+a.dataset.s)));
  if(map) drawMap(L);}
@@ -127,7 +128,7 @@ $('adr').addEventListener('keydown',async e=>{if(e.key!=='Enter')return;e.preven
  try{const r=await searchAdr($('adr').value.trim());if(r.length)sug(r);else $('amsg').textContent='Adresse pas trouvée. Écris le numéro, la rue et la ville.';}catch(x){$('amsg').textContent='Recherche impossible pour le moment.';}});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('amsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('amsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setMaison(p.coords.latitude,p.coords.longitude,'Ta position');},()=>$('amsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
-fetch('formations.json?v=2026-10-06').then(r=>r.json()).then(d=>{D=d;drawClasses();const k=location.hash.slice(1);if(k)choisir(k,false);});
+fetch('formations.json?v=2026-10-06b').then(r=>r.json()).then(d=>{D=d;drawClasses();const k=location.hash.slice(1);if(k)choisir(k,false);});
 window.addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(D&&k&&(!cls||cls.k!==k))choisir(k,false);});
 </script>
 </body></html>
