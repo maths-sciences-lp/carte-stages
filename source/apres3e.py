@@ -1,3 +1,4 @@
+from inserjeunes import cherche
 import csv,json,re,collections
 from domaines_apres3e import DOM,domaines
 from corrections_apres3e import C
@@ -26,7 +27,7 @@ for x in rows:
     u=x['ENS code UAI'] or x["Lieu d'enseignement (ENS) libellé"]
     if u in f['e']: continue
     f['e'][u]=dict(n=x["Lieu d'enseignement (ENS) libellé"],st=x['ENS statut'],a=x['ENS adresse'],cp=x['ENS code postal'],v=x['ENS commune'],
-        dep=x['ENS département'],lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']))
+        dep=x['ENS département'],lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']),ij=cherche(x['ENS code UAI'],x['Formation (FOR) libellé']))
 out=dict(date='6 octobre 2026',domaines=[dict(k=k,i=i,n=n,s=s) for k,i,n,s,_,_ in DOM],
   formations=[dict(f,e=list(f['e'].values())) for f in sorted(F.values(),key=lambda f:({'2de pro':0,'Bac pro':1,'CAP':2}[f['t']],f['n']))])
 cols=json.load(open('colleges.json'))

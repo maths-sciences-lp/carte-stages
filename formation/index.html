@@ -75,8 +75,8 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
 </section>
 
 <footer>
- Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, octobre 2026), poursuites d’études d’après les fiches diplômes de l’Onisep · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Les formations en apprentissage seront ajoutées plus tard.<br>
- Statistiques de visite anonymes, sans cookie. · <a href="../">Trouve ton stage</a> · <a href="../apres-3e/">Après la 3e</a> · <a href="../faq/">Questions fréquentes</a><br>
+ Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, octobre 2026), poursuites d’études d’après les fiches diplômes de l’Onisep · devenir des élèves : <a href="https://data.education.gouv.fr/explore/dataset/fr-en-inserjeunes-lycee_pro-formation-fine/" target="_blank" rel="noopener">InserJeunes</a> (ministère de l’Éducation nationale ; chiffre masqué quand il y a trop peu d’élèves) · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Les formations en apprentissage seront ajoutées plus tard.<br>
+ Statistiques de visite anonymes, sans cookie. · <a href="../accueil/">Tous les outils</a> · <a href="../">Trouve ton stage</a> · <a href="../apres-3e/">Après la 3e</a> · <a href="../faq/">Questions fréquentes</a><br>
  Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
  © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
 </footer>
@@ -106,7 +106,7 @@ function lignes(){const o=origine(),L=[];cls.f.forEach((f,i)=>{if(off.has(i))ret
 function draw(){if(!cls)return;const o=origine(),L=lignes();
  $('list').innerHTML=L.length?L.map(({f,e,d})=>{const prive=/priv/.test(e.st);const go=`https://www.google.com/maps/dir/?api=1&origin=${o.lat},${o.lon}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
   const fiche=e.af||e.o;return `<div class="it"><div class="f">${esc(f.n)}</div><h3>${esc(e.n)}<span class="tag ${prive?'prive':''}">${esc(statut(e.st))}</span></h3>
-  <div class="d">📍 ${d<0.05?'Ton lycée':fmt(d)+' km'}</div><div class="m">${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}
+  <div class="d">📍 ${d<0.05?'Ton lycée':fmt(d)+' km'}</div><div class="m">${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}${e.ij?`<div class="m">📊 Après cette formation, dans ce lycée : <b>${e.ij.p!=null?e.ij.p+' % continuent leurs études':''}${e.ij.p!=null&&e.ij.e!=null?' · ':''}${e.ij.e!=null?'parmi ceux qui arrêtent, '+e.ij.e+' % ont un emploi 6 mois après':''}</b> <span style="font-size:13px">(InserJeunes, sortants 2023-2024)</span></div>`:''}
   <div class="row"><a class="btn" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a><a class="btn light" href="${esc(fiche)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche Onisep</a>${e.w?`<a class="btn light" href="${esc(/^http/.test(e.w)?e.w:'https://'+e.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}</div></div>`;}).join(''):'<p class="msg">Coche au moins une formation.</p>';
  $('list').querySelectorAll('a[data-s]').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Clic : '+a.dataset.s)));
  if(map) drawMap(L);}
@@ -128,7 +128,7 @@ $('adr').addEventListener('keydown',async e=>{if(e.key!=='Enter')return;e.preven
  try{const r=await searchAdr($('adr').value.trim());if(r.length)sug(r);else $('amsg').textContent='Adresse pas trouvée. Écris le numéro, la rue et la ville.';}catch(x){$('amsg').textContent='Recherche impossible pour le moment.';}});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('amsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('amsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setMaison(p.coords.latitude,p.coords.longitude,'Ta position');},()=>$('amsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
-fetch('formations.json?v=2026-10-06b').then(r=>r.json()).then(d=>{D=d;drawClasses();const k=location.hash.slice(1);if(k)choisir(k,false);});
+fetch('formations.json?v=2026-10-06c').then(r=>r.json()).then(d=>{D=d;drawClasses();const k=location.hash.slice(1);if(k)choisir(k,false);});
 window.addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(D&&k&&(!cls||cls.k!==k))choisir(k,false);});
 </script>
 </body></html>

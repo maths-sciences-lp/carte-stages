@@ -1,3 +1,4 @@
+from inserjeunes import cherche
 import csv,json,collections
 from suites import SUITES
 def load(f): return [x for x in csv.DictReader(open(f,encoding='utf-8-sig'),delimiter=';') if x.get('ENS région','') in ('Ile-de-France','Île-de-France')]
@@ -29,7 +30,7 @@ for k,(court,lib,forid,suites) in SUITES.items():
             if u in seen: continue
             statuts[x['ENS statut']]+=1
             seen[u]=dict(n=x["Lieu d'enseignement (ENS) libellé"],st=x['ENS statut'],a=x['ENS adresse'],cp=x['ENS code postal'],v=x['ENS commune'],
-                lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']))
+                lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']),ij=cherche(x['ENS code UAI'],x['Formation (FOR) libellé']))
             f=f or dict(n=cap1(s),t=x['FOR type'],o=x['FOR URL et ID Onisep'],d=x['AF durée cycle standard'])
         f['e']=list(seen.values()); cl['f'].append(f)
     out['classes'].append(cl)

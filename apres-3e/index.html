@@ -79,8 +79,8 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
 </section>
 
 <footer>
- Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, académie de Créteil, octobre 2026) · collèges : annuaire de l’Éducation nationale · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Domaines regroupés et relus à la main à partir de l’indexation Onisep.<br>
- Statistiques de visite anonymes, sans cookie. · <a href="../">Trouve ton stage</a> · <a href="../formation/">Trouve ta formation</a> · <a href="../faq/">Questions fréquentes</a><br>
+ Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, académie de Créteil, octobre 2026) · collèges : annuaire de l’Éducation nationale · devenir des élèves : <a href="https://data.education.gouv.fr/explore/dataset/fr-en-inserjeunes-lycee_pro-formation-fine/" target="_blank" rel="noopener">InserJeunes</a> (ministère de l’Éducation nationale ; chiffre masqué quand il y a trop peu d’élèves) · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Domaines regroupés et relus à la main à partir de l’indexation Onisep.<br>
+ Statistiques de visite anonymes, sans cookie. · <a href="../accueil/">Tous les outils</a> · <a href="../">Trouve ton stage</a> · <a href="../formation/">Trouve ta formation</a> · <a href="../faq/">Questions fréquentes</a><br>
  Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
  © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
 </footer>
@@ -111,7 +111,7 @@ function lieuHTML({e,d}){const prive=/priv/.test(e.st);const o=dep?`&origin=${de
  const go=`https://www.google.com/maps/dir/?api=1${o}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
  return `<div class="li"><b>${esc(e.n)}</b><span class="tag ${prive?'prive':''}">${esc(statut(e.st))}</span>
  <div class="m">${d!==null?'📍 <b>'+fmt(d)+' km</b> · ':''}${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>
- ${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}
+ ${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}${e.ij?`<div class="m">📊 Après cette formation, dans ce lycée : <b>${e.ij.p!=null?e.ij.p+' % continuent leurs études':''}${e.ij.p!=null&&e.ij.e!=null?' · ':''}${e.ij.e!=null?'parmi ceux qui arrêtent, '+e.ij.e+' % ont un emploi 6 mois après':''}</b> <span style="font-size:13px">(InserJeunes, sortants 2023-2024)</span></div>`:''}
  <div class="row"><a class="btn" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a>${(e.af||e.o)?`<a class="btn light" href="${esc(e.af||e.o)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche Onisep</a>`:''}${e.w?`<a class="btn light" href="${esc(/^http/.test(e.w)?e.w:'https://'+e.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}</div></div>`;}
 function show(scroll){if(!D)return;const L=formations();$('aide').hidden=true;$('res').hidden=false;chips();
  const items=L.map(f=>({f,l:lieux(f)})).filter(x=>x.l.length);
@@ -147,6 +147,6 @@ const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinate
 $('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
-fetch('apres3e.json?v=2026-10-06b').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
+fetch('apres3e.json?v=2026-10-06c').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
 </script>
 </body></html>
