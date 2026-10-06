@@ -40,6 +40,7 @@ h2{{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10p
 .cl:hover,.cl:focus-visible{{border-color:var(--acc);outline:none}}
 .cl b{{font-size:19px}}.cl span{{font-size:14px;color:var(--mute);line-height:1.3}}
 .autre{{display:inline-block;margin-top:26px;color:var(--acc)}}
+.credit{{margin-top:22px;font-size:13px;color:var(--mute)}}
 </style>
 <script>if(!/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname)){{var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}}</script>
 </head><body>
@@ -49,6 +50,7 @@ h2{{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10p
 <p class="lead">Lycée Eugène Hénaff · <b>Appuie sur ta classe</b> : la carte s’ouvre avec les entreprises de ton métier, au départ du lycée.</p>
 {blocs}
 <a class="autre" href="../">Une autre formation ? Ouvrir la carte complète →</a>
+<p class="credit">© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
 </main></body></html>
 ''')
 print(len(R),'liens courts + page henaff')
