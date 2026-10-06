@@ -51,7 +51,7 @@ h2{{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10p
 {blocs}
 <a class="autre" href="../">Une autre formation ? Ouvrir la carte complète →</a>
 <a class="autre" href="../formation/" style="margin-left:0;display:block;margin-top:12px">🎓 Après le lycée : trouve ta formation →</a>
-<p class="credit"><a href="../faq/">Questions fréquentes</a><br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
+<p class="credit"><a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
 </main></body></html>
 ''')
 print(len(R),'liens courts + page henaff')
