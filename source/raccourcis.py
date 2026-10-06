@@ -40,7 +40,9 @@ h2{{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10p
 .cl:hover,.cl:focus-visible{{border-color:var(--acc);outline:none}}
 .cl b{{font-size:19px}}.cl span{{font-size:14px;color:var(--mute);line-height:1.3}}
 .autre{{display:inline-block;margin-top:26px;color:var(--acc)}}
-</style></head><body>
+</style>
+<script>if(!/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname)){{var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}}</script>
+</head><body>
 <a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a>
 <main>
 <h1>🎯 Trouve ton stage</h1>

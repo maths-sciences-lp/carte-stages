@@ -159,6 +159,7 @@ dialog li{margin:6px 0}
   <footer>
    Une entreprise de la liste ne prend pas forcément de stagiaires : appelle-la ou va la voir avec ta convention.<br>
    Données : répertoire Sirene de l’Insee (<a href="https://recherche-entreprises.api.gouv.fr" target="_blank" rel="noopener">API Recherche d’entreprises</a>), 5 octobre 2026, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" target="_blank" rel="noopener">Licence Ouverte 2.0</a> · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap.<br>
+   Statistiques de visite anonymes, sans cookie (<a href="https://maths-sciences-pro.fr/confidentialite.html" target="_blank" rel="noopener">confidentialité</a>).<br>
    Une erreur, ou une entreprise qui veut être retirée : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a>
   </footer>
  </div>
@@ -174,7 +175,7 @@ dialog li{margin:6px 0}
   <li>Appuie sur <b>« Trouver le numéro »</b> pour les appeler, et sur <b>« Y aller »</b> pour voir le trajet en bus, métro ou RER.</li>
  </ol>
  <p><b>Attention :</b> une entreprise de la liste ne prend pas forcément de stagiaires. Appelle-la ou va la voir.</p>
- <p class="msg">Les entreprises viennent du répertoire officiel de l’État (Insee) : seulement les sociétés d’au moins un salarié. Ton adresse sert juste à te placer sur la carte : le site ne la garde pas, elle reste sur ton téléphone.</p>
+ <p class="msg">Les entreprises viennent du répertoire officiel de l’État (Insee) : seulement les sociétés d’au moins un salarié. Ton adresse sert juste à te placer sur la carte : le site ne la garde pas, elle reste sur ton téléphone. Le site compte seulement les visites et les formations choisies, de façon anonyme et sans cookie.</p>
  <form method="dialog"><button class="btn">J’ai compris</button></form>
 </dialog>
 
@@ -182,6 +183,12 @@ dialog li{margin:6px 0}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 <script>
 const DV='2026-10-06b'; // à changer à chaque mise à jour des données
+// Statistiques anonymes (même compte GoatCounter que le site, sans cookie) : jamais d'adresse ni de position.
+const GC='https://maths-sciences.goatcounter.com/count', GC_ON=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)&&location.protocol!=='file:';
+if(GC_ON){const g=document.createElement('script');g.async=true;g.dataset.goatcounter=GC;g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}
+function stat(chemin,titre){ if(!GC_ON) return;
+ const q='?p='+encodeURIComponent('stages/'+chemin)+'&t='+encodeURIComponent(titre||chemin)+'&e=true&rnd='+Math.random().toString(36).slice(2);
+ if(navigator.sendBeacon) navigator.sendBeacon(GC+q); else (new Image()).src=GC+q; }
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
@@ -250,6 +257,7 @@ $('change').onclick=()=>{sel=null;$('chosen').hidden=true;$('pick').hidden=false
 
 async function choose(c){
  sel=c; let keys, title;
+ stat(c.type==='f'?'formation/'+c.x.k:'domaine/'+IDX.domaines[c.i].d, c.type==='f'?(c.x.t+' '+c.x.n):IDX.domaines[c.i].d);
  if(c.type==='f'){keys=c.x.s; title=`${c.x.t} ${c.x.n}`;}
  else {const d=IDX.domaines[c.i]; keys=d.s.map(s=>s.k); title=`${d.i} ${d.d}`;}
  keys.forEach((k,j)=>{COL[k]=PAL[j%PAL.length];LBL[k]=secName[k];});
@@ -282,7 +290,7 @@ $('geo').onclick=()=>{if(!navigator.geolocation){$('amsg').textContent='Ton tél
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setMaison(p.coords.latitude,p.coords.longitude,'Ta position');},()=>$('amsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
 function placeMk(k){const p=pts[k]; if(mks[k]) mks[k].remove(); if(!p) return;
  mks[k]=L.marker([p.la,p.lo],{zIndexOffset:1000,icon:L.divIcon({className:'',html:`<div class="start">${k==='lycee'?'🏫 Mon lycée':'🏠 Chez moi'}</div>`,iconAnchor:[30,12]})}).addTo(map);}
-function setMaison(la,lo,label){pts.maison={la,lo,label};placeMk('maison');from='maison';syncFrom();
+function setMaison(la,lo,label){stat('depart/maison','Départ : maison');pts.maison={la,lo,label};placeMk('maison');from='maison';syncFrom();
  try{localStorage.setItem('stages.maison',JSON.stringify(pts.maison));}catch(e){}
  $('amsg').textContent='✅ '+label; shown=40; render(); map.setView([la,lo],13);
  if(window.innerWidth<=900&&sel) $('s3').scrollIntoView({behavior:'smooth',block:'start'});}
@@ -297,7 +305,7 @@ $('lyc').addEventListener('input',()=>{const q=norm($('lyc').value).trim();if(q.
  if(!res.length){$('lsug').innerHTML='<div class="msg" style="padding:12px">Lycée pas trouvé. Essaie le nom de ta ville.</div>';$('lsug').hidden=false;$('lsug').onclick=null;return;}
  showSug($('lsug'),res,l=>`<span>${esc(l.n)}</span><span class="badge">${esc(l.c)}</span>`,l=>setLycee(l,true));});
 $('lyc').addEventListener('keydown',e=>{if(e.key==='Enter'){const b=$('lsug').querySelector('button');if(b){e.preventDefault();b.click();}}});
-function setLycee(l,user){pts.lycee={la:l.la,lo:l.lo,label:l.n,u:l.u};placeMk('lycee');from='lycee';syncFrom();
+function setLycee(l,user){if(user)stat('depart/lycee/'+l.u,'Départ : '+l.n);pts.lycee={la:l.la,lo:l.lo,label:l.n,u:l.u};placeMk('lycee');from='lycee';syncFrom();
  $('lyc').value=l.n; $('lmsg').textContent='✅ '+l.n+' ('+l.c+')';
  try{localStorage.setItem('stages.lycee',l.u);}catch(e){}
  setHash(); shown=40; render(); map.setView([l.la,l.lo],13);
@@ -342,6 +350,8 @@ function render(loading){
  $('list').innerHTML=h;
  const m=$('more'); if(m) m.onclick=()=>{shown+=40;render();};
 }
+document.addEventListener('click',e=>{const a=e.target.closest('a.btn');if(!a)return;const t=a.textContent;
+ if(t.includes('Trouver le numéro'))stat('clic/numero','Clic : trouver le numéro'); else if(t.includes('Y aller'))stat('clic/trajet','Clic : trajet'); else if(t.includes('Fiche officielle'))stat('clic/fiche','Clic : fiche officielle');},true);
 $('list').addEventListener('click',e=>{const b=e.target.closest('button[data-s]');if(!b)return;const p=P.find(x=>x.s===b.dataset.s);if(!p)return;
  if(window.innerWidth<=900){vue(true);$('s3').scrollIntoView({block:'start'});}
  setTimeout(()=>{map.invalidateSize();map.setView([p.la,p.lo],17,{animate:false});L.popup(Object.assign({offset:[0,-4]},POPOPT)).setLatLng([p.la,p.lo]).setContent(pop(p)).openOn(map);},150);});
