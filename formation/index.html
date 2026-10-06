@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trouve ta formation – Et après ?</title>
+<meta name="description" content="Après ton CAP, ton bac pro ou ton BMA : les formations possibles en Île-de-France, de la plus proche à la plus éloignée.">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+:root{--ink:#15314f;--bg:#f5f7f9;--line:#e4e9ee;--mute:#667085;--card:#fff;--acc:#2a4f7c;--soft:#eef2f6;--ok:#1f7a6d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.45 'Public Sans',system-ui,sans-serif}
+a{color:var(--acc)}
+.site{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--card);border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none}
+.site .lg{width:32px;height:32px;border-radius:9px;background:var(--ink);display:grid;place-items:center;color:#fff}
+.site b{font-family:'Bricolage Grotesque',system-ui;font-size:17px}.site span.r{margin-left:auto;font-size:14px;color:var(--mute)}
+main{max-width:860px;margin:0 auto;padding:18px 16px 30px}
+h1{font-family:'Bricolage Grotesque',system-ui;font-size:26px;margin:4px 0 4px}
+h2{font-family:'Bricolage Grotesque',system-ui;font-size:20px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-size:16px;flex:none}
+.lead{color:var(--mute);margin:0 0 14px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0}
+.sub{font-weight:700;margin:12px 0 6px;color:var(--mute);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.cl{padding:12px 14px;background:var(--card);border:2px solid var(--line);border-radius:14px;color:var(--ink);font:inherit;font-weight:700;text-align:left;cursor:pointer}
+.cl[aria-pressed=true]{border-color:var(--acc);background:var(--soft)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;border-radius:12px;border:0;background:var(--ink);color:#fff;font:inherit;font-weight:600;font-size:16px;cursor:pointer;text-decoration:none}
+.btn.light{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn[aria-pressed=false]{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+input[type=text]{flex:1;min-width:200px;padding:11px 12px;border:2px solid var(--line);border-radius:12px;font:inherit}
+.sug{display:grid;gap:4px;margin-top:6px}.sug button{text-align:left;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:inherit;cursor:pointer}
+.msg{color:var(--mute);font-size:15px;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.chip{padding:7px 12px;border-radius:999px;border:2px solid var(--line);background:var(--card);font:inherit;font-size:15px;cursor:pointer;color:var(--ink)}
+.chip[aria-pressed=true]{border-color:var(--acc);background:var(--soft);font-weight:600}
+.it{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:10px 0}
+.it h3{margin:0 0 4px;font-size:18px}.it .f{color:var(--ok);font-weight:600;font-size:15px}
+.it .d{font-weight:700;margin:6px 0 2px}.it .m{color:var(--mute);font-size:15px}
+.tag{display:inline-block;font-size:13px;padding:2px 8px;border-radius:999px;background:var(--soft);margin-left:4px;font-weight:600}
+.tag.prive{background:#fff4e5;color:#8a4b00}
+.it .row{margin-top:10px}
+#map{height:360px;border-radius:16px;border:1px solid var(--line);margin:10px 0}
+.note{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:15px;margin:12px 0}
+footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-top:24px;padding-top:12px}
+[hidden]{display:none!important}
+</style>
+<script>if(!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}</script>
+</head><body>
+<a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a>
+<main>
+<h1>🎓 Trouve ta formation</h1>
+<p class="lead"><b>Et après ?</b> Les formations possibles après ta classe, en Île-de-France, de la plus proche à la plus éloignée.</p>
+
+<section class="step"><h2><span class="n">1</span>Ta classe</h2>
+ <div id="classes"></div>
+</section>
+
+<section class="step"><h2><span class="n">2</span>D’où tu pars</h2>
+ <div class="row"><button class="btn" id="dLyc" aria-pressed="true">🏫 Du lycée</button><button class="btn" id="dMai" aria-pressed="false">🏠 De chez moi</button></div>
+ <div id="maison" hidden style="margin-top:10px">
+  <div class="row"><input type="text" id="adr" placeholder="Ton adresse (numéro, rue, ville)" autocomplete="street-address"><button class="btn light" id="geo">📍 Me localiser</button></div>
+  <div class="sug" id="asug" hidden></div><div class="msg" id="amsg"></div>
+ </div>
+</section>
+
+<section class="step" id="s3"><h2><span class="n">3</span>Les formations</h2>
+ <div class="msg" id="aide">Choisis d’abord ta classe.</div>
+ <div id="res" hidden>
+  <div class="chips" id="chips"></div>
+  <div class="row"><button class="btn" id="vL" aria-pressed="true">📋 Liste</button><button class="btn" id="vC" aria-pressed="false">🗺️ Carte</button></div>
+  <div id="map" hidden></div>
+  <div id="list"></div>
+  <div class="note" id="ailleurs" hidden></div>
+  <div class="note">💡 Ce sont des <b>exemples de poursuites d’études</b> donnés par l’Onisep. L’admission dépend de ton dossier<span id="bts"> : après un bac pro, un BTS est possible avec un très bon dossier ou une mention</span>. Parles-en à ton professeur principal ou au Psy-EN (psychologue de l’Éducation nationale).</div>
+ </div>
+</section>
+
+<footer>
+ Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, octobre 2026), poursuites d’études d’après les fiches diplômes de l’Onisep · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Les formations en apprentissage seront ajoutées plus tard.<br>
+ Statistiques de visite anonymes, sans cookie. · <a href="../">Trouve ton stage</a> · <a href="../faq/">Questions fréquentes</a><br>
+ Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
+ © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
+</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const GC='https://maths-sciences.goatcounter.com/count', GC_ON=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)&&location.protocol!=='file:';
+function stat(c,t){if(!GC_ON)return;const q='?p='+encodeURIComponent('formation/'+c)+'&t='+encodeURIComponent(t||c)+'&e=true&rnd='+Math.random().toString(36).slice(2);if(navigator.sendBeacon)navigator.sendBeacon(GC+q);else(new Image()).src=GC+q;}
+let D=null, cls=null, off=new Set(), dep=null, map=null, layer=null;
+const km=(a,b,c,d)=>{const R=6371,t=Math.PI/180,x=(c-a)*t,y=(d-b)*t,h=Math.sin(x/2)**2+Math.cos(a*t)*Math.cos(c*t)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h));};
+const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
+const GROUPES=[['Bac pro',c=>c.n.startsWith('Bac pro')],['CAP',c=>c.n.startsWith('CAP')],['BMA',c=>c.n.startsWith('BMA')]];
+function drawClasses(){let h='';for(const[g,fn] of GROUPES){h+=`<div class="sub">${g}</div><div class="grid">`;for(const c of D.classes.filter(fn))h+=`<button class="cl" data-k="${c.k}" aria-pressed="${cls&&cls.k===c.k}">${esc(c.n)}</button>`;h+='</div>';}
+ $('classes').innerHTML=h;$('classes').querySelectorAll('.cl').forEach(b=>b.onclick=()=>choisir(b.dataset.k,true));}
+function choisir(k,user){cls=D.classes.find(c=>c.k===k);if(!cls)return;off=new Set();drawClasses();if(user){history.replaceState(null,'','#'+k);stat('classe/'+k,cls.n);}
+ $('aide').hidden=true;$('res').hidden=false;
+ $('chips').innerHTML=cls.f.map((f,i)=>`<button class="chip" data-i="${i}" aria-pressed="true">${esc(f.n.replace(/^Bac pro /,'Bac pro ').replace(/ option /,' – '))}</button>`).join('');
+ $('chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;off.has(i)?off.delete(i):off.add(i);b.setAttribute('aria-pressed',!off.has(i));draw();});
+ $('bts').hidden=!cls.n.startsWith('Bac pro');
+ $('ailleurs').hidden=!cls.ailleurs.length;
+ $('ailleurs').innerHTML=cls.ailleurs.length?`🧭 <b>Aussi possibles</b>, mais pas proposées en lycée en Île-de-France (souvent seulement en apprentissage) : ${cls.ailleurs.map(esc).join(' · ')}.`:'';
+ draw(); if(user) $('s3').scrollIntoView({behavior:'smooth',block:'start'});}
+function origine(){return dep||{lat:D.lycee.lat,lon:D.lycee.lon,n:D.lycee.n};}
+function lignes(){const o=origine(),L=[];cls.f.forEach((f,i)=>{if(off.has(i))return;for(const e of f.e)L.push({f,e,d:km(o.lat,o.lon,e.lat,e.lon)});});return L.sort((a,b)=>a.d-b.d);}
+function draw(){if(!cls)return;const o=origine(),L=lignes();
+ $('list').innerHTML=L.length?L.map(({f,e,d})=>{const prive=/priv/.test(e.st);const go=`https://www.google.com/maps/dir/?api=1&origin=${o.lat},${o.lon}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
+  const fiche=e.af||e.o;return `<div class="it"><div class="f">${esc(f.n)}</div><h3>${esc(e.n)}<span class="tag ${prive?'prive':''}">${prive?'Privé':'Public'}</span></h3>
+  <div class="d">📍 ${d<0.05?'Ton lycée':fmt(d)+' km'}</div><div class="m">${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>
+  <div class="row"><a class="btn" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a><a class="btn light" href="${esc(fiche)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche Onisep</a>${e.w?`<a class="btn light" href="${esc(/^http/.test(e.w)?e.w:'https://'+e.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}</div></div>`;}).join(''):'<p class="msg">Coche au moins une formation.</p>';
+ $('list').querySelectorAll('a[data-s]').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Clic : '+a.dataset.s)));
+ if(map) drawMap(L);}
+function drawMap(L){const o=origine();if(layer)layer.remove();layer=L&&window.L?window.L.layerGroup().addTo(map):null;if(!layer)return;
+ window.L.circleMarker([o.lat,o.lon],{radius:9,color:'#15314f',fillColor:'#15314f',fillOpacity:1}).bindPopup(esc(dep?'Toi':D.lycee.n)).addTo(layer);
+ const pts=[[o.lat,o.lon]];for(const{f,e,d}of L){pts.push([e.lat,e.lon]);window.L.marker([e.lat,e.lon]).bindPopup(`<b>${esc(e.n)}</b><br>${esc(f.n)}<br>${fmt(d)} km`).addTo(layer);}
+ map.fitBounds(pts,{padding:[30,30],maxZoom:13});}
+function vue(c){$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
+ if(c){if(!map){map=window.L.map('map');window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();drawMap(lignes());},50);}}
+$('vL').onclick=()=>vue(false);$('vC').onclick=()=>vue(true);
+function depart(m){$('dLyc').setAttribute('aria-pressed',!m);$('dMai').setAttribute('aria-pressed',m);$('maison').hidden=!m;if(!m){dep=null;draw();}}
+$('dLyc').onclick=()=>depart(false);$('dMai').onclick=()=>{depart(true);$('adr').focus();};
+function setMaison(lat,lon,n){dep={lat,lon,n};$('asug').hidden=true;$('amsg').textContent='C’est noté : les distances partent de chez toi.';stat('depart/maison','Départ : maison');draw();}
+const IDF=/^(75|77|78|91|92|93|94|95)/;let timer=null;
+async function searchAdr(v){const r=await fetch('https://api-adresse.data.gouv.fr/search/?autocomplete=1&limit=15&lat=48.88&lon=2.42&q='+encodeURIComponent(v)).then(r=>r.json());return(r.features||[]).filter(f=>IDF.test(f.properties.postcode||'')).slice(0,5);}
+function sug(list){$('asug').innerHTML='';list.forEach(f=>{const b=document.createElement('button');b.textContent=f.properties.label;b.onclick=()=>{$('adr').value=f.properties.label;setMaison(f.geometry.coordinates[1],f.geometry.coordinates[0],f.properties.label);};$('asug').appendChild(b);});$('asug').hidden=!list.length;}
+$('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sug(await searchAdr(v));}catch(e){}},250);});
+$('adr').addEventListener('keydown',async e=>{if(e.key!=='Enter')return;e.preventDefault();const b=$('asug').querySelector('button');if(b&&!$('asug').hidden){b.click();return;}
+ try{const r=await searchAdr($('adr').value.trim());if(r.length)sug(r);else $('amsg').textContent='Adresse pas trouvée. Écris le numéro, la rue et la ville.';}catch(x){$('amsg').textContent='Recherche impossible pour le moment.';}});
+$('geo').onclick=()=>{if(!navigator.geolocation){$('amsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('amsg').textContent='Je te cherche…';
+ navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setMaison(p.coords.latitude,p.coords.longitude,'Ta position');},()=>$('amsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
+fetch('formations.json?v=2026-10-06').then(r=>r.json()).then(d=>{D=d;drawClasses();const k=location.hash.slice(1);if(k)choisir(k,false);});
+window.addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(D&&k&&(!cls||cls.k!==k))choisir(k,false);});
+</script>
+</body></html>

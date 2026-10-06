@@ -7,3 +7,4 @@
 5. `public3_template.html` est copié tel quel en `index.html`.
 6. `raccourcis.py <dossier>` : liens courts par classe du lycée Eugène Hénaff (`/tne/`, `/tma/`…) et page `/henaff/`. Après une mise à jour des données, changer `const DV` dans `index.html`.
 7. `faq/index.html` : questions fréquentes (élèves, enseignants, entreprises), page statique écrite à la main ; liens depuis le pied de la carte et la page `/henaff/`.
+8. `formation/` : « Trouve ta formation » (et après ?). `formations.json` fabriqué par `source/formations_apres.py` à partir des données ouvertes Onisep (actions de formation, univers lycée et enseignement supérieur, voie scolaire, Île-de-France) ; poursuites d’études = rubrique « Exemple(s) de formation(s) » des fiches diplômes Onisep (`source/suites.py`).
