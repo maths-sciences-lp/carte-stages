@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Après la 3e – Trouve ta voie pro</title>
+<meta name="description" content="Après la 3e : les CAP, secondes pros et bacs pros de l’académie de Créteil, selon ce qui te plaît, du plus proche au plus éloigné.">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+:root{--ink:#15314f;--bg:#f5f7f9;--line:#e4e9ee;--mute:#667085;--card:#fff;--acc:#2a4f7c;--soft:#eef2f6;--ok:#1f7a6d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.45 'Public Sans',system-ui,sans-serif}
+a{color:var(--acc)}
+.site{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--card);border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none}
+.site .lg{width:32px;height:32px;border-radius:9px;background:var(--ink);display:grid;place-items:center;color:#fff}
+.site b{font-family:'Bricolage Grotesque',system-ui;font-size:17px}.site span.r{margin-left:auto;font-size:14px;color:var(--mute)}
+main{max-width:900px;margin:0 auto;padding:18px 16px 30px}
+h1{font-family:'Bricolage Grotesque',system-ui;font-size:26px;margin:4px 0 4px}
+h2{font-family:'Bricolage Grotesque',system-ui;font-size:20px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-size:16px;flex:none}
+.lead{color:var(--mute);margin:0 0 14px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0}
+.doms{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.dom{display:flex;gap:10px;align-items:flex-start;padding:12px;background:var(--card);border:2px solid var(--line);border-radius:14px;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.dom[aria-pressed=true]{border-color:var(--acc);background:var(--soft)}
+.dom .e{font-size:26px;line-height:1}.dom b{display:block;font-size:16px;color:var(--ink)}.dom span{font-size:14px;color:var(--mute);line-height:1.3}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;border-radius:12px;border:0;background:var(--ink);color:#fff;font:inherit;font-weight:600;font-size:16px;cursor:pointer;text-decoration:none}
+.btn.light{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn[aria-pressed=false]{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+input[type=text]{flex:1;min-width:200px;padding:11px 12px;border:2px solid var(--line);border-radius:12px;font:inherit}
+.sug{display:grid;gap:4px;margin-top:6px}.sug button{text-align:left;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:inherit;cursor:pointer}
+.msg{color:var(--mute);font-size:15px;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{padding:7px 12px;border-radius:999px;border:2px solid var(--line);background:var(--card);font:inherit;font-size:15px;cursor:pointer;color:var(--ink)}
+.chip[aria-pressed=true]{border-color:var(--acc);background:var(--soft);font-weight:600}
+.fo{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:10px 0}
+.fo h3{margin:4px 0 4px;font-size:18px}.ty{display:inline-block;font-size:13px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--ink);color:#fff}
+.ty.cap{background:var(--ok)}.ty.sec{background:#7a4f9a}
+.fo .m{color:var(--mute);font-size:15px}
+.lieux{margin-top:8px;border-top:1px solid var(--line)}
+.li{padding:10px 0;border-bottom:1px solid var(--line)}.li b{font-size:16px}
+.tag{display:inline-block;font-size:13px;padding:2px 8px;border-radius:999px;background:var(--soft);margin-left:4px;font-weight:600}
+.tag.prive{background:#fff4e5;color:#8a4b00}
+.li .row{margin-top:6px}.li .btn{padding:8px 12px;font-size:15px}
+#map{height:380px;border-radius:16px;border:1px solid var(--line);margin:10px 0}
+.note{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:15px;margin:12px 0}
+footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-top:24px;padding-top:12px}
+[hidden]{display:none!important}
+</style>
+<script>if(!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}</script>
+</head><body>
+<a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a>
+<main>
+<h1>🧭 Après la 3e : trouve ta voie pro</h1>
+<p class="lead">Les CAP, secondes pros et bacs pros de l’<b>académie de Créteil</b> (Seine-Saint-Denis, Val-de-Marne, Seine-et-Marne), selon ce qui te plaît, du plus proche au plus éloigné.</p>
+
+<section class="step"><h2><span class="n">1</span>Ce qui te plaît</h2>
+ <div class="doms" id="doms"></div>
+ <div class="row" style="margin-top:10px"><input type="text" id="q" placeholder="Ou tape un métier ou un diplôme (ex. : cuisine, électricien, coiffure)"></div>
+</section>
+
+<section class="step"><h2><span class="n">2</span>D’où tu pars</h2>
+ <div class="row"><button class="btn" id="dCol" aria-pressed="true">🏫 Mon collège</button><button class="btn" id="dMai" aria-pressed="false">🏠 Chez moi</button></div>
+ <div id="pCol" style="margin-top:10px"><div class="row"><input type="text" id="col" placeholder="Nom de ton collège ou de ta ville"></div><div class="sug" id="csug" hidden></div></div>
+ <div id="pMai" hidden style="margin-top:10px"><div class="row"><input type="text" id="adr" placeholder="Ton adresse (numéro, rue, ville)" autocomplete="street-address"><button class="btn light" id="geo">📍 Me localiser</button></div><div class="sug" id="asug" hidden></div></div>
+ <div class="msg" id="dmsg">Choisis ton collège ou ton adresse pour voir les lycées les plus proches.</div>
+</section>
+
+<section class="step" id="s3"><h2><span class="n">3</span>Les formations</h2>
+ <div class="msg" id="aide">Choisis d’abord ce qui te plaît.</div>
+ <div id="res" hidden>
+  <div class="chips" id="ftype"></div>
+  <div class="chips" id="fdep"></div>
+  <div class="row"><button class="btn" id="vL" aria-pressed="true">📋 Liste</button><button class="btn" id="vC" aria-pressed="false">🗺️ Carte</button></div>
+  <div class="msg" id="count"></div>
+  <div id="map" hidden></div>
+  <div id="list"></div>
+ </div>
+ <div class="note">💡 <b>Bon à savoir.</b> Une <b>2de pro « famille de métiers »</b> est une seconde commune à plusieurs bacs pros : tu choisis ton bac pro à la fin de l’année. Un <b>CAP</b> dure 2 ans, un <b>bac pro</b> 3 ans. L’entrée au lycée se fait par la procédure d’affectation (Affelnet), avec un nombre de places limité : parles-en à ton professeur principal ou au Psy-EN. Les formations en apprentissage ne sont pas encore affichées.</div>
+</section>
+
+<footer>
+ Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, académie de Créteil, octobre 2026) · collèges : annuaire de l’Éducation nationale · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Domaines regroupés et relus à la main à partir de l’indexation Onisep.<br>
+ Statistiques de visite anonymes, sans cookie. · <a href="../">Trouve ton stage</a> · <a href="../formation/">Trouve ta formation</a> · <a href="../faq/">Questions fréquentes</a><br>
+ Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
+ © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
+</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const GC='https://maths-sciences.goatcounter.com/count', GC_ON=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)&&location.protocol!=='file:';
+function stat(c,t){if(!GC_ON)return;const q='?p='+encodeURIComponent('apres3e/'+c)+'&t='+encodeURIComponent(t||c)+'&e=true&rnd='+Math.random().toString(36).slice(2);if(navigator.sendBeacon)navigator.sendBeacon(GC+q);else(new Image()).src=GC+q;}
+const km=(a,b,c,d)=>{const R=6371,t=Math.PI/180,x=(c-a)*t,y=(d-b)*t,h=Math.sin(x/2)**2+Math.cos(a*t)*Math.cos(c*t)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h));};
+const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
+const statut=s=>({'public':'Public','privé sous contrat':'Privé sous contrat','privé hors contrat':'Privé hors contrat'})[s]||'Privé';
+const TYPES=[['2de pro','2de pro (famille)'],['Bac pro','Bac pro'],['CAP','CAP']];
+const DEPS=['Seine-Saint-Denis','Val-de-Marne','Seine-et-Marne'];
+let D=null, dom=null, q='', dep=null, offT=new Set(), offD=new Set(), open=new Set(), map=null, layer=null;
+function drawDoms(){$('doms').innerHTML=D.domaines.map(d=>`<button class="dom" data-k="${d.k}" aria-pressed="${dom===d.k}"><span class="e">${d.i}</span><span><b>${esc(d.n)}</b><span>${esc(d.s)}</span></span></button>`).join('')+
+ `<button class="dom" data-k="tout" aria-pressed="${dom==='tout'}"><span class="e">📋</span><span><b>Toutes les formations</b><span>la liste complète de l’académie</span></span></button>`;
+ $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{dom=b.dataset.k;q='';$('q').value='';open=new Set();drawDoms();history.replaceState(null,'','#'+dom);stat('domaine/'+dom,b.querySelector('b').textContent);show(true);});}
+$('q').addEventListener('input',()=>{q=norm($('q').value.trim());if(q.length>=2){dom=null;drawDoms();show(false);}else if(!dom){$('res').hidden=true;$('aide').hidden=false;}});
+function formations(){return D.formations.filter(f=>{if(offT.has(f.t))return false;if(q.length>=2)return norm(f.n).includes(q);return dom==='tout'||f.d.includes(dom);});}
+function lieux(f){return f.e.filter(e=>!offD.has(e.dep)).map(e=>({e,d:dep?km(dep.lat,dep.lon,e.lat,e.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.e.v.localeCompare(b.e.v));}
+function chips(){$('ftype').innerHTML=TYPES.map(([k,l])=>`<button class="chip" data-t="${k}" aria-pressed="${!offT.has(k)}">${l}</button>`).join('');
+ $('ftype').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.t;offT.has(k)?offT.delete(k):offT.add(k);show(false);});
+ $('fdep').innerHTML=DEPS.map(k=>`<button class="chip" data-d="${k}" aria-pressed="${!offD.has(k)}">${k}</button>`).join('');
+ $('fdep').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.d;offD.has(k)?offD.delete(k):offD.add(k);show(false);});}
+function lieuHTML({e,d}){const prive=/priv/.test(e.st);const o=dep?`&origin=${dep.lat},${dep.lon}`:'';
+ const go=`https://www.google.com/maps/dir/?api=1${o}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
+ return `<div class="li"><b>${esc(e.n)}</b><span class="tag ${prive?'prive':''}">${esc(statut(e.st))}</span>
+ <div class="m">${d!==null?'📍 <b>'+fmt(d)+' km</b> · ':''}${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>
+ ${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}
+ <div class="row"><a class="btn" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a>${(e.af||e.o)?`<a class="btn light" href="${esc(e.af||e.o)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche Onisep</a>`:''}${e.w?`<a class="btn light" href="${esc(/^http/.test(e.w)?e.w:'https://'+e.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}</div></div>`;}
+function show(scroll){if(!D)return;const L=formations();$('aide').hidden=true;$('res').hidden=false;chips();
+ const items=L.map(f=>({f,l:lieux(f)})).filter(x=>x.l.length);
+ if(dep) items.sort((a,b)=>({'2de pro':0,'Bac pro':1,'CAP':2}[a.f.t]-{'2de pro':0,'Bac pro':1,'CAP':2}[b.f.t])||a.l[0].d-b.l[0].d);
+ $('count').textContent=items.length?`${items.length} formation${items.length>1?'s':''}`+(dep?' · les lycées les plus proches en premier':' · choisis d’où tu pars pour voir les distances'):'Aucune formation avec ces choix.';
+ $('list').innerHTML=items.map(({f,l},i)=>{const cls=f.t==='CAP'?'cap':f.t==='2de pro'?'sec':'';const ouv=open.has(f.n);const top=l[0];
+  return `<div class="fo"><span class="ty ${cls}">${esc(f.t==='2de pro'?'2de pro · famille de métiers':f.t)}</span><h3>${esc(f.n)}</h3>
+  <div class="m">${l.length} lycée${l.length>1?'s':''}${top.d!==null?` · le plus proche : <b>${fmt(top.d)} km</b> (${esc(top.e.v)})`:''} · <a href="${esc(f.o)}" target="_blank" rel="noopener">Fiche Onisep du diplôme</a></div>
+  <div class="row" style="margin-top:8px"><button class="btn ${ouv?'':'light'}" data-i="${i}">${ouv?'Masquer les lycées':'Voir les lycées'}</button></div>
+  ${ouv?`<div class="lieux">${l.map(lieuHTML).join('')}</div>`:''}</div>`;}).join('');
+ $('list').querySelectorAll('button[data-i]').forEach(b=>b.onclick=()=>{const f=items[+b.dataset.i].f;open.has(f.n)?open.delete(f.n):(open.add(f.n),stat('formation/'+f.n,f.n));show(false);});
+ $('list').querySelectorAll('a[data-s]').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Clic : '+a.dataset.s)));
+ if(map&&!$('map').hidden) drawMap(items);
+ if(scroll) $('s3').scrollIntoView({behavior:'smooth',block:'start'});}
+function drawMap(items){if(layer)layer.remove();layer=L.layerGroup().addTo(map);const pts=[];
+ if(dep){L.circleMarker([dep.lat,dep.lon],{radius:9,color:'#15314f',fillColor:'#15314f',fillOpacity:1}).bindPopup('Toi').addTo(layer);pts.push([dep.lat,dep.lon]);}
+ const seen={};for(const{f,l}of items)for(const{e}of l){const k=e.lat+','+e.lon;(seen[k]=seen[k]||{e,f:[]}).f.push(f.n);}
+ for(const k in seen){const{e,f}=seen[k];pts.push([e.lat,e.lon]);L.marker([e.lat,e.lon]).bindPopup(`<b>${esc(e.n)}</b><br>${esc(e.v)}<br><small>${f.slice(0,6).map(esc).join('<br>')}${f.length>6?'<br>…':''}</small>`).addTo(layer);}
+ if(pts.length) map.fitBounds(pts,{padding:[30,30],maxZoom:13});}
+function vue(c){$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
+ if(c){if(!map){map=L.map('map');L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();show(false);},50);}}
+$('vL').onclick=()=>vue(false);$('vC').onclick=()=>vue(true);
+function mode(m){$('dCol').setAttribute('aria-pressed',m==='col');$('dMai').setAttribute('aria-pressed',m==='mai');$('pCol').hidden=m!=='col';$('pMai').hidden=m!=='mai';}
+$('dCol').onclick=()=>mode('col');$('dMai').onclick=()=>{mode('mai');$('adr').focus();};
+function setDep(lat,lon,n,src){dep={lat,lon,n};$('csug').hidden=true;$('asug').hidden=true;$('dmsg').textContent='C’est noté : départ '+n+'.';stat('depart/'+src,'Départ : '+src);if(dom||q.length>=2)show(false);}
+function sugList(box,list,label,pick){box.innerHTML='';list.forEach(x=>{const b=document.createElement('button');b.textContent=label(x);b.onclick=()=>pick(x);box.appendChild(b);});box.hidden=!list.length;}
+$('col').addEventListener('input',()=>{const v=norm($('col').value.trim());if(v.length<2){$('csug').hidden=true;return;}
+ const r=D.colleges.filter(c=>norm(c.n+' '+c.v).includes(v)).slice(0,8);
+ sugList($('csug'),r,c=>c.n+' — '+c.v,c=>{$('col').value=c.n+' — '+c.v;setDep(c.lat,c.lon,'du '+c.n.replace(/^Coll[èe]ge /i,'collège '),'college');});});
+const IDF=/^(75|77|78|91|92|93|94|95)/;let timer=null;
+async function searchAdr(v){const r=await fetch('https://api-adresse.data.gouv.fr/search/?autocomplete=1&limit=15&lat=48.85&lon=2.6&q='+encodeURIComponent(v)).then(r=>r.json());return(r.features||[]).filter(f=>IDF.test(f.properties.postcode||'')).slice(0,5);}
+const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinates[1],f.geometry.coordinates[0],'de chez toi','maison');};
+$('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
+$('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
+ navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
+fetch('apres3e.json?v=2026-10-06b').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
+</script>
+</body></html>
