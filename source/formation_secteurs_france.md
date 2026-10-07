@@ -405,9 +405,9 @@ Cette PR prépare les sources. Les JSON et pages actuellement servis restent inc
 
 ### 20. bac pro métiers du cuir option sellerie garnissage — ajout France
 
-**Types d’entreprises :** Cuir, maroquinerie, cordonnerie.
+**Types d’entreprises :** Cuir, maroquinerie, cordonnerie ; Garages, carrosseries (voitures) ; Bateaux, nautisme ; Aéronautique.
 
-**Lecture Onisep :** Prototypage et fabrication en sellerie et garnissage.
+**Lecture Onisep :** La rubrique Objectifs de la formation cite explicitement la réalisation de prototypes en sellerie automobile, aéronautique et navale. Ajout des garages/carrosseries, du nautisme et de l'aéronautique pour les ateliers de garnissage et d'aménagement intérieur.
 
 [Fiche diplôme Onisep](https://www.onisep.fr/http/redirection/formation/slug/FOR.6088).
 [RNCP37230](https://www.francecompetences.fr/recherche/rncp/37230/) ; CFD `40024303` ; [certification via LBA](https://api.apprentissage.beta.gouv.fr/api/certification/v1?identifiant.rncp=RNCP37230). ROME : H2401 — Assemblage - montage d''articles en cuirs, peaux ; H2407 — Conduite de machine de transformation et de finition des cuirs et peaux ; H2409 — Coupe cuir, textile et matériaux souples ; H2411 — Montage de prototype cuir et matériaux souples ; H2415 — Contrôle en industrie du cuir et du textile.
@@ -415,6 +415,12 @@ Cette PR prépare les sources. Les JSON et pages actuellement servis restent inc
 [Recherche LBA](https://api.apprentissage.beta.gouv.fr/api/job/v1/search?rncp=RNCP37230&target_diploma_level=4) : 27 offres retournées (0 exclues), 150 recruteurs potentiels. Répartition des résultats retenus par secteur (offres / recruteurs) :
 
 - Cuir, maroquinerie, cordonnerie : 13 / 48.
+- Garages, carrosseries (voitures) : 0 / 0.
+- Bateaux, nautisme : 0 / 0.
+- Aéronautique : 0 / 0.
+
+**Limites / cas incertains :**
+- Ces secteurs sont larges : retenir les établissements disposant d'une activité de sellerie, de garnissage ou d'aménagement intérieur, et non tous les garages ou toutes les entreprises aéronautiques et nautiques. Aucun signal LBA positif n'est observé pour ces catégories dans la réponse conservée ; les objectifs Onisep étayent ces associations.
 
 ### 21. bac pro métiers et arts de la pierre — ajout France
 
@@ -1254,9 +1260,9 @@ RNCP, ROME et signal LBA : **non rapprochés**, sans estimation.
 
 ### 73. CAP plumasserie — ajout France
 
-**Types d’entreprises :** Couture, confection ; Spectacle, musées, bibliothèques.
+**Types d’entreprises :** Couture, confection ; Spectacle, musées, bibliothèques ; Fleurs artificielles, parures de mode.
 
-**Lecture Onisep :** Ateliers de plumasserie indépendants ou intégrés à la haute couture et au spectacle.
+**Lecture Onisep :** Ateliers de plumasserie indépendants ou intégrés à la haute couture et au spectacle ; le type Fleurs artificielles, parures de mode repère aussi les plumassiers par son filtre PLUMASS.
 
 [Fiche diplôme Onisep](https://www.onisep.fr/http/redirection/formation/slug/FOR.9921).
 [RNCP39134](https://www.francecompetences.fr/recherche/rncp/39134/) ; CFD `50024133` ; [certification via LBA](https://api.apprentissage.beta.gouv.fr/api/certification/v1?identifiant.rncp=RNCP39134). ROME : B1801 — Réalisation d''articles de chapellerie.
@@ -1265,9 +1271,10 @@ RNCP, ROME et signal LBA : **non rapprochés**, sans estimation.
 
 - Couture, confection : 0 / 6.
 - Spectacle, musées, bibliothèques : 0 / 0.
+- Fleurs artificielles, parures de mode : 0 / 0.
 
 **Limites / cas incertains :**
-- Les ateliers indépendants ne sont pas tous identifiables par les catégories actuelles ; les liens couvrent surtout couture et spectacle. Aucun code de production brute de plumes n'est ajouté.
+- Le code 32.99Z et le filtre sur les noms ne couvrent pas tous les ateliers de plumasserie et peuvent produire des faux positifs. Le signal LBA par NAF est plus large que ce filtre. Aucun code de production brute de plumes n'est ajouté.
 
 ### 74. CAP poissonnier écailler — ajout France
 
@@ -1337,9 +1344,9 @@ RNCP, ROME et signal LBA : **non rapprochés**, sans estimation.
 
 ### 78. CAP sellier harnacheur — ajout France
 
-**Types d’entreprises :** Cuir, maroquinerie, cordonnerie.
+**Types d’entreprises :** Cuir, maroquinerie, cordonnerie ; Élevage de chevaux, haras ; Clubs et salles de sport ; Activités sportives (dont écuries de course) ; Écoles de sport, équitation.
 
-**Lecture Onisep :** Sellerie d'équitation, d'attelage et harnachement.
+**Lecture Onisep :** Fabrication, réparation et adaptation de selles, harnais et équipements équins. La fiche diplôme cite les ateliers de sellerie ; les centres équestres, haras et écuries sont ajoutés à la suite de la relecture comme pistes complémentaires, sous réserve d'une activité réelle de sellerie.
 
 [Fiche diplôme Onisep](https://www.onisep.fr/http/redirection/formation/slug/FOR.503).
 [RNCP37905](https://www.francecompetences.fr/recherche/rncp/37905/) ; CFD `50024321` ; [certification via LBA](https://api.apprentissage.beta.gouv.fr/api/certification/v1?identifiant.rncp=RNCP37905). ROME : B1802 — Réalisation d''articles en cuir et matériaux souples (hors vêtement).
@@ -1347,6 +1354,14 @@ RNCP, ROME et signal LBA : **non rapprochés**, sans estimation.
 [Recherche LBA](https://api.apprentissage.beta.gouv.fr/api/job/v1/search?rncp=RNCP37905&target_diploma_level=3) : 25 offres retournées (0 exclues), 150 recruteurs potentiels. Répartition des résultats retenus par secteur (offres / recruteurs) :
 
 - Cuir, maroquinerie, cordonnerie : 22 / 74.
+- Élevage de chevaux, haras : 0 / 0.
+- Clubs et salles de sport : 0 / 0.
+- Activités sportives (dont écuries de course) : 0 / 0.
+- Écoles de sport, équitation : 0 / 0.
+
+**Limites / cas incertains :**
+- Un centre équestre ou une écurie peut être client du sellier sans l'employer. Ces liens ne conviennent à une PFMP que si la structure dispose d'un atelier ou d'un professionnel de sellerie pouvant encadrer les activités du diplôme ; à vérifier avec le lycée.
+- Les codes des clubs, écoles de sport et activités sportives couvrent aussi d'autres sports. Vérifier qu'il s'agit bien d'équitation et d'une activité de sellerie ; aucun signal LBA positif n'est observé pour ces catégories dans la réponse conservée.
 
 ### 79. CAP souffleur de verre option enseigne lumineuse — ajout France
 

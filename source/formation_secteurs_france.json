@@ -328,7 +328,8 @@
         "bac pro conduite et gestion de l'entreprise hippique",
         "CAPa lad-cavalier d'entraînement",
         "CAPa maréchal-ferrant",
-        "CAPa palefrenier soigneur"
+        "CAPa palefrenier soigneur",
+        "CAP sellier harnacheur"
       ]
     },
     "01.49Z": {
@@ -779,7 +780,8 @@
         "bac pro conduite et gestion de l'entreprise hippique",
         "CAPa lad-cavalier d'entraînement",
         "CAPa maréchal-ferrant",
-        "CAPa palefrenier soigneur"
+        "CAPa palefrenier soigneur",
+        "CAP sellier harnacheur"
       ]
     },
     "79.90Z": {
@@ -809,7 +811,8 @@
       "source": "https://www.insee.fr/fr/metadonnees/nafr2/sousClasse/85.51Z",
       "formations": [
         "bac pro conduite et gestion de l'entreprise hippique",
-        "CAPa palefrenier soigneur"
+        "CAPa palefrenier soigneur",
+        "CAP sellier harnacheur"
       ]
     },
     "32.99Z": {
@@ -818,7 +821,8 @@
       "libelle_insee": "Autres activités manufacturières n.c.a.",
       "source": "https://www.insee.fr/fr/metadonnees/nafr2/sousClasse/32.99Z",
       "formations": [
-        "CAP fleuriste de mode"
+        "CAP fleuriste de mode",
+        "CAP plumasserie"
       ]
     },
     "38.22Z": {
@@ -3038,9 +3042,12 @@
       "intitule_onisep": "Bac pro métiers du cuir option sellerie garnissage",
       "marquage": "ajout France",
       "secteurs": [
-        "Cuir, maroquinerie, cordonnerie"
+        "Cuir, maroquinerie, cordonnerie",
+        "Garages, carrosseries (voitures)",
+        "Bateaux, nautisme",
+        "Aéronautique"
       ],
-      "justification_onisep": "Prototypage et fabrication en sellerie et garnissage.",
+      "justification_onisep": "La rubrique Objectifs de la formation cite explicitement la réalisation de prototypes en sellerie automobile, aéronautique et navale. Ajout des garages/carrosseries, du nautisme et de l'aéronautique pour les ateliers de garnissage et d'aménagement intérieur.",
       "onisep": {
         "url": "https://www.onisep.fr/http/redirection/formation/slug/FOR.6088",
         "referentiels_signales_par_onisep": [
@@ -3134,9 +3141,43 @@
             "jobs": 13,
             "recruiters": 48
           }
+        },
+        {
+          "secteur": "Garages, carrosseries (voitures)",
+          "codes_naf": [
+            "45.20A"
+          ],
+          "signal_lba": {
+            "jobs": 0,
+            "recruiters": 0
+          }
+        },
+        {
+          "secteur": "Bateaux, nautisme",
+          "codes_naf": [
+            "30.12Z",
+            "33.15Z"
+          ],
+          "signal_lba": {
+            "jobs": 0,
+            "recruiters": 0
+          }
+        },
+        {
+          "secteur": "Aéronautique",
+          "codes_naf": [
+            "30.30Z",
+            "33.16Z"
+          ],
+          "signal_lba": {
+            "jobs": 0,
+            "recruiters": 0
+          }
         }
       ],
-      "limites": []
+      "limites": [
+        "Ces secteurs sont larges : retenir les établissements disposant d'une activité de sellerie, de garnissage ou d'aménagement intérieur, et non tous les garages ou toutes les entreprises aéronautiques et nautiques. Aucun signal LBA positif n'est observé pour ces catégories dans la réponse conservée ; les objectifs Onisep étayent ces associations."
+      ]
     },
     {
       "intitule": "bac pro métiers et arts de la pierre",
@@ -9190,9 +9231,10 @@
       "marquage": "ajout France",
       "secteurs": [
         "Couture, confection",
-        "Spectacle, musées, bibliothèques"
+        "Spectacle, musées, bibliothèques",
+        "Fleurs artificielles, parures de mode"
       ],
-      "justification_onisep": "Ateliers de plumasserie indépendants ou intégrés à la haute couture et au spectacle.",
+      "justification_onisep": "Ateliers de plumasserie indépendants ou intégrés à la haute couture et au spectacle ; le type Fleurs artificielles, parures de mode repère aussi les plumassiers par son filtre PLUMASS.",
       "onisep": {
         "url": "https://www.onisep.fr/http/redirection/formation/slug/FOR.9921",
         "referentiels_signales_par_onisep": [
@@ -9275,10 +9317,20 @@
             "jobs": 0,
             "recruiters": 0
           }
+        },
+        {
+          "secteur": "Fleurs artificielles, parures de mode",
+          "codes_naf": [
+            "32.99Z"
+          ],
+          "signal_lba": {
+            "jobs": 0,
+            "recruiters": 0
+          }
         }
       ],
       "limites": [
-        "Les ateliers indépendants ne sont pas tous identifiables par les catégories actuelles ; les liens couvrent surtout couture et spectacle. Aucun code de production brute de plumes n'est ajouté."
+        "Le code 32.99Z et le filtre sur les noms ne couvrent pas tous les ateliers de plumasserie et peuvent produire des faux positifs. Le signal LBA par NAF est plus large que ce filtre. Aucun code de production brute de plumes n'est ajouté."
       ]
     },
     {
@@ -9809,9 +9861,13 @@
       "intitule_onisep": "CAP sellier harnacheur",
       "marquage": "ajout France",
       "secteurs": [
-        "Cuir, maroquinerie, cordonnerie"
+        "Cuir, maroquinerie, cordonnerie",
+        "Élevage de chevaux, haras",
+        "Clubs et salles de sport",
+        "Activités sportives (dont écuries de course)",
+        "Écoles de sport, équitation"
       ],
-      "justification_onisep": "Sellerie d'équitation, d'attelage et harnachement.",
+      "justification_onisep": "Fabrication, réparation et adaptation de selles, harnais et équipements équins. La fiche diplôme cite les ateliers de sellerie ; les centres équestres, haras et écuries sont ajoutés à la suite de la relecture comme pistes complémentaires, sous réserve d'une activité réelle de sellerie.",
       "onisep": {
         "url": "https://www.onisep.fr/http/redirection/formation/slug/FOR.503",
         "referentiels_signales_par_onisep": [
@@ -9888,9 +9944,54 @@
             "jobs": 22,
             "recruiters": 74
           }
+        },
+        {
+          "secteur": "Élevage de chevaux, haras",
+          "codes_naf": [
+            "01.43Z"
+          ],
+          "signal_lba": {
+            "jobs": 0,
+            "recruiters": 0
+          }
+        },
+        {
+          "secteur": "Clubs et salles de sport",
+          "codes_naf": [
+            "93.11Z",
+            "93.12Z",
+            "93.13Z"
+          ],
+          "signal_lba": {
+            "jobs": 0,
+            "recruiters": 0
+          }
+        },
+        {
+          "secteur": "Activités sportives (dont écuries de course)",
+          "codes_naf": [
+            "93.19Z"
+          ],
+          "signal_lba": {
+            "jobs": 0,
+            "recruiters": 0
+          }
+        },
+        {
+          "secteur": "Écoles de sport, équitation",
+          "codes_naf": [
+            "85.51Z"
+          ],
+          "signal_lba": {
+            "jobs": 0,
+            "recruiters": 0
+          }
         }
       ],
-      "limites": []
+      "limites": [
+        "Un centre équestre ou une écurie peut être client du sellier sans l'employer. Ces liens ne conviennent à une PFMP que si la structure dispose d'un atelier ou d'un professionnel de sellerie pouvant encadrer les activités du diplôme ; à vérifier avec le lycée.",
+        "Les codes des clubs, écoles de sport et activités sportives couvrent aussi d'autres sports. Vérifier qu'il s'agit bien d'équitation et d'une activité de sellerie ; aucun signal LBA positif n'est observé pour ces catégories dans la réponse conservée."
+      ]
     },
     {
       "intitule": "CAP souffleur de verre option enseigne lumineuse",

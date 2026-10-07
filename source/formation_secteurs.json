@@ -886,7 +886,10 @@
 "Cuir, maroquinerie, cordonnerie"
 ],
 "bac pro métiers du cuir option sellerie garnissage": [
-"Cuir, maroquinerie, cordonnerie"
+"Cuir, maroquinerie, cordonnerie",
+"Garages, carrosseries (voitures)",
+"Bateaux, nautisme",
+"Aéronautique"
 ],
 "bac pro métiers et arts de la pierre": [
 "Construction, maçonnerie, gros œuvre"
@@ -1136,7 +1139,8 @@
 ],
 "CAP plumasserie": [
 "Couture, confection",
-"Spectacle, musées, bibliothèques"
+"Spectacle, musées, bibliothèques",
+"Fleurs artificielles, parures de mode"
 ],
 "CAP poissonnier écailler": [
 "Boucherie, charcuterie, poissonnerie",
@@ -1162,7 +1166,11 @@
 "Ébénisterie, meubles, restauration de meubles"
 ],
 "CAP sellier harnacheur": [
-"Cuir, maroquinerie, cordonnerie"
+"Cuir, maroquinerie, cordonnerie",
+"Élevage de chevaux, haras",
+"Clubs et salles de sport",
+"Activités sportives (dont écuries de course)",
+"Écoles de sport, équitation"
 ],
 "CAP souffleur de verre option enseigne lumineuse": [
 "Enseignes, signalétique, marquage",
