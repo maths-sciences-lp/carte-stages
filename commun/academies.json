@@ -1,0 +1,313 @@
+[
+  {
+    "slug": "aix-marseille",
+    "nom": "Académie d'Aix-Marseille",
+    "deps": [
+      "04",
+      "05",
+      "13",
+      "84"
+    ],
+    "region": "Provence-Alpes-Côte d'Azur"
+  },
+  {
+    "slug": "amiens",
+    "nom": "Académie d'Amiens",
+    "deps": [
+      "02",
+      "60",
+      "80"
+    ],
+    "region": "Hauts-de-France"
+  },
+  {
+    "slug": "besancon",
+    "nom": "Académie de Besançon",
+    "deps": [
+      "25",
+      "39",
+      "70",
+      "90"
+    ],
+    "region": "Bourgogne-Franche-Comté"
+  },
+  {
+    "slug": "bordeaux",
+    "nom": "Académie de Bordeaux",
+    "deps": [
+      "24",
+      "33",
+      "40",
+      "47",
+      "64"
+    ],
+    "region": "Nouvelle-Aquitaine"
+  },
+  {
+    "slug": "clermont-ferrand",
+    "nom": "Académie de Clermont-Ferrand",
+    "deps": [
+      "03",
+      "15",
+      "43",
+      "63"
+    ],
+    "region": "Auvergne-Rhône-Alpes"
+  },
+  {
+    "slug": "corse",
+    "nom": "Académie de Corse",
+    "deps": [
+      "2A",
+      "2B"
+    ],
+    "region": "Corse"
+  },
+  {
+    "slug": "creteil",
+    "nom": "Académie de Créteil",
+    "deps": [
+      "77",
+      "93",
+      "94"
+    ],
+    "region": "Île-de-France"
+  },
+  {
+    "slug": "dijon",
+    "nom": "Académie de Dijon",
+    "deps": [
+      "21",
+      "58",
+      "71",
+      "89"
+    ],
+    "region": "Bourgogne-Franche-Comté"
+  },
+  {
+    "slug": "grenoble",
+    "nom": "Académie de Grenoble",
+    "deps": [
+      "07",
+      "26",
+      "38",
+      "73",
+      "74"
+    ],
+    "region": "Auvergne-Rhône-Alpes"
+  },
+  {
+    "slug": "guadeloupe",
+    "nom": "Académie de Guadeloupe",
+    "deps": [
+      "971"
+    ],
+    "region": "Guadeloupe"
+  },
+  {
+    "slug": "guyane",
+    "nom": "Académie de Guyane",
+    "deps": [
+      "973"
+    ],
+    "region": "Guyane"
+  },
+  {
+    "slug": "la-reunion",
+    "nom": "Académie de La Réunion",
+    "deps": [
+      "974"
+    ],
+    "region": "La Réunion"
+  },
+  {
+    "slug": "lille",
+    "nom": "Académie de Lille",
+    "deps": [
+      "59",
+      "62"
+    ],
+    "region": "Hauts-de-France"
+  },
+  {
+    "slug": "limoges",
+    "nom": "Académie de Limoges",
+    "deps": [
+      "19",
+      "23",
+      "87"
+    ],
+    "region": "Nouvelle-Aquitaine"
+  },
+  {
+    "slug": "lyon",
+    "nom": "Académie de Lyon",
+    "deps": [
+      "01",
+      "42",
+      "69"
+    ],
+    "region": "Auvergne-Rhône-Alpes"
+  },
+  {
+    "slug": "martinique",
+    "nom": "Académie de Martinique",
+    "deps": [
+      "972"
+    ],
+    "region": "Martinique"
+  },
+  {
+    "slug": "mayotte",
+    "nom": "Académie de Mayotte",
+    "deps": [
+      "976"
+    ],
+    "region": "Mayotte"
+  },
+  {
+    "slug": "montpellier",
+    "nom": "Académie de Montpellier",
+    "deps": [
+      "11",
+      "30",
+      "34",
+      "48",
+      "66"
+    ],
+    "region": "Occitanie"
+  },
+  {
+    "slug": "nancy-metz",
+    "nom": "Académie de Nancy-Metz",
+    "deps": [
+      "54",
+      "55",
+      "57",
+      "88"
+    ],
+    "region": "Grand Est"
+  },
+  {
+    "slug": "nantes",
+    "nom": "Académie de Nantes",
+    "deps": [
+      "44",
+      "49",
+      "53",
+      "72",
+      "85"
+    ],
+    "region": "Pays de la Loire"
+  },
+  {
+    "slug": "nice",
+    "nom": "Académie de Nice",
+    "deps": [
+      "06",
+      "83"
+    ],
+    "region": "Provence-Alpes-Côte d'Azur"
+  },
+  {
+    "slug": "normandie",
+    "nom": "Académie de Normandie",
+    "deps": [
+      "14",
+      "27",
+      "50",
+      "61",
+      "76"
+    ],
+    "region": "Normandie"
+  },
+  {
+    "slug": "orleans-tours",
+    "nom": "Académie d'Orléans-Tours",
+    "deps": [
+      "18",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45"
+    ],
+    "region": "Centre-Val de Loire"
+  },
+  {
+    "slug": "paris",
+    "nom": "Académie de Paris",
+    "deps": [
+      "75"
+    ],
+    "region": "Île-de-France"
+  },
+  {
+    "slug": "poitiers",
+    "nom": "Académie de Poitiers",
+    "deps": [
+      "16",
+      "17",
+      "79",
+      "86"
+    ],
+    "region": "Nouvelle-Aquitaine"
+  },
+  {
+    "slug": "reims",
+    "nom": "Académie de Reims",
+    "deps": [
+      "08",
+      "10",
+      "51",
+      "52"
+    ],
+    "region": "Grand Est"
+  },
+  {
+    "slug": "rennes",
+    "nom": "Académie de Rennes",
+    "deps": [
+      "22",
+      "29",
+      "35",
+      "56"
+    ],
+    "region": "Bretagne"
+  },
+  {
+    "slug": "strasbourg",
+    "nom": "Académie de Strasbourg",
+    "deps": [
+      "67",
+      "68"
+    ],
+    "region": "Grand Est"
+  },
+  {
+    "slug": "toulouse",
+    "nom": "Académie de Toulouse",
+    "deps": [
+      "09",
+      "12",
+      "31",
+      "32",
+      "46",
+      "65",
+      "81",
+      "82"
+    ],
+    "region": "Occitanie"
+  },
+  {
+    "slug": "versailles",
+    "nom": "Académie de Versailles",
+    "deps": [
+      "78",
+      "91",
+      "92",
+      "95"
+    ],
+    "region": "Île-de-France"
+  }
+]
