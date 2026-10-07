@@ -1,0 +1,960 @@
+[
+  {
+    "id": "1.1",
+    "titre": "1.1 Chaque image porteuse d’information a-t-elle une alternative textuelle ? Critère 1.1",
+    "avant": "C",
+    "raison_avant": "Images : logo SVG décoratif aria-hidden, tuiles de carte alt vide ; marqueurs possèdent une alternative (pertinence traitée en 1.3).",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Images : logo SVG décoratif aria-hidden, tuiles de carte alt vide ; marqueurs possèdent une alternative (pertinence traitée en 1.3)."
+  },
+  {
+    "id": "1.2",
+    "titre": "1.2 Chaque image de décoration est-elle correctement ignorée par les technologies d’assistance ? Critère 1.2",
+    "avant": "C",
+    "raison_avant": "SVG du logo masqué ; tuiles de carte décoratives avec alt vide. Emojis traités en 13.5.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "SVG du logo masqué ; tuiles de carte décoratives avec alt vide. Emojis traités en 13.5."
+  },
+  {
+    "id": "1.3",
+    "titre": "1.3 Pour chaque image porteuse d’information ayant une alternative textuelle , cette alternative est-elle pertinente (hors cas particuliers) ? Critère 1.3",
+    "avant": "NC",
+    "raison_avant": "Cartes des trois outils : marqueurs Leaflet nommés « Marker », sans nom du lieu.",
+    "avant_revu": "NC",
+    "apres": "C",
+    "raison_apres": "Marqueurs des trois outils nommés avec le nom réel du lieu ; alternative Liste maintenue."
+  },
+  {
+    "id": "1.4",
+    "titre": "1.4 Pour chaque image utilisée comme CAPTCHA ou comme image-test , ayant une alternative textuelle , cette alternative permet-elle d’identifier la nature et la fonction de l’image ? Critère 1.4",
+    "avant": "NA",
+    "raison_avant": "Aucun CAPTCHA ou image-test.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun CAPTCHA ou image-test."
+  },
+  {
+    "id": "1.5",
+    "titre": "1.5 Pour chaque image utilisée comme CAPTCHA , une solution d’accès alternatif au contenu ou à la fonction du CAPTCHA est-elle présente ? Critère 1.5",
+    "avant": "NA",
+    "raison_avant": "Aucun CAPTCHA.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun CAPTCHA."
+  },
+  {
+    "id": "1.6",
+    "titre": "1.6 Chaque image porteuse d’information a-t-elle, si nécessaire, une description détaillée ? Critère 1.6",
+    "avant": "C",
+    "raison_avant": "Listes textuelles présentent les lieux et adresses figurant sur la carte.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Listes textuelles présentent les lieux et adresses figurant sur la carte."
+  },
+  {
+    "id": "1.7",
+    "titre": "1.7 Pour chaque image porteuse d’information ayant une description détaillée , cette description est-elle pertinente ? Critère 1.7",
+    "avant": "C",
+    "raison_avant": "Listes issues des mêmes objets que les marqueurs ; données et adresses disponibles.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Listes issues des mêmes objets que les marqueurs ; données et adresses disponibles."
+  },
+  {
+    "id": "1.8",
+    "titre": "1.8 Chaque image texte porteuse d’information , en l’absence d’un mécanisme de remplacement , doit si possible être remplacée par du texte stylé . Cette règle est-elle respectée (hors cas particuliers) ? Critère 1.8",
+    "avant": "NA",
+    "raison_avant": "Pas de texte essentiel sous forme d’image hors cartes et médias traités séparément.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de texte essentiel sous forme d’image hors cartes et médias traités séparément."
+  },
+  {
+    "id": "1.9",
+    "titre": "1.9 Chaque légende d’image est-elle, si nécessaire, correctement reliée à l’image correspondante ? Critère 1.9",
+    "avant": "NA",
+    "raison_avant": "Pas de légende d’image indépendante.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de légende d’image indépendante."
+  },
+  {
+    "id": "2.1",
+    "titre": "2.1 Chaque cadre a-t-il un titre de cadre ? Critère 2.1",
+    "avant": "NA",
+    "raison_avant": "Aucun cadre iframe/frame.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun cadre iframe/frame."
+  },
+  {
+    "id": "2.2",
+    "titre": "2.2 Pour chaque cadre ayant un titre de cadre , ce titre de cadre est-il pertinent ? Critère 2.2",
+    "avant": "NA",
+    "raison_avant": "Aucun cadre.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun cadre."
+  },
+  {
+    "id": "3.1",
+    "titre": "3.1 Dans chaque page web, l’ information ne doit pas être donnée uniquement par la couleur. Cette règle est-elle respectée ? Critère 3.1",
+    "avant": "C",
+    "raison_avant": "Étiquettes Public/Privé, noms des domaines et états aria-pressed doublent la couleur.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Étiquettes Public/Privé, noms des domaines et états aria-pressed doublent la couleur."
+  },
+  {
+    "id": "3.2",
+    "titre": "3.2 Dans chaque page web, le contraste entre la couleur du texte et la couleur de son arrière-plan est-il suffisamment élevé (hors cas particuliers) ? Critère 3.2",
+    "avant": "NC",
+    "raison_avant": "Après le collège, Après le lycée, Aide : #667085 sur #eef2f6, ratio axe 4,42:1 (<4,5).",
+    "avant_revu": "NC",
+    "apres": "C",
+    "raison_apres": "Texte secondaire #596477 ; axe ne relève plus de contraste insuffisant sur les états testés."
+  },
+  {
+    "id": "3.3",
+    "titre": "3.3 Dans chaque page web, les couleurs utilisées dans les composants d’interface ou les éléments graphiques porteurs d’informations sont-elles suffisamment contrastées (hors cas particuliers) ? Critère 3.3",
+    "avant": "NC",
+    "raison_avant": "Bordures des champs #e4e9ee sur blanc et fond gris insuffisantes pour identifier les zones de saisie.",
+    "avant_revu": "NC",
+    "apres": "C",
+    "raison_apres": "Contours des champs #778397, focus #15314f et anneau blanc, y compris le sélecteur national."
+  },
+  {
+    "id": "4.1",
+    "titre": "4.1 Chaque média temporel pré-enregistré a-t-il, si nécessaire, une transcription textuelle ou une audiodescription (hors cas particuliers) ? Critère 4.1",
+    "avant": "NC",
+    "raison_avant": "demo/ : aucune transcription textuelle sous les cinq vidéos.",
+    "avant_revu": "NC",
+    "apres": "C",
+    "raison_apres": "Cinq transcriptions textuelles repliables immédiatement sous les vidéos ; même transcription signalée pour la version horizontale."
+  },
+  {
+    "id": "4.2",
+    "titre": "4.2 Pour chaque média temporel pré-enregistré ayant une transcription textuelle ou une audiodescription synchronisée, celles-ci sont-elles pertinentes (hors cas particuliers) ? Critère 4.2",
+    "avant": "NA",
+    "raison_avant": "Pas de transcription proposée avant correction.",
+    "avant_revu": "NA",
+    "apres": "C",
+    "raison_apres": "Transcriptions confrontées aux captures successives des vidéos : étapes, commandes et informations essentielles reprises. Aucun texte ASR non vérifié utilisé."
+  },
+  {
+    "id": "4.3",
+    "titre": "4.3 Chaque média temporel synchronisé pré-enregistré a-t-il, si nécessaire, des sous-titres synchronisés (hors cas particuliers) ? Critère 4.3",
+    "avant": "NC",
+    "raison_avant": "demo/ : aucune piste de sous-titres synchronisés fournie ; les légendes incrustées demandent une vérification intégrale.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "Vidéos : pas de piste de sous-titres séparée ; équivalence de toute la bande sonore non validée. Les textes incrustés ne suffisent pas à conclure. Transcriptions disponibles."
+  },
+  {
+    "id": "4.4",
+    "titre": "4.4 Pour chaque média temporel synchronisé pré-enregistré ayant des sous-titres synchronisés , ces sous-titres sont-ils pertinents ? Critère 4.4",
+    "avant": "NA",
+    "raison_avant": "Pas de piste de sous-titres.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de piste de sous-titres."
+  },
+  {
+    "id": "4.5",
+    "titre": "4.5 Chaque média temporel pré-enregistré a-t-il, si nécessaire, une audiodescription synchronisée (hors cas particuliers) ? Critère 4.5",
+    "avant": "NC",
+    "raison_avant": "demo/ : restitution de toutes les actions visuelles par la narration non encore établie ; ne pas déclarer conforme sans examen.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "Vidéos : pas de piste d’audiodescription ; les actions visuelles sont proposées en transcription texte. Restitution synchronisée non validée."
+  },
+  {
+    "id": "4.6",
+    "titre": "4.6 Pour chaque média temporel pré-enregistré ayant une audiodescription synchronisée, celle-ci est-elle pertinente ? Critère 4.6",
+    "avant": "NA",
+    "raison_avant": "Pas de piste d’audiodescription.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de piste d’audiodescription."
+  },
+  {
+    "id": "4.7",
+    "titre": "4.7 Chaque média temporel est-il clairement identifiable (hors cas particuliers) ? Critère 4.7",
+    "avant": "C",
+    "raison_avant": "demo/ : titres immédiatement avant les tutoriels et introduction du film.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "demo/ : titres immédiatement avant les tutoriels et introduction du film."
+  },
+  {
+    "id": "4.8",
+    "titre": "4.8 Chaque média non temporel a-t-il, si nécessaire, une alternative (hors cas particuliers) ? Critère 4.8",
+    "avant": "NA",
+    "raison_avant": "Pas de média non temporel embarqué de type objet/canvas porteur d’information sans liste équivalente. Cartes traitées en 7.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de média non temporel embarqué de type objet/canvas porteur d’information sans liste équivalente. Cartes traitées en 7."
+  },
+  {
+    "id": "4.9",
+    "titre": "4.9 Pour chaque média non temporel ayant une alternative, cette alternative est-elle pertinente ? Critère 4.9",
+    "avant": "NA",
+    "raison_avant": "Voir 4.8.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Voir 4.8."
+  },
+  {
+    "id": "4.10",
+    "titre": "4.10 Chaque son déclenché automatiquement est-il contrôlable par l’utilisateur ? Critère 4.10",
+    "avant": "NA",
+    "raison_avant": "Aucun son démarré automatiquement.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun son démarré automatiquement."
+  },
+  {
+    "id": "4.11",
+    "titre": "4.11 La consultation de chaque média temporel est-elle, si nécessaire, contrôlable par le clavier et tout dispositif de pointage ? Critère 4.11",
+    "avant": "C",
+    "raison_avant": "Lecteurs HTML video controls : commandes natives accessibles au clavier ; confirmation VoiceOver distincte en 4.13.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Lecteurs HTML video controls : commandes natives accessibles au clavier ; confirmation VoiceOver distincte en 4.13."
+  },
+  {
+    "id": "4.12",
+    "titre": "4.12 La consultation de chaque média non temporel est-elle contrôlable par le clavier et tout dispositif de pointage ? Critère 4.12",
+    "avant": "NA",
+    "raison_avant": "Voir 4.8.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Voir 4.8."
+  },
+  {
+    "id": "4.13",
+    "titre": "4.13 Chaque média temporel et non temporel est-il compatible avec les technologies d’assistance (hors cas particuliers) ? Critère 4.13",
+    "avant": "NC",
+    "raison_avant": "Compatibilité des lecteurs natifs avec VoiceOver à terminer ; conformité non établie.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "Lecteur HTML natif identifié et commandes clavier testées ; compatibilité vocale complète non validée dans la présente session."
+  },
+  {
+    "id": "5.1",
+    "titre": "5.1 Chaque tableau de données complexe a-t-il un résumé ? Critère 5.1",
+    "avant": "NA",
+    "raison_avant": "Aucun tableau de données complexe.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun tableau de données complexe."
+  },
+  {
+    "id": "5.2",
+    "titre": "5.2 Pour chaque tableau de données complexe ayant un résumé , celui-ci est-il pertinent ? Critère 5.2",
+    "avant": "NA",
+    "raison_avant": "Aucun tableau complexe.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun tableau complexe."
+  },
+  {
+    "id": "5.3",
+    "titre": "5.3 Pour chaque tableau de mise en forme , le contenu linéarisé reste-t-il compréhensible ? Critère 5.3",
+    "avant": "NA",
+    "raison_avant": "Aucun tableau de mise en forme.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun tableau de mise en forme."
+  },
+  {
+    "id": "5.4",
+    "titre": "5.4 Pour chaque tableau de données ayant un titre , le titre est-il correctement associé au tableau de données ? Critère 5.4",
+    "avant": "NA",
+    "raison_avant": "Aucun tableau de données.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun tableau de données."
+  },
+  {
+    "id": "5.5",
+    "titre": "5.5 Pour chaque tableau de données ayant un titre , celui-ci est-il pertinent ? Critère 5.5",
+    "avant": "NA",
+    "raison_avant": "Aucun tableau de données.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun tableau de données."
+  },
+  {
+    "id": "5.6",
+    "titre": "5.6 Pour chaque tableau de données , chaque en-tête de colonne et chaque en-tête de ligne sont-ils correctement déclarés ? Critère 5.6",
+    "avant": "NA",
+    "raison_avant": "Aucun tableau de données.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun tableau de données."
+  },
+  {
+    "id": "5.7",
+    "titre": "5.7 Pour chaque tableau de données , la technique appropriée permettant d’associer chaque cellule avec ses en-têtes est-elle utilisée (hors cas particuliers) ? Critère 5.7",
+    "avant": "NA",
+    "raison_avant": "Aucun tableau de données.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun tableau de données."
+  },
+  {
+    "id": "5.8",
+    "titre": "5.8 Chaque tableau de mise en forme ne doit pas utiliser d’éléments propres aux tableaux de données . Cette règle est-elle respectée ? Critère 5.8",
+    "avant": "NA",
+    "raison_avant": "Aucun tableau de mise en forme.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun tableau de mise en forme."
+  },
+  {
+    "id": "6.1",
+    "titre": "6.1 Chaque lien est-il explicite (hors cas particuliers) ? Critère 6.1",
+    "avant": "C",
+    "raison_avant": "Liens dans leur contexte de carte de résultat ; noms des ressources en pied de page. Ajout de noms de lieux prévu pour améliorer la liste de liens.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Liens dans leur contexte de carte de résultat ; noms des ressources en pied de page. Ajout de noms de lieux prévu pour améliorer la liste de liens."
+  },
+  {
+    "id": "6.2",
+    "titre": "6.2 Dans chaque page web, chaque lien a-t-il un intitulé ? Critère 6.2",
+    "avant": "C",
+    "raison_avant": "Aucun lien vide détecté sur les états audités.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Aucun lien vide détecté sur les états audités."
+  },
+  {
+    "id": "7.1",
+    "titre": "7.1 Chaque script est-il, si nécessaire, compatible avec les technologies d’assistance ? Critère 7.1",
+    "avant": "NC",
+    "raison_avant": "Boutons Voir les lycées sans aria-expanded ; suggestions non annoncées ; marqueurs génériques.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "Noms, états et relations ARIA corrigés, mais restitution VoiceOver des composants dynamiques non validée de bout en bout."
+  },
+  {
+    "id": "7.2",
+    "titre": "7.2 Pour chaque script ayant une alternative , cette alternative est-elle pertinente ? Critère 7.2",
+    "avant": "NA",
+    "raison_avant": "Aucune alternative séparée à un script non compatible ; liste et carte sont deux vues du même jeu de données.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucune alternative séparée à un script non compatible ; liste et carte sont deux vues du même jeu de données."
+  },
+  {
+    "id": "7.3",
+    "titre": "7.3 Chaque script est-il contrôlable par le clavier et par tout dispositif de pointage (hors cas particuliers) ? Critère 7.3",
+    "avant": "NC",
+    "raison_avant": "Le choix d’un domaine reconstruit le bouton actif et renvoie le focus au body (trois outils). Choix d’académie masque le bouton actif.",
+    "avant_revu": "NC",
+    "apres": "C",
+    "raison_apres": "Parcours clavier des quatre outils, listes/cartes et choix/changement d’académie exécutés ; commandes natives conservées."
+  },
+  {
+    "id": "7.4",
+    "titre": "7.4 Pour chaque script qui initie un changement de contexte , l’utilisateur est-il averti ou en a-t-il le contrôle ? Critère 7.4",
+    "avant": "C",
+    "raison_avant": "Changements de vue déclenchés par choix explicite ; pas de navigation au focus.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Changements de vue déclenchés par choix explicite ; pas de navigation au focus."
+  },
+  {
+    "id": "7.5",
+    "titre": "7.5 Dans chaque page web, les messages de statut sont-ils correctement restitués par les technologies d’assistance ? Critère 7.5",
+    "avant": "NC",
+    "raison_avant": "Compteurs, suggestions et erreurs des outils sans région de statut (hors sélecteur d’académie).",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "Régions role=status/aria-live ajoutées pour résultats et suggestions ; annonces vocales réelles non validées de bout en bout."
+  },
+  {
+    "id": "8.1",
+    "titre": "8.1 Chaque page web est-elle définie par un type de document ? Critère 8.1",
+    "avant": "C",
+    "raison_avant": "Doctype HTML sur toutes les pages de l’échantillon.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Doctype HTML sur toutes les pages de l’échantillon."
+  },
+  {
+    "id": "8.2",
+    "titre": "8.2 Pour chaque page web, le code source généré est-il valide selon le type de document spécifié ? Critère 8.2",
+    "avant": "NC",
+    "raison_avant": "FAQ : trois li hors ul/ol (premiers vœux, Parcoursup, lieux d’aide), axe listitem.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "FAQ inchangée : éléments li hors ul/ol."
+  },
+  {
+    "id": "8.3",
+    "titre": "8.3 Dans chaque page web, la langue par défaut est-elle présente ? Critère 8.3",
+    "avant": "C",
+    "raison_avant": "html lang=fr présent.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "html lang=fr présent."
+  },
+  {
+    "id": "8.4",
+    "titre": "8.4 Pour chaque page web ayant une langue par défaut , le code de langue est-il pertinent ? Critère 8.4",
+    "avant": "C",
+    "raison_avant": "Contenu français, code fr pertinent.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Contenu français, code fr pertinent."
+  },
+  {
+    "id": "8.5",
+    "titre": "8.5 Chaque page web a-t-elle un titre de page ? Critère 8.5",
+    "avant": "C",
+    "raison_avant": "title présent sur chaque page.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "title présent sur chaque page."
+  },
+  {
+    "id": "8.6",
+    "titre": "8.6 Pour chaque page web ayant un titre de page , ce titre est-il pertinent ? Critère 8.6",
+    "avant": "NC",
+    "raison_avant": "Le chargement national remplace le titre par le titre générique du moteur ; académie absente du title.",
+    "avant_revu": "C",
+    "raison_avant_revue": "Les callbacks nationaux définissent bien le titre avec le nom de l’académie ; titre générique pertinent avant le choix.",
+    "apres": "C",
+    "raison_apres": "Les callbacks nationaux définissent bien le titre avec le nom de l’académie ; titre générique pertinent avant le choix."
+  },
+  {
+    "id": "8.7",
+    "titre": "8.7 Dans chaque page web, chaque changement de langue est-il indiqué dans le code source (hors cas particuliers) ? Critère 8.7",
+    "avant": "NA",
+    "raison_avant": "Pas de passage en langue étrangère hors noms propres et noms de diplômes.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de passage en langue étrangère hors noms propres et noms de diplômes."
+  },
+  {
+    "id": "8.8",
+    "titre": "8.8 Dans chaque page web, le code de langue de chaque changement de langue est-il valide et pertinent ? Critère 8.8",
+    "avant": "NA",
+    "raison_avant": "Aucun changement de langue à baliser.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun changement de langue à baliser."
+  },
+  {
+    "id": "8.9",
+    "titre": "8.9 Dans chaque page web, les balises ne doivent pas être utilisées uniquement à des fins de présentation . Cette règle est-elle respectée ? Critère 8.9",
+    "avant": "C",
+    "raison_avant": "Sections et paragraphes portent du contenu ; CSS assure la mise en forme.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Sections et paragraphes portent du contenu ; CSS assure la mise en forme."
+  },
+  {
+    "id": "8.10",
+    "titre": "8.10 Dans chaque page web, les changements du sens de lecture sont-ils signalés ? Critère 8.10",
+    "avant": "NA",
+    "raison_avant": "Aucun changement de direction de lecture.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun changement de direction de lecture."
+  },
+  {
+    "id": "9.1",
+    "titre": "9.1 Dans chaque page web, l’information est-elle structurée par l’utilisation appropriée de titres ? Critère 9.1",
+    "avant": "NC",
+    "raison_avant": "Stage : noms des entreprises dans div.nm, pas de titres de résultats.",
+    "avant_revu": "NC",
+    "apres": "C",
+    "raison_apres": "Titres h3 pour les entreprises ; titres h1/h2/h3 des autres outils conservés."
+  },
+  {
+    "id": "9.2",
+    "titre": "9.2 Dans chaque page web, la structure du document est-elle cohérente (hors cas particuliers) ? Critère 9.2",
+    "avant": "NC",
+    "raison_avant": "Stage : aucun main ; autres pages : lien d’en-tête hors header ; pieds de page statiques non structurés.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "FAQ inchangée : en-tête et pied de page sans repères structurels dédiés."
+  },
+  {
+    "id": "9.3",
+    "titre": "9.3 Dans chaque page web, chaque liste est-elle correctement structurée ? Critère 9.3",
+    "avant": "NC",
+    "raison_avant": "FAQ : li isolés hors liste.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "FAQ inchangée : trois éléments li isolés."
+  },
+  {
+    "id": "9.4",
+    "titre": "9.4 Dans chaque page web, chaque citation est-elle correctement indiquée ? Critère 9.4",
+    "avant": "NA",
+    "raison_avant": "Aucune citation longue nécessitant un balisage de citation.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucune citation longue nécessitant un balisage de citation."
+  },
+  {
+    "id": "10.1",
+    "titre": "10.1 Dans le site web, des feuilles de styles sont-elles utilisées pour contrôler la présentation de l’information ? Critère 10.1",
+    "avant": "C",
+    "raison_avant": "Présentation assurée par CSS, sans tableau de mise en forme.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Présentation assurée par CSS, sans tableau de mise en forme."
+  },
+  {
+    "id": "10.2",
+    "titre": "10.2 Dans chaque page web, le contenu visible porteur d’information reste-t-il présent lorsque les feuilles de styles sont désactivées ? Critère 10.2",
+    "avant": "C",
+    "raison_avant": "Contenus textuels présents dans le DOM ; cartes disposent des listes.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Contenus textuels présents dans le DOM ; cartes disposent des listes."
+  },
+  {
+    "id": "10.3",
+    "titre": "10.3 Dans chaque page web, l’information reste-t-elle compréhensible lorsque les feuilles de styles sont désactivées ? Critère 10.3",
+    "avant": "C",
+    "raison_avant": "Ordre source : choix, départ, résultats puis sources ; listes intelligibles sans styles.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Ordre source : choix, départ, résultats puis sources ; listes intelligibles sans styles."
+  },
+  {
+    "id": "10.4",
+    "titre": "10.4 Dans chaque page web, le texte reste-t-il lisible lorsque la taille des caractères est augmentée jusqu’à 200 %, au moins (hors cas particuliers) ? Critère 10.4",
+    "avant": "C",
+    "raison_avant": "Zoom de mise en page 200 % sur les huit pages types, pas de débordement global ; captures à contrôler visuellement.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Zoom de mise en page 200 % sur les huit pages types, pas de débordement global ; captures à contrôler visuellement."
+  },
+  {
+    "id": "10.5",
+    "titre": "10.5 Dans chaque page web, les déclarations CSS de couleurs de fond d’élément et de police sont-elles correctement utilisées ? Critère 10.5",
+    "avant": "C",
+    "raison_avant": "Couleurs de texte et fonds définis dans les styles des cartes/boutons/pages.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Couleurs de texte et fonds définis dans les styles des cartes/boutons/pages."
+  },
+  {
+    "id": "10.6",
+    "titre": "10.6 Dans chaque page web, chaque lien dont la nature n’est pas évidente est-il visible par rapport au texte environnant ? Critère 10.6",
+    "avant": "C",
+    "raison_avant": "Liens textuels soulignés ; boutons et cartes de navigation identifiables par leur forme et contexte.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Liens textuels soulignés ; boutons et cartes de navigation identifiables par leur forme et contexte."
+  },
+  {
+    "id": "10.7",
+    "titre": "10.7 Dans chaque page web, pour chaque élément recevant le focus, la prise de focus est-elle visible ? Critère 10.7",
+    "avant": "NC",
+    "raison_avant": "Stage : .sug button:focus supprime outline, seul fond gris très clair ; contours de focus non uniformes.",
+    "avant_revu": "NC",
+    "apres": "C",
+    "raison_apres": "Contour de focus visible renforcé sur les pages corrigées ; boutons et résumés natifs de la FAQ conservent leur contour navigateur."
+  },
+  {
+    "id": "10.8",
+    "titre": "10.8 Pour chaque page web, les contenus cachés ont-ils vocation à être ignorés par les technologies d’assistance ? Critère 10.8",
+    "avant": "C",
+    "raison_avant": "hidden utilisé pour les vues inactives, CSS display:none pour les vues mobiles masquées.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "hidden utilisé pour les vues inactives, CSS display:none pour les vues mobiles masquées."
+  },
+  {
+    "id": "10.9",
+    "titre": "10.9 Dans chaque page web, l’information ne doit pas être donnée uniquement par la forme, taille ou position . Cette règle est-elle respectée ? Critère 10.9",
+    "avant": "C",
+    "raison_avant": "Consignes nomment les commandes ; numéros d’étapes accompagnés de titres.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Consignes nomment les commandes ; numéros d’étapes accompagnés de titres."
+  },
+  {
+    "id": "10.10",
+    "titre": "10.10 Dans chaque page web, l’information ne doit pas être donnée par la forme, taille ou position uniquement. Cette règle est-elle implémentée de façon pertinente ? Critère 10.10",
+    "avant": "NA",
+    "raison_avant": "Pas d’instruction fondée seulement sur la forme, la taille ou la position.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas d’instruction fondée seulement sur la forme, la taille ou la position."
+  },
+  {
+    "id": "10.11",
+    "titre": "10.11 Pour chaque page web, les contenus peuvent-ils être présentés sans perte d’information ou de fonctionnalité et sans avoir recours soit à un défilement vertical pour une fenêtre ayant une hauteur de 256 px, soit à un défilement horizontal pour une fenêtre ayant une largeur de 320 px (hors cas particuliers) ? Critère 10.11",
+    "avant": "NC",
+    "raison_avant": "FAQ : débordement horizontal à 320 px, notamment lien long.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "FAQ inchangée : débordement horizontal à 320 px."
+  },
+  {
+    "id": "10.12",
+    "titre": "10.12 Dans chaque page web, les propriétés d’espacement du texte peuvent-elles être redéfinies par l’utilisateur sans perte de contenu ou de fonctionnalité (hors cas particuliers) ? Critère 10.12",
+    "avant": "NC",
+    "raison_avant": "FAQ : largeur 394 px pour fenêtre 320 px avec espacements RGAA.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "FAQ inchangée : débordement avec les espacements de texte du RGAA."
+  },
+  {
+    "id": "10.13",
+    "titre": "10.13 Dans chaque page web, les contenus additionnels apparaissant à la prise de focus ou au survol d’un composant d’interface sont-ils contrôlables par l’utilisateur (hors cas particuliers) ? Critère 10.13",
+    "avant": "NA",
+    "raison_avant": "Pas de contenu additionnel personnalisé au survol ou au focus.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de contenu additionnel personnalisé au survol ou au focus."
+  },
+  {
+    "id": "10.14",
+    "titre": "10.14 Dans chaque page web, les contenus additionnels apparaissant via les styles CSS uniquement peuvent-ils être rendus visibles au clavier et par tout dispositif de pointage ? Critère 10.14",
+    "avant": "NA",
+    "raison_avant": "Pas de contenu additionnel affiché par CSS uniquement.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de contenu additionnel affiché par CSS uniquement."
+  },
+  {
+    "id": "11.1",
+    "titre": "11.1 Chaque champ de formulaire a-t-il une étiquette ? Critère 11.1",
+    "avant": "NC",
+    "raison_avant": "Après le collège/Aide : champs q/col/adr avec placeholder seul ; Formation : adresse sans étiquette.",
+    "avant_revu": "NC",
+    "apres": "C",
+    "raison_apres": "Labels visibles et liés aux champs, y compris les champs clonés par les adaptateurs nationaux."
+  },
+  {
+    "id": "11.2",
+    "titre": "11.2 Chaque étiquette associée à un champ de formulaire est-elle pertinente (hors cas particuliers) ? Critère 11.2",
+    "avant": "NC",
+    "raison_avant": "Certains libellés ne persistent pas après saisie ; voir 11.1.",
+    "avant_revu": "C",
+    "raison_avant_revue": "Les étiquettes existantes sont pertinentes ; l’absence d’étiquette relève de 11.1.",
+    "apres": "C",
+    "raison_apres": "Les étiquettes existantes sont pertinentes ; l’absence d’étiquette relève de 11.1."
+  },
+  {
+    "id": "11.3",
+    "titre": "11.3 Dans chaque formulaire , chaque étiquette associée à un champ de formulaire ayant la même fonction et répétée plusieurs fois dans une même page ou dans un ensemble de pages est-elle cohérente ? Critère 11.3",
+    "avant": "C",
+    "raison_avant": "Champs collège/adresse cohérents entre outils, académie commune.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Champs collège/adresse cohérents entre outils, académie commune."
+  },
+  {
+    "id": "11.4",
+    "titre": "11.4 Dans chaque formulaire , chaque étiquette de champ et son champ associé sont-ils accolés (hors cas particuliers) ? Critère 11.4",
+    "avant": "C",
+    "raison_avant": "Étiquettes existantes accolées aux champs (ville/lycée). Absences en 11.1.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Étiquettes existantes accolées aux champs (ville/lycée). Absences en 11.1."
+  },
+  {
+    "id": "11.5",
+    "titre": "11.5 Dans chaque formulaire , les champs de même nature sont-ils regroupés, si nécessaire ? Critère 11.5",
+    "avant": "NA",
+    "raison_avant": "Champs de recherche indépendants, pas de groupes de cases ou de coordonnées à regrouper.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Champs de recherche indépendants, pas de groupes de cases ou de coordonnées à regrouper."
+  },
+  {
+    "id": "11.6",
+    "titre": "11.6 Dans chaque formulaire , chaque regroupement de champs de même nature a-t-il une légende ? Critère 11.6",
+    "avant": "NA",
+    "raison_avant": "Aucun regroupement nécessaire.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun regroupement nécessaire."
+  },
+  {
+    "id": "11.7",
+    "titre": "11.7 Dans chaque formulaire , chaque légende associée à un regroupement de champs de même nature est-elle pertinente ? Critère 11.7",
+    "avant": "NA",
+    "raison_avant": "Aucun regroupement nécessaire.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun regroupement nécessaire."
+  },
+  {
+    "id": "11.8",
+    "titre": "11.8 Dans chaque formulaire , les items de même nature d’une liste de choix sont-ils regroupés de manière pertinente ? Critère 11.8",
+    "avant": "NA",
+    "raison_avant": "Liste de lycées homogène, pas de catégories à regrouper.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Liste de lycées homogène, pas de catégories à regrouper."
+  },
+  {
+    "id": "11.9",
+    "titre": "11.9 Dans chaque formulaire , l’intitulé de chaque bouton est-il pertinent (hors cas particuliers) ? Critère 11.9",
+    "avant": "C",
+    "raison_avant": "Boutons de recherche, choix, localisation, filtres : intitulés décrivent l’action.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Boutons de recherche, choix, localisation, filtres : intitulés décrivent l’action."
+  },
+  {
+    "id": "11.10",
+    "titre": "11.10 Dans chaque formulaire , le contrôle de saisie est-il utilisé de manière pertinente (hors cas particuliers) ? Critère 11.10",
+    "avant": "NA",
+    "raison_avant": "Aucun champ obligatoire ni format imposé ; recherches libres.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun champ obligatoire ni format imposé ; recherches libres."
+  },
+  {
+    "id": "11.11",
+    "titre": "11.11 Dans chaque formulaire , le contrôle de saisie est-il accompagné, si nécessaire, de suggestions facilitant la correction des erreurs de saisie ? Critère 11.11",
+    "avant": "NA",
+    "raison_avant": "Aucun contrôle de saisie de format.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun contrôle de saisie de format."
+  },
+  {
+    "id": "11.12",
+    "titre": "11.12 Pour chaque formulaire qui modifie ou supprime des données, ou qui transmet des réponses à un test ou à un examen, ou dont la validation a des conséquences financières ou juridiques, les données saisies peuvent-elles être modifiées, mises à jour ou récupérées par l’utilisateur ? Critère 11.12",
+    "avant": "NA",
+    "raison_avant": "Aucun formulaire à conséquences juridiques ou financières, aucun examen ni modification de données serveur.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucun formulaire à conséquences juridiques ou financières, aucun examen ni modification de données serveur."
+  },
+  {
+    "id": "11.13",
+    "titre": "11.13 La finalité d’un champ de saisie peut-elle être déduite pour faciliter le remplissage automatique des champs avec les données de l’utilisateur ? Critère 11.13",
+    "avant": "C",
+    "raison_avant": "Champs adresse autocomplete=street-address ; ville du sélecteur à compléter pour address-level2.",
+    "avant_revu": "NC",
+    "raison_avant_revue": "Stage : adresse avec autocomplete=off ; ville du choix national également autocomplete=off.",
+    "apres": "C",
+    "raison_apres": "Adresse autocomplete=street-address ; ville autocomplete=address-level2."
+  },
+  {
+    "id": "12.1",
+    "titre": "12.1 Chaque ensemble de pages dispose-t-il de deux systèmes de navigation différents, au moins (hors cas particuliers) ? Critère 12.1",
+    "avant": "NC",
+    "raison_avant": "Navigation transversale essentiellement par liens ; pas de second système couvrant tout le site.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "Le site ne dispose pas encore d’un deuxième système transversal de navigation couvrant toutes les pages."
+  },
+  {
+    "id": "12.2",
+    "titre": "12.2 Dans chaque ensemble de pages , le menu et les barres de navigation sont-ils toujours à la même place (hors cas particuliers) ? Critère 12.2",
+    "avant": "C",
+    "raison_avant": "Lien de retour en haut, liens transversaux et sources en bas.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Lien de retour en haut, liens transversaux et sources en bas."
+  },
+  {
+    "id": "12.3",
+    "titre": "12.3 La page « plan du site » est-elle pertinente ? Critère 12.3",
+    "avant": "NA",
+    "raison_avant": "Pas de page intitulée plan du site.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de page intitulée plan du site."
+  },
+  {
+    "id": "12.4",
+    "titre": "12.4 Dans chaque ensemble de pages , la page « plan du site » est-elle accessible à partir d’une fonctionnalité identique ? Critère 12.4",
+    "avant": "NA",
+    "raison_avant": "Pas de plan du site.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de plan du site."
+  },
+  {
+    "id": "12.5",
+    "titre": "12.5 Dans chaque ensemble de pages , le moteur de recherche est-il atteignable de manière identique ? Critère 12.5",
+    "avant": "NA",
+    "raison_avant": "Pas de moteur de recherche transversal au site.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de moteur de recherche transversal au site."
+  },
+  {
+    "id": "12.6",
+    "titre": "12.6 Les zones de regroupement de contenus présentes dans plusieurs pages web (zones d’ en-tête , de navigation principale , de contenu principal , de pied de page et de moteur de recherche ) peuvent-elles être atteintes ou évitées ? Critère 12.6",
+    "avant": "NC",
+    "raison_avant": "Repères de navigation/header/footer/main incomplets.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "FAQ inchangée : repères incomplets pour atteindre/éviter les zones récurrentes."
+  },
+  {
+    "id": "12.7",
+    "titre": "12.7 Dans chaque page web, un lien d’évitement ou d’accès rapide à la zone de contenu principal est-il présent (hors cas particuliers) ? Critère 12.7",
+    "avant": "NC",
+    "raison_avant": "Aucun lien d’évitement vers le contenu principal.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "Lien d’évitement ajouté aux pages corrigées, absent de la FAQ conservée inchangée."
+  },
+  {
+    "id": "12.8",
+    "titre": "12.8 Dans chaque page web, l’ ordre de tabulation est-il cohérent ? Critère 12.8",
+    "avant": "NC",
+    "raison_avant": "Focus perdu après reconstruction des boutons, et masqué après choix d’académie.",
+    "avant_revu": "NC",
+    "apres": "C",
+    "raison_apres": "Focus rendu au champ après une suggestion, au filtre remplacé, au premier nouveau résultat après « plus », au titre après le choix d’académie."
+  },
+  {
+    "id": "12.9",
+    "titre": "12.9 Dans chaque page web, la navigation ne doit pas contenir de piège au clavier. Cette règle est-elle respectée ? Critère 12.9",
+    "avant": "C",
+    "raison_avant": "Dialogue initial fermé par Échap ; aucune capture permanente de Tab dans les scripts.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Dialogue initial fermé par Échap ; aucune capture permanente de Tab dans les scripts."
+  },
+  {
+    "id": "12.10",
+    "titre": "12.10 Dans chaque page web, les raccourcis clavier n’utilisant qu’une seule touche (lettre minuscule ou majuscule, ponctuation, chiffre ou symbole) sont-ils contrôlables par l’utilisateur ? Critère 12.10",
+    "avant": "NA",
+    "raison_avant": "Pas de raccourci à caractère imprimable défini par le site ; commandes natives des lecteurs traitées en 4.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de raccourci à caractère imprimable défini par le site ; commandes natives des lecteurs traitées en 4."
+  },
+  {
+    "id": "12.11",
+    "titre": "12.11 Dans chaque page web, les contenus additionnels apparaissant au survol, à la prise de focus ou à l’activation d’un composant d’interface sont-ils si nécessaire atteignables au clavier ? Critère 12.11",
+    "avant": "C",
+    "raison_avant": "Suggestions faites de boutons tabulables ; listes supplémentaires sur activation. Pertes de focus traitées en 12.8.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Suggestions faites de boutons tabulables ; listes supplémentaires sur activation. Pertes de focus traitées en 12.8."
+  },
+  {
+    "id": "13.1",
+    "titre": "13.1 Pour chaque page web, l’utilisateur a-t-il le contrôle de chaque limite de temps modifiant le contenu (hors cas particuliers) ? Critère 13.1",
+    "avant": "NA",
+    "raison_avant": "Aucune limite de temps interrompant une tâche ; temporisations réseau ne font pas perdre les saisies.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Aucune limite de temps interrompant une tâche ; temporisations réseau ne font pas perdre les saisies."
+  },
+  {
+    "id": "13.2",
+    "titre": "13.2 Dans chaque page web, l’ouverture d’une nouvelle fenêtre ne doit pas être déclenchée sans action de l’utilisateur. Cette règle est-elle respectée ? Critère 13.2",
+    "avant": "C",
+    "raison_avant": "Liens target=_blank déclenchés par action explicite uniquement ; signalement supplémentaire prévu.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Liens target=_blank déclenchés par action explicite uniquement ; signalement supplémentaire prévu."
+  },
+  {
+    "id": "13.3",
+    "titre": "13.3 Dans chaque page web, chaque document bureautique en téléchargement possède-t-il, si nécessaire, une version accessible (hors cas particuliers) ? Critère 13.3",
+    "avant": "NC",
+    "raison_avant": "demo/ : PDF de présentation ; balisage et équivalence accessible complète non établis.",
+    "avant_revu": "NC",
+    "apres": "NC",
+    "raison_apres": "PDF de présentation non balisé (pdfinfo : Tagged: no), sans version HTML intégrale équivalente. Contact proposé pour demander une version accessible."
+  },
+  {
+    "id": "13.4",
+    "titre": "13.4 Pour chaque document bureautique ayant une version accessible , cette version offre-t-elle la même information ? Critère 13.4",
+    "avant": "NA",
+    "raison_avant": "Pas de version accessible du PDF identifiée avant correction.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de version accessible du PDF identifiée avant correction."
+  },
+  {
+    "id": "13.5",
+    "titre": "13.5 Dans chaque page web, chaque contenu cryptique (art ASCII, émoticône, syntaxe cryptique) a-t-il une alternative ? Critère 13.5",
+    "avant": "NC",
+    "raison_avant": "Emojis décoratifs lus dans les titres, domaines, messages et commandes.",
+    "avant_revu": "C",
+    "raison_avant_revue": "Emojis accompagnés d’un intitulé compréhensible ; masquage décoratif ajouté en amélioration.",
+    "apres": "C",
+    "raison_apres": "Emojis accompagnés d’un intitulé compréhensible ; masquage décoratif ajouté en amélioration."
+  },
+  {
+    "id": "13.6",
+    "titre": "13.6 Dans chaque page web, pour chaque contenu cryptique (art ASCII, émoticône, syntaxe cryptique) ayant une alternative, cette alternative est-elle pertinente ? Critère 13.6",
+    "avant": "C",
+    "raison_avant": "Symboles signifiants accompagnés de texte (distance, internat, téléphone).",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Symboles signifiants accompagnés de texte (distance, internat, téléphone)."
+  },
+  {
+    "id": "13.7",
+    "titre": "13.7 Dans chaque page web, les changements brusques de luminosité ou les effets de flash sont-ils correctement utilisés ? Critère 13.7",
+    "avant": "C",
+    "raison_avant": "Pas de clignotement programmé ni animation de flash dans les interfaces.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Pas de clignotement programmé ni animation de flash dans les interfaces."
+  },
+  {
+    "id": "13.8",
+    "titre": "13.8 Dans chaque page web, chaque contenu en mouvement ou clignotant est-il contrôlable par l’utilisateur ? Critère 13.8",
+    "avant": "C",
+    "raison_avant": "Vidéos sur commande, pause disponible ; pas de carrousel automatique.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Vidéos sur commande, pause disponible ; pas de carrousel automatique."
+  },
+  {
+    "id": "13.9",
+    "titre": "13.9 Dans chaque page web, le contenu proposé est-il consultable quelle que soit l’orientation de l’écran (portrait ou paysage) (hors cas particuliers) ? Critère 13.9",
+    "avant": "C",
+    "raison_avant": "Aucun verrouillage portrait/paysage dans les pages.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Aucun verrouillage portrait/paysage dans les pages."
+  },
+  {
+    "id": "13.10",
+    "titre": "13.10 Dans chaque page web, les fonctionnalités utilisables ou disponibles au moyen d’un geste complexe peuvent-elles être également disponibles au moyen d’un geste simple (hors cas particuliers) ? Critère 13.10",
+    "avant": "C",
+    "raison_avant": "Carte : boutons +/−, clavier et vue Liste pour les gestes de déplacement/zoom.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Carte : boutons +/−, clavier et vue Liste pour les gestes de déplacement/zoom."
+  },
+  {
+    "id": "13.11",
+    "titre": "13.11 Dans chaque page web, les actions déclenchées au moyen d’un dispositif de pointage sur un point unique de l’écran peuvent-elles faire l’objet d’une annulation (hors cas particuliers) ? Critère 13.11",
+    "avant": "C",
+    "raison_avant": "Actions via click, activation au relâchement ; déplacement de carte réversible.",
+    "avant_revu": "C",
+    "apres": "C",
+    "raison_apres": "Actions via click, activation au relâchement ; déplacement de carte réversible."
+  },
+  {
+    "id": "13.12",
+    "titre": "13.12 Dans chaque page web, les fonctionnalités qui impliquent un mouvement de l’appareil ou vers l’appareil peuvent-elles être satisfaites de manière alternative (hors cas particuliers) ? Critère 13.12",
+    "avant": "NA",
+    "raison_avant": "Pas de commande par mouvement de l’appareil.",
+    "avant_revu": "NA",
+    "apres": "NA",
+    "raison_apres": "Pas de commande par mouvement de l’appareil."
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "avant_revu": {
+    "C": 39,
+    "NC": 24,
+    "NA": 43,
+    "applicables": 63,
+    "taux_exact": "1300/21"
+  },
+  "apres": {
+    "C": 50,
+    "NC": 14,
+    "NA": 42,
+    "applicables": 64,
+    "taux_exact": "625/8"
+  }
+}

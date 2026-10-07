@@ -1,0 +1,32 @@
+Référence origin/main : 877c3f10c53b9a95c0ae90de222b0941ab165b1f
+Mode accessibilité : comparaison du contenu métier et des champs ; les seuls ajouts RGAA sont retirés, textes bruts conservés.
+aide/aide.json : identique à origin/main ; SHA-256 0e7273d055ab81dc8d2ab14fa4dca3fae6ef12283928ae2479aff6ee566625a7
+apres-3e/apres3e.json : identique à origin/main ; SHA-256 eb16cf4f0e77fa2fe076b71ee20fbec77636dcb075a289e894fc6b28c6374d8b
+formation/formations.json : identique à origin/main ; SHA-256 f7a477eff3766dfc24df573358658e067112c6b3f79f05bb9851cd3cee234270
+formation/parcoursup.json : identique à origin/main ; SHA-256 0ad318607fb6555474ae039dcb9414e05286b53e07a3a091e3ed8fa4313b61f0
+Régénération aide (mode par défaut) : identique à l’octet près
+Régénération Après le collège (mode par défaut) : identique à l’octet près
+Régénération Après le lycée (mode par défaut) : identique à l’octet près
+Régénération Parcoursup (mode par défaut) : identique à l’octet près
+/aide/ : identique, sans erreur
+/aide/#mda : identique, sans erreur
+/apres-3e/ : identique, sans erreur
+/apres-3e/#cuisine : identique, sans erreur
+/formation/ : identique, sans erreur
+/formation/#eeb : identique, sans erreur
+/formation/#iccer : identique, sans erreur
+/ : identique, sans erreur
+/henaff/ : identique, sans erreur
+/iccer : identique, sans erreur
+/formation/#mee : identique, sans erreur
+/formation/#tma : identique, sans erreur
+/formation/#era : identique, sans erreur
+/formation/#geometre : identique, sans erreur
+/formation/#mit : identique, sans erreur
+/formation/#sdg : identique, sans erreur
+/formation/#ebeniste : identique, sans erreur
+/formation/#bma-ebeniste : identique, sans erreur
+/formation/#bma-signaletique : identique, sans erreur
+/formation/#d=5601&ly=0932119Y : identique, sans erreur
+Île-de-France identique : oui
+Comparaison stricte du texte brut : 0/20 pages identiques ; écarts attendus dus aux ajouts de libellés, navigation et annonces. Les résultats et états métier sont comparés séparément.

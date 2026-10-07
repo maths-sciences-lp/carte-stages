@@ -55,7 +55,7 @@ export async function initAcademie({mount,contenu,onSelect,baseOutil}) {
   <h2 id="ac-title" tabindex="-1">Tu habites où ?</h2>
   <button type="button" class="ac-geo">📍 Me localiser</button>
   <label for="ac-ville">Tape ta ville</label>
-  <input id="ac-ville" type="text" placeholder="Par exemple : Lyon" autocomplete="off" aria-controls="ac-suggestions">
+  <input id="ac-ville" type="text" placeholder="Par exemple : Lyon" autocomplete="address-level2" aria-controls="ac-suggestions">
   <div id="ac-suggestions" class="ac-suggestions" hidden></div>
   <p class="ac-msg ac-status" role="status" aria-live="polite"></p>
   <details><summary>Je connais mon académie</summary>
@@ -75,7 +75,7 @@ export async function initAcademie({mount,contenu,onSelect,baseOutil}) {
   history.replaceState(null,'',urlPour('france'));
   if(focus){el('h2').focus();picker.scrollIntoView({block:'start'});}
  }
- async function choisir(ac) {
+ async function choisir(ac,choixUtilisateur=true) {
   const seq=++sequence;++search;controller?.abort();controller=new AbortController();geo.disabled=false;
   suggestions.hidden=true;message('Chargement des lieux…');
   try {
@@ -83,6 +83,7 @@ export async function initAcademie({mount,contenu,onSelect,baseOutil}) {
    if(seq!==sequence)return;
    retenirAcademie(ac.slug);history.replaceState(null,'',urlPour(ac.slug));
    el('.ac-bar span').textContent='📍 '+ac.nom;bar.hidden=false;picker.hidden=true;contenu.hidden=false;message('');
+   if(choixUtilisateur){const titre=contenu.querySelector('h2')||contenu;titre.tabIndex=-1;titre.focus();}
   } catch(e) {
    if(seq!==sequence)return;
    picker.hidden=false;contenu.hidden=true;bar.hidden=true;
@@ -134,7 +135,7 @@ export async function initAcademie({mount,contenu,onSelect,baseOutil}) {
    const b=document.createElement('button');b.type='button';b.textContent=ac.nom;b.onclick=()=>choisir(ac);el('.ac-options').append(b);
   });
   const direct=academieDepuisURL(base),saved=catalogue.find(a=>a.slug===lireAcademie());
-  if(direct||saved)await choisir(direct||saved);else question(false);
+  if(direct||saved)await choisir(direct||saved,false);else question(false);
  } catch(e){message('La liste ne se charge pas. Vérifie ta connexion, puis recharge la page.');}
  return {changer:question,choisir};
 }

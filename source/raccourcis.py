@@ -43,15 +43,19 @@ h2{{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10p
 .credit{{margin-top:22px;font-size:13px;color:var(--mute)}}
 </style>
 <script>if(!/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname)){{var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}}</script>
+<link rel="stylesheet" href="../commun/accessibilite.css">
 </head><body>
-<a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a>
-<main>
+<a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+<header><a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a></header>
+<main id="contenu-principal" tabindex="-1">
 <h1>🎯 Trouve ton stage</h1>
 <p class="lead">Lycée Eugène Hénaff · <b>Appuie sur ta classe</b> : la carte s’ouvre avec les entreprises de ton métier, au départ du lycée.</p>
 {blocs}
 <a class="autre" href="../">Une autre formation ? Ouvrir la carte complète →</a>
 <a class="autre" href="../formation/" style="margin-left:0;display:block;margin-top:12px">🎓 Après le lycée : trouve ta formation →</a>
-<p class="credit"><a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
-</main></body></html>
+<footer><p class="credit"><a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="../accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
+</footer>
+</main><script src="../commun/accessibilite.js"></script>
+</body></html>
 ''')
 print(len(R),'liens courts + page henaff')

@@ -101,11 +101,14 @@ dialog li{margin:6px 0}
  body.vue-carte #list{display:none}
 }
 </style>
+<link rel="stylesheet" href="commun/accessibilite.css">
 </head>
 <body>
+<a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
 <div id="app">
  <div id="panel">
-  <a class="site" href="https://maths-sciences-pro.fr/"><span class="badge-logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute);margin:0 1px">·</span>Sciences</b><span class="back">← Retour au site</span></a>
+  <header><a class="site" href="https://maths-sciences-pro.fr/"><span class="badge-logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute);margin:0 1px">·</span>Sciences</b><span class="back">← Retour au site</span></a></header>
+  <main id="contenu-principal" tabindex="-1">
   <div class="top">
    <h1>🎯 Trouve ton stage</h1>
    <button class="btn light small" id="aide">Aide ?</button>
@@ -116,10 +119,10 @@ dialog li{margin:6px 0}
    <h2><span class="num">1</span> Ta formation</h2>
    <div id="pick">
     <div class="field">
-     <input class="in" id="f" type="search" placeholder="Ex. : cuisine, MELEC, vente…" autocomplete="off" aria-label="Ta formation">
+     <label class="field-label" for="f">Nom ou sigle de ta formation</label><input class="in" id="f" type="search" placeholder="Ex. : cuisine, MELEC, vente…" autocomplete="off">
      <div class="sug" id="fsug" hidden></div>
     </div>
-    <button class="link" id="nosais">Je ne sais pas → je choisis un domaine</button>
+    <button class="link" id="nosais" aria-expanded="false" aria-controls="tiles">Je ne sais pas → je choisis un domaine</button>
     <div class="tiles" id="tiles" hidden></div>
    </div>
    <div id="chosen" hidden>
@@ -137,7 +140,7 @@ dialog li{margin:6px 0}
    </div>
    <div id="pmaison">
     <div class="field" style="margin-top:10px">
-     <input class="in" id="adr" type="search" placeholder="Ton adresse (rue et ville)" autocomplete="off" aria-label="Ton adresse">
+     <label class="field-label" for="adr">Ton adresse</label><input class="in" id="adr" type="search" placeholder="Ton adresse (rue et ville)" autocomplete="street-address" aria-label="Ton adresse">
      <div class="sug" id="asug" hidden></div>
     </div>
     <div class="row" style="margin-top:8px"><button class="btn light" id="geo"><span class="em" aria-hidden="true">📍</span><span>Me localiser</span></button></div>
@@ -145,7 +148,7 @@ dialog li{margin:6px 0}
    </div>
    <div id="plycee" hidden>
     <div class="field" style="margin-top:10px">
-     <input class="in" id="lyc" type="search" placeholder="Nom de ton lycée ou ta ville" autocomplete="off" aria-label="Ton lycée">
+     <label class="field-label" for="lyc">Ton lycée ou ta ville</label><input class="in" id="lyc" type="search" placeholder="Nom de ton lycée ou ta ville" autocomplete="off" aria-label="Ton lycée ou ta ville">
      <div class="sug" id="lsug" hidden></div>
     </div>
     <div class="msg" id="lmsg"></div>
@@ -163,20 +166,21 @@ dialog li{margin:6px 0}
    </div>
   </section>
   <div id="list"></div>
+  </main>
   <footer>
    Une entreprise de la liste ne prend pas forcément de stagiaires : appelle-la ou va la voir avec ta convention.<br>
    <span id="lba-source" hidden></span>
    Données : répertoire Sirene de l’Insee (<a href="https://recherche-entreprises.api.gouv.fr" target="_blank" rel="noopener">API Recherche d’entreprises</a>), 5 octobre 2026, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" target="_blank" rel="noopener">Licence Ouverte 2.0</a> · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap.<br>
    Statistiques de visite anonymes, sans cookie.<br>
-   <a href="accueil/">Tous les outils</a> · <a href="apres-3e/">🧭 Après le collège</a> · <a href="formation/">🎓 Après le lycée</a> · <a href="faq/">Questions fréquentes</a> · <a href="faq/#vie-privee">Vie privée</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a> · Une erreur, ou une entreprise qui veut être retirée : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
+   <a href="accueil/">Tous les outils</a> · <a href="apres-3e/">🧭 Après le collège</a> · <a href="formation/">🎓 Après le lycée</a> · <a href="faq/">Questions fréquentes</a> · <a href="faq/#vie-privee">Vie privée</a> · <a href="accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a> · Une erreur, ou une entreprise qui veut être retirée : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
    © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
   </footer>
  </div>
  <div id="map"></div>
 </div>
 
-<dialog id="dlg">
- <h2>Comment ça marche ?</h2>
+<dialog id="dlg" aria-labelledby="aide-titre">
+ <h2 id="aide-titre">Comment ça marche ?</h2>
  <ol>
   <li><b>Choisis ta formation</b> (ou un domaine, si tu ne sais pas).</li>
   <li><b>Dis d’où tu pars</b> : tape ton adresse, ou appuie sur « Me localiser ».</li>
@@ -285,25 +289,26 @@ $('f').addEventListener('input',()=>{
  if(!res.length){$('fsug').innerHTML='<div class="msg" style="padding:12px">Rien trouvé. Essaie un autre mot, ou choisis un domaine en dessous.</div>';$('fsug').hidden=false;$('fsug').onclick=null;return;}
  showSug($('fsug'),res,x=>`<span class="badge">${esc(x.t)}</span><span>${esc(x.n)}</span>`,x=>choose({type:'f',x}));
 });
-$('f').addEventListener('keydown',e=>{if(e.key==='Enter'){const b=$('fsug').querySelector('button');if(b){e.preventDefault();b.click();}}});
+$('f').addEventListener('keydown',e=>{if(e.key==='Enter'&&!$('fsug').hidden){const b=$('fsug').querySelector('button');if(b){e.preventDefault();b.click();}}});
 document.addEventListener('click',e=>{if(!e.target.closest('.field')){$('fsug').hidden=true;$('asug').hidden=true;$('lsug').hidden=true;}});
-$('nosais').onclick=()=>{$('tiles').hidden=!$('tiles').hidden;};
+$('nosais').onclick=()=>{$('tiles').hidden=!$('tiles').hidden;$('nosais').setAttribute('aria-expanded',String(!$('tiles').hidden));};
 $('change').onclick=()=>{sel=null;$('chosen').hidden=true;$('pick').hidden=false;$('f').value='';P=[];cl.clearLayers();setHash();render();$('f').focus();};
 
 async function choose(c){
+ const focusDansChoix=$('pick').contains(document.activeElement);
  sel=c; let keys, title;
  stat(c.type==='f'?'formation/'+c.x.k:'domaine/'+IDX.domaines[c.i].d, c.type==='f'?(c.x.t+' '+c.x.n):IDX.domaines[c.i].d);
  if(c.type==='f'){keys=c.x.s; title=`${c.x.t} ${c.x.n}`;}
  else {const d=IDX.domaines[c.i]; keys=d.s.map(s=>s.k); title=`${d.i} ${d.d}`;}
  keys.forEach((k,j)=>{COL[k]=PAL[j%PAL.length];LBL[k]=secName[k];});
  on=new Set(keys);
- $('chosenTxt').textContent=title; $('pick').hidden=true; $('chosen').hidden=false; $('tiles').hidden=true;
+ $('chosenTxt').textContent=title; $('pick').hidden=true; $('chosen').hidden=false; $('tiles').hidden=true; $('nosais').setAttribute('aria-expanded','false'); if(focusDansChoix)$('change').focus();
  $('secs').innerHTML=keys.map(k=>`<button class="chip" data-k="${k}" aria-pressed="true"><span class="dot" style="background:${COL[k]}"></span>${esc(secName[k])}</button>`).join('');
  setHash(); P=[]; $('count').textContent='Chargement…'; render(true);
  try{ const parts=await Promise.all(keys.map(loadSec)); if(sel!==c) return; const vu=new Set(); P=parts.flat().filter(p=>!vu.has(p.s)&&vu.add(p.s)); }
  catch(e){ $('count').textContent='Chargement impossible : vérifie ta connexion.'; return; }
  render();
- if(window.innerWidth<=900) $('s2').scrollIntoView({behavior:'smooth',block:'start'});
+ if(window.innerWidth<=900) $('s2').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
 }
 $('secs').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const k=b.dataset.k;
  if(on.has(k)){ if(on.size===1) return; on.delete(k);} else on.add(k);
@@ -328,7 +333,7 @@ function placeMk(k){const p=pts[k]; if(mks[k]) mks[k].remove(); if(!p) return;
 function setMaison(la,lo,label){stat('depart/maison','Départ : maison');pts.maison={la,lo,label};placeMk('maison');from='maison';syncFrom();
  try{localStorage.setItem('stages.maison',JSON.stringify(pts.maison));}catch(e){}
  $('amsg').textContent='✅ '+label; shown=40; render(); map.setView([la,lo],13);
- if(window.innerWidth<=900&&sel) $('s3').scrollIntoView({behavior:'smooth',block:'start'});}
+ if(window.innerWidth<=900&&sel) $('s3').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
 function syncFrom(){document.querySelectorAll('#fromrow .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.from===from)); $('pmaison').hidden=from!=='maison'; $('plycee').hidden=from!=='lycee';}
 $('fromrow').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;from=b.dataset.from;
  syncFrom(); shown=40; render(); const o=pts[from]; if(o) map.setView([o.la,o.lo],13); else (from==='maison'?$('adr'):$('lyc')).focus();});
@@ -339,12 +344,12 @@ $('lyc').addEventListener('input',()=>{const q=norm($('lyc').value).trim();if(q.
  const ws=q.split(/\s+/); const res=LY.filter(l=>ws.every(w=>l.key.includes(w))).slice(0,8);
  if(!res.length){$('lsug').innerHTML='<div class="msg" style="padding:12px">Lycée pas trouvé. Essaie le nom de ta ville.</div>';$('lsug').hidden=false;$('lsug').onclick=null;return;}
  showSug($('lsug'),res,l=>`<span>${esc(l.n)}</span><span class="badge">${esc(l.c)}</span>`,l=>setLycee(l,true));});
-$('lyc').addEventListener('keydown',e=>{if(e.key==='Enter'){const b=$('lsug').querySelector('button');if(b){e.preventDefault();b.click();}}});
+$('lyc').addEventListener('keydown',e=>{if(e.key==='Enter'&&!$('lsug').hidden){const b=$('lsug').querySelector('button');if(b){e.preventDefault();b.click();}}});
 function setLycee(l,user){if(user)stat('depart/lycee/'+l.u,'Départ : '+l.n);pts.lycee={la:l.la,lo:l.lo,label:l.n,u:l.u};placeMk('lycee');from='lycee';syncFrom();
  $('lyc').value=l.n; $('lmsg').textContent='✅ '+l.n+' ('+l.c+')';
  try{localStorage.setItem('stages.lycee',l.u);}catch(e){}
  setHash(); shown=40; render(); map.setView([l.la,l.lo],13);
- if(user&&window.innerWidth<=900&&sel) $('s3').scrollIntoView({behavior:'smooth',block:'start'});}
+ if(user&&window.innerWidth<=900&&sel) $('s3').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
 function initLycee(){const h=new URLSearchParams(location.hash.slice(1)); let u=h.get('ly');
  const c=(h.get('lycee')||'').split(',').map(Number);
  if(!u&&c.length===2&&c.every(isFinite)){let best=null,bd=1e9;for(const l of LY){const dd=dk(l,{la:c[0],lo:c[1]});if(dd<bd){bd=dd;best=l;}} if(best&&bd<0.3) u=best.u;}
@@ -377,21 +382,21 @@ function render(loading){
  if(!o) h+=`<div class="empty">👉 ${from==='lycee'?'Choisis ton lycée':'Indique ton adresse'} (étape 2) pour voir les entreprises <b>les plus proches</b>.</div>`;
  if(!n&&o&&dist) h+=`<div class="empty">Aucune entreprise à moins de ${dist} km. Choisis une distance plus grande.</div>`;
  h+=vis.slice(0,shown).map(p=>{const {tel,go}=links(p);return `<div class="card">
-  <div class="nm">${esc(titreP(p))}</div>${p.e?`<div class="msg" style="margin-top:0">${esc(p.n)}</div>`:''}
+  <h3 class="nm">${esc(titreP(p))}</h3>${p.e?`<div class="msg" style="margin-top:0">${esc(p.n)}</div>`:''}
   <div class="meta"><span><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</span>${o?`<span class="km">📍 ${dtxt(p.k)}</span>`:''}</div>
   <div class="meta">${esc(p.ad)}</div>${p.rp?`<div class="meta">${esc(p.rp)}</div>`:''}${p.t?`<div class="meta">Taille : ${esc(p.t)}</div>`:''}
   ${lbaHtml(p)}
   <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><button class="btn light" data-s="${p.s}">${em('🗺️','Sur la carte')}</button></div></div>`;}).join('');
  if(n>shown) h+=`<button class="btn light more" id="more">Voir ${Math.min(40,n-shown)} entreprises de plus</button>`;
  $('list').innerHTML=h;
- const m=$('more'); if(m) m.onclick=()=>{shown+=40;render();};
+ const m=$('more'); if(m) m.onclick=()=>{const debut=shown;shown+=40;render();const titre=$('list').querySelectorAll('.nm')[debut];if(titre){titre.tabIndex=-1;titre.focus();}};
 }
 document.addEventListener('click',e=>{const a=e.target.closest('a.btn');if(!a)return;const t=a.textContent;
  if(t.includes('Trouver le numéro'))stat('clic/numero','Clic : trouver le numéro'); else if(t.includes('Y aller'))stat('clic/trajet','Clic : trajet'); else if(t.includes('Fiche officielle'))stat('clic/fiche','Clic : fiche officielle');},true);
 document.addEventListener('click',e=>{const a=e.target.closest('.lba-box a');if(a)stat(a.closest('li')?'clic/lba-offre':'clic/lba','Clic : La bonne alternance');},true);
 $('list').addEventListener('click',e=>{const b=e.target.closest('button[data-s]');if(!b)return;const p=P.find(x=>x.s===b.dataset.s);if(!p)return;
  if(window.innerWidth<=900){vue(true);$('s3').scrollIntoView({block:'start'});}
- setTimeout(()=>{map.invalidateSize();map.setView([p.la,p.lo],17,{animate:false});L.popup(Object.assign({offset:[0,-4]},POPOPT)).setLatLng([p.la,p.lo]).setContent(pop(p)).openOn(map);},150);});
+ setTimeout(()=>{map.invalidateSize();map.setView([p.la,p.lo],17,{animate:false});L.popup(Object.assign({offset:[0,-4]},POPOPT)).setLatLng([p.la,p.lo]).setContent(pop(p)).openOn(map);map.getContainer().focus();},150);});
 
 // ---------- aide, lien de classe, démarrage
 $('aide').onclick=()=>$('dlg').showModal();
@@ -415,5 +420,6 @@ fetch('data/index.json?v='+DV).then(r=>r.json()).then(j=>{IDX=j;
  try{ if(!localStorage.getItem('stages.vu')){ localStorage.setItem('stages.vu','1'); if(!fx) $('dlg').showModal(); } }catch(e){}
 });
 </script>
+<script src="commun/accessibilite.js"></script>
 </body>
 </html>

@@ -1,0 +1,113 @@
+[
+  {
+    "tool": "apres-3e",
+    "action": "Activer le premier domaine ou la première classe au clavier",
+    "focus": "<button class=\"dom\" data-k=\"batiment\" aria-pressed=\"true\"><span class=\"e\" aria-hidden=\"true\">🧱</span><span><b>Bâtiment, travaux publics</b><span>construire, rénover, peindre, carreler</span></span></button>"
+  },
+  {
+    "tool": "aide",
+    "action": "Activer le premier domaine ou la première classe au clavier",
+    "focus": "<button class=\"dom\" data-k=\"cio\" aria-pressed=\"true\"><span class=\"e\" aria-hidden=\"true\">🧭</span><span><b>Je ne sais pas quoi faire après la 3e ou après le lycée</b><span>Centre d’information et d’orientation : un psychologue de l’Éducation"
+  },
+  {
+    "tool": "formation",
+    "action": "Activer le premier domaine ou la première classe au clavier",
+    "focus": "<body>\n<a class=\"skip-link\" href=\"#contenu-principal\">Aller au contenu principal</a>\n<header><a class=\"site\" href=\"https://maths-sciences-pro.fr/\"><span class=\"lg\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" width=\"19\" height=\"19\" fill=\"non"
+  },
+  {
+    "path": "/accueil/",
+    "test": "zoom200",
+    "width": 1280,
+    "viewport": 1280
+  },
+  {
+    "path": "/accueil/",
+    "test": "espacement",
+    "width": 320,
+    "viewport": 320
+  },
+  {
+    "path": "/",
+    "test": "zoom200",
+    "width": 1280,
+    "viewport": 1280
+  },
+  {
+    "path": "/",
+    "test": "espacement",
+    "width": 320,
+    "viewport": 320
+  },
+  {
+    "path": "/henaff/",
+    "test": "zoom200",
+    "width": 1280,
+    "viewport": 1280
+  },
+  {
+    "path": "/henaff/",
+    "test": "espacement",
+    "width": 320,
+    "viewport": 320
+  },
+  {
+    "path": "/apres-3e/#cuisine",
+    "test": "zoom200",
+    "width": 1280,
+    "viewport": 1280
+  },
+  {
+    "path": "/apres-3e/#cuisine",
+    "test": "espacement",
+    "width": 320,
+    "viewport": 320
+  },
+  {
+    "path": "/formation/#eeb",
+    "test": "zoom200",
+    "width": 1280,
+    "viewport": 1280
+  },
+  {
+    "path": "/formation/#eeb",
+    "test": "espacement",
+    "width": 320,
+    "viewport": 320
+  },
+  {
+    "path": "/aide/#mda",
+    "test": "zoom200",
+    "width": 1280,
+    "viewport": 1280
+  },
+  {
+    "path": "/aide/#mda",
+    "test": "espacement",
+    "width": 320,
+    "viewport": 320
+  },
+  {
+    "path": "/faq/",
+    "test": "zoom200",
+    "width": 1280,
+    "viewport": 1280
+  },
+  {
+    "path": "/faq/",
+    "test": "espacement",
+    "width": 394,
+    "viewport": 320
+  },
+  {
+    "path": "/demo/",
+    "test": "zoom200",
+    "width": 1280,
+    "viewport": 1280
+  },
+  {
+    "path": "/demo/",
+    "test": "espacement",
+    "width": 320,
+    "viewport": 320
+  }
+]

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Déclaration d’accessibilité – Stages et orientation</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+:root{--ink:#15314f;--bg:#f5f7f9;--mute:#596477;--acc:#2a4f7c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Public Sans',system-ui,sans-serif}main,header,footer{max-width:860px;margin:auto;padding:16px}h1,h2{font-family:'Bricolage Grotesque',system-ui,sans-serif}h1{font-size:28px}h2{font-size:23px;margin-top:32px}a{color:var(--acc)}li{margin:8px 0}.etat{padding:16px;background:#fff;border:2px solid #778397;border-radius:14px}footer{font-size:15px;border-top:1px solid #778397}
+</style><link rel="stylesheet" href="../commun/accessibilite.css"></head><body>
+<a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+<header><a href="../accueil/">Stages et orientation</a></header>
+<main id="contenu-principal" tabindex="-1">
+<h1>Déclaration d’accessibilité</h1>
+<p>Stages et orientation est un <strong>site personnel d’enseignant</strong>, édité par Naïm Azzouz. Il ne s’agit pas d’un site de l’État. Cette démarche volontaire vise à rendre les outils utilisables par le plus grand nombre.</p>
+<p>Cette déclaration concerne « Trouve ton stage », « Après le collège », « Après le lycée » et « Qui peut m’aider ? », leurs pages par classe ou académie, ainsi que l’accueil, les questions fréquentes et les démonstrations.</p>
+<h2>État de conformité</h2>
+<p class="etat"><strong>Non conforme.</strong> Des corrections d’accessibilité ont été apportées, mais l’audit RGAA complet, notamment les vérifications de restitution avec un lecteur d’écran, n’a pas pu être achevé. Il n’est donc pas possible de déclarer une conformité partielle ou totale au référentiel général d’amélioration de l’accessibilité (RGAA), version 4.1.2.</p>
+<h2>Résultats des tests</h2>
+<p>La grille technique examinée le <time datetime="2026-10-07">7 octobre 2026</time> comprend 106 critères : 50 vérifiés conformes sur les contrôles décrits, 14 non conformes ou non validés et 42 non applicables. Son comptage est de <strong>50 critères conformes sur 64 applicables, soit environ 78 %</strong>. <strong>Ce résultat provisoire ne constitue pas le taux d’un audit RGAA complet.</strong> Les vérifications vocales non validées restent dans les critères non conformes, et non dans les critères non applicables.</p>
+<p>Le <a href="audit/rapport.md">rapport détaillé avant et après correction</a> et la <a href="audit/grille.json">grille des 106 critères (JSON)</a> présentent les constats et leurs limites. Avant correction, le comptage technique revu était de 39 critères conformes sur 63 applicables, soit environ 62 %.</p>
+<h2>Contenus non accessibles</h2>
+<h3>Non-conformités restantes</h3>
+<ul>
+<li>La restitution vocale des composants dynamiques, des messages de statut et des lecteurs vidéo reste à valider dans un audit complet. Les parcours au clavier ont été vérifiés séparément.</li>
+<li>Les vidéos disposent d’une transcription textuelle sous chaque lecteur. La couverture de la bande sonore par les sous-titres et l’audiodescription synchronisée n’est pas validée.</li>
+<li>La page « Questions fréquentes » conserve des problèmes de structure de listes et de repères de navigation. Elle peut déborder à 320 pixels et avec des espacements de texte augmentés.</li>
+<li>Le site ne dispose pas encore d’un deuxième système transversal de navigation couvrant toutes les pages.</li>
+<li>Le PDF de présentation de la page « Démonstration et tutoriels » n’est pas balisé et ne possède pas encore de version HTML intégrale équivalente.</li>
+</ul>
+<p>Pour les cartes, la vue <strong>Liste</strong> donne accès aux lieux, adresses et liens utiles. Pour les vidéos, ouvrez la <strong>transcription texte</strong> placée immédiatement sous le lecteur. Vous pouvez demander une autre forme de présentation d’un contenu par le contact ci-dessous.</p>
+<h3>Dérogations pour charge disproportionnée</h3>
+<p>Aucune dérogation n’est invoquée.</p>
+<h3>Contenus non soumis à l’obligation d’accessibilité</h3>
+<p>Aucune exemption de contenu n’est invoquée dans cette évaluation volontaire.</p>
+<h2>Établissement de cette déclaration</h2>
+<p>Cette déclaration a été établie le <time datetime="2026-10-07">7 octobre 2026</time>, à partir des vérifications locales de la branche de correction. Elle devra être révisée après la validation complète avec les technologies d’assistance.</p>
+<h3>Technologies utilisées</h3>
+<p>HTML, CSS, JavaScript, SVG, vidéos MP4, lecteurs vidéo HTML natifs, Leaflet 1.9.4 et Leaflet.markercluster 1.5.3. Les données sont préparées en JSON. Les outils d’audit ne sont pas chargés par les pages du site.</p>
+<h3>Environnement et outils de test</h3>
+<p>macOS 15.7.4, Chromium 147.0.7727.15 avec Playwright et axe-core 4.14.0 en local. Vérifications à 375 et 320 pixels, agrandissement à 200 %, espacements du texte et désactivation des styles. Navigation par Tabulation, Majuscule–Tabulation, Entrée, flèches et Échap.</p>
+<p>Des essais ont été réalisés dans Safari 18.6 avec VoiceOver intégré à macOS. La structure accessible et les libellés ont été observés, mais la restitution vocale de bout en bout n’a pas été validée. Aucun résultat positif complet VoiceOver, NVDA ou JAWS n’est revendiqué. Aucun téléphone physique n’a été testé.</p>
+<h3>Pages et états de l’échantillon</h3>
+<ul>
+<li><a href="../accueil/">Accueil</a> et <a href="../henaff/">page du lycée Eugène Hénaff</a>.</li>
+<li><a href="../">Trouve ton stage</a> : aide initiale, recherche « cuisine », choix d’un lycée, liste, carte et <a href="../iccer">lien de classe ICCER</a>.</li>
+<li><a href="../apres-3e/#cuisine">Après le collège, domaine cuisine</a> : liste, détail des lycées et carte.</li>
+<li><a href="../formation/#eeb">Après le lycée, classe EEB</a> : liste et carte.</li>
+<li><a href="../aide/#mda">Qui peut m’aider, maisons des adolescents</a> : liste et carte.</li>
+<li>Les trois entrées nationales : question, choix manuel d’une académie, Lyon, puis « changer ». Contrôles complémentaires par adresse directe sur Lille, Aix-Marseille, Rennes et La Réunion.</li>
+<li><a href="../faq/">Questions fréquentes</a>, rubriques ouvertes, et <a href="../demo/">démonstrations et tutoriels</a>.</li>
+</ul>
+<h2>Retour d’information et contact</h2>
+<p>Si vous ne parvenez pas à accéder à un contenu ou à utiliser un service, vous pouvez signaler le problème et demander une alternative accessible à <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a>. Indiquez la page concernée et la difficulté rencontrée. Il n’est pas nécessaire de communiquer des données de santé.</p>
+<h2>Voies de recours</h2>
+<p>Si vous constatez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou à une fonctionnalité et que le signalement reste sans réponse satisfaisante, vous pouvez saisir le Défenseur des droits :</p>
+<ul>
+<li><a href="https://www.defenseurdesdroits.fr/nous-contacter-355">Contacter le Défenseur des droits</a>.</li>
+<li><a href="https://www.defenseurdesdroits.fr/carte-des-delegues">Trouver un délégué près de chez vous</a>.</li>
+<li>Écrire gratuitement, sans timbre, à : Défenseur des droits — Libre réponse 71120 — 75342 Paris CEDEX 07.</li>
+</ul>
+</main>
+<footer><a href="../accueil/">Tous les outils</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="./" aria-current="page">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a></footer>
+<script src="../commun/accessibilite.js"></script>
+</body></html>

@@ -1,0 +1,23 @@
+/* axe-core reste exclusivement un outil local de test. */
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const fs=require('fs'),path=require('path');
+const base=process.env.BASE_URL||'http://127.0.0.1:8768',out=process.env.OUTPUT||'/tmp/rgaa-avant';fs.mkdirSync(out,{recursive:true});
+const axe=process.env.AXE_PATH||require.resolve('axe-core/axe.min.js');
+(async()=>{const browser=await chromium.launch(),rows=[];
+ for(const width of [375,320]){
+  const c=await browser.newContext({viewport:{width,height:812}}),p=await c.newPage();let errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  async function capture(name){await p.addScriptTag({path:axe});const result=await p.evaluate(async()=>{const a=await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa','best-practice']}});return{violations:a.violations.map(v=>({id:v.id,impact:v.impact,description:v.description,nodes:v.nodes.map(n=>({html:n.html,target:n.target,summary:n.failureSummary}))})),incomplete:a.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({html:n.html,target:n.target}))})),passes:a.passes.map(v=>v.id),text:document.body.innerText,width:document.documentElement.scrollWidth,viewport:innerWidth,title:document.title,headings:[...document.querySelectorAll('h1,h2,h3,h4')].map(e=>[e.tagName,e.textContent]),fields:[...document.querySelectorAll('input,select')].map(e=>({id:e.id,label:e.labels?.[0]?.textContent,aria:e.getAttribute('aria-label')}))}});rows.push({name,requestedWidth:width,url:p.url(),errors:[...errors],...result});fs.writeFileSync(path.join(out,'audit.json'),JSON.stringify({browser:browser.version(),date:new Date().toISOString(),rows},null,2));await p.screenshot({path:path.join(out,`${width}-${name}.png`)});console.log(width,name,result.violations.map(v=>v.id).join(',')||'aucune violation axe',result.width>result.viewport?'DÉBORDEMENT':'');}
+  async function go(url){errors=[];await p.goto(base+url);if(/^\/(aide|apres-3e|formation)\//.test(url)&&!url.includes('/france/'))await p.waitForFunction(()=>typeof D!=='undefined'&&D);if(url.includes('/france/'))await p.locator('.ac-picker').waitFor();await p.evaluate(()=>document.fonts.ready);}
+  await go('/accueil/');await capture('accueil');
+  await go('/');await p.waitForFunction(()=>IDX&&IDX.formations);await capture('stage-vide');await p.keyboard.press('Escape');await p.locator('#f').fill('cuisine');await p.locator('#fsug button').first().click();await p.locator('[data-from="lycee"]').click();await p.locator('#lyc').fill('Paris');await p.locator('#lsug button').first().click();await p.waitForFunction(()=>document.querySelector('#list .card'));await capture('stage-liste');await p.locator('#tc').click();await capture('stage-carte');
+  await go('/henaff/');await capture('henaff');await go('/iccer');await p.waitForFunction(()=>document.querySelector('#list .card'));await capture('iccer');
+  for(const tool of ['apres-3e','formation','aide']){
+   const hash=tool==='apres-3e'?'cuisine':tool==='formation'?'eeb':'mda';await go('/'+tool+'/#'+hash);await capture(tool+'-liste');if(tool==='apres-3e'){await p.locator('#list button[data-i]').first().click();await capture(tool+'-detail');}await p.locator('#vC').click();await p.waitForFunction(()=>map&&layer);await capture(tool+'-carte');
+   await p.evaluate(()=>localStorage.removeItem('stages.academie'));await go('/'+tool+'/france/');await capture(tool+'-question');await p.locator('summary').filter({hasText:'Je connais mon académie'}).click();await p.locator('.ac-options button').filter({hasText:'Lyon'}).click();await p.waitForFunction(()=>D&&!document.querySelector('#nationalContent').hidden);
+   if(tool==='formation'){await p.locator('#q').fill('Bac pro cuisine');await p.locator('#qsug button').first().click();await p.locator('#ly').selectOption({index:1});}else await p.locator(`[data-k="${hash}"]`).click();await capture(tool+'-lyon');
+  }
+  await go('/faq/');await p.locator('details').evaluateAll(ds=>ds.forEach(d=>d.open=true));await capture('faq');await go('/demo/');await capture('demo');
+  // Zoom texte/layout 200 %, viewport équivalent à un écran 1280 px zoomé.
+  await p.setViewportSize({width:1280,height:900});await p.addStyleTag({content:'html{zoom:2}'});await capture('demo-zoom200');await c.close();
+ }
+ fs.writeFileSync(path.join(out,'audit.json'),JSON.stringify({axe:require(path.join(path.dirname(axe),'package.json')).version,browser:browser.version(),date:new Date().toISOString(),rows},null,2));await browser.close();})().catch(e=>{console.error(e);process.exit(1)});
