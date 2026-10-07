@@ -70,6 +70,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
  <div id="res" hidden>
   <div class="chips" id="ftype"></div>
   <div class="chips" id="fdep"></div>
+  <div class="chips" id="fint"></div>
   <div class="row"><button class="btn" id="vL" aria-pressed="true">📋 Liste</button><button class="btn" id="vC" aria-pressed="false">🗺️ Carte</button></div>
   <div class="msg" id="count"></div>
   <div id="map" hidden></div>
@@ -79,7 +80,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
 </section>
 
 <footer>
- Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, académie de Créteil, octobre 2026) · collèges : annuaire de l’Éducation nationale · devenir des élèves : <a href="https://data.education.gouv.fr/explore/dataset/fr-en-inserjeunes-lycee_pro-formation-fine/" target="_blank" rel="noopener">InserJeunes</a> (ministère de l’Éducation nationale ; chiffre masqué quand il y a trop peu d’élèves) · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Domaines regroupés à partir de l’indexation Onisep.<br>
+ Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, académie de Créteil, octobre 2026) · collèges : annuaire de l’Éducation nationale · internats : fiches Onisep des lycées croisées avec l’annuaire de l’Éducation nationale (« à vérifier » quand les deux ne concordent pas) · devenir des élèves : <a href="https://data.education.gouv.fr/explore/dataset/fr-en-inserjeunes-lycee_pro-formation-fine/" target="_blank" rel="noopener">InserJeunes</a> (ministère de l’Éducation nationale ; chiffre masqué quand il y a trop peu d’élèves) · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Domaines regroupés à partir de l’indexation Onisep.<br>
  Statistiques de visite anonymes, sans cookie. · <a href="../accueil/">Tous les outils</a> · <a href="../">Trouve ton stage</a> · <a href="../formation/">Après le lycée</a> · <a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>
  Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
  © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
@@ -96,21 +97,24 @@ const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
 const statut=s=>({'public':'Public','privé sous contrat':'Privé sous contrat','privé hors contrat':'Privé hors contrat'})[s]||'Privé';
 const TYPES=[['2de pro','2de pro (famille)'],['Bac pro','Bac pro'],['CAP','CAP']];
 const DEPS=['Seine-Saint-Denis','Val-de-Marne','Seine-et-Marne'];
-let D=null, dom=null, q='', dep=null, offT=new Set(), offD=new Set(), open=new Set(), map=null, layer=null;
+let D=null, dom=null, q='', dep=null, offT=new Set(), offD=new Set(), intern=false, open=new Set(), map=null, layer=null;
 function drawDoms(){$('doms').innerHTML=D.domaines.map(d=>`<button class="dom" data-k="${d.k}" aria-pressed="${dom===d.k}"><span class="e">${d.i}</span><span><b>${esc(d.n)}</b><span>${esc(d.s)}</span></span></button>`).join('')+
  `<button class="dom" data-k="tout" aria-pressed="${dom==='tout'}"><span class="e">📋</span><span><b>Toutes les formations</b><span>la liste complète de l’académie</span></span></button>`;
  $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{dom=b.dataset.k;q='';$('q').value='';open=new Set();drawDoms();history.replaceState(null,'','#'+dom);stat('domaine/'+dom,b.querySelector('b').textContent);show(true);});}
 $('q').addEventListener('input',()=>{q=norm($('q').value.trim());if(q.length>=2){dom=null;drawDoms();show(false);}else if(!dom){$('res').hidden=true;$('aide').hidden=false;}});
 function formations(){return D.formations.filter(f=>{if(offT.has(f.t))return false;if(q.length>=2){const t=norm(f.n+' '+(f.al||''));return q.split(' ').filter(Boolean).every(m=>t.includes(m));}return dom==='tout'||f.d.includes(dom);});}
-function lieux(f){return f.e.filter(e=>!offD.has(e.dep)).map(e=>({e,d:dep?km(dep.lat,dep.lon,e.lat,e.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.e.v.localeCompare(b.e.v));}
+function lieux(f){return f.e.filter(e=>!offD.has(e.dep)&&(!intern||e.it)).map(e=>({e,d:dep?km(dep.lat,dep.lon,e.lat,e.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.e.v.localeCompare(b.e.v));}
 function chips(){$('ftype').innerHTML=TYPES.map(([k,l])=>`<button class="chip" data-t="${k}" aria-pressed="${!offT.has(k)}">${l}</button>`).join('');
  $('ftype').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.t;offT.has(k)?offT.delete(k):offT.add(k);show(false);});
  $('fdep').innerHTML=DEPS.map(k=>`<button class="chip" data-d="${k}" aria-pressed="${!offD.has(k)}">${k}</button>`).join('');
- $('fdep').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.d;offD.has(k)?offD.delete(k):offD.add(k);show(false);});}
+ $('fdep').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.d;offD.has(k)?offD.delete(k):offD.add(k);show(false);});
+ $('fint').innerHTML=`<button class="chip" id="cint" aria-pressed="${intern}">🛏️ Seulement les lycées avec internat</button>`;
+ $('cint').onclick=()=>{intern=!intern;if(intern)stat('filtre/internat','Filtre : internat');show(false);};}
 function lieuHTML({e,d}){const prive=/priv/.test(e.st);const o=dep?`&origin=${dep.lat},${dep.lon}`:'';
  const go=`https://www.google.com/maps/dir/?api=1${o}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
  return `<div class="li"><b>${esc(e.n)}</b><span class="tag ${prive?'prive':''}">${esc(statut(e.st))}</span>
- <div class="m">${d!==null?'📍 <b>'+fmt(d)+' km</b> · ':''}${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>
+ <div class="m">${d!==null?'📍 <b>'+fmt(d)+' km</b> · ':''}${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}</div>
+ ${e.it?`<div class="m">🛏️ ${e.it==='i'?'Internat'+(e.ic?' ('+esc(e.ic)+')':''):e.it==='a'?'Internat dans un autre lycée'+(e.ic?' ('+esc(e.ic)+')':''):'Internat : à vérifier auprès du lycée'}</div>`:''}
  ${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}${e.ij?`<div class="m">📊 Après cette formation, dans ce lycée : <b>${e.ij.p!=null?e.ij.p+' % continuent leurs études':''}${e.ij.p!=null&&e.ij.e!=null?' · ':''}${e.ij.e!=null?'parmi ceux qui arrêtent, '+e.ij.e+' % ont un emploi 6 mois après':''}</b> <span style="font-size:13px">(InserJeunes, sortants 2023-2024)</span></div>`:''}
  <div class="row"><a class="btn" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a>${(e.af||e.o)?`<a class="btn light" href="${esc(e.af||e.o)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche Onisep</a>`:''}${e.w?`<a class="btn light" href="${esc(/^http/.test(e.w)?e.w:'https://'+e.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}</div></div>`;}
 function show(scroll){if(!D)return;const L=formations();$('aide').hidden=true;$('res').hidden=false;chips();
@@ -147,6 +151,6 @@ const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinate
 $('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
-fetch('apres3e.json?v=2026-10-07').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
+fetch('apres3e.json?v=2026-10-07b').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
 </script>
 </body></html>
