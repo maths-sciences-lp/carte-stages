@@ -1,407 +1,4 @@
 {
-"CAP accessoiriste réalisateur": [
-"Spectacle, musées, bibliothèques",
-"Audiovisuel, cinéma, son",
-"Loisirs, animation"
-],
-"CAP accompagnant éducatif petite enfance": [
-"Crèches, petite enfance",
-"Loisirs, animation",
-"Mairies, administrations",
-"Aide à domicile"
-],
-"CAP agent accompagnant au grand âge": [
-"Personnes âgées (EHPAD, résidences)",
-"Aide à domicile",
-"Hôpitaux, cliniques, laboratoires"
-],
-"CAP agent de la qualité de l'eau": [
-"Production et distribution d'énergie",
-"Déchets, recyclage, assainissement"
-],
-"CAP agent de propreté et d'hygiène": [
-"Nettoyage, propreté",
-"Hôpitaux, cliniques, laboratoires"
-],
-"CAP agent de sécurité": [
-"Sécurité privée, surveillance"
-],
-"CAP agricole – production (intitulé à préciser)": [
-"Horticulture, maraîchage, agriculture",
-"Paysagistes, espaces verts"
-],
-"CAP agricole – services (intitulé à préciser)": [
-"Aide à domicile",
-"Personnes âgées (EHPAD, résidences)",
-"Supérettes, alimentation générale"
-],
-"CAP art et techniques de la bijouterie-joaillerie option bijouterie sertissage": [
-"Bijouterie, horlogerie"
-],
-"CAP art et techniques de la bijouterie-joaillerie option bijouterie-joaillerie": [
-"Bijouterie, horlogerie"
-],
-"CAP art et techniques de la bijouterie-joaillerie option polissage finition": [
-"Bijouterie, horlogerie"
-],
-"CAP arts de la broderie": [
-"Couture, confection",
-"Tapisserie, décoration textile"
-],
-"CAP arts de la reliure": [
-"Imprimerie, prépresse, reliure",
-"Spectacle, musées, bibliothèques"
-],
-"CAP arts et techniques du verre option décorateur sur verre": [
-"Céramique, verre d'art, instruments de musique",
-"Plastique, verre, matériaux"
-],
-"CAP arts et techniques du verre option vitrailliste": [
-"Céramique, verre d'art, instruments de musique",
-"Plastique, verre, matériaux"
-],
-"CAP aéronautique option avionique": [
-"Aéronautique",
-"Électronique, matériel électrique"
-],
-"CAP boulanger": [
-"Boulangerie, pâtisserie",
-"Supermarchés, grandes surfaces",
-"Industrie agroalimentaire"
-],
-"CAP bronzier option A monteur en bronze": [
-"Chaudronnerie, soudure, structures métalliques",
-"Céramique, verre d'art, instruments de musique",
-"Ébénisterie, meubles, restauration de meubles"
-],
-"CAP carreleur mosaïste": [
-"Peinture, plâtre, carrelage, sols, isolation",
-"Construction, maçonnerie, gros œuvre"
-],
-"CAP carrossier automobile": [
-"Garages, carrosseries (voitures)",
-"Poids lourds, utilitaires",
-"Concessionnaires, vente de véhicules et pièces"
-],
-"CAP charpentier bois": [
-"Menuiserie, agencement, serrurerie",
-"Construction, maçonnerie, gros œuvre"
-],
-"CAP chocolaterie-confiserie": [
-"Chocolaterie, confiserie, glaces",
-"Boulangerie, pâtisserie",
-"Industrie agroalimentaire"
-],
-"CAP commercialisation et services en hôtel-café-restaurant": [
-"Restaurants",
-"Cafés, bars",
-"Hôtels",
-"Restauration rapide"
-],
-"CAP conducteur agent d'accueil en autobus et autocar": [
-"Transport de voyageurs"
-],
-"CAP conducteur d'engins de travaux publics et carrières": [
-"Travaux publics, routes, réseaux",
-"Construction, maçonnerie, gros œuvre"
-],
-"CAP conducteur d'installations de production": [
-"Usinage, mécanique, outillage",
-"Chimie, pharmacie, cosmétiques, papier",
-"Industrie agroalimentaire",
-"Plastique, verre, matériaux",
-"Électronique, matériel électrique"
-],
-"CAP conducteur livreur de marchandises": [
-"Transport de marchandises, livraison",
-"Entrepôts, logistique"
-],
-"CAP conducteur routier de marchandises": [
-"Transport de marchandises, livraison",
-"Entrepôts, logistique"
-],
-"CAP conducteur routier de marchandises option livraisons de proximité": [
-"Transport de marchandises, livraison",
-"Entrepôts, logistique",
-"Commerce de gros (entre entreprises)",
-"Déchets, recyclage, assainissement"
-],
-"CAP constructeur de routes et d'aménagements urbains": [
-"Travaux publics, routes, réseaux",
-"Paysagistes, espaces verts"
-],
-"CAP constructeur de réseaux de canalisations de travaux publics": [
-"Travaux publics, routes, réseaux",
-"Déchets, recyclage, assainissement"
-],
-"CAP cordonnerie multiservice": [
-"Cuir, maroquinerie, cordonnerie"
-],
-"CAP couvreur": [
-"Construction, maçonnerie, gros œuvre"
-],
-"CAP crémier-fromager": [
-"Primeur, fromagerie, épicerie fine, cave",
-"Supermarchés, grandes surfaces"
-],
-"CAP cuisine": [
-"Restaurants",
-"Restauration collective (cantines, entreprises)",
-"Hôtels",
-"Restauration rapide",
-"Traiteurs",
-"Cafés, bars",
-"Personnes âgées (EHPAD, résidences)"
-],
-"CAP décoration en céramique": [
-"Céramique, verre d'art, instruments de musique",
-"Plastique, verre, matériaux"
-],
-"CAP employé technique de laboratoire": [
-"Hôpitaux, cliniques, laboratoires",
-"Chimie, pharmacie, cosmétiques, papier"
-],
-"CAP esthétique cosmétique parfumerie": [
-"Esthétique, soins de beauté",
-"Parfumerie, cosmétiques",
-"Coiffure",
-"Pharmacie, optique, prothèses"
-],
-"CAP ferronnier d'art": [
-"Chaudronnerie, soudure, structures métalliques",
-"Menuiserie, agencement, serrurerie"
-],
-"CAP fleuriste": [
-"Fleuristes, jardineries"
-],
-"CAP fourrure": [
-"Couture, confection",
-"Cuir, maroquinerie, cordonnerie"
-],
-"CAP horlogerie": [
-"Bijouterie, horlogerie"
-],
-"CAP industries chimiques": [
-"Chimie, pharmacie, cosmétiques, papier",
-"Plastique, verre, matériaux"
-],
-"CAP installateur en froid et conditionnement d'air": [
-"Plomberie, chauffage, climatisation, froid",
-"Maintenance d'équipements, ascenseurs"
-],
-"CAP interventions en maintenance technique des bâtiments": [
-"Maintenance d'équipements, ascenseurs",
-"Électricité du bâtiment",
-"Plomberie, chauffage, climatisation, froid",
-"Agences immobilières, gestion de logements",
-"Mairies, administrations",
-"Nettoyage, propreté",
-"Peinture, plâtre, carrelage, sols, isolation",
-"Personnes âgées (EHPAD, résidences)"
-],
-"CAP maintenance des matériels option A matériels agricoles": [
-"Matériels agricoles, engins de chantier"
-],
-"CAP maintenance des matériels option B matériels de construction et de manutention": [
-"Matériels agricoles, engins de chantier",
-"Poids lourds, utilitaires",
-"Travaux publics, routes, réseaux"
-],
-"CAP maintenance des matériels option C matériels d'espaces verts": [
-"Matériels agricoles, engins de chantier",
-"Paysagistes, espaces verts"
-],
-"CAP maintenance des véhicules option motocycles": [
-"Motos, scooters",
-"Concessionnaires, vente de véhicules et pièces"
-],
-"CAP maintenance des véhicules option véhicules de transport routier": [
-"Poids lourds, utilitaires",
-"Transport de voyageurs",
-"Transport de marchandises, livraison"
-],
-"CAP maintenance des véhicules option véhicules légers": [
-"Garages, carrosseries (voitures)",
-"Concessionnaires, vente de véhicules et pièces"
-],
-"CAP mareyage": [
-"Boucherie, charcuterie, poissonnerie",
-"Supermarchés, grandes surfaces",
-"Commerce de gros (entre entreprises)",
-"Industrie agroalimentaire"
-],
-"CAP maroquinerie": [
-"Cuir, maroquinerie, cordonnerie",
-"Couture, confection"
-],
-"CAP maçon": [
-"Construction, maçonnerie, gros œuvre",
-"Peinture, plâtre, carrelage, sols, isolation"
-],
-"CAP menuisier aluminium-verre": [
-"Menuiserie, agencement, serrurerie",
-"Plastique, verre, matériaux"
-],
-"CAP menuisier fabricant": [
-"Menuiserie, agencement, serrurerie",
-"Ébénisterie, meubles, restauration de meubles"
-],
-"CAP menuisier installateur": [
-"Menuiserie, agencement, serrurerie",
-"Ébénisterie, meubles, restauration de meubles"
-],
-"CAP modèles et moules céramiques": [
-"Céramique, verre d'art, instruments de musique",
-"Plastique, verre, matériaux"
-],
-"CAP monteur en installations sanitaires": [
-"Plomberie, chauffage, climatisation, froid"
-],
-"CAP monteur en installations thermiques": [
-"Plomberie, chauffage, climatisation, froid",
-"Maintenance d'équipements, ascenseurs"
-],
-"CAP métallier": [
-"Menuiserie, agencement, serrurerie",
-"Chaudronnerie, soudure, structures métalliques"
-],
-"CAP métiers de l'enseigne et de la signalétique": [
-"Enseignes, signalétique, marquage",
-"Imprimerie, prépresse, reliure",
-"Publicité, design graphique"
-],
-"CAP métiers de l'entretien des textiles option A blanchisserie": [
-"Pressing, blanchisserie, retouches",
-"Hôpitaux, cliniques, laboratoires"
-],
-"CAP métiers de l'entretien des textiles option B pressing": [
-"Pressing, blanchisserie, retouches",
-"Hôtels"
-],
-"CAP métiers de la coiffure": [
-"Coiffure"
-],
-"CAP métiers de la mode - chapelier-modiste": [
-"Couture, confection",
-"Vêtements, chaussures, accessoires",
-"Spectacle, musées, bibliothèques"
-],
-"CAP métiers de la mode - vêtement flou": [
-"Couture, confection",
-"Pressing, blanchisserie, retouches"
-],
-"CAP métiers de la mode - vêtement tailleur": [
-"Couture, confection",
-"Pressing, blanchisserie, retouches"
-],
-"CAP opérateur en appareillage orthopédique-spécialité orthoprothèse": [
-"Pharmacie, optique, prothèses",
-"Hôpitaux, cliniques, laboratoires"
-],
-"CAP opérateur en appareillage orthopédique-spécialité podo-orthèse": [
-"Pharmacie, optique, prothèses",
-"Hôpitaux, cliniques, laboratoires"
-],
-"CAP opérateur, opératrice logistique": [
-"Entrepôts, logistique",
-"Transport de marchandises, livraison",
-"Supermarchés, grandes surfaces",
-"Commerce de gros (entre entreprises)"
-],
-"CAP outillages en outils à découper et à emboutir": [
-"Usinage, mécanique, outillage",
-"Chaudronnerie, soudure, structures métalliques"
-],
-"CAP peintre applicateur de revêtements": [
-"Peinture, plâtre, carrelage, sols, isolation"
-],
-"CAP peintre automobile": [
-"Garages, carrosseries (voitures)",
-"Poids lourds, utilitaires"
-],
-"CAP production et service en restaurations (rapide, collective, cafétéria)": [
-"Restauration collective (cantines, entreprises)",
-"Restauration rapide",
-"Restaurants"
-],
-"CAP propreté et prévention des biocontaminations": [
-"Nettoyage, propreté",
-"Hôpitaux, cliniques, laboratoires"
-],
-"CAP pâtissier": [
-"Boulangerie, pâtisserie",
-"Chocolaterie, confiserie, glaces",
-"Traiteurs",
-"Restaurants",
-"Hôtels",
-"Supermarchés, grandes surfaces",
-"Industrie agroalimentaire"
-],
-"CAP réalisations industrielles en chaudronnerie ou soudage option A chaudronnerie": [
-"Chaudronnerie, soudure, structures métalliques",
-"Usinage, mécanique, outillage"
-],
-"CAP réalisations industrielles en chaudronnerie ou soudage option B soudage": [
-"Chaudronnerie, soudure, structures métalliques",
-"Usinage, mécanique, outillage"
-],
-"CAP signalétique et décors graphiques": [
-"Enseignes, signalétique, marquage",
-"Imprimerie, prépresse, reliure",
-"Publicité, design graphique"
-],
-"CAP souffleur de verre option verrerie scientifique": [
-"Céramique, verre d'art, instruments de musique",
-"Plastique, verre, matériaux"
-],
-"CAP staffeur ornemaniste": [
-"Peinture, plâtre, carrelage, sols, isolation",
-"Construction, maçonnerie, gros œuvre"
-],
-"CAP sérigraphie industrielle": [
-"Imprimerie, prépresse, reliure",
-"Publicité, design graphique",
-"Couture, confection",
-"Enseignes, signalétique, marquage"
-],
-"CAP tailleur de pierre": [
-"Construction, maçonnerie, gros œuvre"
-],
-"CAP tournage en céramique": [
-"Céramique, verre d'art, instruments de musique"
-],
-"CAP valorisation des matières et propreté des espaces urbains": [
-"Déchets, recyclage, assainissement",
-"Nettoyage, propreté",
-"Mairies, administrations"
-],
-"CAP vêtement de peau": [
-"Couture, confection",
-"Cuir, maroquinerie, cordonnerie"
-],
-"CAP ébéniste": [
-"Ébénisterie, meubles, restauration de meubles",
-"Menuiserie, agencement, serrurerie"
-],
-"CAP électricien": [
-"Électricité du bâtiment",
-"Maintenance d'équipements, ascenseurs",
-"Production et distribution d'énergie"
-],
-"CAP équipier polyvalent du commerce": [
-"Supermarchés, grandes surfaces",
-"Supérettes, alimentation générale",
-"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
-"Vêtements, chaussures, accessoires",
-"Commerce de gros (entre entreprises)"
-],
-"CAPa jardinier-paysagiste": [
-"Paysagistes, espaces verts",
-"Mairies, administrations"
-],
-"CAPa métiers de l'agriculture": [
-"Horticulture, maraîchage, agriculture"
-],
 "bac pro accompagnement, soins et services à la personne": [
 "Personnes âgées (EHPAD, résidences)",
 "Handicap (foyers, ESAT, IME)",
@@ -562,6 +159,7 @@
 "Construction, maçonnerie, gros œuvre"
 ],
 "bac pro laboratoire contrôle qualité": [
+"Laboratoires d'analyses et d'essais",
 "Chimie, pharmacie, cosmétiques, papier",
 "Industrie agroalimentaire",
 "Déchets, recyclage, assainissement"
@@ -659,9 +257,6 @@
 "Commerce de gros (entre entreprises)",
 "Hôpitaux, cliniques, laboratoires"
 ],
-"bac pro métiers de la mode – vêtement": [
-"Couture, confection"
-],
 "bac pro métiers de la sécurité": [
 "Sécurité privée, surveillance",
 "Mairies, administrations"
@@ -722,7 +317,7 @@
 ],
 "bac pro procédés de la chimie, de l'eau et des papiers-cartons": [
 "Chimie, pharmacie, cosmétiques, papier",
-"Production et distribution d'énergie",
+"Eau potable (captage, traitement, distribution)",
 "Déchets, recyclage, assainissement",
 "Plastique, verre, matériaux",
 "Industrie agroalimentaire"
@@ -814,5 +409,392 @@
 "bac pro étude et réalisation d'agencement": [
 "Menuiserie, agencement, serrurerie",
 "Ébénisterie, meubles, restauration de meubles"
+],
+"CAP accessoiriste réalisateur": [
+"Spectacle, musées, bibliothèques",
+"Audiovisuel, cinéma, son",
+"Loisirs, animation"
+],
+"CAP accompagnant éducatif petite enfance": [
+"Crèches, petite enfance",
+"Loisirs, animation",
+"Mairies, administrations",
+"Aide à domicile"
+],
+"CAP agent accompagnant au grand âge": [
+"Personnes âgées (EHPAD, résidences)",
+"Aide à domicile",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP agent de la qualité de l'eau": [
+"Eau potable (captage, traitement, distribution)",
+"Laboratoires d'analyses et d'essais",
+"Déchets, recyclage, assainissement"
+],
+"CAP agent de sécurité": [
+"Sécurité privée, surveillance"
+],
+"CAP art et techniques de la bijouterie-joaillerie option bijouterie sertissage": [
+"Bijouterie, horlogerie"
+],
+"CAP art et techniques de la bijouterie-joaillerie option bijouterie-joaillerie": [
+"Bijouterie, horlogerie"
+],
+"CAP art et techniques de la bijouterie-joaillerie option polissage finition": [
+"Bijouterie, horlogerie"
+],
+"CAP arts de la broderie": [
+"Couture, confection",
+"Tapisserie, décoration textile"
+],
+"CAP arts de la reliure": [
+"Imprimerie, prépresse, reliure",
+"Spectacle, musées, bibliothèques"
+],
+"CAP arts et techniques du verre option décorateur sur verre": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
+],
+"CAP arts et techniques du verre option vitrailliste": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
+],
+"CAP aéronautique option avionique": [
+"Aéronautique",
+"Électronique, matériel électrique"
+],
+"CAP boulanger": [
+"Boulangerie, pâtisserie",
+"Supermarchés, grandes surfaces",
+"Industrie agroalimentaire"
+],
+"CAP bronzier option A monteur en bronze": [
+"Chaudronnerie, soudure, structures métalliques",
+"Céramique, verre d'art, instruments de musique",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"CAP carreleur mosaïste": [
+"Peinture, plâtre, carrelage, sols, isolation",
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP carrossier automobile": [
+"Garages, carrosseries (voitures)",
+"Poids lourds, utilitaires",
+"Concessionnaires, vente de véhicules et pièces"
+],
+"CAP charpentier bois": [
+"Menuiserie, agencement, serrurerie",
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP chocolaterie-confiserie": [
+"Chocolaterie, confiserie, glaces",
+"Boulangerie, pâtisserie",
+"Industrie agroalimentaire"
+],
+"CAP commercialisation et services en hôtel-café-restaurant": [
+"Restaurants",
+"Cafés, bars",
+"Hôtels",
+"Restauration rapide"
+],
+"CAP conducteur agent d'accueil en autobus et autocar": [
+"Transport de voyageurs"
+],
+"CAP conducteur d'engins de travaux publics et carrières": [
+"Travaux publics, routes, réseaux",
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP conducteur d'installations de production": [
+"Usinage, mécanique, outillage",
+"Chimie, pharmacie, cosmétiques, papier",
+"Industrie agroalimentaire",
+"Plastique, verre, matériaux",
+"Électronique, matériel électrique"
+],
+"CAP conducteur routier de marchandises option livraisons de proximité": [
+"Transport de marchandises, livraison",
+"Entrepôts, logistique",
+"Commerce de gros (entre entreprises)",
+"Déchets, recyclage, assainissement"
+],
+"CAP conducteur routier de marchandises option livraisons longue distance": [
+"Transport de marchandises, livraison",
+"Entrepôts, logistique"
+],
+"CAP constructeur de routes et d'aménagements urbains": [
+"Travaux publics, routes, réseaux",
+"Paysagistes, espaces verts"
+],
+"CAP constructeur de réseaux de canalisations de travaux publics": [
+"Travaux publics, routes, réseaux",
+"Déchets, recyclage, assainissement"
+],
+"CAP cordonnerie multiservice": [
+"Cuir, maroquinerie, cordonnerie"
+],
+"CAP couvreur": [
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP crémier-fromager": [
+"Primeur, fromagerie, épicerie fine, cave",
+"Supermarchés, grandes surfaces"
+],
+"CAP cuisine": [
+"Restaurants",
+"Restauration collective (cantines, entreprises)",
+"Hôtels",
+"Restauration rapide",
+"Traiteurs",
+"Cafés, bars",
+"Personnes âgées (EHPAD, résidences)"
+],
+"CAP décoration en céramique": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
+],
+"CAP esthétique cosmétique parfumerie": [
+"Esthétique, soins de beauté",
+"Parfumerie, cosmétiques",
+"Coiffure",
+"Pharmacie, optique, prothèses"
+],
+"CAP ferronnier d'art": [
+"Chaudronnerie, soudure, structures métalliques",
+"Menuiserie, agencement, serrurerie"
+],
+"CAP fleuriste": [
+"Fleuristes, jardineries"
+],
+"CAP fourrure": [
+"Couture, confection",
+"Cuir, maroquinerie, cordonnerie"
+],
+"CAP horlogerie": [
+"Bijouterie, horlogerie"
+],
+"CAP industries chimiques": [
+"Chimie, pharmacie, cosmétiques, papier",
+"Plastique, verre, matériaux"
+],
+"CAP installateur en froid et conditionnement d'air": [
+"Plomberie, chauffage, climatisation, froid",
+"Maintenance d'équipements, ascenseurs"
+],
+"CAP interventions en maintenance technique des bâtiments": [
+"Maintenance d'équipements, ascenseurs",
+"Électricité du bâtiment",
+"Plomberie, chauffage, climatisation, froid",
+"Agences immobilières, gestion de logements",
+"Mairies, administrations",
+"Nettoyage, propreté",
+"Peinture, plâtre, carrelage, sols, isolation",
+"Personnes âgées (EHPAD, résidences)"
+],
+"CAP maintenance des matériels option A matériels agricoles": [
+"Matériels agricoles, engins de chantier"
+],
+"CAP maintenance des matériels option B matériels de construction et de manutention": [
+"Matériels agricoles, engins de chantier",
+"Poids lourds, utilitaires",
+"Travaux publics, routes, réseaux"
+],
+"CAP maintenance des matériels option C matériels d'espaces verts": [
+"Matériels agricoles, engins de chantier",
+"Paysagistes, espaces verts"
+],
+"CAP maintenance des véhicules option motocycles": [
+"Motos, scooters",
+"Concessionnaires, vente de véhicules et pièces"
+],
+"CAP maintenance des véhicules option véhicules de transport routier": [
+"Poids lourds, utilitaires",
+"Transport de voyageurs",
+"Transport de marchandises, livraison"
+],
+"CAP maintenance des véhicules option véhicules légers": [
+"Garages, carrosseries (voitures)",
+"Concessionnaires, vente de véhicules et pièces"
+],
+"CAP mareyage": [
+"Boucherie, charcuterie, poissonnerie",
+"Supermarchés, grandes surfaces",
+"Commerce de gros (entre entreprises)",
+"Industrie agroalimentaire"
+],
+"CAP maroquinerie": [
+"Cuir, maroquinerie, cordonnerie",
+"Couture, confection"
+],
+"CAP maçon": [
+"Construction, maçonnerie, gros œuvre",
+"Peinture, plâtre, carrelage, sols, isolation"
+],
+"CAP menuisier aluminium-verre": [
+"Menuiserie, agencement, serrurerie",
+"Plastique, verre, matériaux"
+],
+"CAP menuisier fabricant": [
+"Menuiserie, agencement, serrurerie",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"CAP menuisier installateur": [
+"Menuiserie, agencement, serrurerie",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"CAP modèles et moules céramiques": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
+],
+"CAP monteur en installations sanitaires": [
+"Plomberie, chauffage, climatisation, froid"
+],
+"CAP monteur en installations thermiques": [
+"Plomberie, chauffage, climatisation, froid",
+"Maintenance d'équipements, ascenseurs"
+],
+"CAP métallier": [
+"Menuiserie, agencement, serrurerie",
+"Chaudronnerie, soudure, structures métalliques"
+],
+"CAP métiers de l'enseigne et de la signalétique": [
+"Enseignes, signalétique, marquage",
+"Imprimerie, prépresse, reliure",
+"Publicité, design graphique"
+],
+"CAP métiers de l'entretien des textiles option A blanchisserie": [
+"Pressing, blanchisserie, retouches",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP métiers de l'entretien des textiles option B pressing": [
+"Pressing, blanchisserie, retouches",
+"Hôtels"
+],
+"CAP métiers de l'usinage": [
+"Usinage, mécanique, outillage"
+],
+"CAP métiers de la coiffure": [
+"Coiffure"
+],
+"CAP métiers de la mode - chapelier-modiste": [
+"Couture, confection",
+"Vêtements, chaussures, accessoires",
+"Spectacle, musées, bibliothèques"
+],
+"CAP métiers de la mode - vêtement flou": [
+"Couture, confection",
+"Pressing, blanchisserie, retouches"
+],
+"CAP métiers de la mode - vêtement tailleur": [
+"Couture, confection",
+"Pressing, blanchisserie, retouches"
+],
+"CAP opérateur en appareillage orthopédique-spécialité orthoprothèse": [
+"Pharmacie, optique, prothèses",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP opérateur en appareillage orthopédique-spécialité podo-orthèse": [
+"Pharmacie, optique, prothèses",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP opérateur, opératrice logistique": [
+"Entrepôts, logistique",
+"Transport de marchandises, livraison",
+"Supermarchés, grandes surfaces",
+"Commerce de gros (entre entreprises)"
+],
+"CAP peintre applicateur de revêtements": [
+"Peinture, plâtre, carrelage, sols, isolation"
+],
+"CAP peintre automobile": [
+"Garages, carrosseries (voitures)",
+"Poids lourds, utilitaires"
+],
+"CAP production et service en restaurations (rapide, collective, cafétéria)": [
+"Restauration collective (cantines, entreprises)",
+"Restauration rapide",
+"Restaurants"
+],
+"CAP propreté et prévention des biocontaminations": [
+"Nettoyage, propreté",
+"Hôpitaux, cliniques, laboratoires"
+],
+"CAP pâtissier": [
+"Boulangerie, pâtisserie",
+"Chocolaterie, confiserie, glaces",
+"Traiteurs",
+"Restaurants",
+"Hôtels",
+"Supermarchés, grandes surfaces",
+"Industrie agroalimentaire"
+],
+"CAP réalisations industrielles en chaudronnerie ou soudage option A chaudronnerie": [
+"Chaudronnerie, soudure, structures métalliques",
+"Usinage, mécanique, outillage"
+],
+"CAP réalisations industrielles en chaudronnerie ou soudage option B soudage": [
+"Chaudronnerie, soudure, structures métalliques",
+"Usinage, mécanique, outillage"
+],
+"CAP signalétique et décors graphiques": [
+"Enseignes, signalétique, marquage",
+"Imprimerie, prépresse, reliure",
+"Publicité, design graphique"
+],
+"CAP souffleur de verre option verrerie scientifique": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
+],
+"CAP staffeur ornemaniste": [
+"Peinture, plâtre, carrelage, sols, isolation",
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP sérigraphie industrielle": [
+"Imprimerie, prépresse, reliure",
+"Publicité, design graphique",
+"Couture, confection",
+"Enseignes, signalétique, marquage"
+],
+"CAP tailleur de pierre": [
+"Construction, maçonnerie, gros œuvre"
+],
+"CAP tournage en céramique": [
+"Céramique, verre d'art, instruments de musique"
+],
+"CAP valorisation des matières et propreté des espaces urbains": [
+"Déchets, recyclage, assainissement",
+"Nettoyage, propreté",
+"Mairies, administrations"
+],
+"CAP vêtement de peau": [
+"Couture, confection",
+"Cuir, maroquinerie, cordonnerie"
+],
+"CAP ébéniste": [
+"Ébénisterie, meubles, restauration de meubles",
+"Menuiserie, agencement, serrurerie"
+],
+"CAP électricien": [
+"Électricité du bâtiment",
+"Maintenance d'équipements, ascenseurs",
+"Production et distribution d'énergie"
+],
+"CAP équipier polyvalent du commerce": [
+"Supermarchés, grandes surfaces",
+"Supérettes, alimentation générale",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
+"Vêtements, chaussures, accessoires",
+"Commerce de gros (entre entreprises)"
+],
+"CAPa jardinier-paysagiste": [
+"Paysagistes, espaces verts",
+"Mairies, administrations"
+],
+"CAPa métiers de l'agriculture": [
+"Horticulture, maraîchage, agriculture"
+],
+"CAPa services aux personnes et vente en espace rural": [
+"Aide à domicile",
+"Personnes âgées (EHPAD, résidences)",
+"Supérettes, alimentation générale"
 ]
 }

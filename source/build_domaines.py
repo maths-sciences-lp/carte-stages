@@ -1,5 +1,5 @@
 import json,re,os,unicodedata,collections,sys
-from domaines import DOMAINES, MOTS_CLES, SOURCES_MOTS_CLES
+from domaines import DOMAINES, MOTS_CLES, SOURCES_MOTS_CLES, FILTRES
 from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
 from adresses import nettoie
 OUT=sys.argv[1] if len(sys.argv)>1 else 'www2'
@@ -19,12 +19,16 @@ EFF={'01':'1 ou 2 salariés','02':'3 à 5 salariés','03':'6 à 9 salariés','11
  '31':'200 à 249 salariés','32':'250 à 499 salariés','41':'500 à 999 salariés','42':'1 000 à 1 999 salariés','51':'2 000 à 4 999 salariés','52':'5 000 à 9 999 salariés','53':'10 000 salariés et plus'}
 EK=list(EFF)
 by=collections.defaultdict(dict); skip=collections.Counter()
+FILT={slug(n):re.compile(rx) for n,rx in FILTRES.items()}
 for line in open('idf/etablissements.jsonl'):
     r=json.loads(line)
     if r['nj']=='1000': skip['EI']+=1; continue
     if r['du']!='O' or r['de']!='O': skip['non diffusible']+=1; continue
     if not r['la']: skip['sans position']+=1; continue
     k=sec_of.get(r['c']) or sec_of.get(r['q'])
+    if k in FILT and not FILT[k].search((r['n']+' '+(r['e'] or '')).upper()):
+        k=sec_of.get(r['q']) if r['q']!=r['c'] else None
+        if not k: skip['hors filtre']+=1; continue
     nom=re.sub(r'\s+',' ',r['n']).strip(); nom=re.sub(r'(\([^()]*\))(\s*\1)+',r'\1',nom); nom=re.sub(r'^(.+?) \(\1\)$',r'\1',nom); ens=r['e'] if r['e'] and r['e'].upper() not in nom.upper() else ''
     ens=ens.split(', ')[0] if ens else ''
     adr,rep=nettoie(r['ad'] or '')

@@ -14,7 +14,7 @@ DOMAINES = {
   "Électricité du bâtiment": ["43.21A", "43.21B"],
   "Plomberie, chauffage, climatisation, froid": ["43.22A", "43.22B", "35.30Z"],
   "Maintenance d'équipements, ascenseurs": ["33.12Z", "33.13Z", "33.14Z", "33.20B", "33.20C", "33.20D", "43.29B"],
-  "Production et distribution d'énergie": ["35.11Z", "35.13Z", "35.14Z", "35.22Z", "36.00Z"],
+  "Production et distribution d'énergie": ["35.11Z", "35.13Z", "35.14Z", "35.22Z"],
  },
  "Automobile, moto, poids lourds, aéronautique": {
   "Garages, carrosseries (voitures)": ["45.20A"],
@@ -29,6 +29,7 @@ DOMAINES = {
   "Électronique, matériel électrique": ["26.11Z", "26.12Z", "27.11Z", "27.12Z", "27.40Z", "27.90Z"],
   "Plastique, verre, matériaux": ["22.21Z", "22.22Z", "22.29A", "22.29B", "23.12Z", "23.19Z"],
   "Chimie, pharmacie, cosmétiques, papier": ["20.11Z", "20.13B", "20.14Z", "20.16Z", "20.30Z", "20.41Z", "20.42Z", "20.59Z", "21.10Z", "21.20Z", "17.12Z", "17.21A", "17.21B", "17.29Z"],
+  "Laboratoires d'analyses et d'essais": ["71.20B"],
   "Industrie agroalimentaire": ["10.13A", "10.39B", "10.51C", "10.72Z", "10.73Z", "10.85Z", "10.89Z", "11.07A", "11.07B"],
   "Bateaux, nautisme": ["30.12Z", "33.15Z"],
   "Matériels agricoles, engins de chantier": ["28.30Z", "28.92Z", "46.61Z", "46.63Z", "77.31Z", "77.32Z"],
@@ -72,7 +73,8 @@ DOMAINES = {
   "Personnes âgées (EHPAD, résidences)": ["87.10A", "87.30A"],
   "Handicap (foyers, ESAT, IME)": ["87.10B", "87.10C", "87.20A", "87.30B", "88.10C", "88.91B"],
   "Aide à domicile": ["88.10A", "88.10B"],
-  "Hôpitaux, cliniques, laboratoires": ["86.10Z", "86.90B", "86.90A"],
+  "Hôpitaux, cliniques, laboratoires": ["86.10Z", "86.90B"],
+  "Ambulances": ["86.90A"],
   "Pharmacie, optique, prothèses": ["47.73Z", "47.74Z", "47.78A", "32.50A", "32.50B"],
  },
  "Coiffure, esthétique, bien-être": {
@@ -99,6 +101,7 @@ DOMAINES = {
  "Propreté, environnement": {
   "Nettoyage, propreté": ["81.21Z", "81.22Z", "81.29A", "81.29B"],
   "Déchets, recyclage, assainissement": ["38.11Z", "38.12Z", "38.21Z", "38.32Z", "37.00Z", "39.00Z"],
+  "Eau potable (captage, traitement, distribution)": ["36.00Z"],
  },
  "Espaces verts, agriculture, animaux": {
   "Paysagistes, espaces verts": ["81.30Z"],
@@ -133,4 +136,10 @@ MOTS_CLES = {
  "Menuiserie, agencement, serrurerie": r"\b(AGENCEMENTS?|AGENCEUR|MENUISERIES?|MENUISIER|EBENISTERIE|EBENISTE)\b",
  "Plomberie, chauffage, climatisation, froid": r"\b(CHAUFFAGE|CLIMATISATION|CLIMATIQUE|THERMIQUE|PLOMBERIE|PLOMBIER|FRIGORIFIQUE|POMPES? A CHALEUR)\b",
  "Géomètres-experts, topographie": r"\b(GEOMETRES?|TOPOGRAPH\w*)\b",
+}
+
+# Types où seuls les noms qui correspondent sont gardés : le code 71.20B mêle les
+# laboratoires et les bureaux de contrôle ou de diagnostic immobilier.
+FILTRES = {
+ "Laboratoires d'analyses et d'essais": r"LABO|ANALY|ESSAI|MESUR|METROLOG|EUROFINS|\bSGS\b|VERITAS|INTERTEK|EMITECH|CHIMI|MICROBIO|BACTERIO|HYGIENE ALIMENT|POLLUANT|TOXICO|WESSLING|\bALS\b|CONTROLE QUALITE|\bLNE\b",
 }
