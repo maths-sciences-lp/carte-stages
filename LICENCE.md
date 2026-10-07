@@ -7,12 +7,14 @@ Le code (HTML, JavaScript, CSS, scripts Python de `source/`) est sous **licence 
 réutilisation, modification et diffusion libres, y compris dans un autre site, à condition de conserver la mention
 « Copyright (c) 2026 Naïm Azzouz (maths-sciences-pro.fr) ».
 
-## 2. Les textes et les visuels
-Les textes des pages (consignes, explications, FAQ), la présentation PDF, les vidéos et les captures d'écran sont sous
-**licence Creative Commons Attribution 4.0 International (CC BY 4.0)** :
-https://creativecommons.org/licenses/by/4.0/deed.fr
-Réutilisation libre, à condition de citer l'auteur (« Naïm Azzouz, maths-sciences-pro.fr ») et d'indiquer si des
-modifications ont été faites.
+## 2. Les textes, le livret et les vidéos
+Les textes des pages (consignes, explications, FAQ), la présentation PDF (livret), les vidéos et les captures d'écran sont sous
+**licence Creative Commons Attribution – Pas d'utilisation commerciale 4.0 International (CC BY-NC 4.0)** :
+https://creativecommons.org/licenses/by-nc/4.0/deed.fr
+Réutilisation et adaptation libres **à des fins non commerciales**, à condition de citer l'auteur
+(« Naïm Azzouz, maths-sciences-pro.fr ») et d'indiquer si des modifications ont été faites.
+Toute utilisation commerciale (vente, intégration dans un produit ou un service payant, publicité) nécessite
+l'accord écrit de l'auteur : mathssciencespro.contact@gmail.com.
 
 ## 3. Les données
 Les fichiers de données (`data/`, `apres-3e/`, `formation/`, `aide/`, `commun/`) sont fabriqués à partir de données publiques.
