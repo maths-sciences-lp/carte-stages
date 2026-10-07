@@ -40,6 +40,21 @@ def internat(uai,o):
     if ailleurs and not sur_place: return 'a',cond
     if sur_place or a==1: return 'v',cond
     return None,''
+# Affectation 2025 : premiers vœux et places (Draio Créteil, voir pression.py), reliés aux intitulés
+# Onisep par pression_correspondance.json. « pc » : places communes à plusieurs anciens CAP du lycée.
+PRESS={}
+if os.path.exists('pression_2025.json'):
+    _corr=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'pression_correspondance.json')))
+    _par_uai=collections.defaultdict(set)
+    for x in rows: _par_uai[x['ENS code UAI']].add(x['Formation (FOR) libellé'])
+    for p in json.load(open('pression_2025.json')):
+        cible=_corr.get(p['l'])
+        if cible is None: continue
+        if isinstance(cible,dict):
+            libs=[l for l in _par_uai[p['u']] if re.search(cible['commun'],l)]
+        else:
+            libs=[cible] if cible in _par_uai[p['u']] else []
+        for l in libs: PRESS[(p['u'],l)]=dict(v=p['v'],c=p['c'],**({'pc':1} if len(libs)>1 else {}))
 F={}
 for x in rows:
     l=x['Formation (FOR) libellé']
@@ -54,6 +69,8 @@ for x in rows:
     f['e'][u]=dict(n=x["Lieu d'enseignement (ENS) libellé"],st=x['ENS statut'],a=x['ENS adresse'],cp=x['ENS code postal'],v=x['ENS commune'],
         dep=x['ENS département'],lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']),ij=cherche(x['ENS code UAI'],x['Formation (FOR) libellé']))
     it,ic=internat(x['ENS code UAI'],x['ENS hébergement'])
+    pr=PRESS.get((x['ENS code UAI'],l))
+    if pr: f['e'][u]['p']=pr
     if it: f['e'][u]['it']=it
     if it and ic: f['e'][u]['ic']=ic
 out=dict(date='6 octobre 2026',domaines=[dict(k=k,i=i,n=n,s=s) for k,i,n,s,_,_ in DOM],
@@ -75,3 +92,4 @@ json.dump(out,open('apres3e.json','w'),ensure_ascii=False,separators=(',',':'))
 import os;print(os.path.getsize('apres3e.json'),'formations',len(out['formations']),'lieux',sum(len(f['e']) for f in out['formations']),'colleges',len(out['colleges']))
 print(collections.Counter(k for f in out['formations'] for k in f['d']))
 print(collections.Counter(f['t'] for f in out['formations']))
+print('affectation 2025 :',sum(1 for f in out['formations'] for e in f['e'] if e.get('p')),'lieux sur',sum(len(f['e']) for f in out['formations']),'/ lignes reliées',len(PRESS))
