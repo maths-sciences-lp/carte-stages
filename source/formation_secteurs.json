@@ -796,5 +796,396 @@
 "Aide à domicile",
 "Personnes âgées (EHPAD, résidences)",
 "Supérettes, alimentation générale"
+],
+"bac pro agroéquipement": [
+"Horticulture, maraîchage, agriculture",
+"Travaux agricoles, services aux cultures",
+"Matériels agricoles, engins de chantier",
+"Forêts, travaux forestiers",
+"Mairies, administrations"
+],
+"bac pro boucher charcutier traiteur": [
+"Boucherie, charcuterie, poissonnerie",
+"Traiteurs",
+"Supermarchés, grandes surfaces",
+"Industrie agroalimentaire",
+"Transformation de viandes",
+"Grossistes en viandes"
+],
+"bac pro conduite d'activités d'élevage et d'hébergement dans le secteur canin-félin": [
+"Autres élevages (dont animaux de compagnie, apiculture)",
+"Vétérinaires, soins aux animaux"
+],
+"bac pro conduite de productions aquacoles": [
+"Aquaculture, pisciculture, conchyliculture"
+],
+"bac pro conduite et gestion de l'entreprise agricole": [
+"Horticulture, maraîchage, agriculture",
+"Cultures spécialisées, vergers, cultures tropicales",
+"Élevage bovin, ovin, caprin, porcin, volailles",
+"Autres élevages (dont animaux de compagnie, apiculture)"
+],
+"bac pro conduite et gestion de l'entreprise hippique": [
+"Élevage de chevaux, haras",
+"Clubs et salles de sport",
+"Activités sportives (dont écuries de course)",
+"Écoles de sport, équitation"
+],
+"bac pro conduite et gestion de l'entreprise vitivinicole": [
+"Viticulture, vinification",
+"Laboratoires d'analyses et d'essais"
+],
+"bac pro conduite et gestion des entreprises maritimes - commerce/plaisance professionnelle option voile": [
+"Navigation maritime, plaisance professionnelle"
+],
+"bac pro conduite et gestion des entreprises maritimes - commerce/plaisance professionnelle option yacht": [
+"Navigation maritime, plaisance professionnelle"
+],
+"bac pro conduite et gestion des entreprises maritimes - pêche": [
+"Pêche professionnelle",
+"Navigation maritime, plaisance professionnelle"
+],
+"bac pro cultures marines": [
+"Aquaculture, pisciculture, conchyliculture",
+"Grossistes en poissons, crustacés, mollusques"
+],
+"bac pro fonderie": [
+"Fonderies",
+"Laboratoires d'analyses et d'essais"
+],
+"bac pro forêt": [
+"Forêts, travaux forestiers"
+],
+"bac pro gestion des milieux naturels et de la faune": [
+"Parcs naturels, jardins botaniques et zoologiques",
+"Forêts, travaux forestiers",
+"Paysagistes, espaces verts",
+"Mairies, administrations",
+"Associations (animation, solidarité)"
+],
+"bac pro interventions sur le patrimoine bâti option B charpente": [
+"Construction, maçonnerie, gros œuvre",
+"Menuiserie, agencement, serrurerie"
+],
+"bac pro maintenance environnementale et propreté des espaces urbains": [
+"Nettoyage, propreté",
+"Déchets, recyclage, assainissement",
+"Mairies, administrations"
+],
+"bac pro métiers de l'entretien des textiles option A blanchisserie": [
+"Pressing, blanchisserie, retouches",
+"Hôpitaux, cliniques, laboratoires",
+"Personnes âgées (EHPAD, résidences)",
+"Hôtels",
+"Restaurants"
+],
+"bac pro métiers de l'entretien des textiles option B pressing": [
+"Pressing, blanchisserie, retouches"
+],
+"bac pro métiers du cuir option chaussures": [
+"Cuir, maroquinerie, cordonnerie"
+],
+"bac pro métiers du cuir option sellerie garnissage": [
+"Cuir, maroquinerie, cordonnerie"
+],
+"bac pro métiers et arts de la pierre": [
+"Construction, maçonnerie, gros œuvre"
+],
+"bac pro optique photonique : technologies de la lumière": [
+"Optique, photonique, instruments de mesure",
+"Maintenance d'équipements, ascenseurs",
+"Laboratoires d'analyses et d'essais",
+"Laboratoires de recherche scientifique"
+],
+"bac pro plastiques et composites": [
+"Plastique, verre, matériaux"
+],
+"bac pro poissonnier écailler traiteur": [
+"Boucherie, charcuterie, poissonnerie",
+"Supermarchés, grandes surfaces",
+"Traiteurs",
+"Restaurants",
+"Transformation de poissons, crustacés, mollusques"
+],
+"bac pro polyvalent navigant pont/machine": [
+"Navigation maritime, plaisance professionnelle",
+"Pêche professionnelle",
+"Bateaux, nautisme",
+"Construction de navires"
+],
+"bac pro services aux personnes et animation dans les territoires": [
+"Aide à domicile",
+"Crèches, petite enfance",
+"Hôpitaux, cliniques, laboratoires",
+"Personnes âgées (EHPAD, résidences)",
+"Loisirs, animation",
+"Mairies, administrations",
+"Associations (animation, solidarité)"
+],
+"bac pro technicien conseil vente en animalerie": [
+"Fleuristes, jardineries",
+"Supermarchés, grandes surfaces",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)"
+],
+"bac pro technicien de scierie": [
+"Scieries, préparation du bois"
+],
+"bac pro technicien en expérimentation animale": [
+"Laboratoires de recherche scientifique",
+"Chimie, pharmacie, cosmétiques, papier",
+"Hôpitaux, cliniques, laboratoires",
+"Vétérinaires, soins aux animaux",
+"Parcs naturels, jardins botaniques et zoologiques"
+],
+"bac pro techniques d'interventions sur installations nucléaires": [
+"Production et distribution d'énergie",
+"Déchets, recyclage, assainissement",
+"Traitement des déchets dangereux",
+"Maintenance d'équipements, ascenseurs"
+],
+"bac pro transport fluvial": [
+"Navigation fluviale"
+],
+"bac pro transports par câbles et remontées mécaniques": [
+"Remontées mécaniques, téléphériques",
+"Transport de voyageurs",
+"Maintenance d'équipements, ascenseurs"
+],
+"bac pro électromécanicien marine": [
+"Navigation maritime, plaisance professionnelle",
+"Pêche professionnelle",
+"Bateaux, nautisme",
+"Construction de navires"
+],
+"CAP accordeur de pianos": [
+"Céramique, verre d'art, instruments de musique",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
+"Enseignement culturel, conservatoires"
+],
+"CAP agent de développement des activités locales option tourisme (Guyane)": [
+"Guides, offices de tourisme",
+"Loisirs, animation"
+],
+"CAP agent de prévention et de médiation": [
+"Mairies, administrations",
+"Associations (animation, solidarité)",
+"Agences immobilières, gestion de logements",
+"Transport de voyageurs"
+],
+"CAP agent vérificateur d'appareils extincteurs": [
+"Maintenance d'équipements, ascenseurs"
+],
+"CAPa agricultures des régions chaudes": [
+"Horticulture, maraîchage, agriculture",
+"Cultures spécialisées, vergers, cultures tropicales",
+"Élevage bovin, ovin, caprin, porcin, volailles",
+"Autres élevages (dont animaux de compagnie, apiculture)",
+"Aquaculture, pisciculture, conchyliculture"
+],
+"CAPa lad-cavalier d'entraînement": [
+"Activités sportives (dont écuries de course)",
+"Élevage de chevaux, haras",
+"Clubs et salles de sport"
+],
+"CAPa maréchal-ferrant": [
+"Services à l'élevage, maréchalerie",
+"Élevage de chevaux, haras",
+"Activités sportives (dont écuries de course)"
+],
+"CAPa palefrenier soigneur": [
+"Élevage de chevaux, haras",
+"Activités sportives (dont écuries de course)",
+"Clubs et salles de sport",
+"Écoles de sport, équitation"
+],
+"CAPa travaux forestiers": [
+"Forêts, travaux forestiers"
+],
+"CAP armurerie (fabrication et réparation)": [
+"Armurerie, fabrication d’armes",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)"
+],
+"CAP arts du bois option marqueteur": [
+"Ébénisterie, meubles, restauration de meubles",
+"Objets en bois, liège, vannerie"
+],
+"CAP arts du bois option sculpteur ornemaniste": [
+"Ébénisterie, meubles, restauration de meubles",
+"Objets en bois, liège, vannerie"
+],
+"CAP arts du bois option tourneur": [
+"Objets en bois, liège, vannerie",
+"Ébénisterie, meubles, restauration de meubles",
+"Céramique, verre d'art, instruments de musique"
+],
+"CAP arts du verre et du cristal": [
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
+],
+"CAP assistant luthier du quatuor": [
+"Céramique, verre d'art, instruments de musique",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)"
+],
+"CAP aéronautique option structure": [
+"Aéronautique"
+],
+"CAP boucher": [
+"Boucherie, charcuterie, poissonnerie",
+"Supermarchés, grandes surfaces",
+"Transformation de viandes",
+"Grossistes en viandes",
+"Restauration collective (cantines, entreprises)"
+],
+"CAP bronzier option B ciseleur en bronze": [
+"Chaudronnerie, soudure, structures métalliques",
+"Ébénisterie, meubles, restauration de meubles",
+"Électronique, matériel électrique",
+"Fonderies"
+],
+"CAP cannage paillage en ameublement": [
+"Ébénisterie, meubles, restauration de meubles",
+"Objets en bois, liège, vannerie"
+],
+"CAP certificat polynésien d'aptitude professionnelle option petite et moyenne hôtellerie": [
+"Hôtels",
+"Restaurants"
+],
+"CAP charcuterie-traiteur": [
+"Boucherie, charcuterie, poissonnerie",
+"Traiteurs",
+"Supermarchés, grandes surfaces",
+"Industrie agroalimentaire",
+"Hôtels",
+"Restaurants",
+"Restauration collective (cantines, entreprises)"
+],
+"CAP charpentier de marine": [
+"Bateaux, nautisme",
+"Construction de navires"
+],
+"CAP composites, plastiques chaudronnés": [
+"Plastique, verre, matériaux",
+"Bateaux, nautisme",
+"Aéronautique"
+],
+"CAP conducteur-opérateur de scierie": [
+"Scieries, préparation du bois"
+],
+"CAP constructeur d'ouvrages en béton armé": [
+"Construction, maçonnerie, gros œuvre",
+"Travaux publics, routes, réseaux",
+"Éléments préfabriqués en béton"
+],
+"CAP cordonnier bottier": [
+"Cuir, maroquinerie, cordonnerie"
+],
+"CAP déménageur sur véhicule utilitaire léger": [
+"Déménagement"
+],
+"CAP facture d'instruments à vent": [
+"Céramique, verre d'art, instruments de musique",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
+"Enseignement culturel, conservatoires",
+"Spectacle, musées, bibliothèques"
+],
+"CAP fleuriste de mode": [
+"Couture, confection",
+"Spectacle, musées, bibliothèques",
+"Fleurs artificielles, parures de mode"
+],
+"CAP glacier fabricant": [
+"Chocolaterie, confiserie, glaces",
+"Boulangerie, pâtisserie",
+"Traiteurs",
+"Restaurants"
+],
+"CAP lutherie guitare": [
+"Céramique, verre d'art, instruments de musique",
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
+"Enseignement culturel, conservatoires",
+"Spectacle, musées, bibliothèques"
+],
+"CAP maintenance nautique": [
+"Bateaux, nautisme"
+],
+"CAP maritime": [
+"Pêche professionnelle",
+"Navigation maritime, plaisance professionnelle"
+],
+"CAP maritime conchyliculture": [
+"Aquaculture, pisciculture, conchyliculture"
+],
+"CAP menuisier en sièges": [
+"Ébénisterie, meubles, restauration de meubles"
+],
+"CAP mouleur noyauteur : cuivre et bronze": [
+"Fonderies"
+],
+"CAP métiers de la gravure option C gravure en modelé": [
+"Fabrication de monnaies, médailles",
+"Bijouterie, horlogerie",
+"Usinage, mécanique, outillage"
+],
+"CAP métiers du plâtre et de l'isolation": [
+"Peinture, plâtre, carrelage, sols, isolation"
+],
+"CAP opérateur/opératrice de service - relation client et livraison": [
+"Poste, courrier",
+"Transport de marchandises, livraison",
+"Secrétariat, accueil, centres d'appels"
+],
+"CAP plumasserie": [
+"Couture, confection",
+"Spectacle, musées, bibliothèques"
+],
+"CAP poissonnier écailler": [
+"Boucherie, charcuterie, poissonnerie",
+"Grossistes en poissons, crustacés, mollusques",
+"Transformation de poissons, crustacés, mollusques",
+"Supermarchés, grandes surfaces",
+"Restaurants",
+"Traiteurs"
+],
+"CAP primeur": [
+"Primeur, fromagerie, épicerie fine, cave",
+"Supermarchés, grandes surfaces",
+"Grossistes en fruits et légumes",
+"Entrepôts, logistique"
+],
+"CAP rentrayeur option B tapisseries": [
+"Tapisserie, décoration textile",
+"Spectacle, musées, bibliothèques"
+],
+"CAP sellerie générale": [
+"Cuir, maroquinerie, cordonnerie",
+"Tapisserie, décoration textile",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"CAP sellier harnacheur": [
+"Cuir, maroquinerie, cordonnerie"
+],
+"CAP souffleur de verre option enseigne lumineuse": [
+"Enseignes, signalétique, marquage",
+"Plastique, verre, matériaux",
+"Céramique, verre d'art, instruments de musique",
+"Électronique, matériel électrique"
+],
+"CAP tapissier-tapissière d'ameublement en décor": [
+"Tapisserie, décoration textile",
+"Ébénisterie, meubles, restauration de meubles"
+],
+"CAP tapissier-tapissière d'ameublement en siège": [
+"Ébénisterie, meubles, restauration de meubles",
+"Tapisserie, décoration textile"
+],
+"CAP transport fluvial": [
+"Navigation fluviale"
+],
+"CAP transports par câbles et remontées mécaniques": [
+"Remontées mécaniques, téléphériques",
+"Maintenance d'équipements, ascenseurs"
+],
+"CAP vannerie": [
+"Objets en bois, liège, vannerie"
 ]
 }

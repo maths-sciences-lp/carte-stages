@@ -9,6 +9,8 @@ DOMAINES = {
   "Géomètres-experts, topographie": ["71.12A"],
   "Architectes": ["71.11Z"],
   "Bureaux d'études, économistes de la construction": ["71.12B", "74.90A"],
+  # ajout France — sources et limites : formation_secteurs_france.json
+  "Éléments préfabriqués en béton": ["23.61Z"],
  },
  "Énergie, électricité, chauffage": {
   "Électricité du bâtiment": ["43.21A", "43.21B"],
@@ -33,12 +35,24 @@ DOMAINES = {
   "Industrie agroalimentaire": ["10.13A", "10.39B", "10.51C", "10.72Z", "10.73Z", "10.85Z", "10.89Z", "11.07A", "11.07B"],
   "Bateaux, nautisme": ["30.12Z", "33.15Z"],
   "Matériels agricoles, engins de chantier": ["28.30Z", "28.92Z", "46.61Z", "46.63Z", "77.31Z", "77.32Z"],
+  # ajout France — sources et limites : formation_secteurs_france.json
+  "Fonderies": ["24.51Z", "24.52Z", "24.53Z", "24.54Z"],
+  "Optique, photonique, instruments de mesure": ["26.70Z", "26.51B"],
+  "Construction de navires": ["30.11Z"],
+  "Laboratoires de recherche scientifique": ["72.11Z", "72.19Z"],
+  "Armurerie, fabrication d’armes": ["25.40Z"],
+  "Transformation de viandes": ["10.11Z", "10.12Z"],
+  "Transformation de poissons, crustacés, mollusques": ["10.20Z"],
  },
  "Bois, ameublement, métiers d'art": {
   "Ébénisterie, meubles, restauration de meubles": ["31.01Z", "31.02Z", "31.09A", "31.09B", "95.24Z"],
   "Tapisserie, décoration textile": ["13.92Z", "47.53Z"],
   "Bijouterie, horlogerie": ["32.12Z", "32.13Z", "95.25Z"],
   "Céramique, verre d'art, instruments de musique": ["23.41Z", "23.13Z", "32.20Z"],
+  # ajout France — sources et limites : formation_secteurs_france.json
+  "Scieries, préparation du bois": ["16.10A", "16.10B"],
+  "Objets en bois, liège, vannerie": ["16.29Z"],
+  "Fabrication de monnaies, médailles": ["32.11Z"],
  },
  "Communication visuelle, impression, audiovisuel": {
   "Imprimerie, prépresse, reliure": ["18.11Z", "18.12Z", "18.13Z", "18.14Z"],
@@ -53,6 +67,10 @@ DOMAINES = {
   "Vêtements, chaussures, accessoires": ["47.71Z", "47.72A", "47.72B", "47.77Z"],
   "Magasins spécialisés (bricolage, maison, sport, high-tech…)": ["47.41Z", "47.42Z", "47.43Z", "47.52A", "47.52B", "47.54Z", "47.59A", "47.59B", "47.61Z", "47.62Z", "47.64Z", "47.65Z", "47.78C"],
   "Commerce de gros (entre entreprises)": ["46.39B", "46.43Z", "46.49Z", "46.51Z", "46.69B", "46.73A", "46.74B", "46.90Z"],
+  # ajout France — sources et limites : formation_secteurs_france.json
+  "Grossistes en viandes": ["46.32A", "46.32B"],
+  "Grossistes en poissons, crustacés, mollusques": ["46.38A"],
+  "Grossistes en fruits et légumes": ["46.31Z"],
  },
  "Alimentation, métiers de bouche": {
   "Boulangerie, pâtisserie": ["10.71C", "10.71D", "47.24Z"],
@@ -86,6 +104,12 @@ DOMAINES = {
   "Transport de marchandises, livraison": ["49.41A", "49.41B", "49.41C", "53.20Z"],
   "Entrepôts, logistique": ["52.10B", "52.24B", "52.29A", "52.29B"],
   "Transport de voyageurs": ["49.31Z", "49.32Z", "49.39A", "49.39B"],
+  # ajout France — sources et limites : formation_secteurs_france.json
+  "Navigation maritime, plaisance professionnelle": ["50.10Z", "50.20Z"],
+  "Navigation fluviale": ["50.30Z", "50.40Z"],
+  "Remontées mécaniques, téléphériques": ["49.39C"],
+  "Déménagement": ["49.42Z"],
+  "Poste, courrier": ["53.10Z"],
  },
  "Gestion, administration, accueil": {
   "Comptabilité, conseil, gestion": ["69.20Z", "70.22Z", "69.10Z"],
@@ -102,12 +126,25 @@ DOMAINES = {
   "Nettoyage, propreté": ["81.21Z", "81.22Z", "81.29A", "81.29B"],
   "Déchets, recyclage, assainissement": ["38.11Z", "38.12Z", "38.21Z", "38.32Z", "37.00Z", "39.00Z"],
   "Eau potable (captage, traitement, distribution)": ["36.00Z"],
+  # ajout France — sources et limites : formation_secteurs_france.json
+  "Traitement des déchets dangereux": ["38.22Z"],
  },
  "Espaces verts, agriculture, animaux": {
   "Paysagistes, espaces verts": ["81.30Z"],
   "Fleuristes, jardineries": ["47.76Z"],
   "Horticulture, maraîchage, agriculture": ["01.13Z", "01.19Z", "01.30Z", "01.11Z", "01.50Z"],
   "Vétérinaires, soins aux animaux": ["75.00Z", "96.09Z"],
+  # ajout France — sources et limites : formation_secteurs_france.json
+  "Travaux agricoles, services aux cultures": ["01.61Z"],
+  "Cultures spécialisées, vergers, cultures tropicales": ["01.12Z", "01.14Z", "01.22Z", "01.23Z", "01.24Z", "01.25Z", "01.26Z", "01.27Z", "01.28Z", "01.29Z"],
+  "Élevage bovin, ovin, caprin, porcin, volailles": ["01.41Z", "01.42Z", "01.45Z", "01.46Z", "01.47Z"],
+  "Élevage de chevaux, haras": ["01.43Z"],
+  "Autres élevages (dont animaux de compagnie, apiculture)": ["01.49Z"],
+  "Services à l'élevage, maréchalerie": ["01.62Z"],
+  "Viticulture, vinification": ["01.21Z", "11.02A", "11.02B"],
+  "Forêts, travaux forestiers": ["02.10Z", "02.20Z", "02.40Z"],
+  "Aquaculture, pisciculture, conchyliculture": ["03.21Z", "03.22Z"],
+  "Pêche professionnelle": ["03.11Z", "03.12Z"],
  },
  "Informatique, numérique, télécoms": {
   "Réparation d'ordinateurs et de téléphones": ["95.11Z", "95.12Z"],
@@ -118,12 +155,20 @@ DOMAINES = {
   "Couture, confection": ["14.13Z", "14.14Z", "14.19Z", "13.30Z"],
   "Cuir, maroquinerie, cordonnerie": ["15.12Z", "15.20Z", "95.23Z"],
   "Pressing, blanchisserie, retouches": ["96.01A", "96.01B", "95.29Z"],
+  # ajout France — sources et limites : formation_secteurs_france.json
+  "Fleurs artificielles, parures de mode": ["32.99Z"],
  },
  "Sport, animation, culture": {
   "Clubs et salles de sport": ["93.11Z", "93.12Z", "93.13Z"],
   "Loisirs, animation": ["93.29Z", "93.21Z", "88.99B"],
   "Spectacle, musées, bibliothèques": ["90.01Z", "90.02Z", "90.04Z", "91.01Z", "91.02Z"],
   "Associations (animation, solidarité)": ["94.99Z"],
+  # ajout France — sources et limites : formation_secteurs_france.json
+  "Parcs naturels, jardins botaniques et zoologiques": ["91.04Z"],
+  "Activités sportives (dont écuries de course)": ["93.19Z"],
+  "Guides, offices de tourisme": ["79.90Z"],
+  "Enseignement culturel, conservatoires": ["85.52Z"],
+  "Écoles de sport, équitation": ["85.51Z"],
  },
 }
 
@@ -141,5 +186,7 @@ MOTS_CLES = {
 # Types où seuls les noms qui correspondent sont gardés : le code 71.20B mêle les
 # laboratoires et les bureaux de contrôle ou de diagnostic immobilier.
 FILTRES = {
+ # ajout France : 32.99Z couvre aussi de nombreux objets sans rapport avec la mode.
+ "Fleurs artificielles, parures de mode": r"FLEUR|FLORAL|PLUMASS|PARUR",
  "Laboratoires d'analyses et d'essais": r"LABO|ANALY|ESSAI|MESUR|METROLOG|EUROFINS|\bSGS\b|VERITAS|INTERTEK|EMITECH|CHIMI|MICROBIO|BACTERIO|HYGIENE ALIMENT|POLLUANT|TOXICO|WESSLING|\bALS\b|CONTROLE QUALITE|\bLNE\b",
 }
