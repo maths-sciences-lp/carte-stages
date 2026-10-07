@@ -1,0 +1,122 @@
+[
+  {
+    "page": "/aide/",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/aide/#mda",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/apres-3e/",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/apres-3e/#cuisine",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#eeb",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#iccer",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/henaff/",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/iccer",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#mee",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#tma",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#era",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#geometre",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#mit",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#sdg",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#ebeniste",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#bma-ebeniste",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#bma-signaletique",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  },
+  {
+    "page": "/formation/#d=5601&ly=0932119Y",
+    "contenu_metier_identique": true,
+    "sans_erreur": true,
+    "texte_brut_identique": false
+  }
+]

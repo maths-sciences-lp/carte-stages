@@ -1,0 +1,73 @@
+[
+  {
+    "action": "Stage : sélectionner une formation",
+    "focus": "#change"
+  },
+  {
+    "action": "Stage : sélectionner un lycée",
+    "focus": "#lyc"
+  },
+  {
+    "action": "Stage : Liste → Carte → Liste"
+  },
+  {
+    "action": "apres-3e: choix principal",
+    "focus": "#doms button"
+  },
+  {
+    "action": "apres-3e: ouvrir les lycées",
+    "focus": "#list button[data-i]"
+  },
+  {
+    "action": "apres-3e: collège",
+    "focus": "#col"
+  },
+  {
+    "action": "apres-3e: Liste → Carte → Liste"
+  },
+  {
+    "action": "apres-3e: académie choisie",
+    "focus": "#nationalContent h2"
+  },
+  {
+    "action": "apres-3e: changer",
+    "focus": "#ac-title"
+  },
+  {
+    "action": "formation: choix principal",
+    "focus": "#classes button"
+  },
+  {
+    "action": "formation: Liste → Carte → Liste"
+  },
+  {
+    "action": "formation: académie choisie",
+    "focus": "#nationalContent h2"
+  },
+  {
+    "action": "formation: changer",
+    "focus": "#ac-title"
+  },
+  {
+    "action": "aide: choix principal",
+    "focus": "#doms button"
+  },
+  {
+    "action": "aide: collège",
+    "focus": "#col"
+  },
+  {
+    "action": "aide: Liste → Carte → Liste"
+  },
+  {
+    "action": "aide: académie choisie",
+    "focus": "#nationalContent h2"
+  },
+  {
+    "action": "aide: changer",
+    "focus": "#ac-title"
+  },
+  {
+    "action": "Demo : ouvrir la transcription au clavier"
+  }
+]

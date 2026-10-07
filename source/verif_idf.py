@@ -50,14 +50,39 @@ const cfg=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
      const text=await page.locator('body').innerText();stable=text===before?stable+1:0;before=text;await page.waitForTimeout(200);
     }
     await page.screenshot({path:path.join(cfg.output,`${String(i+1).padStart(2,'0')}-${label}.png`),fullPage:true});
-    const state=await page.evaluate(()=>({text:document.body.innerText,
+    const state=await page.evaluate(accessibilite=>{
+     const text=document.body.innerText;
+     let texteMetier=text;
+     if(accessibilite){
+      // Compare les mêmes textes, en retirant seulement les ajouts identifiés de cette PR.
+      // Les textes bruts restent disponibles pour examiner les différences de présentation.
+      const clone=document.body.cloneNode(true),origines=new WeakMap();
+      function associer(original,copie){origines.set(copie,original);for(let i=0;i<copie.childNodes.length;i++)associer(original.childNodes[i],copie.childNodes[i]);}
+      associer(document.body,clone);
+      for(const e of clone.querySelectorAll('.skip-link,.field-label,.new-window,.map-alternative,.sr-only'))e.remove();
+      for(const e of clone.querySelectorAll('a[href$="accessibilite/"]')){
+       if(e.previousSibling?.nodeType===3)e.previousSibling.textContent=e.previousSibling.textContent.replace(/ · $/,'');e.remove();
+      }
+      if(location.pathname.includes('/formation/'))clone.querySelector('#count')?.remove();
+      // textContent inclurait les états cachés et les scripts : on conserve la visibilité calculée de chaque nœud original.
+      const visibleText=[];
+      function collect(el){
+       if(el.nodeType===3){visibleText.push(el.textContent);return;}
+       if(el.nodeType!==1||['SCRIPT','STYLE','NOSCRIPT'].includes(el.tagName)||el.hidden)return;
+       const original=origines.get(el),style=original&&getComputedStyle(original);
+       if(style&&(style.display==='none'||style.visibility==='hidden'))return;
+       for(const child of el.childNodes)collect(child);
+      }
+      collect(clone);texteMetier=visibleText.join('').replace(/\s+/g,'');
+     }
+     return {text,texteMetier,
      fields:[...document.querySelectorAll('input,select,button[aria-pressed]')].map(e=>[e.id,e.value||'',e.getAttribute('aria-pressed')]),
-     width:document.documentElement.scrollWidth, viewport:innerWidth}));
+     width:document.documentElement.scrollWidth, viewport:innerWidth};},cfg.accessibilite);
     states.push({...state,errors,url:page.url()});
    } catch(e){states.push({errors:[...errors,e.message]});}
    await context.close();
   }
-  const equal=states.every(s=>s.text!==undefined)&&states[0].text===states[1].text&&JSON.stringify(states[0].fields)===JSON.stringify(states[1].fields);
+  const equal=states.every(s=>s.text!==undefined)&&(cfg.accessibilite?states[0].texteMetier===states[1].texteMetier:states[0].text===states[1].text)&&JSON.stringify(states[0].fields)===JSON.stringify(states[1].fields);
   const ok=equal&&states.every(s=>s.errors.length===0);
   rows.push({page:suffix,identique:equal,sans_erreur:states.every(s=>s.errors.length===0),etats:states});
   console.log(suffix+' : '+(ok?'identique, sans erreur':'DIFFÉRENCE OU ERREUR'));
@@ -76,6 +101,7 @@ def main():
     parser.add_argument('--sources-idf',type=Path,help='Dossier des sources historiques : annuaire-sp.json, bibliotheques.json, colleges_idf.json (ou colleges.json)')
     parser.add_argument('--sources-apres3e',type=Path,help='Cache historique : 605340ddc19a9.csv, ij.json, annuaire_hebergement.json, pression_2025.json, colleges_idf.json (ou colleges.json)')
     parser.add_argument('--sources-formation',type=Path,help='Cache historique : 605340ddc19a9.csv, sup2.csv, ij.json et fiches/')
+    parser.add_argument('--accessibilite',action='store_true',help='Compare aussi le contenu historique après retrait strict des seuls ajouts de navigation/libellés RGAA ; conserve les textes bruts dans le rapport')
     parser.add_argument('--rapport',type=Path,default=Path(tempfile.gettempdir())/'verif-idf')
     parser.add_argument('--en-ligne',default='https://maths-sciences-lp.github.io/carte-stages',help='Déploiement canonique du dépôt ; /stages/ est un accueil distinct sur le domaine personnalisé')
     args=parser.parse_args();out=args.rapport.resolve();out.mkdir(parents=True,exist_ok=True)
@@ -84,6 +110,7 @@ def main():
         lines.append(s);print(s,flush=True)
     ref=subprocess.check_output(['git','rev-parse','origin/main'],cwd=ROOT,text=True).strip()
     log('Référence origin/main : '+ref)
+    if args.accessibilite:log('Mode accessibilité : comparaison du contenu métier et des champs ; les seuls ajouts RGAA sont retirés, textes bruts conservés.')
     for name in DATA:
         expected=subprocess.check_output(['git','show',ref+':'+name],cwd=ROOT)
         actual=(ROOT/name).read_bytes()
@@ -173,7 +200,7 @@ def main():
     handler=functools.partial(QuietHandler,directory=str(ROOT))
     server=http.server.ThreadingHTTPServer(('127.0.0.1',0),handler)
     thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
-    config=dict(pages=PAGES,local=f'http://127.0.0.1:{server.server_port}',online=args.en_ligne,output=str(out))
+    config=dict(accessibilite=args.accessibilite,pages=PAGES,local=f'http://127.0.0.1:{server.server_port}',online=args.en_ligne,output=str(out))
     (out/'config.json').write_text(json.dumps(config));(out/'navigateur.cjs').write_text(BROWSER)
     # Un ancien résultat ne peut jamais faire passer une exécution en échec.
     (out/'pages.json').unlink(missing_ok=True)

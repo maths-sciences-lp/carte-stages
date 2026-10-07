@@ -1,0 +1,279 @@
+[
+  {
+    "tool": "aide",
+    "slug": "lille",
+    "title": "Qui peut m’aider ? – Académie de Lille",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "col",
+        "label": "Ton collège ou ta ville"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "aide",
+    "slug": "aix-marseille",
+    "title": "Qui peut m’aider ? – Académie d'Aix-Marseille",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "col",
+        "label": "Ton collège ou ta ville"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "aide",
+    "slug": "rennes",
+    "title": "Qui peut m’aider ? – Académie de Rennes",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "col",
+        "label": "Ton collège ou ta ville"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "aide",
+    "slug": "la-reunion",
+    "title": "Qui peut m’aider ? – Académie de La Réunion",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "col",
+        "label": "Ton collège ou ta ville"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "apres-3e",
+    "slug": "lille",
+    "title": "Après le collège – Académie de Lille",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "q",
+        "label": "Un métier ou un diplôme"
+      },
+      {
+        "id": "col",
+        "label": "Ton collège ou ta ville"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "apres-3e",
+    "slug": "aix-marseille",
+    "title": "Après le collège – Académie d'Aix-Marseille",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "q",
+        "label": "Un métier ou un diplôme"
+      },
+      {
+        "id": "col",
+        "label": "Ton collège ou ta ville"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "apres-3e",
+    "slug": "rennes",
+    "title": "Après le collège – Académie de Rennes",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "q",
+        "label": "Un métier ou un diplôme"
+      },
+      {
+        "id": "col",
+        "label": "Ton collège ou ta ville"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "apres-3e",
+    "slug": "la-reunion",
+    "title": "Après le collège – Académie de La Réunion",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "q",
+        "label": "Un métier ou un diplôme"
+      },
+      {
+        "id": "col",
+        "label": "Ton collège ou ta ville"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "formation",
+    "slug": "lille",
+    "title": "Après le lycée – Académie de Lille",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "q",
+        "label": "Ton diplôme"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "formation",
+    "slug": "aix-marseille",
+    "title": "Après le lycée – Académie d'Aix-Marseille",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "q",
+        "label": "Ton diplôme"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "formation",
+    "slug": "rennes",
+    "title": "Après le lycée – Académie de Rennes",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "q",
+        "label": "Ton diplôme"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "tool": "formation",
+    "slug": "la-reunion",
+    "title": "Après le lycée – Académie de La Réunion",
+    "fields": [
+      {
+        "id": "ac-ville",
+        "label": "Tape ta ville"
+      },
+      {
+        "id": "q",
+        "label": "Ton diplôme"
+      },
+      {
+        "id": "adr",
+        "label": "Ton adresse"
+      }
+    ]
+  },
+  {
+    "video": {
+      "playing": true,
+      "time": 0.850249
+    }
+  },
+  {
+    "videoPause": true
+  },
+  {
+    "route": "/accueil/",
+    "cssDesactive": "titres et libellés conservés dans leur ordre"
+  },
+  {
+    "route": "/henaff/",
+    "cssDesactive": "titres et libellés conservés dans leur ordre"
+  },
+  {
+    "route": "/apres-3e/#cuisine",
+    "cssDesactive": "titres et libellés conservés dans leur ordre"
+  },
+  {
+    "route": "/formation/#eeb",
+    "cssDesactive": "titres et libellés conservés dans leur ordre"
+  },
+  {
+    "route": "/aide/#mda",
+    "cssDesactive": "titres et libellés conservés dans leur ordre"
+  },
+  {
+    "route": "/demo/",
+    "cssDesactive": "titres et libellés conservés dans leur ordre"
+  }
+]

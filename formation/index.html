@@ -50,9 +50,11 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
 [hidden]{display:none!important}
 </style>
 <script>if(!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}</script>
+<link rel="stylesheet" href="../commun/accessibilite.css">
 </head><body>
-<a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a>
-<main>
+<a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+<header><a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a></header>
+<main id="contenu-principal" tabindex="-1">
 <h1>🎓 Après le lycée : trouve ta formation</h1>
 <p class="lead"><b>Tu finis ton CAP, ton bac pro ou ton BMA ?</b> Les formations possibles après ton diplôme, en Île-de-France, de la plus proche à la plus éloignée. Pour les élèves des lycées des académies de Créteil, Paris et Versailles.</p>
 
@@ -61,7 +63,7 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
  <div class="ou">ou</div>
  <h3 class="t">Un autre lycée d’Île-de-France</h3>
  <div class="msg" style="margin:0 0 8px">Académies de Créteil, Paris et Versailles.</div>
- <div class="row"><input type="text" id="q" placeholder="Ton diplôme : MELEC, AGORA, CAP cuisine…" autocomplete="off" aria-label="Ton diplôme"></div>
+ <div class="row"><label class="field-label" for="q">Ton diplôme</label><input type="text" id="q" placeholder="Ton diplôme : MELEC, AGORA, CAP cuisine…" autocomplete="off" aria-label="Ton diplôme"></div>
  <div class="sug" id="qsug" hidden></div><div class="msg" id="qmsg"></div>
  <div id="lyc" hidden style="margin-top:12px"><label for="ly" class="sub" style="display:block;margin-top:0">Ton lycée</label><select id="ly"></select></div>
 </section>
@@ -69,7 +71,7 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
 <section class="step"><h2><span class="n">2</span>D’où tu pars</h2>
  <div class="row"><button class="btn" id="dLyc" aria-pressed="true">🏫 De mon lycée</button><button class="btn" id="dMai" aria-pressed="false">🏠 De chez moi</button></div>
  <div id="maison" hidden style="margin-top:10px">
-  <div class="row"><input type="text" id="adr" placeholder="Ton adresse (numéro, rue, ville)" autocomplete="street-address"><button class="btn light" id="geo">📍 Me localiser</button></div>
+  <div class="row"><label class="field-label" for="adr">Ton adresse</label><input type="text" id="adr" placeholder="Ton adresse (numéro, rue, ville)" autocomplete="street-address"><button class="btn light" id="geo">📍 Me localiser</button></div>
   <div class="sug" id="asug" hidden></div><div class="msg" id="amsg"></div>
  </div>
 </section>
@@ -79,6 +81,7 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
  <div id="res" hidden>
   <div class="chips" id="chips"></div>
   <div class="row"><button class="btn" id="vL" aria-pressed="true">📋 Liste</button><button class="btn" id="vC" aria-pressed="false">🗺️ Carte</button></div>
+  <p id="count" class="msg" role="status" aria-live="polite"></p>
   <div id="map" hidden></div>
   <div id="list"></div>
   <div class="note" id="ailleurs" hidden></div>
@@ -88,7 +91,7 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
 
 <footer>
  Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, octobre 2026), poursuites d’études d’après les fiches diplômes de l’Onisep · devenir des élèves : <a href="https://data.education.gouv.fr/explore/dataset/fr-en-inserjeunes-lycee_pro-formation-fine/" target="_blank" rel="noopener">InserJeunes</a> (ministère de l’Éducation nationale ; chiffre masqué quand il y a trop peu d’élèves) · places, candidats et admis des BTS : <a href="https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcoursup/" target="_blank" rel="noopener">Parcoursup 2025</a> (ministère de l’Enseignement supérieur) · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Les formations en apprentissage seront ajoutées plus tard.<br>
- Statistiques de visite anonymes, sans cookie. · <a href="../accueil/">Tous les outils</a> · <a href="../">Trouve ton stage</a> · <a href="../apres-3e/">Après le collège</a> · <a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>
+ Statistiques de visite anonymes, sans cookie. · <a href="../accueil/">Tous les outils</a> · <a href="../">Trouve ton stage</a> · <a href="../apres-3e/">Après le collège</a> · <a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="../accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>
  Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
  © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
 </footer>
@@ -121,7 +124,7 @@ function montrer(user){drawClasses();const d=D.dip[cur.d];off=new Set();$('aide'
  let a='';if(d.a.length)a=`🧭 <b>Aussi possibles</b>, mais pas proposées en lycée en Île-de-France (souvent seulement en apprentissage) : ${d.a.map(esc).join(' · ')}.`;
  if(!d.s.length&&!d.a.length)a=`La fiche Onisep de ce diplôme ne donne pas d’exemple de poursuite d’études. <a href="${esc(d.o)}" target="_blank" rel="noopener">Lis la fiche</a> et parles-en à ton professeur principal.`;
  $('ailleurs').hidden=!a;$('ailleurs').innerHTML=a;
- draw(); if(user) $('s3').scrollIntoView({behavior:'smooth',block:'start'});}
+ draw(); if(user) $('s3').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
 function cherche(v){const w=norm(v).split(' ').filter(Boolean);if(!w.length)return[];
  return IDX.filter(x=>w.every(m=>x.t.includes(m))).sort((a,b)=>(b.lib.startsWith(v)?1:0)-(a.lib.startsWith(v)?1:0)||b.n-a.n).slice(0,8);}
 $('q').addEventListener('input',()=>{const v=$('q').value.trim(),L=v.length<2?[]:cherche(v);$('qsug').innerHTML='';
@@ -134,6 +137,7 @@ const nb=n=>n.toLocaleString('fr-FR');
 function psup(f,e){const x=PS&&PS.f[f.o.split('.').pop()+'|'+(e.o||'').split('.').pop()];if(!x)return'';
  return `<div class="m">🎯 Parcoursup ${PS.session}${x.co?' (1re année, commune aux options)':''} : <b>${nb(x.pl)} place${x.pl>1?'s':''} · ${nb(x.c)} candidat${x.c>1?'s':''} · ${x.bp} admis sur ${x.a} venaient d’un bac pro</b>${x.g?` <a href="https://dossierappel.parcoursup.fr/Candidats/public/fiches/afficherFicheFormation?g_ta_cod=${x.g}&typeBac=0&originePc=0" target="_blank" rel="noopener" data-s="parcoursup" style="font-size:13px">(fiche Parcoursup)</a>`:''}</div>`;}
 function draw(){if(!cur)return;const o=origine(),L=lignes();
+ $('count').textContent=L.length+' résultat'+(L.length>1?'s':'');
  $('list').innerHTML=(o?'':'<p class="msg">👉 Choisis ton lycée (étape 1) ou pars de chez toi (étape 2) pour voir les plus proches en premier.</p>')+(L.length?L.map(({f,e,d})=>{const prive=/priv/.test(e.st);const go=`https://www.google.com/maps/dir/?api=1${o?`&origin=${o.lat},${o.lon}`:''}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
   const fiche=e.af||e.o;return `<div class="it"><div class="f">${esc(f.n)}</div><h3>${esc(e.n)}<span class="tag ${prive?'prive':''}">${esc(statut(e.st))}</span></h3>
   <div class="d">📍 ${d==null?esc(e.v):d<0.05?(dep?'Juste à côté':'Ton lycée'):fmt(d)+' km'}</div><div class="m">${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}${e.ij?`<div class="m">📊 Après cette formation, dans ce lycée : <b>${e.ij.p!=null?e.ij.p+' % continuent leurs études':''}${e.ij.p!=null&&e.ij.e!=null?' · ':''}${e.ij.e!=null?'parmi ceux qui arrêtent, '+e.ij.e+' % ont un emploi 6 mois après':''}</b> <span style="font-size:13px">(InserJeunes, sortants 2023-2024)</span></div>`:''}${psup(f,e)}
@@ -142,7 +146,7 @@ function draw(){if(!cur)return;const o=origine(),L=lignes();
  if(map) drawMap(L);}
 function drawMap(L){const o=origine();if(layer)layer.remove();layer=L&&window.L?window.L.layerGroup().addTo(map):null;if(!layer)return;
  const pts=[];if(o){window.L.circleMarker([o.lat,o.lon],{radius:9,color:'#15314f',fillColor:'#15314f',fillOpacity:1}).bindPopup(esc(dep?'Toi':o.n)).addTo(layer);pts.push([o.lat,o.lon]);}
- for(const{f,e,d}of L){pts.push([e.lat,e.lon]);window.L.marker([e.lat,e.lon]).bindPopup(`<b>${esc(e.n)}</b><br>${esc(f.n)}${d!=null?'<br>'+fmt(d)+' km':''}`).addTo(layer);}
+ for(const{f,e,d}of L){pts.push([e.lat,e.lon]);window.L.marker([e.lat,e.lon],{alt:e.n,title:e.n}).bindPopup(`<b>${esc(e.n)}</b><br>${esc(f.n)}${d!=null?'<br>'+fmt(d)+' km':''}`).addTo(layer);}
  if(pts.length)map.fitBounds(pts,{padding:[30,30],maxZoom:13});}
 function vue(c){$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
  if(c){if(!map){map=window.L.map('map');window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();drawMap(lignes());},50);}}
@@ -163,4 +167,5 @@ if(!window.FORMATION_NATIONAL)fetch('formations.json?v=2026-10-08').then(r=>r.js
 if(!window.FORMATION_NATIONAL)fetch('parcoursup.json?v=2026-10-07').then(r=>r.json()).then(d=>{PS=d;draw();}).catch(()=>{});
 window.addEventListener('hashchange',()=>{if(D)lireHash();});
 </script>
+<script src="../commun/accessibilite.js"></script>
 </body></html>
