@@ -32,6 +32,17 @@ out=dict(date='6 octobre 2026',domaines=[dict(k=k,i=i,n=n,s=s) for k,i,n,s,_,_ i
   formations=[dict(f,e=list(f['e'].values())) for f in sorted(F.values(),key=lambda f:({'2de pro':0,'Bac pro':1,'CAP':2}[f['t']],f['n']))])
 cols=json.load(open('colleges.json'))
 out['colleges']=[dict(n=c['nom_etablissement'],v=c['nom_commune'],lat=round(c['latitude'],5),lon=round(c['longitude'],5)) for c in cols if c.get('latitude')]
+# mots que tapent les élèves (sigles, métiers) : mêmes listes que « Trouve ton stage »
+from aides import ALIAS, FAMILLES
+_AL={k.lower():v for k,v in ALIAS.items()}
+def alias(n):
+    a=_AL.get(n.lower(),'')
+    for k,(al,_) in FAMILLES.items():
+        if k.split(' (')[0].lower() in n.lower(): a+=' '+al
+    return a.strip()
+for f in out['formations']:
+    al=alias(f['n'])
+    if al: f['al']=al
 json.dump(out,open('apres3e.json','w'),ensure_ascii=False,separators=(',',':'))
 import os;print(os.path.getsize('apres3e.json'),'formations',len(out['formations']),'lieux',sum(len(f['e']) for f in out['formations']),'colleges',len(out['colleges']))
 print(collections.Counter(k for f in out['formations'] for k in f['d']))

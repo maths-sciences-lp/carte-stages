@@ -101,7 +101,7 @@ function drawDoms(){$('doms').innerHTML=D.domaines.map(d=>`<button class="dom" d
  `<button class="dom" data-k="tout" aria-pressed="${dom==='tout'}"><span class="e">📋</span><span><b>Toutes les formations</b><span>la liste complète de l’académie</span></span></button>`;
  $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{dom=b.dataset.k;q='';$('q').value='';open=new Set();drawDoms();history.replaceState(null,'','#'+dom);stat('domaine/'+dom,b.querySelector('b').textContent);show(true);});}
 $('q').addEventListener('input',()=>{q=norm($('q').value.trim());if(q.length>=2){dom=null;drawDoms();show(false);}else if(!dom){$('res').hidden=true;$('aide').hidden=false;}});
-function formations(){return D.formations.filter(f=>{if(offT.has(f.t))return false;if(q.length>=2)return norm(f.n).includes(q);return dom==='tout'||f.d.includes(dom);});}
+function formations(){return D.formations.filter(f=>{if(offT.has(f.t))return false;if(q.length>=2){const t=norm(f.n+' '+(f.al||''));return q.split(' ').filter(Boolean).every(m=>t.includes(m));}return dom==='tout'||f.d.includes(dom);});}
 function lieux(f){return f.e.filter(e=>!offD.has(e.dep)).map(e=>({e,d:dep?km(dep.lat,dep.lon,e.lat,e.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.e.v.localeCompare(b.e.v));}
 function chips(){$('ftype').innerHTML=TYPES.map(([k,l])=>`<button class="chip" data-t="${k}" aria-pressed="${!offT.has(k)}">${l}</button>`).join('');
  $('ftype').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.t;offT.has(k)?offT.delete(k):offT.add(k);show(false);});
@@ -147,6 +147,6 @@ const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinate
 $('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
-fetch('apres3e.json?v=2026-10-06c').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
+fetch('apres3e.json?v=2026-10-07').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
 </script>
 </body></html>
