@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qui peut m’aider ?</title>
+<meta name="description" content="Les lieux gratuits qui aident les jeunes de l’académie de Créteil : CIO, missions locales, Info Jeunes et maisons des adolescents, du plus proche au plus éloigné.">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+:root{--ink:#15314f;--bg:#f5f7f9;--line:#e4e9ee;--mute:#667085;--card:#fff;--acc:#2a4f7c;--soft:#eef2f6;--ok:#1f7a6d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.45 'Public Sans',system-ui,sans-serif}
+a{color:var(--acc)}
+.site{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--card);border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none}
+.site .lg{width:32px;height:32px;border-radius:9px;background:var(--ink);display:grid;place-items:center;color:#fff}
+.site b{font-family:'Bricolage Grotesque',system-ui;font-size:17px}.site span.r{margin-left:auto;font-size:14px;color:var(--mute)}
+main{max-width:900px;margin:0 auto;padding:18px 16px 30px}
+h1{font-family:'Bricolage Grotesque',system-ui;font-size:26px;margin:4px 0 4px}
+h2{font-family:'Bricolage Grotesque',system-ui;font-size:20px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-size:16px;flex:none}
+.lead{color:var(--mute);margin:0 0 14px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0}
+.doms{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.dom{display:flex;gap:10px;align-items:flex-start;padding:12px;background:var(--card);border:2px solid var(--line);border-radius:14px;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.dom[aria-pressed=true]{border-color:var(--acc);background:var(--soft)}
+.dom .e{font-size:26px;line-height:1}.dom b{display:block;font-size:16px;color:var(--ink)}.dom span{font-size:14px;color:var(--mute);line-height:1.3}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;border-radius:12px;border:0;background:var(--ink);color:#fff;font:inherit;font-weight:600;font-size:16px;cursor:pointer;text-decoration:none}
+.btn.light{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn[aria-pressed=false]{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+input[type=text]{flex:1;min-width:200px;padding:11px 12px;border:2px solid var(--line);border-radius:12px;font:inherit}
+.sug{display:grid;gap:4px;margin-top:6px}.sug button{text-align:left;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:inherit;cursor:pointer}
+.msg{color:var(--mute);font-size:15px;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{padding:7px 12px;border-radius:999px;border:2px solid var(--line);background:var(--card);font:inherit;font-size:15px;cursor:pointer;color:var(--ink)}
+.chip[aria-pressed=true]{border-color:var(--acc);background:var(--soft);font-weight:600}
+.li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:10px 0}
+.li h3{margin:6px 0 2px;font-size:18px}.li .m{color:var(--mute);font-size:15px}
+.ty{display:inline-block;font-size:13px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--ink);color:#fff}
+.ty.ml{background:var(--ok)}.ty.ij{background:#7a4f9a}.ty.mda{background:#a2462f}
+.li .row{margin-top:8px}.li .btn{padding:8px 12px;font-size:15px}
+.li details{font-size:15px;color:var(--mute);margin-top:4px}.li summary{cursor:pointer}
+#map{height:380px;border-radius:16px;border:1px solid var(--line);margin:10px 0}
+.note{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:15px;margin:12px 0}
+.tels{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.tel{display:block;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);text-decoration:none}
+.tel b{font-size:20px;display:block}.tel span{font-size:14px;color:var(--mute)}
+footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-top:24px;padding-top:12px}
+[hidden]{display:none!important}
+</style>
+<script>if(!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}</script>
+</head><body>
+<a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a>
+<main>
+<h1>🤝 Qui peut m’aider ?</h1>
+<p class="lead">Des lieux <b>gratuits</b> pour les jeunes de l’<b>académie de Créteil</b> (Seine-Saint-Denis, Val-de-Marne, Seine-et-Marne), du plus proche au plus éloigné.</p>
+
+<section class="step"><h2><span class="n">1</span>Ta situation</h2>
+ <div class="doms" id="doms"></div>
+</section>
+
+<section class="step"><h2><span class="n">2</span>D’où tu pars</h2>
+ <div class="row"><button class="btn" id="dCol" aria-pressed="false">🏫 Mon collège</button><button class="btn" id="dMai" aria-pressed="true">🏠 Chez moi</button></div>
+ <div id="pCol" hidden style="margin-top:10px"><div class="row"><input type="text" id="col" placeholder="Nom de ton collège ou de ta ville"></div><div class="sug" id="csug" hidden></div></div>
+ <div id="pMai" style="margin-top:10px"><div class="row"><input type="text" id="adr" placeholder="Ton adresse ou ta ville" autocomplete="street-address"><button class="btn light" id="geo">📍 Me localiser</button></div><div class="sug" id="asug" hidden></div></div>
+ <div class="msg" id="dmsg">Indique ta ville ou ton adresse pour voir les lieux les plus proches.</div>
+</section>
+
+<section class="step" id="s3"><h2><span class="n">3</span>Les lieux</h2>
+ <div class="msg" id="aide">Choisis d’abord ta situation.</div>
+ <div id="res" hidden>
+  <div class="chips" id="fdep"></div>
+  <div class="row"><button class="btn" id="vL" aria-pressed="true">📋 Liste</button><button class="btn" id="vC" aria-pressed="false">🗺️ Carte</button></div>
+  <div class="msg" id="count"></div>
+  <div id="map" hidden></div>
+  <div id="list"></div>
+  <div class="row" style="margin-top:6px"><button class="btn light" id="plus" hidden>Voir plus de lieux</button></div>
+ </div>
+ <div class="note">💡 <b>Bon à savoir.</b> Ces lieux sont gratuits. Tu peux appeler avant d’y aller : certains reçoivent sur rendez-vous. Au lycée ou au collège, tu peux aussi parler au professeur principal, au CPE, à l’infirmière ou au Psy-EN.</div>
+</section>
+
+<section class="step"><h2><span class="n">📞</span>Besoin de parler tout de suite ?</h2>
+ <p class="msg" style="margin-top:0">Appels gratuits et anonymes.</p>
+ <div class="tels">
+  <a class="tel" href="tel:0800235236" data-s="tel-fsj"><b>0 800 235 236</b><span>Fil Santé Jeunes, pour les 12-25 ans : santé, moral, relations. Tous les jours de 9 h à 23 h.</span></a>
+  <a class="tel" href="tel:3020" data-s="tel-3020"><b>3020</b><span>Harcèlement à l’école, que tu sois victime ou témoin. Du lundi au vendredi de 9 h à 20 h, le samedi de 9 h à 18 h.</span></a>
+  <a class="tel" href="tel:3018" data-s="tel-3018"><b>3018</b><span>Cyberharcèlement et violences sur internet. Tous les jours de 9 h à 23 h, aussi par tchat sur 3018.fr.</span></a>
+  <a class="tel" href="tel:119" data-s="tel-119"><b>119</b><span>Enfance en danger : violences, maltraitance. 24 h sur 24, n’apparaît pas sur la facture.</span></a>
+  <a class="tel" href="tel:3114" data-s="tel-3114"><b>3114</b><span>Idées suicidaires, pour toi ou pour un proche. 24 h sur 24.</span></a>
+ </div>
+ <p class="msg">En cas d’urgence vitale : <b>15</b> (Samu) ou <b>112</b>.</p>
+</section>
+
+<footer>
+ Données : CIO, missions locales et Info Jeunes : <a href="https://lannuaire.service-public.gouv.fr" target="_blank" rel="noopener">annuaire de l’administration</a> (Service-public.fr, octobre 2026) · maisons des adolescents : liste de l’<a href="https://www.iledefrance.ars.sante.fr/les-maisons-des-adolescents-en-ile-de-france-mda" target="_blank" rel="noopener">ARS Île-de-France</a> et fiches de l’<a href="https://anmda.fr/fr/annuaire-mda" target="_blank" rel="noopener">Association nationale des maisons des adolescents</a> · collèges : annuaire de l’Éducation nationale · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Horaires indicatifs : vérifie sur la fiche du lieu ou par téléphone.<br>
+ Statistiques de visite anonymes, sans cookie. · <a href="../accueil/">Tous les outils</a> · <a href="../">Trouve ton stage</a> · <a href="../apres-3e/">Après le collège</a> · <a href="../formation/">Après le lycée</a> · <a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>
+ Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
+ © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
+</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const GC='https://maths-sciences.goatcounter.com/count', GC_ON=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)&&location.protocol!=='file:';
+function stat(c,t){if(!GC_ON)return;const q='?p='+encodeURIComponent('aide/'+c)+'&t='+encodeURIComponent(t||c)+'&e=true&rnd='+Math.random().toString(36).slice(2);if(navigator.sendBeacon)navigator.sendBeacon(GC+q);else(new Image()).src=GC+q;}
+const km=(a,b,c,d)=>{const R=6371,t=Math.PI/180,x=(c-a)*t,y=(d-b)*t,h=Math.sin(x/2)**2+Math.cos(a*t)*Math.cos(c*t)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h));};
+const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
+const SIT=[
+ {k:'cio',i:'🧭',t:'CIO',n:'Je ne sais pas quoi faire après la 3e ou après le lycée',s:'Centre d’information et d’orientation : un psychologue de l’Éducation nationale t’aide à choisir. Avec ou sans tes parents.'},
+ {k:'ml',i:'🤝',t:'Mission locale',n:'J’ai entre 16 et 25 ans, j’ai quitté l’école ou je cherche un apprentissage, un emploi',s:'Mission locale : un conseiller t’accompagne pour la formation, l’emploi, le logement, la santé.'},
+ {k:'ij',i:'ℹ️',t:'Info Jeunes',n:'Je cherche des infos : job, logement, santé, loisirs, partir à l’étranger',s:'Info Jeunes, pour les 13-25 ans : un service neutre et personnalisé.'},
+ {k:'mda',i:'💬',t:'Maison des adolescents',n:'Ça ne va pas, j’ai besoin de parler à quelqu’un',s:'Maison des adolescents : écoute et soutien, confidentiel, pour les jeunes et leurs parents.'},
+];
+const TY=Object.fromEntries(SIT.map(s=>[s.k,s.t]));
+const DEPS=['Seine-Saint-Denis','Val-de-Marne','Seine-et-Marne'];
+let D=null, sit=null, dep=null, offD=new Set(), nmax=8, map=null, layer=null;
+function drawSit(){$('doms').innerHTML=SIT.map(d=>`<button class="dom" data-k="${d.k}" aria-pressed="${sit===d.k}"><span class="e">${d.i}</span><span><b>${esc(d.n)}</b><span>${esc(d.s)}</span></span></button>`).join('')+
+ `<button class="dom" data-k="tout" aria-pressed="${sit==='tout'}"><span class="e">📋</span><span><b>Je veux voir tous les lieux</b><span>CIO, missions locales, Info Jeunes et maisons des adolescents</span></span></button>`;
+ $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{sit=b.dataset.k;nmax=8;drawSit();history.replaceState(null,'','#'+sit);stat('situation/'+sit,b.querySelector('b').textContent);show(true);});}
+function lieux(){return D.lieux.filter(l=>(sit==='tout'||l.t===sit)&&!offD.has(l.dep)).map(l=>({l,d:dep?km(dep.lat,dep.lon,l.lat,l.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.l.v.localeCompare(b.l.v));}
+function chips(){$('fdep').innerHTML=DEPS.map(k=>`<button class="chip" data-d="${k}" aria-pressed="${!offD.has(k)}">${k}</button>`).join('');
+ $('fdep').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.d;offD.has(k)?offD.delete(k):offD.add(k);show(false);});}
+function lieuHTML({l,d}){const o=dep?`&origin=${dep.lat},${dep.lon}`:'';
+ const go=`https://www.google.com/maps/dir/?api=1${o}&destination=${encodeURIComponent(l.n+', '+l.a+', '+l.cp+' '+l.v)}&travelmode=transit`;
+ const fiche=l.sp||l.src;
+ return `<div class="li"><span class="ty ${l.t}">${esc(TY[l.t])}</span><h3>${esc(l.n)}</h3>
+ <div class="m">${d!==null?'📍 <b>'+fmt(d)+' km</b> · ':''}${esc(l.a)}, ${esc(l.cp)} ${esc(l.v)}</div>
+ ${l.pub?`<div class="m">👥 ${esc(l.pub)}</div>`:''}
+ ${l.h&&l.h.length?`<details><summary>🕘 Horaires</summary>${l.h.map(esc).join('<br>')}</details>`:''}
+ <div class="row">${l.tel?`<a class="btn" href="tel:${esc(l.tel.replace(/\s/g,''))}" data-s="appel">📞 ${esc(l.tel)}</a>`:''}<a class="btn light" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a>${l.w?`<a class="btn light" href="${esc(/^http/.test(l.w)?l.w:'https://'+l.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}${fiche?`<a class="btn light" href="${esc(fiche)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche</a>`:''}</div></div>`;}
+function show(scroll){if(!D||!sit)return;$('aide').hidden=true;$('res').hidden=false;chips();
+ const L=lieux();
+ $('count').textContent=L.length?`${L.length} lieu${L.length>1?'x':''}`+(dep?' · les plus proches en premier':' · indique d’où tu pars pour voir les distances'):'Aucun lieu avec ces choix.';
+ $('list').innerHTML=L.slice(0,nmax).map(lieuHTML).join('');
+ $('plus').hidden=L.length<=nmax||!$('map').hidden;
+ $('list').querySelectorAll('a[data-s]').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Clic : '+a.dataset.s)));
+ if(map&&!$('map').hidden) drawMap(L);
+ if(scroll) $('s3').scrollIntoView({behavior:'smooth',block:'start'});}
+$('plus').onclick=()=>{nmax+=10;show(false);};
+function drawMap(L){if(layer)layer.remove();layer=L_.layerGroup().addTo(map);const pts=[];
+ if(dep){L_.circleMarker([dep.lat,dep.lon],{radius:9,color:'#15314f',fillColor:'#15314f',fillOpacity:1}).bindPopup('Toi').addTo(layer);pts.push([dep.lat,dep.lon]);}
+ for(const{l}of L){pts.push([l.lat,l.lon]);L_.marker([l.lat,l.lon]).bindPopup(`<b>${esc(l.n)}</b><br>${esc(l.a)}, ${esc(l.v)}${l.tel?'<br>📞 '+esc(l.tel):''}`).addTo(layer);}
+ if(pts.length) map.fitBounds(dep?pts.slice(0,Math.min(pts.length,nmax+1)):pts,{padding:[30,30],maxZoom:14});}
+const L_=window.L;
+function vue(c){$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
+ if(c){if(!map){map=L_.map('map');L_.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();show(false);},50);}else show(false);}
+$('vL').onclick=()=>vue(false);$('vC').onclick=()=>vue(true);
+function mode(m){$('dCol').setAttribute('aria-pressed',m==='col');$('dMai').setAttribute('aria-pressed',m==='mai');$('pCol').hidden=m!=='col';$('pMai').hidden=m!=='mai';}
+$('dCol').onclick=()=>{mode('col');$('col').focus();};$('dMai').onclick=()=>{mode('mai');$('adr').focus();};
+function setDep(lat,lon,n,src){dep={lat,lon,n};$('csug').hidden=true;$('asug').hidden=true;$('dmsg').textContent='C’est noté : départ '+n+'.';stat('depart/'+src,'Départ : '+src);show(false);}
+function sugList(box,list,label,pick){box.innerHTML='';list.forEach(x=>{const b=document.createElement('button');b.textContent=label(x);b.onclick=()=>pick(x);box.appendChild(b);});box.hidden=!list.length;}
+$('col').addEventListener('input',()=>{const v=norm($('col').value.trim());if(v.length<2||!D){$('csug').hidden=true;return;}
+ const r=D.colleges.filter(c=>norm(c.n+' '+c.v).includes(v)).slice(0,8);
+ sugList($('csug'),r,c=>c.n+' — '+c.v,c=>{$('col').value=c.n+' — '+c.v;setDep(c.lat,c.lon,'du '+c.n.replace(/^Coll[èe]ge /i,'collège '),'college');});});
+const IDF=/^(75|77|78|91|92|93|94|95)/;let timer=null;
+async function searchAdr(v){const r=await fetch('https://api-adresse.data.gouv.fr/search/?autocomplete=1&limit=15&lat=48.85&lon=2.6&q='+encodeURIComponent(v)).then(r=>r.json());return(r.features||[]).filter(f=>IDF.test(f.properties.postcode||'')).slice(0,5);}
+const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinates[1],f.geometry.coordinates[0],f.properties.type==='municipality'?'de '+f.properties.city:'de chez toi','maison');};
+$('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<3){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
+$('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
+ navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
+document.querySelectorAll('a.tel').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Appel : '+a.dataset.s)));
+drawSit();
+fetch('aide.json?v=2026-10-07').then(r=>r.json()).then(d=>{D=d;const k=location.hash.slice(1);if(k&&(k==='tout'||SIT.some(x=>x.k===k))){sit=k;drawSit();show(false);}});
+</script>
+</body></html>
