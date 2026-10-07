@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Qui peut m’aider ?</title>
-<meta name="description" content="Les lieux gratuits qui aident les jeunes de l’académie de Créteil : CIO, missions locales, Info Jeunes, bibliothèques et maisons des adolescents, du plus proche au plus éloigné.">
+<meta name="description" content="Les lieux gratuits qui aident les jeunes d’Île-de-France : CIO, missions locales, Info Jeunes, bibliothèques et maisons des adolescents, du plus proche au plus éloigné.">
 <link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -51,7 +51,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
 <a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a>
 <main>
 <h1>🤝 Qui peut m’aider ?</h1>
-<p class="lead">Des lieux <b>gratuits</b> pour les jeunes de l’<b>académie de Créteil</b> (Seine-Saint-Denis, Val-de-Marne, Seine-et-Marne), du plus proche au plus éloigné.</p>
+<p class="lead">Des lieux <b>gratuits</b> pour les jeunes d’<b>Île-de-France</b> (académies de Créteil, Paris et Versailles), du plus proche au plus éloigné.</p>
 
 <section class="step"><h2><span class="n">1</span>Ta situation</h2>
  <div class="doms" id="doms"></div>
@@ -112,13 +112,13 @@ const SIT=[
  {k:'mda',i:'💬',t:'Maison des adolescents',n:'Ça ne va pas, j’ai besoin de parler à quelqu’un',s:'Maison des adolescents : écoute et soutien, confidentiel, pour les jeunes et leurs parents.'},
 ];
 const TY=Object.fromEntries(SIT.map(s=>[s.k,s.t]));
-const DEPS=['Seine-Saint-Denis','Val-de-Marne','Seine-et-Marne'];
+const ACS=[['Créteil','Académie de Créteil (77, 93, 94)'],['Paris','Académie de Paris (75)'],['Versailles','Académie de Versailles (78, 91, 92, 95)']];
 let D=null, sit=null, dep=null, offD=new Set(), nmax=8, map=null, layer=null;
 function drawSit(){$('doms').innerHTML=SIT.map(d=>`<button class="dom" data-k="${d.k}" aria-pressed="${sit===d.k}"><span class="e">${d.i}</span><span><b>${esc(d.n)}</b><span>${esc(d.s)}</span></span></button>`).join('')+
  `<button class="dom" data-k="tout" aria-pressed="${sit==='tout'}"><span class="e">📋</span><span><b>Je veux voir tous les lieux</b><span>CIO, missions locales, Info Jeunes, bibliothèques et maisons des adolescents</span></span></button>`;
  $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{sit=b.dataset.k;nmax=8;drawSit();history.replaceState(null,'','#'+sit);stat('situation/'+sit,b.querySelector('b').textContent);show(true);});}
-function lieux(){return D.lieux.filter(l=>(sit==='tout'||l.t===sit)&&!offD.has(l.dep)).map(l=>({l,d:dep?km(dep.lat,dep.lon,l.lat,l.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.l.v.localeCompare(b.l.v));}
-function chips(){$('fdep').innerHTML=DEPS.map(k=>`<button class="chip" data-d="${k}" aria-pressed="${!offD.has(k)}">${k}</button>`).join('');
+function lieux(){return D.lieux.filter(l=>(sit==='tout'||l.t===sit)&&!offD.has(l.ac)).map(l=>({l,d:dep?km(dep.lat,dep.lon,l.lat,l.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.l.v.localeCompare(b.l.v));}
+function chips(){$('fdep').innerHTML=ACS.map(([k,l])=>`<button class="chip" data-d="${k}" aria-pressed="${!offD.has(k)}">${l}</button>`).join('');
  $('fdep').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.d;offD.has(k)?offD.delete(k):offD.add(k);show(false);});}
 function lieuHTML({l,d}){const o=dep?`&origin=${dep.lat},${dep.lon}`:'';
  const go=`https://www.google.com/maps/dir/?api=1${o}&destination=${encodeURIComponent(l.n+', '+l.a+', '+l.cp+' '+l.v)}&travelmode=transit`;
@@ -161,6 +161,6 @@ $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton tél
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
 document.querySelectorAll('a.tel').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Appel : '+a.dataset.s)));
 drawSit();
-fetch('aide.json?v=2026-10-07b').then(r=>r.json()).then(d=>{D=d;const k=location.hash.slice(1);if(k&&(k==='tout'||SIT.some(x=>x.k===k))){sit=k;drawSit();show(false);}});
+fetch('aide.json?v=2026-10-08').then(r=>r.json()).then(d=>{D=d;const k=location.hash.slice(1);if(k&&(k==='tout'||SIT.some(x=>x.k===k))){sit=k;drawSit();show(false);}});
 </script>
 </body></html>

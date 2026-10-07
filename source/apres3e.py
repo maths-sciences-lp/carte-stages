@@ -3,7 +3,9 @@ import csv,json,re,collections
 from domaines_apres3e import DOM,domaines
 from corrections_apres3e import C
 T={'classe de 2de professionnelle':'2de pro','CAP':'CAP','CAP agricole':'CAP','baccalauréat professionnel':'Bac pro'}
-rows=[x for x in csv.DictReader(open('605340ddc19a9.csv',encoding='utf-8-sig'),delimiter=';') if x['ENS académie']=='Créteil' and x['FOR type'] in T]
+# Académies d'Île-de-France (Créteil d'abord : les adresses et les liens existants n'en dépendent pas)
+ACADS=('Créteil','Paris','Versailles')
+rows=[x for x in csv.DictReader(open('605340ddc19a9.csv',encoding='utf-8-sig'),delimiter=';') if x['ENS académie'] in ACADS and x['FOR type'] in T]
 def nom(l):
     l=re.sub(r'^classe de 2de professionnelle ','2de pro ',l)
     l=re.sub(r'^CAPa ','CAP agricole ',l)
@@ -18,8 +20,8 @@ def frais(s):
 # Internat : fiche Onisep du lycée (texte) croisée avec l'annuaire de l'Éducation nationale (champ hebergement).
 import os,urllib.request,urllib.parse
 def annuaire_hebergement(uais,fichier='annuaire_hebergement.json'):
-    if os.path.exists(fichier): return json.load(open(fichier))
-    res={}
+    res=json.load(open(fichier)) if os.path.exists(fichier) else {}
+    uais=[u for u in uais if u not in res]
     for i in range(0,len(uais),50):
         q="identifiant_de_l_etablissement in ("+",".join('"%s"'%u for u in uais[i:i+50])+")"
         url="https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/records?"+urllib.parse.urlencode(dict(where=q,select="identifiant_de_l_etablissement,hebergement",limit=100))
@@ -67,7 +69,7 @@ for x in rows:
     u=x['ENS code UAI'] or x["Lieu d'enseignement (ENS) libellé"]
     if u in f['e']: continue
     f['e'][u]=dict(n=x["Lieu d'enseignement (ENS) libellé"],st=x['ENS statut'],a=x['ENS adresse'],cp=x['ENS code postal'],v=x['ENS commune'],
-        dep=x['ENS département'],lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']),ij=cherche(x['ENS code UAI'],x['Formation (FOR) libellé']))
+        dep=x['ENS département'],ac=x['ENS académie'],lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']),ij=cherche(x['ENS code UAI'],x['Formation (FOR) libellé']))
     it,ic=internat(x['ENS code UAI'],x['ENS hébergement'])
     pr=PRESS.get((x['ENS code UAI'],l))
     if pr: f['e'][u]['p']=pr
@@ -75,8 +77,8 @@ for x in rows:
     if it and ic: f['e'][u]['ic']=ic
 out=dict(date='6 octobre 2026',domaines=[dict(k=k,i=i,n=n,s=s) for k,i,n,s,_,_ in DOM],
   formations=[dict(f,e=list(f['e'].values())) for f in sorted(F.values(),key=lambda f:({'2de pro':0,'Bac pro':1,'CAP':2}[f['t']],f['n']))])
-cols=json.load(open('colleges.json'))
-out['colleges']=[dict(n=c['nom_etablissement'],v=c['nom_commune'],lat=round(c['latitude'],5),lon=round(c['longitude'],5)) for c in cols if c.get('latitude')]
+cols=json.load(open('colleges_idf.json' if os.path.exists('colleges_idf.json') else 'colleges.json'))
+out['colleges']=[dict(n=c['nom_etablissement'],v=' '.join(c['nom_commune'].split()),lat=round(c['latitude'],5),lon=round(c['longitude'],5)) for c in cols if c.get('latitude')]
 # mots que tapent les élèves (sigles, métiers) : mêmes listes que « Trouve ton stage »
 from aides import ALIAS, FAMILLES
 _AL={k.lower():v for k,v in ALIAS.items()}

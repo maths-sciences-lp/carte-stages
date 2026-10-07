@@ -1,7 +1,7 @@
-"""« Après le lycée » pour toute l'académie de Créteil.
+"""« Après le lycée » pour les académies d'Île-de-France (Créteil, Paris, Versailles).
 
 Diplômes de départ : CAP, CAP agricole, bac pro et BMA préparés en lycée (voie scolaire)
-dans l'académie de Créteil (Onisep, Idéo-Actions de formation initiale, univers lycée).
+dans ces trois académies (Onisep, Idéo-Actions de formation initiale, univers lycée).
 Poursuites d'études : rubrique « Exemple(s) de formation(s) » de la fiche diplôme Onisep
 (fiches/<id>.html), lieux en Île-de-France (univers lycée + enseignement supérieur).
 Les 11 classes du lycée Eugène Hénaff gardent leurs listes relues à la main (suites.py).
@@ -63,10 +63,11 @@ par_lib = collections.defaultdict(list)
 for x in rows:
     par_lib[x['Formation (FOR) libellé'].lower()].append(x)
 
-# Diplômes de départ et lycées qui les préparent (académie de Créteil)
+# Diplômes de départ et lycées qui les préparent (académies d'Île-de-France)
+ACADS = ('Créteil', 'Paris', 'Versailles')
 dips, lycees = {}, {}
 for x in lycee:
-    if x.get('ENS académie') != 'Créteil' or x['FOR type'] not in TYPES:
+    if x.get('ENS académie') not in ACADS or x['FOR type'] not in TYPES:
         continue
     fid = x['FOR URL et ID Onisep'].rsplit('.', 1)[-1]
     d = dips.setdefault(fid, {'lib': cap1(x['Formation (FOR) libellé']), 'ly': set()})

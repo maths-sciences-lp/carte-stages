@@ -15,7 +15,9 @@ import json, os, re, urllib.parse, urllib.request
 API = 'https://api-lannuaire.service-public.fr/api/explore/v2.1/catalog/datasets/api-lannuaire-administration/exports/json'
 CHAMPS = 'id,nom,pivot,adresse,telephone,site_internet,plage_ouverture,code_insee_commune,url_service_public,date_modification'
 TYPES = {'cio': 'cio', 'mission_locale': 'ml', 'cij': 'ij'}
-DEPS = {'77': 'Seine-et-Marne', '93': 'Seine-Saint-Denis', '94': 'Val-de-Marne'}
+DEPS = {'77': 'Seine-et-Marne', '93': 'Seine-Saint-Denis', '94': 'Val-de-Marne', '75': 'Paris', '78': 'Yvelines',
+        '91': 'Essonne', '92': 'Hauts-de-Seine', '95': 'Val-d’Oise'}
+ACAD = {'77': 'Créteil', '93': 'Créteil', '94': 'Créteil', '75': 'Paris', '78': 'Versailles', '91': 'Versailles', '92': 'Versailles', '95': 'Versailles'}
 
 # Vérifiées le 7 octobre 2026 sur les fiches anmda.fr citées par l'ARS Île-de-France.
 MDA = [
@@ -95,6 +97,8 @@ for r in telecharge():
                       cp=a.get('code_postal', ''), v=a.get('nom_commune', ''), dep=DEPS[r['code_insee_commune'][:2]],
                       lat=round(float(a['latitude']), 5), lon=round(float(a['longitude']), 5), tel=tel, w=w,
                       h=horaires(r['plage_ouverture']), sp=r['url_service_public'], maj=r['date_modification'][:10]))
+# Paris et Versailles : fiches anmda.fr citées par l'ARS Île-de-France (mda_idf.json, relevé le 8 octobre 2026).
+MDA += json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'mda_idf.json')))
 for m in MDA:
     lieux.append(dict(t='mda', dep=DEPS[m['cp'][:2]], **{k: v for k, v in m.items()}))
 
@@ -156,11 +160,14 @@ for r in json.load(open('bibliotheques.json')):
                       lat=round(float(r['latitude']), 5), lon=round(float(r['longitude']), 5), tel=tel, w=r['site_internet'] or '',
                       pl=int(places) if places else 0, po=int(postes) if postes else 0,
                       wifi=r['connexion_wi_fi'] == 'Oui', dim=r['ouverture_le_dimanche'] == 'Oui'))
+_dep2code = {v: k for k, v in DEPS.items()}
+for l in lieux:
+    l['ac'] = ACAD[_dep2code[l['dep']]]
 lieux.sort(key=lambda x: (x['t'], x['v'], x['n']))
 
-cols = json.load(open('colleges.json'))
+cols = json.load(open('colleges_idf.json' if os.path.exists('colleges_idf.json') else 'colleges.json'))
 out = dict(date='7 octobre 2026', lieux=lieux,
-           colleges=[dict(n=c['nom_etablissement'], v=c['nom_commune'], lat=round(c['latitude'], 5), lon=round(c['longitude'], 5)) for c in cols if c.get('latitude')])
+           colleges=[dict(n=c['nom_etablissement'], v=' '.join(c['nom_commune'].split()), lat=round(c['latitude'], 5), lon=round(c['longitude'], 5)) for c in cols if c.get('latitude')])
 json.dump(out, open('aide.json', 'w'), ensure_ascii=False, separators=(',', ':'))
 import collections
 print(os.path.getsize('aide.json'), collections.Counter(x['t'] for x in lieux), collections.Counter((x['t'], x['dep']) for x in lieux))

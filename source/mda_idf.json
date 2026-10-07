@@ -1,0 +1,163 @@
+[
+ {
+  "n": "Maison des adolescents Robert-Debré",
+  "a": "8 avenue de la Porte du Pre-Saint-Gervais",
+  "cp": "75019",
+  "v": "Paris",
+  "lat": 48.87971,
+  "lon": 2.40161,
+  "tel": "01 40 40 27 60",
+  "w": "http://robertdebre.aphp.fr/maison-des-adolescents/",
+  "h": [
+   "du lundi au vendredi de 10h à 18h30 et les samedis pairs (en dehors des vacances scolaires)"
+  ],
+  "src": "https://anmda.fr/fr/maison-des-adolescents-robert-debre"
+ },
+ {
+  "n": "Maison des adolescents – Maison de Solenn (hôpital Cochin)",
+  "a": "97 boulevard de Port Royal",
+  "cp": "75014",
+  "v": "Paris",
+  "lat": 48.83831,
+  "lon": 2.34087,
+  "tel": "01 58 41 24 24",
+  "w": "http://www.mda.aphp.fr/",
+  "src": "https://anmda.fr/fr/maison-des-adolescents-de-paris-13-maison-de-solenn-hopital-cochin"
+ },
+ {
+  "n": "Maison des adolescents Yvelines Nord",
+  "a": "81 Rue Saint-Sébastien",
+  "cp": "78300",
+  "v": "Poissy",
+  "lat": 48.93738,
+  "lon": 2.05535,
+  "tel": "06 40 66 80 94",
+  "src": "https://anmda.fr/fr/maison-des-adolescents-yvelines-nord"
+ },
+ {
+  "n": "Maison des adolescents Yvelines Sud (Versailles)",
+  "a": "2 passage roche",
+  "cp": "78000",
+  "v": "Versailles",
+  "lat": 48.80982,
+  "lon": 2.13683,
+  "tel": "06 61 81 88 02",
+  "h": [
+   "Le secrétariat est ouvert du lundi au vendredi de 9h à 17h"
+  ],
+  "src": "https://anmda.fr/fr/maison-des-adolescents-yvelines-sud"
+ },
+ {
+  "n": "Maison des adolescents Yvelines Sud (Trappes)",
+  "a": "3 place de la Mairie",
+  "cp": "78190",
+  "v": "Trappes",
+  "lat": 48.7769,
+  "lon": 2.0,
+  "tel": "06 61 81 88 02",
+  "src": "https://anmda.fr/fr/maison-des-adolescents-des-yvelines-sud"
+ },
+ {
+  "n": "Maison des adolescents de l’Essonne",
+  "a": "7 rue Paul Langevin",
+  "cp": "91700",
+  "v": "Sainte-Geneviève-des-Bois",
+  "lat": 48.62826,
+  "lon": 2.33373,
+  "tel": "01 60 15 26 22",
+  "w": "http://www.maisondesadolescents91.fr",
+  "src": "https://anmda.fr/fr/maison-des-adolescents-de-lessonne"
+ },
+ {
+  "n": "Maison des adolescents des Hauts-de-Seine – antenne Nord La Garenne-Colombes",
+  "a": "18 rue Auguste Buisson",
+  "cp": "92250",
+  "v": "La Garenne-Colombes",
+  "lat": 48.90929,
+  "lon": 2.25339,
+  "tel": "01 47 84 21 76",
+  "h": [
+   "Mardi, Mercredi et Vendredi : 14h / 18h",
+   "Jeudi: 13h / 16h",
+   "Samedi: 12h30 / 15h"
+  ],
+  "src": "https://anmda.fr/fr/maison-des-adolescents-des-hauts-de-seine-antenne-nord-la-garenne-colombes"
+ },
+ {
+  "n": "Maison des adolescents des Hauts-de-Seine – antenne Sud Bagneux",
+  "a": "2 rue Léo Ferré, Centre médical de santé (cabinet 12 au sous-sol)",
+  "cp": "92220",
+  "v": "Bagneux",
+  "lat": 48.79702,
+  "lon": 2.31821,
+  "tel": "06 42 63 46 71",
+  "h": [
+   "Jeudi 14h-18h"
+  ],
+  "src": "https://anmda.fr/fr/maison-des-adolescents-des-hauts-de-seine-antenne-sud-bagneux"
+ },
+ {
+  "n": "Maison des adolescents des Hauts-de-Seine – antenne Sud Châtenay-Malabry",
+  "a": "2 square Henri Sellier, A l'Espace Prévention Santé",
+  "cp": "92290",
+  "v": "Châtenay-Malabry",
+  "lat": 48.76426,
+  "lon": 2.25328,
+  "tel": "06 42 63 46 71",
+  "h": [
+   "Mercredi 13h30-17h"
+  ],
+  "src": "https://anmda.fr/fr/maison-des-adolescents-des-hauts-de-seine-antenne-sud-chatenay-malabry"
+ },
+ {
+  "n": "Maison des adolescents des Hauts-de-Seine – antenne Sud Châtillon",
+  "a": "1 place de la libération",
+  "cp": "92200",
+  "v": "Châtillon",
+  "lat": 48.79962,
+  "lon": 2.28976,
+  "tel": "06 42 63 46 71",
+  "h": [
+   "Mardi 14h-18h"
+  ],
+  "src": "https://anmda.fr/fr/maison-des-adolescents-des-hauts-de-seine-antenne-sud-chatillon"
+ },
+ {
+  "n": "Maison des adolescents des Hauts-de-Seine – antenne Sud Clamart",
+  "a": "45 rue Pierre Louvrier",
+  "cp": "92140",
+  "v": "Clamart",
+  "lat": 48.80507,
+  "lon": 2.27224,
+  "tel": "06 42 63 46 71",
+  "h": [
+   "Le lundi de 14h à 18h"
+  ],
+  "src": "https://anmda.fr/fr/maison-des-adolescents-des-hauts-de-seine-antenne-sud-clamart"
+ },
+ {
+  "n": "Maison de l’adolescent et du jeune adulte PassAge",
+  "a": "Parvis de la préfecture allée de l'Arcade",
+  "cp": "95000",
+  "v": "Cergy",
+  "lat": 49.03562,
+  "lon": 2.06033,
+  "tel": "01 30 17 42 05",
+  "w": "http://passage95.fr/",
+  "src": "https://anmda.fr/fr/maison-de-ladolescent-et-du-jeune-adulte-passage"
+ },
+ {
+  "n": "Maison des adolescents Val-d’Oise Est",
+  "a": "78 rue de Paris",
+  "cp": "95500",
+  "v": "Gonesse",
+  "lat": 48.99198,
+  "lon": 2.43243,
+  "tel": "01 77 65 55 08",
+  "w": "https://www.hopital-de-gonesse.fr/maison-des-adolescents",
+  "h": [
+   "Lundi : 10-18h, mardi et mercredi : 10h-18h30, jeudi 10h-19h, vendredi : 10h-17h30. Accueil sans rendez-vous : lundi : 10h-13h et jeudi : 16h-19h."
+  ],
+  "src": "https://anmda.fr/fr/maison-des-adolescents-val-doise-est"
+ }
+]
