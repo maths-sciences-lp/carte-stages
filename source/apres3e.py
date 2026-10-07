@@ -43,7 +43,7 @@ def internat(uai,o,HEB):
 def construire(rows,HEB,cols,cherche,pression=(),date='6 octobre 2026'):
     """Même construction et même ordre de champs dans les deux modes."""
     # Affectation 2025 : premiers vœux et places (Draio Créteil, voir pression.py), reliés aux intitulés
-    # Onisep par pression_correspondance.json. « pc » : places communes à plusieurs anciens CAP du lycée.
+    # Onisep par pression_correspondance.json. « pc » : places communes à plusieurs CAP du lycée (offre d'affectation regroupée).
     PRESS={}
     if pression:
         _corr=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'pression_correspondance.json')))
