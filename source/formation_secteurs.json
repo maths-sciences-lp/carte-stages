@@ -1,7 +1,8 @@
 {
 "CAP accessoiriste réalisateur": [
 "Spectacle, musées, bibliothèques",
-"Audiovisuel, cinéma, son"
+"Audiovisuel, cinéma, son",
+"Loisirs, animation"
 ],
 "CAP accompagnant éducatif petite enfance": [
 "Crèches, petite enfance",
@@ -48,7 +49,8 @@
 "Tapisserie, décoration textile"
 ],
 "CAP arts de la reliure": [
-"Imprimerie, prépresse, reliure"
+"Imprimerie, prépresse, reliure",
+"Spectacle, musées, bibliothèques"
 ],
 "CAP arts et techniques du verre option décorateur sur verre": [
 "Céramique, verre d'art, instruments de musique",
@@ -64,12 +66,13 @@
 ],
 "CAP boulanger": [
 "Boulangerie, pâtisserie",
-"Supermarchés, grandes surfaces"
+"Supermarchés, grandes surfaces",
+"Industrie agroalimentaire"
 ],
 "CAP bronzier option A monteur en bronze": [
-"Bijouterie, horlogerie",
 "Chaudronnerie, soudure, structures métalliques",
-"Céramique, verre d'art, instruments de musique"
+"Céramique, verre d'art, instruments de musique",
+"Ébénisterie, meubles, restauration de meubles"
 ],
 "CAP carreleur mosaïste": [
 "Peinture, plâtre, carrelage, sols, isolation",
@@ -86,7 +89,8 @@
 ],
 "CAP chocolaterie-confiserie": [
 "Chocolaterie, confiserie, glaces",
-"Boulangerie, pâtisserie"
+"Boulangerie, pâtisserie",
+"Industrie agroalimentaire"
 ],
 "CAP commercialisation et services en hôtel-café-restaurant": [
 "Restaurants",
@@ -99,14 +103,14 @@
 ],
 "CAP conducteur d'engins de travaux publics et carrières": [
 "Travaux publics, routes, réseaux",
-"Construction, maçonnerie, gros œuvre",
-"Matériels agricoles, engins de chantier"
+"Construction, maçonnerie, gros œuvre"
 ],
 "CAP conducteur d'installations de production": [
 "Usinage, mécanique, outillage",
 "Chimie, pharmacie, cosmétiques, papier",
 "Industrie agroalimentaire",
-"Plastique, verre, matériaux"
+"Plastique, verre, matériaux",
+"Électronique, matériel électrique"
 ],
 "CAP conducteur livreur de marchandises": [
 "Transport de marchandises, livraison",
@@ -118,7 +122,9 @@
 ],
 "CAP conducteur routier de marchandises option livraisons de proximité": [
 "Transport de marchandises, livraison",
-"Entrepôts, logistique"
+"Entrepôts, logistique",
+"Commerce de gros (entre entreprises)",
+"Déchets, recyclage, assainissement"
 ],
 "CAP constructeur de routes et d'aménagements urbains": [
 "Travaux publics, routes, réseaux",
@@ -144,10 +150,12 @@
 "Hôtels",
 "Restauration rapide",
 "Traiteurs",
-"Cafés, bars"
+"Cafés, bars",
+"Personnes âgées (EHPAD, résidences)"
 ],
 "CAP décoration en céramique": [
-"Céramique, verre d'art, instruments de musique"
+"Céramique, verre d'art, instruments de musique",
+"Plastique, verre, matériaux"
 ],
 "CAP employé technique de laboratoire": [
 "Hôpitaux, cliniques, laboratoires",
@@ -156,7 +164,8 @@
 "CAP esthétique cosmétique parfumerie": [
 "Esthétique, soins de beauté",
 "Parfumerie, cosmétiques",
-"Coiffure"
+"Coiffure",
+"Pharmacie, optique, prothèses"
 ],
 "CAP ferronnier d'art": [
 "Chaudronnerie, soudure, structures métalliques",
@@ -173,7 +182,8 @@
 "Bijouterie, horlogerie"
 ],
 "CAP industries chimiques": [
-"Chimie, pharmacie, cosmétiques, papier"
+"Chimie, pharmacie, cosmétiques, papier",
+"Plastique, verre, matériaux"
 ],
 "CAP installateur en froid et conditionnement d'air": [
 "Plomberie, chauffage, climatisation, froid",
@@ -184,7 +194,10 @@
 "Électricité du bâtiment",
 "Plomberie, chauffage, climatisation, froid",
 "Agences immobilières, gestion de logements",
-"Mairies, administrations"
+"Mairies, administrations",
+"Nettoyage, propreté",
+"Peinture, plâtre, carrelage, sols, isolation",
+"Personnes âgées (EHPAD, résidences)"
 ],
 "CAP maintenance des matériels option A matériels agricoles": [
 "Matériels agricoles, engins de chantier"
@@ -204,7 +217,8 @@
 ],
 "CAP maintenance des véhicules option véhicules de transport routier": [
 "Poids lourds, utilitaires",
-"Transport de voyageurs"
+"Transport de voyageurs",
+"Transport de marchandises, livraison"
 ],
 "CAP maintenance des véhicules option véhicules légers": [
 "Garages, carrosseries (voitures)",
@@ -212,10 +226,13 @@
 ],
 "CAP mareyage": [
 "Boucherie, charcuterie, poissonnerie",
-"Supermarchés, grandes surfaces"
+"Supermarchés, grandes surfaces",
+"Commerce de gros (entre entreprises)",
+"Industrie agroalimentaire"
 ],
 "CAP maroquinerie": [
-"Cuir, maroquinerie, cordonnerie"
+"Cuir, maroquinerie, cordonnerie",
+"Couture, confection"
 ],
 "CAP maçon": [
 "Construction, maçonnerie, gros œuvre",
@@ -258,7 +275,8 @@
 "Hôpitaux, cliniques, laboratoires"
 ],
 "CAP métiers de l'entretien des textiles option B pressing": [
-"Pressing, blanchisserie, retouches"
+"Pressing, blanchisserie, retouches",
+"Hôtels"
 ],
 "CAP métiers de la coiffure": [
 "Coiffure"
@@ -270,13 +288,11 @@
 ],
 "CAP métiers de la mode - vêtement flou": [
 "Couture, confection",
-"Pressing, blanchisserie, retouches",
-"Vêtements, chaussures, accessoires"
+"Pressing, blanchisserie, retouches"
 ],
 "CAP métiers de la mode - vêtement tailleur": [
 "Couture, confection",
-"Pressing, blanchisserie, retouches",
-"Vêtements, chaussures, accessoires"
+"Pressing, blanchisserie, retouches"
 ],
 "CAP opérateur en appareillage orthopédique-spécialité orthoprothèse": [
 "Pharmacie, optique, prothèses",
@@ -289,7 +305,8 @@
 "CAP opérateur, opératrice logistique": [
 "Entrepôts, logistique",
 "Transport de marchandises, livraison",
-"Supermarchés, grandes surfaces"
+"Supermarchés, grandes surfaces",
+"Commerce de gros (entre entreprises)"
 ],
 "CAP outillages en outils à découper et à emboutir": [
 "Usinage, mécanique, outillage",
@@ -316,7 +333,9 @@
 "Chocolaterie, confiserie, glaces",
 "Traiteurs",
 "Restaurants",
-"Hôtels"
+"Hôtels",
+"Supermarchés, grandes surfaces",
+"Industrie agroalimentaire"
 ],
 "CAP réalisations industrielles en chaudronnerie ou soudage option A chaudronnerie": [
 "Chaudronnerie, soudure, structures métalliques",
@@ -342,7 +361,8 @@
 "CAP sérigraphie industrielle": [
 "Imprimerie, prépresse, reliure",
 "Publicité, design graphique",
-"Couture, confection"
+"Couture, confection",
+"Enseignes, signalétique, marquage"
 ],
 "CAP tailleur de pierre": [
 "Construction, maçonnerie, gros œuvre"
@@ -365,21 +385,22 @@
 ],
 "CAP électricien": [
 "Électricité du bâtiment",
-"Maintenance d'équipements, ascenseurs"
+"Maintenance d'équipements, ascenseurs",
+"Production et distribution d'énergie"
 ],
 "CAP équipier polyvalent du commerce": [
 "Supermarchés, grandes surfaces",
 "Supérettes, alimentation générale",
 "Magasins spécialisés (bricolage, maison, sport, high-tech…)",
-"Vêtements, chaussures, accessoires"
+"Vêtements, chaussures, accessoires",
+"Commerce de gros (entre entreprises)"
 ],
 "CAPa jardinier-paysagiste": [
 "Paysagistes, espaces verts",
 "Mairies, administrations"
 ],
 "CAPa métiers de l'agriculture": [
-"Horticulture, maraîchage, agriculture",
-"Fleuristes, jardineries"
+"Horticulture, maraîchage, agriculture"
 ],
 "bac pro accompagnement, soins et services à la personne": [
 "Personnes âgées (EHPAD, résidences)",
@@ -390,11 +411,13 @@
 ],
 "bac pro aménagement et finition du bâtiment": [
 "Peinture, plâtre, carrelage, sols, isolation",
-"Menuiserie, agencement, serrurerie"
+"Menuiserie, agencement, serrurerie",
+"Construction, maçonnerie, gros œuvre"
 ],
 "bac pro aménagements paysagers": [
 "Paysagistes, espaces verts",
-"Mairies, administrations"
+"Mairies, administrations",
+"Horticulture, maraîchage, agriculture"
 ],
 "bac pro animation-enfance et personnes âgées": [
 "Loisirs, animation",
@@ -406,7 +429,8 @@
 "bac pro artisanat et métiers d'art option communication visuelle plurimédia": [
 "Publicité, design graphique",
 "Imprimerie, prépresse, reliure",
-"Photographie"
+"Photographie",
+"Enseignes, signalétique, marquage"
 ],
 "bac pro artisanat et métiers d'art option marchandisage visuel": [
 "Vêtements, chaussures, accessoires",
@@ -417,7 +441,7 @@
 "bac pro artisanat et métiers d'art option métiers de l'enseigne et de la signalétique": [
 "Enseignes, signalétique, marquage",
 "Imprimerie, prépresse, reliure",
-"Publicité, design graphique"
+"Céramique, verre d'art, instruments de musique"
 ],
 "bac pro artisanat et métiers d'art option tapissier d'ameublement": [
 "Tapisserie, décoration textile",
@@ -433,7 +457,9 @@
 "Secrétariat, accueil, centres d'appels",
 "Banques, assurances",
 "Agences immobilières, gestion de logements",
-"Intérim, recrutement"
+"Intérim, recrutement",
+"Associations (animation, solidarité)",
+"Commerce de gros (entre entreprises)"
 ],
 "bac pro aviation générale": [
 "Aéronautique"
@@ -444,26 +470,33 @@
 ],
 "bac pro aéronautique option structure": [
 "Aéronautique",
-"Chaudronnerie, soudure, structures métalliques"
+"Chaudronnerie, soudure, structures métalliques",
+"Usinage, mécanique, outillage"
 ],
 "bac pro aéronautique option systèmes": [
 "Aéronautique",
-"Usinage, mécanique, outillage"
+"Usinage, mécanique, outillage",
+"Électronique, matériel électrique"
 ],
 "bac pro boulanger-pâtissier": [
 "Boulangerie, pâtisserie",
 "Chocolaterie, confiserie, glaces",
-"Traiteurs"
+"Traiteurs",
+"Supermarchés, grandes surfaces",
+"Industrie agroalimentaire"
 ],
 "bac pro carrossier peintre automobile": [
 "Garages, carrosseries (voitures)",
-"Poids lourds, utilitaires"
+"Poids lourds, utilitaires",
+"Concessionnaires, vente de véhicules et pièces"
 ],
 "bac pro commercialisation et services en restauration": [
 "Restaurants",
 "Hôtels",
 "Cafés, bars",
-"Restauration collective (cantines, entreprises)"
+"Restauration collective (cantines, entreprises)",
+"Restauration rapide",
+"Traiteurs"
 ],
 "bac pro conducteur routier de marchandises": [
 "Transport de marchandises, livraison",
@@ -472,7 +505,8 @@
 "bac pro conduite de productions horticoles (arbres, arbustes, fruits, fleurs, légumes)": [
 "Horticulture, maraîchage, agriculture",
 "Fleuristes, jardineries",
-"Paysagistes, espaces verts"
+"Paysagistes, espaces verts",
+"Mairies, administrations"
 ],
 "bac pro construction et aménagement de véhicules": [
 "Poids lourds, utilitaires",
@@ -506,11 +540,14 @@
 "bac pro géomètre": [
 "Géomètres-experts, topographie",
 "Bureaux d'études, économistes de la construction",
-"Travaux publics, routes, réseaux"
+"Travaux publics, routes, réseaux",
+"Mairies, administrations"
 ],
 "bac pro hygiène, propreté, stérilisation": [
 "Nettoyage, propreté",
-"Hôpitaux, cliniques, laboratoires"
+"Hôpitaux, cliniques, laboratoires",
+"Personnes âgées (EHPAD, résidences)",
+"Mairies, administrations"
 ],
 "bac pro installateur en chauffage, climatisation et énergies renouvelables": [
 "Plomberie, chauffage, climatisation, froid",
@@ -525,9 +562,9 @@
 "Construction, maçonnerie, gros œuvre"
 ],
 "bac pro laboratoire contrôle qualité": [
-"Hôpitaux, cliniques, laboratoires",
 "Chimie, pharmacie, cosmétiques, papier",
-"Industrie agroalimentaire"
+"Industrie agroalimentaire",
+"Déchets, recyclage, assainissement"
 ],
 "bac pro maintenance des matériels option A matériels agricoles": [
 "Matériels agricoles, engins de chantier"
@@ -539,14 +576,17 @@
 ],
 "bac pro maintenance des matériels option C matériels d'espaces verts": [
 "Matériels agricoles, engins de chantier",
-"Paysagistes, espaces verts"
+"Paysagistes, espaces verts",
+"Mairies, administrations"
 ],
 "bac pro maintenance des systèmes de production connectés": [
 "Maintenance d'équipements, ascenseurs",
 "Usinage, mécanique, outillage",
 "Électronique, matériel électrique",
 "Industrie agroalimentaire",
-"Chimie, pharmacie, cosmétiques, papier"
+"Chimie, pharmacie, cosmétiques, papier",
+"Aéronautique",
+"Chaudronnerie, soudure, structures métalliques"
 ],
 "bac pro maintenance des véhicules option motocycles": [
 "Motos, scooters",
@@ -554,7 +594,8 @@
 ],
 "bac pro maintenance des véhicules option véhicules de transport routier": [
 "Poids lourds, utilitaires",
-"Transport de voyageurs"
+"Transport de voyageurs",
+"Transport de marchandises, livraison"
 ],
 "bac pro maintenance des véhicules option véhicules légers": [
 "Garages, carrosseries (voitures)",
@@ -580,7 +621,9 @@
 "bac pro modélisation et prototypage 3D": [
 "Usinage, mécanique, outillage",
 "Bureaux d'études, économistes de la construction",
-"Plastique, verre, matériaux"
+"Plastique, verre, matériaux",
+"Aéronautique",
+"Ébénisterie, meubles, restauration de meubles"
 ],
 "bac pro métiers de l'accueil": [
 "Secrétariat, accueil, centres d'appels",
@@ -588,13 +631,17 @@
 "Mairies, administrations",
 "Spectacle, musées, bibliothèques",
 "Supermarchés, grandes surfaces",
-"Banques, assurances"
+"Banques, assurances",
+"Hôpitaux, cliniques, laboratoires",
+"Agences immobilières, gestion de logements",
+"Transport de voyageurs"
 ],
 "bac pro métiers de l'électricité et de ses environnements connectés": [
 "Électricité du bâtiment",
 "Maintenance d'équipements, ascenseurs",
 "Télécommunications",
-"Production et distribution d'énergie"
+"Production et distribution d'énergie",
+"Travaux publics, routes, réseaux"
 ],
 "bac pro métiers de la coiffure": [
 "Coiffure"
@@ -602,16 +649,18 @@
 "bac pro métiers de la couture et de la confection": [
 "Couture, confection",
 "Pressing, blanchisserie, retouches",
-"Vêtements, chaussures, accessoires"
+"Tapisserie, décoration textile",
+"Cuir, maroquinerie, cordonnerie"
 ],
 "bac pro métiers de la logistique": [
 "Entrepôts, logistique",
 "Transport de marchandises, livraison",
-"Supermarchés, grandes surfaces"
+"Supermarchés, grandes surfaces",
+"Commerce de gros (entre entreprises)",
+"Hôpitaux, cliniques, laboratoires"
 ],
 "bac pro métiers de la mode – vêtement": [
-"Couture, confection",
-"Vêtements, chaussures, accessoires"
+"Couture, confection"
 ],
 "bac pro métiers de la sécurité": [
 "Sécurité privée, surveillance",
@@ -621,21 +670,23 @@
 "Supermarchés, grandes surfaces",
 "Magasins spécialisés (bricolage, maison, sport, high-tech…)",
 "Vêtements, chaussures, accessoires",
-"Supérettes, alimentation générale"
+"Supérettes, alimentation générale",
+"Parfumerie, cosmétiques"
 ],
 "bac pro métiers du commerce et de la vente option B prospection clientèle et valorisation de l'offre commerciale": [
 "Commerce de gros (entre entreprises)",
 "Magasins spécialisés (bricolage, maison, sport, high-tech…)",
 "Concessionnaires, vente de véhicules et pièces",
 "Agences immobilières, gestion de logements",
-"Banques, assurances"
+"Secrétariat, accueil, centres d'appels"
 ],
 "bac pro métiers du cuir option maroquinerie": [
 "Cuir, maroquinerie, cordonnerie"
 ],
 "bac pro métiers du froid et des énergies renouvelables": [
 "Plomberie, chauffage, climatisation, froid",
-"Maintenance d'équipements, ascenseurs"
+"Maintenance d'équipements, ascenseurs",
+"Production et distribution d'énergie"
 ],
 "bac pro optique lunetterie": [
 "Pharmacie, optique, prothèses"
@@ -654,7 +705,8 @@
 ],
 "bac pro perruquier posticheur": [
 "Coiffure",
-"Spectacle, musées, bibliothèques"
+"Spectacle, musées, bibliothèques",
+"Audiovisuel, cinéma, son"
 ],
 "bac pro photographie": [
 "Photographie",
@@ -665,12 +717,15 @@
 "Usinage, mécanique, outillage",
 "Industrie agroalimentaire",
 "Chimie, pharmacie, cosmétiques, papier",
-"Plastique, verre, matériaux"
+"Plastique, verre, matériaux",
+"Électronique, matériel électrique"
 ],
 "bac pro procédés de la chimie, de l'eau et des papiers-cartons": [
 "Chimie, pharmacie, cosmétiques, papier",
 "Production et distribution d'énergie",
-"Déchets, recyclage, assainissement"
+"Déchets, recyclage, assainissement",
+"Plastique, verre, matériaux",
+"Industrie agroalimentaire"
 ],
 "bac pro production en industries pharmaceutiques, alimentaires et cosmétiques": [
 "Chimie, pharmacie, cosmétiques, papier",
@@ -678,20 +733,24 @@
 ],
 "bac pro réalisation de produits imprimés et plurimédia option A productions graphiques": [
 "Imprimerie, prépresse, reliure",
-"Publicité, design graphique"
+"Publicité, design graphique",
+"Enseignes, signalétique, marquage"
 ],
 "bac pro réalisation de produits imprimés et plurimédia option B productions imprimées": [
-"Imprimerie, prépresse, reliure"
+"Imprimerie, prépresse, reliure",
+"Enseignes, signalétique, marquage"
 ],
 "bac pro technicien conseil vente en alimentation (produits alimentaires et boissons)": [
 "Primeur, fromagerie, épicerie fine, cave",
 "Supermarchés, grandes surfaces",
 "Supérettes, alimentation générale",
-"Boucherie, charcuterie, poissonnerie"
+"Boucherie, charcuterie, poissonnerie",
+"Boulangerie, pâtisserie"
 ],
 "bac pro technicien conseil vente univers jardinerie": [
 "Fleuristes, jardineries",
-"Magasins spécialisés (bricolage, maison, sport, high-tech…)"
+"Magasins spécialisés (bricolage, maison, sport, high-tech…)",
+"Horticulture, maraîchage, agriculture"
 ],
 "bac pro technicien constructeur bois": [
 "Menuiserie, agencement, serrurerie",
@@ -700,11 +759,13 @@
 "bac pro technicien d'études du bâtiment option A études et économie": [
 "Bureaux d'études, économistes de la construction",
 "Architectes",
-"Construction, maçonnerie, gros œuvre"
+"Construction, maçonnerie, gros œuvre",
+"Mairies, administrations"
 ],
 "bac pro technicien d'études du bâtiment option B assistant en architecture": [
 "Architectes",
-"Bureaux d'études, économistes de la construction"
+"Bureaux d'études, économistes de la construction",
+"Mairies, administrations"
 ],
 "bac pro technicien de fabrication bois et matériaux associés": [
 "Menuiserie, agencement, serrurerie",
@@ -716,14 +777,16 @@
 ],
 "bac pro technicien en chaudronnerie industrielle": [
 "Chaudronnerie, soudure, structures métalliques",
-"Usinage, mécanique, outillage"
+"Usinage, mécanique, outillage",
+"Aéronautique"
 ],
 "bac pro technicien en prothèse dentaire": [
 "Pharmacie, optique, prothèses"
 ],
 "bac pro technicien en réalisation de produits mécaniques option réalisation et maintenance des outillages": [
 "Usinage, mécanique, outillage",
-"Chaudronnerie, soudure, structures métalliques"
+"Chaudronnerie, soudure, structures métalliques",
+"Plastique, verre, matériaux"
 ],
 "bac pro technicien en réalisation de produits mécaniques option réalisation et suivi de productions": [
 "Usinage, mécanique, outillage",
@@ -740,7 +803,9 @@
 "bac pro traitements des matériaux": [
 "Chaudronnerie, soudure, structures métalliques",
 "Usinage, mécanique, outillage",
-"Plastique, verre, matériaux"
+"Plastique, verre, matériaux",
+"Aéronautique",
+"Bijouterie, horlogerie"
 ],
 "bac pro travaux publics": [
 "Travaux publics, routes, réseaux",
