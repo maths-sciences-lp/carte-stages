@@ -1,0 +1,1 @@
+30 académies : diplômes et lieux sourcés, poursuites citées, régions respectées ; 9634 lignes Parcoursup conformes aux sources ; ambiguïtés absentes ; JSON historiques et commun/ inchangés.

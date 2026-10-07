@@ -7,7 +7,9 @@ Parcoursup quand le BTS est le même (même spécialité, même option ou 1re an
 et que la formation est sur le même site (moins de 100 m), ou à moins de 2 km avec un nom
 d'établissement proche.
 
-Usage : python3 source/parcoursup.py  ->  formation/parcoursup.json
+Usage historique : python3 source/parcoursup.py  ->  formation/parcoursup.json
+National : python3 source/parcoursup.py --academies toutes --cache CACHE
+Les noms différents exigent une décision documentée dans formation_parcoursup_revues.json.
 Clé : « <n° Onisep formation>|<n° Onisep établissement> » (fin des liens f.o et e.o).
 Valeurs : pl places, c candidats, a admis, bp admis venant d'un bac pro, g n° de la fiche Parcoursup
 (g_ta_cod),
@@ -93,42 +95,51 @@ def nom_proche(a, b, d):
     return bool(commun - PRENOMS or commun in (A, B)) and len(commun) / min(len(A), len(B)) >= 0.5
 
 
-jeu, session = jeu_recent()
-lignes = get(API + jeu + '/exports/json',
-             where='fili="BTS" and dep in (%s)' % ','.join('"%s"' % d for d in IDF))
-lignes = [r for r in lignes if r.get('g_olocalisation_des_formations')]
-print('Parcoursup', session, ':', len(lignes), 'formations BTS en Île-de-France')
+def historique():
+    jeu, session = jeu_recent()
+    lignes = get(API + jeu + '/exports/json',
+                 where='fili="BTS" and dep in (%s)' % ','.join('"%s"' % d for d in IDF))
+    lignes = [r for r in lignes if r.get('g_olocalisation_des_formations')]
+    print('Parcoursup', session, ':', len(lignes), 'formations BTS en Île-de-France')
 
-D = json.load(open(FORM, encoding='utf-8'))
-out, total, relies = {}, 0, 0
-for f in D['suites'].values():
-    if not f['n'].startswith('BTS'):
-        continue
-    cands = [r for r in lignes if meme_bts(f['n'], r['fil_lib_voe_acc'])]
-    for e in f['e']:
-        total += 1
-        best = None
-        for r in cands:
-            g = r['g_olocalisation_des_formations']
-            d = km(e['lat'], e['lon'], g['lat'], g['lon'])
-            if d < 0.1 or (d < 2 and nom_proche(e['n'], r['g_ea_lib_vx'], d)):
-                if best is None or d < best[0]:
-                    best = (d, r)
-        if not best:
+    D = json.load(open(FORM, encoding='utf-8'))
+    out, total, relies = {}, 0, 0
+    for f in D['suites'].values():
+        if not f['n'].startswith('BTS'):
             continue
-        r = best[1]
-        relies += 1
-        cle = f['o'].rsplit('.', 1)[-1] + '|' + e['o'].rsplit('.', 1)[-1]
-        out[cle] = dict(pl=r['capa_fin'], c=r['voe_tot'], a=r['acc_tot'], bp=r['acc_bp'],
-                        g=None)
-        m = re.search(r'g_ta_cod=(\d+)', r['lien_form_psup'] or '')
-        if m:
-            out[cle]['g'] = int(m.group(1))
-        else:
-            del out[cle]['g']
-        if decoupe(f['n'])[1] and decoupe(r['fil_lib_voe_acc'])[1] in ('*', ''):
-            out[cle]['co'] = 1      # chiffres de la 1re année, commune à toutes les options
+        cands = [r for r in lignes if meme_bts(f['n'], r['fil_lib_voe_acc'])]
+        for e in f['e']:
+            total += 1
+            best = None
+            for r in cands:
+                g = r['g_olocalisation_des_formations']
+                d = km(e['lat'], e['lon'], g['lat'], g['lon'])
+                if d < 0.1 or (d < 2 and nom_proche(e['n'], r['g_ea_lib_vx'], d)):
+                    if best is None or d < best[0]:
+                        best = (d, r)
+            if not best:
+                continue
+            r = best[1]
+            relies += 1
+            cle = f['o'].rsplit('.', 1)[-1] + '|' + e['o'].rsplit('.', 1)[-1]
+            out[cle] = dict(pl=r['capa_fin'], c=r['voe_tot'], a=r['acc_tot'], bp=r['acc_bp'],
+                            g=None)
+            m = re.search(r'g_ta_cod=(\d+)', r['lien_form_psup'] or '')
+            if m:
+                out[cle]['g'] = int(m.group(1))
+            else:
+                del out[cle]['g']
+            if decoupe(f['n'])[1] and decoupe(r['fil_lib_voe_acc'])[1] in ('*', ''):
+                out[cle]['co'] = 1      # chiffres de la 1re année, commune à toutes les options
 
-json.dump({'session': session, 'f': out}, open(SORTIE, 'w', encoding='utf-8'),
-          ensure_ascii=False, separators=(',', ':'))
-print('lieux de BTS', total, '· reliés à Parcoursup', relies, '·', os.path.getsize(SORTIE) // 1024, 'ko')
+    json.dump({'session': session, 'f': out}, open(SORTIE, 'w', encoding='utf-8'),
+              ensure_ascii=False, separators=(',', ':'))
+    print('lieux de BTS', total, '· reliés à Parcoursup', relies, '·', os.path.getsize(SORTIE) // 1024, 'ko')
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) == 1:
+        historique()
+    else:
+        from formation_parcoursup import main
+        main()

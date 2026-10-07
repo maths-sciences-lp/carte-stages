@@ -1,0 +1,9 @@
+lyon : adresse directe, GPS simulé, ville BAN réelle, changer ; diplôme, lycée et poursuites vérifiés après chaque choix ; URL et rechargement OK
+lille : adresse directe, GPS simulé, ville BAN réelle, changer ; diplôme, lycée et poursuites vérifiés après chaque choix ; URL et rechargement OK
+aix-marseille : adresse directe, GPS simulé, ville BAN réelle, changer ; diplôme, lycée et poursuites vérifiés après chaque choix ; URL et rechargement OK
+rennes : adresse directe, GPS simulé, ville BAN réelle, changer ; diplôme, lycée et poursuites vérifiés après chaque choix ; URL et rechargement OK
+la-reunion : adresse directe, GPS simulé, ville BAN réelle, changer ; diplôme, lycée et poursuites vérifiés après chaque choix ; URL et rechargement OK
+Entrée France et mémoire commune ; /formation/ sans sélecteur ; 11 liens Hénaff : OK
+30 adresses directes : académie, diplôme, lycée, poursuites et absence de débordement horizontal OK
+Stockage bloqué et GPS refusé : repli ville/choix manuel OK
+375 px ; console : aucune erreur.
