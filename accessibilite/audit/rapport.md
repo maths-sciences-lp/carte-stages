@@ -10,7 +10,7 @@ VoiceOver, déjà intégré à macOS, a été activé puis désactivé dans les 
 
 Un critère est NC dès qu’un élément applicable de l’échantillon échoue. Les NA sont exclus. Les vérifications vocales non validées sont conservées NC. Les fractions ci-dessous sont exactes, sans arrondi.
 
-- **Avant, après adjudication** : 39 C, 24 NC, 43 NA ; 39/63 × 100 = **1300/21 %**. Ce comptage de constats ne remplace pas le taux d’un audit RGAA complet.
+- **Avant, après adjudication** : 39 C, 24 NC, 43 NA ; 39/63 × 100 = **1300/21 %** (environ 61,9 %). Ce comptage de constats ne remplace pas le taux d’un audit RGAA complet.
 - **Après** : 50 C, 14 NC, 42 NA ; 50/64 × 100 = **78,125 %** (625/8 %, valeur exacte). Ce comptage de constats ne remplace pas le taux d’un audit RGAA complet.
 
 L’adjudication de l’état initial corrige quatre classifications de la grille de travail, sans prétendre qu’il s’agit d’améliorations du code : titres nationaux déjà corrects (8.6), pertinence des étiquettes existantes (11.2), emojis accompagnés de texte (13.5), finalité des champs adresse/ville incorrectement marquée conforme (11.13). L’état initial figé reste disponible pour la traçabilité.
