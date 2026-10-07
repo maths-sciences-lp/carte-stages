@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Qui peut m’aider ?</title>
-<meta name="description" content="Les lieux gratuits qui aident les jeunes de l’académie de Créteil : CIO, missions locales, Info Jeunes et maisons des adolescents, du plus proche au plus éloigné.">
+<meta name="description" content="Les lieux gratuits qui aident les jeunes de l’académie de Créteil : CIO, missions locales, Info Jeunes, bibliothèques et maisons des adolescents, du plus proche au plus éloigné.">
 <link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -35,7 +35,7 @@ input[type=text]{flex:1;min-width:200px;padding:11px 12px;border:2px solid var(-
 .li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:10px 0}
 .li h3{margin:6px 0 2px;font-size:18px}.li .m{color:var(--mute);font-size:15px}
 .ty{display:inline-block;font-size:13px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--ink);color:#fff}
-.ty.ml{background:var(--ok)}.ty.ij{background:#7a4f9a}.ty.mda{background:#a2462f}
+.ty.ml{background:var(--ok)}.ty.ij{background:#7a4f9a}.ty.mda{background:#a2462f}.ty.bib{background:#8a6d1f}
 .li .row{margin-top:8px}.li .btn{padding:8px 12px;font-size:15px}
 .li details{font-size:15px;color:var(--mute);margin-top:4px}.li summary{cursor:pointer}
 #map{height:380px;border-radius:16px;border:1px solid var(--line);margin:10px 0}
@@ -90,7 +90,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
 </section>
 
 <footer>
- Données : CIO, missions locales et Info Jeunes : <a href="https://lannuaire.service-public.gouv.fr" target="_blank" rel="noopener">annuaire de l’administration</a> (Service-public.fr, octobre 2026) · maisons des adolescents : liste de l’<a href="https://www.iledefrance.ars.sante.fr/les-maisons-des-adolescents-en-ile-de-france-mda" target="_blank" rel="noopener">ARS Île-de-France</a> et fiches de l’<a href="https://anmda.fr/fr/annuaire-mda" target="_blank" rel="noopener">Association nationale des maisons des adolescents</a> · collèges : annuaire de l’Éducation nationale · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Horaires indicatifs : vérifie sur la fiche du lieu ou par téléphone.<br>
+ Données : CIO, missions locales et Info Jeunes : <a href="https://lannuaire.service-public.gouv.fr" target="_blank" rel="noopener">annuaire de l’administration</a> (Service-public.fr, octobre 2026) · bibliothèques municipales et intercommunales : <a href="https://www.data.gouv.fr/datasets/adresses-des-bibliotheques-publiques-2" target="_blank" rel="noopener">ministère de la Culture</a> (enquête 2023 : places, ordinateurs, wifi ; accès libre et gratuit garanti par la loi du 21 décembre 2021) · maisons des adolescents : liste de l’<a href="https://www.iledefrance.ars.sante.fr/les-maisons-des-adolescents-en-ile-de-france-mda" target="_blank" rel="noopener">ARS Île-de-France</a> et fiches de l’<a href="https://anmda.fr/fr/annuaire-mda" target="_blank" rel="noopener">Association nationale des maisons des adolescents</a> · collèges : annuaire de l’Éducation nationale · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Horaires indicatifs : vérifie sur la fiche du lieu ou par téléphone.<br>
  Statistiques de visite anonymes, sans cookie. · <a href="../accueil/">Tous les outils</a> · <a href="../">Trouve ton stage</a> · <a href="../apres-3e/">Après le collège</a> · <a href="../formation/">Après le lycée</a> · <a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>
  Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
  © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
@@ -108,13 +108,14 @@ const SIT=[
  {k:'cio',i:'🧭',t:'CIO',n:'Je ne sais pas quoi faire après la 3e ou après le lycée',s:'Centre d’information et d’orientation : un psychologue de l’Éducation nationale t’aide à choisir. Avec ou sans tes parents.'},
  {k:'ml',i:'🤝',t:'Mission locale',n:'J’ai entre 16 et 25 ans, j’ai quitté l’école ou je cherche un apprentissage, un emploi',s:'Mission locale : un conseiller t’accompagne pour la formation, l’emploi, le logement, la santé.'},
  {k:'ij',i:'ℹ️',t:'Info Jeunes',n:'Je cherche des infos : job, logement, santé, loisirs, partir à l’étranger',s:'Info Jeunes, pour les 13-25 ans : un service neutre et personnalisé.'},
+ {k:'bib',i:'📚',t:'Bibliothèque',n:'Je cherche un endroit calme pour travailler ou réviser',s:'Bibliothèques et médiathèques publiques : entrée libre et gratuite, des places pour travailler, souvent le wifi et des ordinateurs.'},
  {k:'mda',i:'💬',t:'Maison des adolescents',n:'Ça ne va pas, j’ai besoin de parler à quelqu’un',s:'Maison des adolescents : écoute et soutien, confidentiel, pour les jeunes et leurs parents.'},
 ];
 const TY=Object.fromEntries(SIT.map(s=>[s.k,s.t]));
 const DEPS=['Seine-Saint-Denis','Val-de-Marne','Seine-et-Marne'];
 let D=null, sit=null, dep=null, offD=new Set(), nmax=8, map=null, layer=null;
 function drawSit(){$('doms').innerHTML=SIT.map(d=>`<button class="dom" data-k="${d.k}" aria-pressed="${sit===d.k}"><span class="e">${d.i}</span><span><b>${esc(d.n)}</b><span>${esc(d.s)}</span></span></button>`).join('')+
- `<button class="dom" data-k="tout" aria-pressed="${sit==='tout'}"><span class="e">📋</span><span><b>Je veux voir tous les lieux</b><span>CIO, missions locales, Info Jeunes et maisons des adolescents</span></span></button>`;
+ `<button class="dom" data-k="tout" aria-pressed="${sit==='tout'}"><span class="e">📋</span><span><b>Je veux voir tous les lieux</b><span>CIO, missions locales, Info Jeunes, bibliothèques et maisons des adolescents</span></span></button>`;
  $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{sit=b.dataset.k;nmax=8;drawSit();history.replaceState(null,'','#'+sit);stat('situation/'+sit,b.querySelector('b').textContent);show(true);});}
 function lieux(){return D.lieux.filter(l=>(sit==='tout'||l.t===sit)&&!offD.has(l.dep)).map(l=>({l,d:dep?km(dep.lat,dep.lon,l.lat,l.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.l.v.localeCompare(b.l.v));}
 function chips(){$('fdep').innerHTML=DEPS.map(k=>`<button class="chip" data-d="${k}" aria-pressed="${!offD.has(k)}">${k}</button>`).join('');
@@ -125,6 +126,7 @@ function lieuHTML({l,d}){const o=dep?`&origin=${dep.lat},${dep.lon}`:'';
  return `<div class="li"><span class="ty ${l.t}">${esc(TY[l.t])}</span><h3>${esc(l.n)}</h3>
  <div class="m">${d!==null?'📍 <b>'+fmt(d)+' km</b> · ':''}${esc(l.a)}, ${esc(l.cp)} ${esc(l.v)}</div>
  ${l.pub?`<div class="m">👥 ${esc(l.pub)}</div>`:''}
+ ${l.t==='bib'&&(l.pl||l.po||l.wifi||l.dim)?`<div class="m">${[l.pl?'🪑 '+l.pl+' places':'',l.po?'💻 '+l.po+' ordinateur'+(l.po>1?'s':''):'',l.wifi?'📶 wifi':'',l.dim?'ouvert le dimanche':''].filter(Boolean).join(' · ')} <span style="font-size:13px">(enquête 2023)</span></div>`:''}
  ${l.h&&l.h.length?`<details><summary>🕘 Horaires</summary>${l.h.map(esc).join('<br>')}</details>`:''}
  <div class="row">${l.tel?`<a class="btn" href="tel:${esc(l.tel.replace(/\s/g,''))}" data-s="appel">📞 ${esc(l.tel)}</a>`:''}<a class="btn light" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a>${l.w?`<a class="btn light" href="${esc(/^http/.test(l.w)?l.w:'https://'+l.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}${fiche?`<a class="btn light" href="${esc(fiche)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche</a>`:''}</div></div>`;}
 function show(scroll){if(!D||!sit)return;$('aide').hidden=true;$('res').hidden=false;chips();
@@ -159,6 +161,6 @@ $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton tél
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
 document.querySelectorAll('a.tel').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Appel : '+a.dataset.s)));
 drawSit();
-fetch('aide.json?v=2026-10-07').then(r=>r.json()).then(d=>{D=d;const k=location.hash.slice(1);if(k&&(k==='tout'||SIT.some(x=>x.k===k))){sit=k;drawSit();show(false);}});
+fetch('aide.json?v=2026-10-07b').then(r=>r.json()).then(d=>{D=d;const k=location.hash.slice(1);if(k&&(k==='tout'||SIT.some(x=>x.k===k))){sit=k;drawSit();show(false);}});
 </script>
 </body></html>

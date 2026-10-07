@@ -1,4 +1,5 @@
-"""« Qui peut m'aider ? » : lieux d'aide aux jeunes de l'académie de Créteil (77, 93, 94).
+"""« Qui peut m'aider ? » : lieux d'aide aux jeunes de l'académie de Créteil (77, 93, 94),
+et bibliothèques pour travailler au calme (voir plus bas).
 
 Missions locales, CIO et Info Jeunes : annuaire de l'administration (Service-public.fr, DILA),
 API api-lannuaire.service-public.fr. Les noms des agents (affectation_personne) ne sont jamais lus.
@@ -96,6 +97,65 @@ for r in telecharge():
                       h=horaires(r['plage_ouverture']), sp=r['url_service_public'], maj=r['date_modification'][:10]))
 for m in MDA:
     lieux.append(dict(t='mda', dep=DEPS[m['cp'][:2]], **{k: v for k, v in m.items()}))
+
+# Bibliothèques : ministère de la Culture, « Les bibliothèques des collectivités territoriales :
+# adresses et données d'activité » (enquête annuelle, data.gouv.fr). Seules les bibliothèques
+# municipales et intercommunales sont gardées : la loi du 21 décembre 2021 y garantit l'accès libre
+# et la consultation sur place gratuite. Les points ouverts moins de 4 h par semaine sont écartés.
+BIB = 'https://static.data.gouv.fr/resources/adresses-des-bibliotheques-publiques-2/20250827-130724/adresses-des-bibliotheques-publiques.json'
+
+def nombre(x):
+    try:
+        return float(str(x).replace(',', '.'))
+    except (TypeError, ValueError):
+        return None
+
+PETITS = {'de', 'du', 'des', 'la', 'le', 'les', 'et', 'sur', 'en', 'au', 'aux', 'sous', 'bis', 'ter'}
+
+def casse(t):
+    """Mots en capitales (souvent dans l'enquête) remis en casse normale ; le reste est gardé tel quel."""
+    def mot(m):
+        w = m.group(0)
+        if not (w.isupper() and len(w) > 1):
+            return w
+        w = w.lower()
+        return w if w in PETITS else w[0].upper() + w[1:]
+    t = re.sub(r"[A-Za-zÀ-ÖØ-öø-ÿ]+", mot, t or '')
+    t = re.sub(r"\b([Dd]|[Ll])'(?=\w)", lambda m: m.group(1).lower() + "'", t)
+    return re.sub(r'^\w', lambda m: m.group(0).upper(), re.sub(r'\s+', ' ', t).strip())
+
+def nom_bib(n, ville):
+    n = casse(n)
+    n = re.sub(r'\bBiblioth[eè]que\b', 'Bibliothèque', n, flags=re.I)
+    n = re.sub(r'\bM[eé]diath[eè]que\b', 'Médiathèque', n, flags=re.I)
+    n = re.sub(r" (De|Des|Du|Et|La|Le|Les|Au|Aux) ", lambda m: ' ' + m.group(1).lower() + ' ', n)
+    n = re.sub(r" D'", " d'", n).strip()
+    n = re.sub(r'^(Bibliothèque|Médiathèque)( Municipale| Intercommunale| Territoriale| Centrale)\b', lambda m: m.group(1) + m.group(2).lower(), n)
+    if not re.sub(r"(?i)biblioth[eè]que|m[eé]diath[eè]que|municipale|intercommunale|territoriale|centrale|de la ville|[\s\-–]", '', n):
+        n = f'{n} – {ville}'
+    return n
+
+if not os.path.exists('bibliotheques.json'):
+    urllib.request.urlretrieve(BIB, 'bibliotheques.json')
+for r in json.load(open('bibliotheques.json')):
+    d = str(r['code_departement'])
+    if d not in DEPS or r['type_adresse'] != 'Bâtiment ouvert' or not r['latitude']:
+        continue
+    if r['statut'] not in ('Bibliothèque municipale', 'Bibliothèque intercommunale', 'Bibliothèque SIVOM'):
+        continue
+    if re.match(r'(?i)bibliobus', r['nom_de_l_etablissement'] or ''):
+        continue
+    amp = nombre(r['amplitude_horaire'])
+    if amp is not None and amp < 4:
+        continue
+    tel = re.sub(r'\D', '', r['telephone'] or '')
+    tel = ' '.join(tel[i:i + 2] for i in range(0, 10, 2)) if len(tel) == 10 else ''
+    places, postes = nombre(r['nombre_de_places']), nombre(r['nb_postes_informatiques_publics'])
+    lieux.append(dict(t='bib', n=nom_bib(r['nom_de_l_etablissement'], r['ville']),
+                      a=casse(' '.join(x for x in (r['complement'], r['adresse']) if x).strip()), cp=str(r['cp']), v=r['ville'], dep=DEPS[d],
+                      lat=round(float(r['latitude']), 5), lon=round(float(r['longitude']), 5), tel=tel, w=r['site_internet'] or '',
+                      pl=int(places) if places else 0, po=int(postes) if postes else 0,
+                      wifi=r['connexion_wi_fi'] == 'Oui', dim=r['ouverture_le_dimanche'] == 'Oui'))
 lieux.sort(key=lambda x: (x['t'], x['v'], x['n']))
 
 cols = json.load(open('colleges.json'))
