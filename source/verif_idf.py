@@ -71,6 +71,7 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--sources-idf',type=Path,help='Dossier des sources historiques : annuaire-sp.json, bibliotheques.json, colleges_idf.json (ou colleges.json)')
+    parser.add_argument('--sources-apres3e',type=Path,help='Cache historique : 605340ddc19a9.csv, ij.json, annuaire_hebergement.json, pression_2025.json, colleges_idf.json (ou colleges.json)')
     parser.add_argument('--rapport',type=Path,default=Path(tempfile.gettempdir())/'verif-idf')
     parser.add_argument('--en-ligne',default='https://maths-sciences-lp.github.io/carte-stages',help='Déploiement canonique du dépôt ; /stages/ est un accueil distinct sur le domaine personnalisé')
     args=parser.parse_args();out=args.rapport.resolve();out.mkdir(parents=True,exist_ok=True)
@@ -104,7 +105,34 @@ def main():
             log('Régénération aide (mode par défaut) : '+('identique à l’octet près' if same else 'DIFFÉRENTE — consulter le fichier régénéré'))
             if not same:
                 shutil.copy2(generated,out/'aide-regenere.json');differences.append('aide régénéré')
-    log('Après le collège / Après le lycée : fichiers comparés ; régénération à ajouter lors de leurs missions nationales.')
+    with tempfile.TemporaryDirectory(prefix='regen-apres3e-idf-') as tmp:
+        tmp=Path(tmp)
+        if args.sources_apres3e:
+            for name in ['605340ddc19a9.csv','ij.json','annuaire_hebergement.json','pression_2025.json','colleges_idf.json','colleges.json']:
+                p=args.sources_apres3e/name
+                if p.exists():shutil.copy2(p,tmp/name)
+        # Le mode historique accepte l'absence de pression ; le contrôle, lui,
+        # l'annonce explicitement au lieu de prétendre avoir toutes les sources.
+        required=['605340ddc19a9.csv','ij.json','annuaire_hebergement.json','pression_2025.json']
+        missing=[n for n in required if not (tmp/n).exists()]
+        if not any((tmp/n).exists() for n in ['colleges_idf.json','colleges.json']):missing.append('colleges_idf.json ou colleges.json')
+        if missing:
+            log('Régénération Après le collège (mode par défaut) : NON VÉRIFIÉE — sources manquantes : '+', '.join(missing))
+            incomplet.append('Régénération Après le collège : sources historiques manquantes')
+        else:
+            result=subprocess.run([sys.executable,str(ROOT/'source/apres3e.py')],cwd=tmp,capture_output=True,text=True)
+            generated=tmp/'apres3e.json'
+            if result.returncode or not generated.exists():
+                detail=(result.stderr or result.stdout or 'Aucun fichier produit').strip().splitlines()[-1]
+                log('Régénération Après le collège (mode par défaut) : NON VÉRIFIÉE — '+detail)
+                incomplet.append('Régénération Après le collège : erreur')
+            else:
+                expected=subprocess.check_output(['git','show','origin/main:apres-3e/apres3e.json'],cwd=ROOT)
+                same=generated.read_bytes()==expected
+                log('Régénération Après le collège (mode par défaut) : '+('identique à l’octet près' if same else 'DIFFÉRENTE — consulter apres3e-regenere.json'))
+                if not same:
+                    shutil.copy2(generated,out/'apres3e-regenere.json');differences.append('apres3e régénéré')
+    log('Après le lycée : fichier comparé ; régénération à ajouter lors de sa mission nationale.')
     handler=functools.partial(QuietHandler,directory=str(ROOT))
     server=http.server.ThreadingHTTPServer(('127.0.0.1',0),handler)
     thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()

@@ -100,7 +100,7 @@ const ACS=[['Créteil','Académie de Créteil (77, 93, 94)'],['Paris','Académie
 let D=null, dom=null, q='', dep=null, offT=new Set(), offD=new Set(), intern=false, open=new Set(), map=null, layer=null;
 function drawDoms(){$('doms').innerHTML=D.domaines.map(d=>`<button class="dom" data-k="${d.k}" aria-pressed="${dom===d.k}"><span class="e">${d.i}</span><span><b>${esc(d.n)}</b><span>${esc(d.s)}</span></span></button>`).join('')+
  `<button class="dom" data-k="tout" aria-pressed="${dom==='tout'}"><span class="e">📋</span><span><b>Toutes les formations</b><span>la liste complète de l’académie</span></span></button>`;
- $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{dom=b.dataset.k;q='';$('q').value='';open=new Set();drawDoms();history.replaceState(null,'','#'+dom);stat('domaine/'+dom,b.querySelector('b').textContent);show(true);});}
+ $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{dom=b.dataset.k;q='';$('q').value='';open=new Set();drawDoms();history.replaceState(null,'',location.pathname+location.search+'#'+dom);stat('domaine/'+dom,b.querySelector('b').textContent);show(true);});}
 $('q').addEventListener('input',()=>{q=norm($('q').value.trim());if(q.length>=2){dom=null;drawDoms();show(false);}else if(!dom){$('res').hidden=true;$('aide').hidden=false;}});
 function formations(){return D.formations.filter(f=>{if(offT.has(f.t))return false;if(q.length>=2){const t=norm(f.n+' '+(f.al||''));return q.split(' ').filter(Boolean).every(m=>t.includes(m));}return dom==='tout'||f.d.includes(dom);});}
 function lieux(f){return f.e.filter(e=>!offD.has(e.ac)&&(!intern||e.it)).map(e=>({e,d:dep?km(dep.lat,dep.lon,e.lat,e.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.e.v.localeCompare(b.e.v));}
@@ -152,6 +152,6 @@ const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinate
 $('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
-fetch('apres3e.json?v=2026-10-08').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
+if(!window.APRES3E_NATIONAL)fetch('apres3e.json?v=2026-10-08').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
 </script>
 </body></html>

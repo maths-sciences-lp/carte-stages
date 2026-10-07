@@ -1,11 +1,9 @@
-from inserjeunes import cherche
 import csv,json,re,collections
 from domaines_apres3e import DOM,domaines
 from corrections_apres3e import C
 T={'classe de 2de professionnelle':'2de pro','CAP':'CAP','CAP agricole':'CAP','baccalauréat professionnel':'Bac pro'}
 # Académies d'Île-de-France (Créteil d'abord : les adresses et les liens existants n'en dépendent pas)
 ACADS=('Créteil','Paris','Versailles')
-rows=[x for x in csv.DictReader(open('605340ddc19a9.csv',encoding='utf-8-sig'),delimiter=';') if x['ENS académie'] in ACADS and x['FOR type'] in T]
 def nom(l):
     l=re.sub(r'^classe de 2de professionnelle ','2de pro ',l)
     l=re.sub(r'^CAPa ','CAP agricole ',l)
@@ -28,8 +26,7 @@ def annuaire_hebergement(uais,fichier='annuaire_hebergement.json'):
         for r in json.load(urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=60))['results']:
             res[r['identifiant_de_l_etablissement']]=r['hebergement']
     json.dump(res,open(fichier,'w')); return res
-HEB=annuaire_hebergement(sorted({x['ENS code UAI'] for x in rows if x['ENS code UAI']}))
-def internat(uai,o):
+def internat(uai,o,HEB):
     """'i' internat au lycée, 'a' internat dans un autre lycée, 'v' sources en désaccord ; None sinon. Plus les conditions Onisep."""
     o=(o or '').strip(); a=HEB.get(uai)
     if 'hospitalisation' in o or re.search(r'réservé aux sections|réservés à des élèves de BTS',o): return None,''
@@ -42,56 +39,73 @@ def internat(uai,o):
     if ailleurs and not sur_place: return 'a',cond
     if sur_place or a==1: return 'v',cond
     return None,''
-# Affectation 2025 : premiers vœux et places (Draio Créteil, voir pression.py), reliés aux intitulés
-# Onisep par pression_correspondance.json. « pc » : places communes à plusieurs anciens CAP du lycée.
-PRESS={}
-if os.path.exists('pression_2025.json'):
-    _corr=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'pression_correspondance.json')))
-    _par_uai=collections.defaultdict(set)
-    for x in rows: _par_uai[x['ENS code UAI']].add(x['Formation (FOR) libellé'])
-    for p in json.load(open('pression_2025.json')):
-        cible=_corr.get(p['l'])
-        if cible is None: continue
-        if isinstance(cible,dict):
-            libs=[l for l in _par_uai[p['u']] if re.search(cible['commun'],l)]
-        else:
-            libs=[cible] if cible in _par_uai[p['u']] else []
-        for l in libs: PRESS[(p['u'],l)]=dict(v=p['v'],c=p['c'],**({'pc':1} if len(libs)>1 else {}))
-F={}
-for x in rows:
-    l=x['Formation (FOR) libellé']
-    f=F.get(l)
-    if not f:
-        d=C[l].split(',') if l in C else domaines(l,x['FOR indexation domaine web Onisep'])
-        f=F[l]=dict(n=nom(l),t=T[x['FOR type']],d=d,o=x['FOR URL et ID Onisep'],du=x['AF durée cycle standard'],e={})
-    try: lat=float(x['ENS latitude']);lon=float(x['ENS longitude'])
-    except: continue
-    u=x['ENS code UAI'] or x["Lieu d'enseignement (ENS) libellé"]
-    if u in f['e']: continue
-    f['e'][u]=dict(n=x["Lieu d'enseignement (ENS) libellé"],st=x['ENS statut'],a=x['ENS adresse'],cp=x['ENS code postal'],v=x['ENS commune'],
-        dep=x['ENS département'],ac=x['ENS académie'],lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']),ij=cherche(x['ENS code UAI'],x['Formation (FOR) libellé']))
-    it,ic=internat(x['ENS code UAI'],x['ENS hébergement'])
-    pr=PRESS.get((x['ENS code UAI'],l))
-    if pr: f['e'][u]['p']=pr
-    if it: f['e'][u]['it']=it
-    if it and ic: f['e'][u]['ic']=ic
-out=dict(date='6 octobre 2026',domaines=[dict(k=k,i=i,n=n,s=s) for k,i,n,s,_,_ in DOM],
-  formations=[dict(f,e=list(f['e'].values())) for f in sorted(F.values(),key=lambda f:({'2de pro':0,'Bac pro':1,'CAP':2}[f['t']],f['n']))])
-cols=json.load(open('colleges_idf.json' if os.path.exists('colleges_idf.json') else 'colleges.json'))
-out['colleges']=[dict(n=c['nom_etablissement'],v=' '.join(c['nom_commune'].split()),lat=round(c['latitude'],5),lon=round(c['longitude'],5)) for c in cols if c.get('latitude')]
-# mots que tapent les élèves (sigles, métiers) : mêmes listes que « Trouve ton stage »
-from aides import ALIAS, FAMILLES
-_AL={k.lower():v for k,v in ALIAS.items()}
-def alias(n):
-    a=_AL.get(n.lower(),'')
-    for k,(al,_) in FAMILLES.items():
-        if k.split(' (')[0].lower() in n.lower(): a+=' '+al
-    return a.strip()
-for f in out['formations']:
-    al=alias(f['n'])
-    if al: f['al']=al
-json.dump(out,open('apres3e.json','w'),ensure_ascii=False,separators=(',',':'))
-import os;print(os.path.getsize('apres3e.json'),'formations',len(out['formations']),'lieux',sum(len(f['e']) for f in out['formations']),'colleges',len(out['colleges']))
-print(collections.Counter(k for f in out['formations'] for k in f['d']))
-print(collections.Counter(f['t'] for f in out['formations']))
-print('affectation 2025 :',sum(1 for f in out['formations'] for e in f['e'] if e.get('p')),'lieux sur',sum(len(f['e']) for f in out['formations']),'/ lignes reliées',len(PRESS))
+
+def construire(rows,HEB,cols,cherche,pression=(),date='6 octobre 2026'):
+    """Même construction et même ordre de champs dans les deux modes."""
+    # Affectation 2025 : premiers vœux et places (Draio Créteil, voir pression.py), reliés aux intitulés
+    # Onisep par pression_correspondance.json. « pc » : places communes à plusieurs anciens CAP du lycée.
+    PRESS={}
+    if pression:
+        _corr=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'pression_correspondance.json')))
+        _par_uai=collections.defaultdict(set)
+        for x in rows: _par_uai[x['ENS code UAI']].add(x['Formation (FOR) libellé'])
+        for p in pression:
+            cible=_corr.get(p['l'])
+            if cible is None: continue
+            if isinstance(cible,dict):
+                libs=[l for l in _par_uai[p['u']] if re.search(cible['commun'],l)]
+            else:
+                libs=[cible] if cible in _par_uai[p['u']] else []
+            for l in libs: PRESS[(p['u'],l)]=dict(v=p['v'],c=p['c'],**({'pc':1} if len(libs)>1 else {}))
+    F={}
+    for x in rows:
+        l=x['Formation (FOR) libellé']
+        f=F.get(l)
+        if not f:
+            d=C[l].split(',') if l in C else domaines(l,x['FOR indexation domaine web Onisep'])
+            f=F[l]=dict(n=nom(l),t=T[x['FOR type']],d=d,o=x['FOR URL et ID Onisep'],du=x['AF durée cycle standard'],e={})
+        try: lat=float(x['ENS latitude']);lon=float(x['ENS longitude'])
+        except: continue
+        u=x['ENS code UAI'] or x["Lieu d'enseignement (ENS) libellé"]
+        if u in f['e']: continue
+        f['e'][u]=dict(n=x["Lieu d'enseignement (ENS) libellé"],st=x['ENS statut'],a=x['ENS adresse'],cp=x['ENS code postal'],v=x['ENS commune'],
+            dep=x['ENS département'],ac=x['ENS académie'],lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']),ij=cherche(x['ENS code UAI'],x['Formation (FOR) libellé']))
+        it,ic=internat(x['ENS code UAI'],x['ENS hébergement'],HEB)
+        pr=PRESS.get((x['ENS code UAI'],l))
+        if pr: f['e'][u]['p']=pr
+        if it: f['e'][u]['it']=it
+        if it and ic: f['e'][u]['ic']=ic
+    out=dict(date=date,domaines=[dict(k=k,i=i,n=n,s=s) for k,i,n,s,_,_ in DOM],
+      formations=[dict(f,e=list(f['e'].values())) for f in sorted(F.values(),key=lambda f:({'2de pro':0,'Bac pro':1,'CAP':2}[f['t']],f['n']))])
+    out['colleges']=[dict(n=c['nom_etablissement'],v=' '.join(c['nom_commune'].split()),lat=round(c['latitude'],5),lon=round(c['longitude'],5)) for c in cols if c.get('latitude')]
+    # mots que tapent les élèves (sigles, métiers) : mêmes listes que « Trouve ton stage »
+    from aides import ALIAS, FAMILLES
+    _AL={k.lower():v for k,v in ALIAS.items()}
+    def alias(n):
+        a=_AL.get(n.lower(),'')
+        for k,(al,_) in FAMILLES.items():
+            if k.split(' (')[0].lower() in n.lower(): a+=' '+al
+        return a.strip()
+    for f in out['formations']:
+        al=alias(f['n'])
+        if al: f['al']=al
+    return out
+
+def historique():
+    """Sans paramètre : sources du dossier courant, sortie historique inchangée."""
+    from inserjeunes import cherche
+    rows=[x for x in csv.DictReader(open('605340ddc19a9.csv',encoding='utf-8-sig'),delimiter=';') if x['ENS académie'] in ACADS and x['FOR type'] in T]
+    heb=annuaire_hebergement(sorted({x['ENS code UAI'] for x in rows if x['ENS code UAI']}))
+    cols=json.load(open('colleges_idf.json' if os.path.exists('colleges_idf.json') else 'colleges.json'))
+    pression=json.load(open('pression_2025.json')) if os.path.exists('pression_2025.json') else []
+    out=construire(rows,heb,cols,cherche,pression)
+    with open('apres3e.json','w') as f: json.dump(out,f,ensure_ascii=False,separators=(',',':'))
+    print(os.path.getsize('apres3e.json'),'octets ; formations',len(out['formations']),'lieux',sum(len(f['e']) for f in out['formations']),'collèges',len(out['colleges']))
+
+if __name__=='__main__':
+    import sys
+    if len(sys.argv)==1:
+        historique()
+    else:
+        from apres3e_national import main
+        main()

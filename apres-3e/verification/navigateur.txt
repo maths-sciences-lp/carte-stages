@@ -1,0 +1,10 @@
+lyon : lien direct, mémoire remplacée, localisation simulée, ville BAN réelle, changer, collège, URL/hash et réseau OK
+lille : lien direct, mémoire remplacée, localisation simulée, ville BAN réelle, changer, collège, URL/hash et réseau OK
+aix-marseille : lien direct, mémoire remplacée, localisation simulée, ville BAN réelle, changer, collège, URL/hash et réseau OK
+rennes : lien direct, mémoire remplacée, localisation simulée, ville BAN réelle, changer, collège, URL/hash et réseau OK
+la-reunion : lien direct, mémoire remplacée, localisation simulée, ville BAN réelle, changer, collège, URL/hash et réseau OK
+Stockage interdit et GPS refusé : repli ville, choix manuel et rechargement du lien OK
+Mémoire commune, entrée France, Île-de-France et #cuisine : OK, aucun commun/ chargé sur /apres-3e/
+30 liens directs avec #cuisine, filtre et données propres à chaque académie : OK
+Données indisponibles : message et nouvelle tentative OK
+Console : aucune erreur.
