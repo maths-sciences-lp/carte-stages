@@ -1,0 +1,124 @@
+[
+  {
+    "slug": "lyon",
+    "diplome": "Bac pro ouvrages du bâtiment : métallerie",
+    "fiche": "https://www.onisep.fr/http/redirection/formation/slug/FOR.1478",
+    "poursuite": "BTS conception des produits industriels",
+    "lieu": {
+      "n": "Lycée polyvalent Joseph-Marie Carriat",
+      "st": "public",
+      "a": "1 rue de Crouy",
+      "cp": "01000",
+      "v": "Bourg-en-Bresse",
+      "lat": 46.1978,
+      "lon": 5.22419,
+      "w": "https://carriat.ent.auvergnerhonealpes.fr/",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.798",
+      "h": "internat (homme/femme)",
+      "af": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.798",
+      "c": "",
+      "ij": null
+    },
+    "parcoursup": {
+      "pl": 13,
+      "c": 231,
+      "a": 11,
+      "bp": 1,
+      "g": 18838
+    }
+  },
+  {
+    "slug": "lille",
+    "diplome": "Bac pro technicien menuisier agenceur",
+    "fiche": "https://www.onisep.fr/http/redirection/formation/slug/FOR.3119",
+    "poursuite": "BTS systèmes constructifs bois et habitat",
+    "lieu": {
+      "n": "Lycée Jean Prouvé - Lomme",
+      "st": "public",
+      "a": "2 rue de Lompret, BP 30327",
+      "cp": "59463",
+      "v": "Lille",
+      "lat": 50.6501,
+      "lon": 2.99877,
+      "w": "https://www.lycee-jean-prouve.fr/",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5738",
+      "h": "internat (homme/femme)",
+      "af": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5738",
+      "c": "",
+      "ij": null
+    },
+    "parcoursup": {
+      "pl": 18,
+      "c": 154,
+      "a": 13,
+      "bp": 4,
+      "g": 7153
+    }
+  },
+  {
+    "slug": "aix-marseille",
+    "diplome": "CAP accompagnant éducatif petite enfance",
+    "fiche": "https://www.onisep.fr/http/redirection/formation/slug/FOR.6821",
+    "poursuite": "Bac pro accompagnement, soins et services à la personne",
+    "lieu": {
+      "n": "Lycée professionnel Les Fauvettes",
+      "st": "privé sous contrat",
+      "a": "44 avenue Jean de Noailles",
+      "cp": "06400",
+      "v": "Cannes",
+      "lat": 43.5548,
+      "lon": 6.99944,
+      "w": "http://lycee-les-fauvettes.org",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15721",
+      "h": "sans hébergement",
+      "af": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15721",
+      "c": "",
+      "ij": null
+    },
+    "parcoursup": null
+  },
+  {
+    "slug": "rennes",
+    "diplome": "Bac pro conduite et gestion des entreprises maritimes - commerce/plaisance professionnelle option voile",
+    "fiche": "https://www.onisep.fr/http/redirection/formation/slug/FOR.6058",
+    "poursuite": "BTS maritime pêche et gestion de l'environnement marin",
+    "lieu": {
+      "n": "Lycée professionnel maritime du Guilvinec",
+      "st": "public",
+      "a": "Avenue Jos Quiniou, BP 32",
+      "cp": "29730",
+      "v": "Treffiagat",
+      "lat": 47.799,
+      "lon": -4.27008,
+      "w": "https://lycee-maritime-guilvinec.bzh/",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.4698",
+      "h": "internat (homme - sur place) ou hébergement organisé hors établissement (femme - internat au lycée Laënnec de Pont l'Abbé)",
+      "af": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.4698",
+      "c": "",
+      "ij": null
+    },
+    "parcoursup": null
+  },
+  {
+    "slug": "la-reunion",
+    "diplome": "BMA arts graphiques option A signalétique",
+    "fiche": "https://www.onisep.fr/http/redirection/formation/slug/FOR.5664",
+    "poursuite": "DN MADE mention graphisme",
+    "lieu": {
+      "n": "Lycée général et technologique Ambroise Vollard",
+      "st": "public",
+      "a": "3 avenue de Soweto, Terre Sainte, BP 399",
+      "cp": "97448",
+      "v": "Saint-Pierre",
+      "lat": -21.34179,
+      "lon": 55.48926,
+      "w": "https://etab.ac-reunion.fr/lyc-ambroise-vollard",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15544",
+      "h": "internat (homme/femme)",
+      "af": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15544",
+      "c": "",
+      "ij": null
+    },
+    "parcoursup": null
+  }
+]

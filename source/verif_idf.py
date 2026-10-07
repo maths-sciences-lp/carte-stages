@@ -20,6 +20,9 @@ ROOT = Path(__file__).resolve().parents[1]
 PAGES = ['/aide/', '/aide/#mda', '/apres-3e/', '/apres-3e/#cuisine', '/formation/',
          '/formation/#eeb', '/formation/#iccer', '/', '/henaff/', '/iccer']
 DATA = ['aide/aide.json', 'apres-3e/apres3e.json', 'formation/formations.json']
+DATA.append('formation/parcoursup.json')
+PAGES += ['/formation/#'+k for k in ['mee','tma','era','geometre','mit','sdg','ebeniste','bma-ebeniste','bma-signaletique']]
+PAGES.append('/formation/#d=5601&ly=0932119Y')
 BROWSER = r'''
 const fs=require('fs'),path=require('path');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
@@ -72,6 +75,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--sources-idf',type=Path,help='Dossier des sources historiques : annuaire-sp.json, bibliotheques.json, colleges_idf.json (ou colleges.json)')
     parser.add_argument('--sources-apres3e',type=Path,help='Cache historique : 605340ddc19a9.csv, ij.json, annuaire_hebergement.json, pression_2025.json, colleges_idf.json (ou colleges.json)')
+    parser.add_argument('--sources-formation',type=Path,help='Cache historique : 605340ddc19a9.csv, sup2.csv, ij.json et fiches/')
     parser.add_argument('--rapport',type=Path,default=Path(tempfile.gettempdir())/'verif-idf')
     parser.add_argument('--en-ligne',default='https://maths-sciences-lp.github.io/carte-stages',help='Déploiement canonique du dépôt ; /stages/ est un accueil distinct sur le domaine personnalisé')
     args=parser.parse_args();out=args.rapport.resolve();out.mkdir(parents=True,exist_ok=True)
@@ -81,7 +85,7 @@ def main():
     ref=subprocess.check_output(['git','rev-parse','origin/main'],cwd=ROOT,text=True).strip()
     log('Référence origin/main : '+ref)
     for name in DATA:
-        expected=subprocess.check_output(['git','show','origin/main:'+name],cwd=ROOT)
+        expected=subprocess.check_output(['git','show',ref+':'+name],cwd=ROOT)
         actual=(ROOT/name).read_bytes()
         equal=actual==expected
         log(f'{name} : '+('identique à origin/main' if equal else 'DIFFÉRENT de origin/main')+' ; SHA-256 '+hashlib.sha256(actual).hexdigest())
@@ -100,7 +104,7 @@ def main():
             log('Régénération aide (mode par défaut) : NON VÉRIFIÉE — '+detail)
             incomplet.append('Régénération aide : sources historiques manquantes ou erreur (voir ci-dessus)')
         else:
-            expected=subprocess.check_output(['git','show','origin/main:aide/aide.json'],cwd=ROOT)
+            expected=subprocess.check_output(['git','show',ref+':aide/aide.json'],cwd=ROOT)
             same=generated.read_bytes()==expected
             log('Régénération aide (mode par défaut) : '+('identique à l’octet près' if same else 'DIFFÉRENTE — consulter le fichier régénéré'))
             if not same:
@@ -127,12 +131,45 @@ def main():
                 log('Régénération Après le collège (mode par défaut) : NON VÉRIFIÉE — '+detail)
                 incomplet.append('Régénération Après le collège : erreur')
             else:
-                expected=subprocess.check_output(['git','show','origin/main:apres-3e/apres3e.json'],cwd=ROOT)
+                expected=subprocess.check_output(['git','show',ref+':apres-3e/apres3e.json'],cwd=ROOT)
                 same=generated.read_bytes()==expected
                 log('Régénération Après le collège (mode par défaut) : '+('identique à l’octet près' if same else 'DIFFÉRENTE — consulter apres3e-regenere.json'))
                 if not same:
                     shutil.copy2(generated,out/'apres3e-regenere.json');differences.append('apres3e régénéré')
-    log('Après le lycée : fichier comparé ; régénération à ajouter lors de sa mission nationale.')
+    with tempfile.TemporaryDirectory(prefix='regen-formation-idf-') as tmp:
+        tmp=Path(tmp)
+        if args.sources_formation:
+            for name in ['605340ddc19a9.csv','sup2.csv','ij.json']:
+                p=args.sources_formation/name
+                if p.exists():shutil.copy2(p,tmp/name)
+            p=args.sources_formation/'fiches'
+            if p.exists():shutil.copytree(p,tmp/'fiches')
+        result=subprocess.run([sys.executable,str(ROOT/'source/apres_lycee.py')],cwd=tmp,capture_output=True,text=True)
+        generated=tmp/'formations.json'
+        if result.returncode or not generated.exists():
+            log('Régénération Après le lycée (mode par défaut) : NON VÉRIFIÉE — '+(result.stderr or result.stdout or 'Aucune sortie').strip().splitlines()[-1])
+            incomplet.append('Régénération Après le lycée : sources historiques manquantes ou erreur')
+        else:
+            expected=subprocess.check_output(['git','show',ref+':formation/formations.json'],cwd=ROOT)
+            same=generated.read_bytes()==expected
+            log('Régénération Après le lycée (mode par défaut) : '+('identique à l’octet près' if same else 'DIFFÉRENTE — consulter formations-regenere.json'))
+            if not same:
+                shutil.copy2(generated,out/'formations-regenere.json');differences.append('formations régénéré')
+        # Parcoursup écrit à côté de son script : isoler aussi cette arborescence.
+        (tmp/'source').mkdir();(tmp/'formation').mkdir()
+        shutil.copy2(ROOT/'source/parcoursup.py',tmp/'source/parcoursup.py')
+        shutil.copy2(generated if generated.exists() else ROOT/'formation/formations.json',tmp/'formation/formations.json')
+        result=subprocess.run([sys.executable,str(tmp/'source/parcoursup.py')],cwd=tmp,capture_output=True,text=True)
+        ps=tmp/'formation/parcoursup.json'
+        if result.returncode or not ps.exists():
+            log('Régénération Parcoursup (mode par défaut) : NON VÉRIFIÉE — '+(result.stderr or result.stdout or 'Aucune sortie').strip().splitlines()[-1])
+            incomplet.append('Parcoursup : source distante indisponible ou erreur')
+        else:
+            expected=subprocess.check_output(['git','show',ref+':formation/parcoursup.json'],cwd=ROOT)
+            same=ps.read_bytes()==expected
+            log('Régénération Parcoursup (mode par défaut) : '+('identique à l’octet près' if same else 'DIFFÉRENTE — consulter parcoursup-regenere.json'))
+            if not same:
+                shutil.copy2(ps,out/'parcoursup-regenere.json');differences.append('Parcoursup régénéré')
     handler=functools.partial(QuietHandler,directory=str(ROOT))
     server=http.server.ThreadingHTTPServer(('127.0.0.1',0),handler)
     thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()

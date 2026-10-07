@@ -1,0 +1,2971 @@
+{
+  "date": "2026-10-07",
+  "academies": [
+    {
+      "slug": "aix-marseille",
+      "academie": "Aix-Marseille",
+      "region": "Provence-Alpes-Côte d'Azur",
+      "diplomes": 143,
+      "lycees": 140,
+      "poursuites": 188,
+      "lieux": 1189,
+      "octets": 617102,
+      "gzip_octets": 80680,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "amiens",
+      "academie": "Amiens",
+      "region": "Hauts-de-France",
+      "diplomes": 126,
+      "lycees": 107,
+      "poursuites": 181,
+      "lieux": 1549,
+      "octets": 777108,
+      "gzip_octets": 109336,
+      "sans_exemple": 1
+    },
+    {
+      "slug": "besancon",
+      "academie": "Besançon",
+      "region": "Bourgogne-Franche-Comté",
+      "diplomes": 109,
+      "lycees": 73,
+      "poursuites": 148,
+      "lieux": 684,
+      "octets": 383961,
+      "gzip_octets": 49041,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "bordeaux",
+      "academie": "Bordeaux",
+      "region": "Nouvelle-Aquitaine",
+      "diplomes": 150,
+      "lycees": 177,
+      "poursuites": 212,
+      "lieux": 1534,
+      "octets": 777243,
+      "gzip_octets": 105592,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "clermont-ferrand",
+      "academie": "Clermont-Ferrand",
+      "region": "Auvergne-Rhône-Alpes",
+      "diplomes": 130,
+      "lycees": 84,
+      "poursuites": 204,
+      "lieux": 1908,
+      "octets": 950283,
+      "gzip_octets": 136643,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "corse",
+      "academie": "Corse",
+      "region": "Corse",
+      "diplomes": 47,
+      "lycees": 12,
+      "poursuites": 42,
+      "lieux": 63,
+      "octets": 60161,
+      "gzip_octets": 7968,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "creteil",
+      "academie": "Créteil",
+      "region": "Île-de-France",
+      "diplomes": 137,
+      "lycees": 150,
+      "poursuites": 203,
+      "lieux": 2021,
+      "octets": 948262,
+      "gzip_octets": 136631,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "dijon",
+      "academie": "Dijon",
+      "region": "Bourgogne-Franche-Comté",
+      "diplomes": 126,
+      "lycees": 97,
+      "poursuites": 161,
+      "lieux": 683,
+      "octets": 398571,
+      "gzip_octets": 52255,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "grenoble",
+      "academie": "Grenoble",
+      "region": "Auvergne-Rhône-Alpes",
+      "diplomes": 135,
+      "lycees": 189,
+      "poursuites": 204,
+      "lieux": 1942,
+      "octets": 983544,
+      "gzip_octets": 142830,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "guadeloupe",
+      "academie": "Guadeloupe",
+      "region": "Guadeloupe",
+      "diplomes": 83,
+      "lycees": 26,
+      "poursuites": 83,
+      "lieux": 156,
+      "octets": 124204,
+      "gzip_octets": 14879,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "guyane",
+      "academie": "Guyane",
+      "region": "Guyane",
+      "diplomes": 91,
+      "lycees": 24,
+      "poursuites": 71,
+      "lieux": 113,
+      "octets": 104655,
+      "gzip_octets": 13273,
+      "sans_exemple": 4
+    },
+    {
+      "slug": "la-reunion",
+      "academie": "La Réunion",
+      "region": "La Réunion",
+      "diplomes": 120,
+      "lycees": 44,
+      "poursuites": 136,
+      "lieux": 303,
+      "octets": 227018,
+      "gzip_octets": 25104,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "lille",
+      "academie": "Lille",
+      "region": "Hauts-de-France",
+      "diplomes": 140,
+      "lycees": 194,
+      "poursuites": 194,
+      "lieux": 1558,
+      "octets": 800688,
+      "gzip_octets": 112185,
+      "sans_exemple": 1
+    },
+    {
+      "slug": "limoges",
+      "academie": "Limoges",
+      "region": "Nouvelle-Aquitaine",
+      "diplomes": 102,
+      "lycees": 43,
+      "poursuites": 171,
+      "lieux": 1349,
+      "octets": 653352,
+      "gzip_octets": 87393,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "lyon",
+      "academie": "Lyon",
+      "region": "Auvergne-Rhône-Alpes",
+      "diplomes": 151,
+      "lycees": 160,
+      "poursuites": 211,
+      "lieux": 1985,
+      "octets": 1005381,
+      "gzip_octets": 145209,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "martinique",
+      "academie": "Martinique",
+      "region": "Martinique",
+      "diplomes": 86,
+      "lycees": 26,
+      "poursuites": 84,
+      "lieux": 138,
+      "octets": 118485,
+      "gzip_octets": 14208,
+      "sans_exemple": 1
+    },
+    {
+      "slug": "mayotte",
+      "academie": "Mayotte",
+      "region": "Mayotte",
+      "diplomes": 71,
+      "lycees": 21,
+      "poursuites": 53,
+      "lieux": 72,
+      "octets": 73911,
+      "gzip_octets": 9577,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "montpellier",
+      "academie": "Montpellier",
+      "region": "Occitanie",
+      "diplomes": 154,
+      "lycees": 129,
+      "poursuites": 207,
+      "lieux": 1538,
+      "octets": 776082,
+      "gzip_octets": 105623,
+      "sans_exemple": 1
+    },
+    {
+      "slug": "nancy-metz",
+      "academie": "Nancy-Metz",
+      "region": "Grand Est",
+      "diplomes": 123,
+      "lycees": 116,
+      "poursuites": 186,
+      "lieux": 1249,
+      "octets": 644591,
+      "gzip_octets": 87126,
+      "sans_exemple": 1
+    },
+    {
+      "slug": "nantes",
+      "academie": "Nantes",
+      "region": "Pays de la Loire",
+      "diplomes": 155,
+      "lycees": 223,
+      "poursuites": 179,
+      "lieux": 1022,
+      "octets": 576229,
+      "gzip_octets": 77395,
+      "sans_exemple": 1
+    },
+    {
+      "slug": "nice",
+      "academie": "Nice",
+      "region": "Provence-Alpes-Côte d'Azur",
+      "diplomes": 114,
+      "lycees": 60,
+      "poursuites": 172,
+      "lieux": 1134,
+      "octets": 565664,
+      "gzip_octets": 72776,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "normandie",
+      "academie": "Normandie",
+      "region": "Normandie",
+      "diplomes": 156,
+      "lycees": 174,
+      "poursuites": 180,
+      "lieux": 879,
+      "octets": 506684,
+      "gzip_octets": 66434,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "orleans-tours",
+      "academie": "Orléans-Tours",
+      "region": "Centre-Val de Loire",
+      "diplomes": 136,
+      "lycees": 120,
+      "poursuites": 155,
+      "lieux": 604,
+      "octets": 361482,
+      "gzip_octets": 46921,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "paris",
+      "academie": "Paris",
+      "region": "Île-de-France",
+      "diplomes": 137,
+      "lycees": 77,
+      "poursuites": 198,
+      "lieux": 1953,
+      "octets": 902372,
+      "gzip_octets": 129680,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "poitiers",
+      "academie": "Poitiers",
+      "region": "Nouvelle-Aquitaine",
+      "diplomes": 143,
+      "lycees": 107,
+      "poursuites": 205,
+      "lieux": 1467,
+      "octets": 734053,
+      "gzip_octets": 101170,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "reims",
+      "academie": "Reims",
+      "region": "Grand Est",
+      "diplomes": 106,
+      "lycees": 68,
+      "poursuites": 181,
+      "lieux": 1245,
+      "octets": 628695,
+      "gzip_octets": 83452,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "rennes",
+      "academie": "Rennes",
+      "region": "Bretagne",
+      "diplomes": 147,
+      "lycees": 173,
+      "poursuites": 186,
+      "lieux": 906,
+      "octets": 505570,
+      "gzip_octets": 66455,
+      "sans_exemple": 1
+    },
+    {
+      "slug": "strasbourg",
+      "academie": "Strasbourg",
+      "region": "Grand Est",
+      "diplomes": 103,
+      "lycees": 60,
+      "poursuites": 168,
+      "lieux": 1157,
+      "octets": 587540,
+      "gzip_octets": 77627,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "toulouse",
+      "academie": "Toulouse",
+      "region": "Occitanie",
+      "diplomes": 150,
+      "lycees": 155,
+      "poursuites": 204,
+      "lieux": 1561,
+      "octets": 785460,
+      "gzip_octets": 106296,
+      "sans_exemple": 0
+    },
+    {
+      "slug": "versailles",
+      "academie": "Versailles",
+      "region": "Île-de-France",
+      "diplomes": 130,
+      "lycees": 162,
+      "poursuites": 199,
+      "lieux": 2026,
+      "octets": 949358,
+      "gzip_octets": 138091,
+      "sans_exemple": 1
+    }
+  ],
+  "fiches": [
+    {
+      "id": "10017",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:36",
+      "sha256": "ce7d045d550a7c284a9f0fb0015f579e3772926b145c76babb3b93c3d75526b7"
+    },
+    {
+      "id": "1008",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:50:45",
+      "sha256": "2325cfc09abee4e8ed0fa057be731caa24427937c42ca6669fa478062fc0c217"
+    },
+    {
+      "id": "1012",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:49",
+      "sha256": "2c1d40f017de9b1339bde78f9558d50e2a8400030c5d44d4f7d43df4e4578cb5"
+    },
+    {
+      "id": "1037",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:50:49",
+      "sha256": "2d4cffe7f10298d3e896ecf9aa0c17f3976c3154213de0ebe490ab18279705b3"
+    },
+    {
+      "id": "1038",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:56",
+      "sha256": "cd87d20280ad2fd26aaab0b8c3f52401c7f79913fd5445e63c345d44c12251f9"
+    },
+    {
+      "id": "1083",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:50:52",
+      "sha256": "13470db85735d953480805e758e972f8a3254ad756afa26ceca2394d493572ea"
+    },
+    {
+      "id": "1088",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:07",
+      "sha256": "458cdae2c26842b88546c90ab5c4371ceeafbb19cd806afdba9d7a77267395f2"
+    },
+    {
+      "id": "10903",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:50:55",
+      "sha256": "b8abf52a4e440101967fd8bb6e5ea8e496e989e26f915d61f8bfb874a79ea66d"
+    },
+    {
+      "id": "10924",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:01",
+      "sha256": "87ef32890197f497c34487b92ebecf0c87d3c008f0b375384a6b17e0a31fb775"
+    },
+    {
+      "id": "10971",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:50:59",
+      "sha256": "7049ee6bc0b515c2e205ca36ef5aaac6af564c9274b1ef57fb5cc85970496a3e"
+    },
+    {
+      "id": "11079",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:00",
+      "sha256": "41f226f6b0924a8f19b68d29d31cdc7c6879fab13d9e64d37843214e87ac26ec"
+    },
+    {
+      "id": "11080",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:57:59",
+      "sha256": "e731c17155ff115bb2a2e6bb27fa185ce4381cf67c52af8fa147c13a0835acf5"
+    },
+    {
+      "id": "11088",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:14",
+      "sha256": "c777405a608c96f11fda8d7de98f3bee2e3809e01c64a152862d5de990b36491"
+    },
+    {
+      "id": "11099",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:19",
+      "sha256": "9564bebe59a438a95fdd961307a4d3b3b9698f1d0a802e578d60e1c09bb29279"
+    },
+    {
+      "id": "11273",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:20",
+      "sha256": "6fd5580148b92e0d6cae663de42d0aca052d3694ada75332cad73abc5de376c5"
+    },
+    {
+      "id": "11276",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:25",
+      "sha256": "6ca4e9be1eee17b2dcfa8e0b9db29756224db26ac940dd02a8dae3e51d1ce889"
+    },
+    {
+      "id": "11279",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:06",
+      "sha256": "c5220d7d375d0fbb31b5a2972269303571ca7c55b3601c7cc5737f8e8d586919"
+    },
+    {
+      "id": "11280",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:28",
+      "sha256": "3ee5b64a29c8b49d46e697ddfa436085023c19a4616b51e5e94960e434bdbc00"
+    },
+    {
+      "id": "11282",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:55",
+      "sha256": "522ed2b5199751fc507570cd66d6fe2ecbc4acc46cd1c3eac7cfbcb9a508ced0"
+    },
+    {
+      "id": "11283",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:59",
+      "sha256": "bb1a2e2d93f35c02f5aaf6c89806e2c8ebfa904babaab326e3cae71e7d2b532c"
+    },
+    {
+      "id": "11284",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:38",
+      "sha256": "bfc133d9a64e256555d7582923090a2b26b729f3531218de8aa8cbfb70381116"
+    },
+    {
+      "id": "11285",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:31",
+      "sha256": "7eabcb7442d101a173ec7d011a4fa9c5032a6c143975c5a0b4e1a3700ab6ec1a"
+    },
+    {
+      "id": "11286",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:09",
+      "sha256": "c202d7feda2d8ecd7584f5330ffa3b015eb1314271970d6abecc8ae57f5b1d72"
+    },
+    {
+      "id": "11288",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:33",
+      "sha256": "441faf5958f18a3cd545ff26e98647236de0551336a62d74d4777b1970d1e869"
+    },
+    {
+      "id": "11289",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:29:38",
+      "sha256": "e8acc354a9e2dc1935e9ab0a02f32e06346a61737e720ca5953da4525e59bcbb"
+    },
+    {
+      "id": "11290",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:42",
+      "sha256": "3f8747fa12678be820e853d90fa41dbd80168934c02738e3c08c1bdb22092a4b"
+    },
+    {
+      "id": "1131",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:43",
+      "sha256": "cf3dca294e85bd92d4bfeaa6ad409ccf0f9500c64f6de198d286090c5c248242"
+    },
+    {
+      "id": "1132",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:16",
+      "sha256": "4923916d1f0ca9c2e7190e00a63fa579bb41c46c2a07f818705bc4cab1bda308"
+    },
+    {
+      "id": "1136",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:02",
+      "sha256": "5d5ad638a76760e3ee12f108140d0e4c3e481e9619d4e52334b6ff078036ac95"
+    },
+    {
+      "id": "1150",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:59",
+      "sha256": "f9cc525768a73d86367d3f8a4a0940ae6bd4d311c2e7df679183f8a6129681f5"
+    },
+    {
+      "id": "1155",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:07",
+      "sha256": "e98bb058ef145d33a1276821233233d038a1a9969ec32a197e18d66b2fd16214"
+    },
+    {
+      "id": "1177",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:29:42",
+      "sha256": "d2d322dbc9be9dfcbb6f4f7c72856384480e907e1dd6321581f4d1b358c36c64"
+    },
+    {
+      "id": "1190",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:29:45",
+      "sha256": "b3431269b3f97036c35ee50d5327f3a3b66d7addad0f203cd308c0054e717899"
+    },
+    {
+      "id": "12443",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:50",
+      "sha256": "b990948f25632afc050e61284db9d2faaf90acde78ac4f083d0f7ac8ca775a6e"
+    },
+    {
+      "id": "12483",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:54",
+      "sha256": "a5be01873b9ed57392823e80cc7019e4d22c220a27e17679e72dc233b8bf2ef7"
+    },
+    {
+      "id": "1253",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:05",
+      "sha256": "d358d61367a4cdf39e5966aae4e617f7827348d32ecf823cc0f84c401768b07c"
+    },
+    {
+      "id": "1260",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:15",
+      "sha256": "3ad674e107a5ee6e0a0a714f2f07ae957e98867401937a7601850f3081a5bb4b"
+    },
+    {
+      "id": "12769",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:11",
+      "sha256": "eb6797be777940f1f4a7b83617cb29af5a2474020b286d1d1c5307d682fcb63c"
+    },
+    {
+      "id": "12772",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:15",
+      "sha256": "80bde9fccac3bb6d84bb74320d90bd114deb6425afa26e1b786e38b60466e4fb"
+    },
+    {
+      "id": "12832",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:09",
+      "sha256": "fe6f096d060a22c1e5c5824673bfe59554f1ef2d692d11a2104885e107edee4f"
+    },
+    {
+      "id": "12949",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:04",
+      "sha256": "27be8e74b8a738bd34cc0fd1d0fccf54defe01c6eeda68a51caee1859790b820"
+    },
+    {
+      "id": "12953",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:09",
+      "sha256": "8a9ba668c7384f840c7fbcac38d3f59c5b374a84b6a57734eb9d78bc53134de3"
+    },
+    {
+      "id": "1314",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:18",
+      "sha256": "f434f1b1c11b3adffad1f5700181a9cb248fff99ba64f1b156efbc0b724547f8"
+    },
+    {
+      "id": "1349",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:03",
+      "sha256": "9224ce6673e8c1be4ddd2d89dbd9f8f5dd611776cec43846a36d477bcdb691a1"
+    },
+    {
+      "id": "1354",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:35",
+      "sha256": "a89ad4a98f944118bd08cc7401c9686fce1f674336542eebde263ffa2e3af843"
+    },
+    {
+      "id": "1356",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:19",
+      "sha256": "6b8dfb59c05f3b4129cd18545889718685c8794f0d14b7d3e8eaffd2112e0217"
+    },
+    {
+      "id": "1357",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:10",
+      "sha256": "37a0a0c8697d3dd52b10c9879845ea687bbdfe500ccc2621be255eb75269c6c4"
+    },
+    {
+      "id": "1358",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:07",
+      "sha256": "92a594fa9654253599e7c80ce890f498362ba778c7344c36f82b6bcf1a223c6b"
+    },
+    {
+      "id": "1393",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:22",
+      "sha256": "456693c36d29ee6806335f81759be16991f4e5efaad45c9bb0021966929fd05a"
+    },
+    {
+      "id": "1395",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:29:48",
+      "sha256": "07d18e7e2dc72525a7db8ae96095955b8d29af1be85dbcbfc33a4a13448550df"
+    },
+    {
+      "id": "1396",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:06",
+      "sha256": "b49c525ec0a8992d3402b985f75f08a7380bd24d41feaf4b9942052910fede14"
+    },
+    {
+      "id": "1398",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:26",
+      "sha256": "4bb4af9a6e2df835f3c1d53de732183fa31a1eb82174b69eccde5a8d35c63626"
+    },
+    {
+      "id": "1399",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:30",
+      "sha256": "ae44418c2a1d0f06cbc9a27d74faa5437968b196bb5354c97e140f5d34557b9a"
+    },
+    {
+      "id": "1421",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:17",
+      "sha256": "ac66d410a5963a001bb06651e2b01e0be4c31b1b610fc22902717139c8ea4169"
+    },
+    {
+      "id": "1432",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:29:52",
+      "sha256": "513ffb834bfdaefdb4e86825ab86f42e7de919415fba8e2763192ee0514ec807"
+    },
+    {
+      "id": "1467",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:33",
+      "sha256": "462dada80fd804922b7710d238f283981c327d40b77e458557279902e2370434"
+    },
+    {
+      "id": "1477",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:08",
+      "sha256": "79b079b558ff208b3f4f362d5a9fa1223c03a53360666cd51b88ae5fed3fa238"
+    },
+    {
+      "id": "1478",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:29",
+      "sha256": "42379be3205b983caa130e3aac5fd02865db5c3f58b46143d79ab05ec3509927"
+    },
+    {
+      "id": "1496",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:37",
+      "sha256": "4dcc780d29aee12ce64dac41ed6e94756dfe5318bd63137313101999d8a9e9f6"
+    },
+    {
+      "id": "1499",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:40",
+      "sha256": "cf0ea896e900f7ec1b25219bd9e1e8137b097686ac740c4436aaf9a884134fd0"
+    },
+    {
+      "id": "1503",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:29:55",
+      "sha256": "b80f503d2ab72aaacb292291635fbcdd25a8bcd32b90dca3cb2397d443294004"
+    },
+    {
+      "id": "1504",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:29:59",
+      "sha256": "5389e54efa4389c244d27760ab6f70e6ba34ab70558387c678628b6f24636b06"
+    },
+    {
+      "id": "1505",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:48",
+      "sha256": "01fe00326be1d0fe498d394b328f849c6d97a1b56e408946d840bb0a6f4450a5"
+    },
+    {
+      "id": "1534",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:55",
+      "sha256": "8933801a6ef40d2e12dd63b009eddda320688fb7380464507b39fa001950c7dc"
+    },
+    {
+      "id": "1720",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:46",
+      "sha256": "77de823e9021286c4190c1401d8647132897989704ac23bfd669ea2d0e77fd33"
+    },
+    {
+      "id": "1721",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:10",
+      "sha256": "666d2473067a50ceceb4c04b274722549b1285d77a2c2bba095b33ac046c1d77"
+    },
+    {
+      "id": "1983",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:43",
+      "sha256": "99e24afcc7338bde9a8abe4e0566fbf35a5d68fbbc138d610f4b26b7ac327e0a"
+    },
+    {
+      "id": "2031",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:29",
+      "sha256": "26c0738c5b2ced65762dda50ea15dd3fa3227854eace380bfcda9d67542ae624"
+    },
+    {
+      "id": "2135",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:48",
+      "sha256": "c40ac65939e414159dce6d44ae2d1781fb8a9e8384d5039e7b3fb5ac9e0f389c"
+    },
+    {
+      "id": "2214",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:12",
+      "sha256": "59befd9738c4447697efed62064222e964b574df2b9578cc4ac19804f6780e6a"
+    },
+    {
+      "id": "2215",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:51",
+      "sha256": "47c9881450b532212cdd789491e0b7fa4447115146c291339cf0c2e9534b6334"
+    },
+    {
+      "id": "2246",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:04",
+      "sha256": "73ed7fcda441535b35089d99926b9962e9d3cea54d58c5d3c2f66c254720a50f"
+    },
+    {
+      "id": "2249",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:22",
+      "sha256": "5f5d10eda8f22f93c0355006f3c7b64c6b23bc201bf39f18e05b1b1b72d8fbf7"
+    },
+    {
+      "id": "2273",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:23",
+      "sha256": "90da402cd2d8429fad62a2e4da7fdfcb0c3c316b31608a9af3fdbdc111572df9"
+    },
+    {
+      "id": "2274",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:23",
+      "sha256": "b3aafe11457fbf86331e003d83965c36ccbc073058a905b1521c96c0eac02521"
+    },
+    {
+      "id": "2501",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:54",
+      "sha256": "6f80107bb118ca2f59aeeb78589ac81f31d54d70fa51f8faf40c6dcdbf63f2fc"
+    },
+    {
+      "id": "2520",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:51:58",
+      "sha256": "29e5739eb7017799ffe52cd1db2fa660e69fb4da769c27aebf335d46267280d2"
+    },
+    {
+      "id": "2568",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:49",
+      "sha256": "919dab0bb919e03520bf3f827da2cf6d29fe685c603530c4fcf6c579e8407ab1"
+    },
+    {
+      "id": "2661",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:03",
+      "sha256": "a3c7e7568c5c91411e4ce5921e273444a923419958b1b97165cee770e817590e"
+    },
+    {
+      "id": "2725",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:17",
+      "sha256": "968f9c91c955a8a21a2e46e864240bb58098a5c01b235c925ac013c1a794f02b"
+    },
+    {
+      "id": "2861",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:21",
+      "sha256": "0073d53aee5745fff7612cfe0ce1950ced1d9907efd7d8f91a425fa3d588f5c3"
+    },
+    {
+      "id": "2883",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:05",
+      "sha256": "96e8d85b414d8979c6220005420ec00f6c7586e2bcc6cfa7a62d74e5c23e9c56"
+    },
+    {
+      "id": "289",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:06",
+      "sha256": "353f4cc53f73aa30f2c28935c0ab6c1d1e0b2b201b628329a51f8aefcbdb16d7"
+    },
+    {
+      "id": "2906",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:10",
+      "sha256": "ab9b08636427203ef213dc1289114759840c3fd3d4930edd1b6c3fecf38a32ec"
+    },
+    {
+      "id": "2907",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:13",
+      "sha256": "f832aad77918051c305d76dc892169bbe32b204b6fadc9f5e9f85662e5b7d2ba"
+    },
+    {
+      "id": "2912",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:17",
+      "sha256": "a7ea41b16031309ccc78de3caebdf2ad0e838b1578317f354a0d4d5c1a0482a9"
+    },
+    {
+      "id": "2943",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:03",
+      "sha256": "18044793b1c73db8b271d75abfa18f6e6e3f26ea628266c87bdd83dda76846c3"
+    },
+    {
+      "id": "2966",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:36",
+      "sha256": "23b582fcace856034f402736b7e24ea80334a7f1469d4a2c994cd2aaae628dee"
+    },
+    {
+      "id": "2973",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:00",
+      "sha256": "d215b9535ca4f3d9fcc51e5a6cbd085e5d01c300be9f445e7163fff84a0b9caa"
+    },
+    {
+      "id": "3035",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:20",
+      "sha256": "8ba6c4e436d286cc8efd46f3a578015ab6adadd7d1d2caa141c8bfe6fb89ae7f"
+    },
+    {
+      "id": "3049",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:19",
+      "sha256": "84eead39e66aaac88610a4c4fde97c2516e8be28a108ab5082f1a64b2db4ac2d"
+    },
+    {
+      "id": "3119",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:05",
+      "sha256": "3c89a87204112e0b2fb82f9d485cec9d5951bd0a468ddae7e39d670a28906ccd"
+    },
+    {
+      "id": "3165",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:29",
+      "sha256": "266222b9ffa63eb961996fa3ff5465be29293b2f637384b0204bd6c05a201190"
+    },
+    {
+      "id": "3218",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:24",
+      "sha256": "a748fce3ab0e7accfc26ad4b391f3045decf00d1fa738f5b1c6942e1ff43591a"
+    },
+    {
+      "id": "3502",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:07",
+      "sha256": "eb05d562d09ff22fe78ec4bc26a76d1002cc180934cc4992f7f57c0d1da8a1cd"
+    },
+    {
+      "id": "3531",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:39",
+      "sha256": "f49d9d72a1de50a879b02f42a586f3ff52ef7a202560fb9d6b7983d2c94cb715"
+    },
+    {
+      "id": "3532",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:28",
+      "sha256": "1aedc087d2def92ed09d540ddba33b500822a04af1986d8736b43039f33b5d2c"
+    },
+    {
+      "id": "3651",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:42",
+      "sha256": "b4a5344529a30ebe6148ed88fe468f7215a3d163610eb8f5f7d8e2b11fb63ebf"
+    },
+    {
+      "id": "369",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:33",
+      "sha256": "3643a0ef615f1848505fd1cc6ddbddebe6b09cedab47b56957f09cd74222f80e"
+    },
+    {
+      "id": "3767",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:40",
+      "sha256": "c803124a0d0bfab3faa6b8c1a8dcb3018b85337b388a1d31e116510b2d3b9f43"
+    },
+    {
+      "id": "3834",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:37",
+      "sha256": "05a0d2f844f5e25ab6722cb08b80d7f109bc42adcecca55eaa7ca6b901b27f06"
+    },
+    {
+      "id": "400",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:24",
+      "sha256": "f983d2179610a8e40267f93862cb8ef5f894e8ec55aa5b903bd85cefc595d44f"
+    },
+    {
+      "id": "408",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:10",
+      "sha256": "20cebcc15b62ba127010032d13cb9e0879d190abdd842f7d46e8cc6bc31e55cf"
+    },
+    {
+      "id": "413",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:53",
+      "sha256": "6e784c0347934070c70d5c0fca4979eed99cbd79cf61bfe6595867b571ab5538"
+    },
+    {
+      "id": "4149",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:13",
+      "sha256": "32e717069a54b6a2fdd1f7b2b5a97f4e32f3e90ba0aa70fed020816999d02e2c"
+    },
+    {
+      "id": "4206",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:17",
+      "sha256": "11fd6d07e63a93e0a93c20954663559c993e78a84190d86cdad60b3278733f84"
+    },
+    {
+      "id": "423",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:13",
+      "sha256": "79bf424c4ed4481c215249b20c0721286eaf152d415cd1a122c514ed6c0a4718"
+    },
+    {
+      "id": "4245",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:40",
+      "sha256": "2be60f55fc4a8ae21b0e4d5f7d8d8008c2a6772fbcac8ceedc37253f73f37899"
+    },
+    {
+      "id": "427",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:38",
+      "sha256": "4f3ff8e0157c94b053fe1d1ba6a8bba4daff5e007ae7c6a701274163b36c915a"
+    },
+    {
+      "id": "4284",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:57",
+      "sha256": "12eafaa1df9b4884866ca19cfd1df681d092fef60a797fd797c4278ddc745c9d"
+    },
+    {
+      "id": "4315",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:43",
+      "sha256": "035f705d2302a0431a429b296372882e1f9c394a241250f7d7591f8c8e116775"
+    },
+    {
+      "id": "4353",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:20",
+      "sha256": "8bc39f7c0389976f7b168152c266a5d6b2741935a71598778473566eba1e7f98"
+    },
+    {
+      "id": "453",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:07",
+      "sha256": "b6a1e2fad4141f87531835330a93e06605501c5d55fc84c123b0f3b8cd98ea28"
+    },
+    {
+      "id": "4572",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:12",
+      "sha256": "444ce779c709c11c530087c700cafa83a12105f6c02b789bc29a299e432121f8"
+    },
+    {
+      "id": "4573",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:48",
+      "sha256": "dcc9cdde1f56203e32c9fe8f0da6736c12e8243a2aefc0246a382cc7f5ae503e"
+    },
+    {
+      "id": "480",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:51",
+      "sha256": "25f8c99dbd99d83949b54a78978105a55d2f3a986b23882984b6205019654805"
+    },
+    {
+      "id": "483",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:23",
+      "sha256": "45838635a9f17a7f2ece8a820e2a193cf8df06453cc218c179e7d7f929bcb3e0"
+    },
+    {
+      "id": "502",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:52:55",
+      "sha256": "1134efd351b756488fe2574ea27b6d9875ca27f2bae2f55450ac1449120b9fae"
+    },
+    {
+      "id": "503",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:00",
+      "sha256": "34d81247e12a2f7221342096f759cd7e535635fe3861c74f9918fdd59744636a"
+    },
+    {
+      "id": "504",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:27",
+      "sha256": "02f47f2bcfba3f4fafe7015c557746ecf2418656d0c3c0ae6c7b69fa0e76dc0e"
+    },
+    {
+      "id": "505",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:28",
+      "sha256": "ad023a20fcb2de0e7d244e165a6a76b5feffc32154e561505f2fd4afacf1a653"
+    },
+    {
+      "id": "510",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:56",
+      "sha256": "b6b1c7ba6356e8fc078cd4e50381ddb3ea389b56702c0231983de93484c4782d"
+    },
+    {
+      "id": "512",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:32",
+      "sha256": "0c465396c73bb6d60936b3eac00dab3885061850876a92227bd13da2076c6a42"
+    },
+    {
+      "id": "5296",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:35",
+      "sha256": "09b90e8ca4c11c4c4c0781eb68f77fbb585d86dbf4683d08219a15f7a732ae33"
+    },
+    {
+      "id": "5297",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:39",
+      "sha256": "82887f6191cf822dc5d6e7a9796d917955cf0ee538da9ea53f15cee61e0a5f3e"
+    },
+    {
+      "id": "5298",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:43",
+      "sha256": "e3ed4d7020e8c51069ca47c1b62132da885451c7347ef91fbe45770a32b1d11f"
+    },
+    {
+      "id": "5310",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:16",
+      "sha256": "957754fa8c16031805a80adf92301b8f6813c2ecf9583edd4fcf0940b9ec0987"
+    },
+    {
+      "id": "533",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:46",
+      "sha256": "0b6c34c839bafbc696e95629882eda83ebd55bc1913c94a1c7d532791fbf7d36"
+    },
+    {
+      "id": "5333",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:31",
+      "sha256": "0e8b405a5426382975792b88e698afdbcb608f1cbc69a9eea96dab121f107f42"
+    },
+    {
+      "id": "5355",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:04",
+      "sha256": "b11f65762f40f272c8ee956bc72be06f7ec287ead510b6fb3f44dfcbe2153afa"
+    },
+    {
+      "id": "536",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:50",
+      "sha256": "db0d6369b8afbc1d5bb8f5920a95237695026d410cc08744c7ae7643e3725cc3"
+    },
+    {
+      "id": "5371",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:08",
+      "sha256": "38f2e8092289a80b44c1f21d2e7b5fadd3d517a0a71c6e3d0a85651da2bdd829"
+    },
+    {
+      "id": "5387",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:12",
+      "sha256": "f7334f85e25366629976c0aa144c10379aae21012f16e7aa0c537b8cde2fa299"
+    },
+    {
+      "id": "5388",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:16",
+      "sha256": "4d87e0ece7efe26122181ccf13196a29fa8b2e6383c1ab27a156185c4ceace8c"
+    },
+    {
+      "id": "539",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:34",
+      "sha256": "22b8242044f2940868f21634b82cd321e509b3b91f6e2f57222774df41491a19"
+    },
+    {
+      "id": "5390",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:54",
+      "sha256": "bdef9a6ebaad0ce6f9dbce5c41a5cb9367a52addcdd656454862ef9af51d47c6"
+    },
+    {
+      "id": "5499",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:52",
+      "sha256": "2e08964fe7203393efb51007768fda1b9bb444ce3a540178e8ec510012b92c2e"
+    },
+    {
+      "id": "5601",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:05",
+      "sha256": "e2142c793cc7741776c3546a5ee2cb9943994e068182be3507720f00e519d88c"
+    },
+    {
+      "id": "5635",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:12",
+      "sha256": "b315ee166916bc6f61b1540eb1df5616735cf2870c242793cfc8518d7ba1e333"
+    },
+    {
+      "id": "5642",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:09",
+      "sha256": "d2331b37f837a08821dddd5b1bce3287cf19b5b6ab16280de582a2aa1d511b1d"
+    },
+    {
+      "id": "5653",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:19",
+      "sha256": "ba4dbe31f16899c7a2178bc9247403948a43984841f14ef7058576213da37a3a"
+    },
+    {
+      "id": "5664",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:07",
+      "sha256": "da476ae28107c8d42002ed1458745751b4645f4030ae82e9f8250dcf8a641b7d"
+    },
+    {
+      "id": "5704",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:59",
+      "sha256": "1b184aefa3ce9bfa55c9d627076348bed3562351764b95e529e6f1419cd08bee"
+    },
+    {
+      "id": "5705",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:36",
+      "sha256": "b9d860c121bc503b34bcf243646a41a40400647015e8df94bd98d671dc3a1192"
+    },
+    {
+      "id": "5706",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:32",
+      "sha256": "40d81f512f9f76665f6e661833d1c21e62104c2dd6df4ab13bd2f9993a4f65f7"
+    },
+    {
+      "id": "5709",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:26",
+      "sha256": "c0219971f68819b97c77f5071caa5f92a2dc17cc5553086f8d33249393042a20"
+    },
+    {
+      "id": "5710",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:19",
+      "sha256": "be83f4bb783eb8db6faf7581fd494762cffe146b07ae4debc83eb47fc59be47d"
+    },
+    {
+      "id": "5740",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:38",
+      "sha256": "66d37dd7f82fa7452724ba3afcbb1aec7a145f1f3e84c11669d8c8057690462a"
+    },
+    {
+      "id": "5762",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:33",
+      "sha256": "44fb58592c04874b6f9fec1ebb86a49ee1f0fa0d1cf53eb38d52a43015a7c6ed"
+    },
+    {
+      "id": "5818",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:22",
+      "sha256": "89f80baa53c423010e71ae2a3826c133c4fcdebaa90f07d05cad3b99198f7f7e"
+    },
+    {
+      "id": "582",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:26",
+      "sha256": "4679d85ee31433abee666fd40dc7507cfcb3a961430edc32afa3f4c3395009ee"
+    },
+    {
+      "id": "5823",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:25:57",
+      "sha256": "e8ec5038653ce66e2a413ad8a1c2aa7215d7227ec6377030c6cb7b7a3fd0b60d"
+    },
+    {
+      "id": "583",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:06",
+      "sha256": "5738b4d131bbeed485dc160f7b4266e48dc2968046282eee8e741d2832ae49bd"
+    },
+    {
+      "id": "5839",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:36",
+      "sha256": "37c0bdce8b5c0dd1627a8dd333ac87292432cc8a33758b9950931efac12768e4"
+    },
+    {
+      "id": "5849",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:03",
+      "sha256": "b4649b6a86b02fd6e7821b98402d263b1ee6621f9d68be9928b9d9bf1fa8fbd4"
+    },
+    {
+      "id": "586",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:27",
+      "sha256": "4d1909e559647739a4334cbdc8696492d7af62990f084d99cf9f3c292b178fb6"
+    },
+    {
+      "id": "5891",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:41",
+      "sha256": "2dfd3fa403318ff49d98734e471860220361df570d746b12aa6849a4bd224f9a"
+    },
+    {
+      "id": "5909",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:45",
+      "sha256": "723009257d9afc1da85cf1113c7a18c6f4327a443d571037c54527fe8f36f0c1"
+    },
+    {
+      "id": "5917",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:48",
+      "sha256": "9cb60d7b97f1d5bbfebb003eaf6c24b04f5e15992a675ac1726c4a7652ba0072"
+    },
+    {
+      "id": "5930",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:52",
+      "sha256": "ad5c065d1fb2085aa6dfc708a400210f79c0f2cd0791566d7d328c4679837d12"
+    },
+    {
+      "id": "5937",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:30:57",
+      "sha256": "67207a7f595b44b0891bedc206d474dbaff60b0cee9bc178a5ec877b9dcf2d55"
+    },
+    {
+      "id": "5955",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:01",
+      "sha256": "3cb78ddc9c72cefd6d3fded3be8f9e1adfe42e0c859f9d601d4f88771e18d204"
+    },
+    {
+      "id": "6009",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:27",
+      "sha256": "fdace801ede9fda211289b00184a92aff050799081c2ad4403291046acc6f84e"
+    },
+    {
+      "id": "6014",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:07",
+      "sha256": "533941aa0e3d3574b0535f3e20dc5d25564f9432729ba43bab1961fd755d1e30"
+    },
+    {
+      "id": "6029",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:01",
+      "sha256": "1f89218bb9c92c621a935850a16a553ed35bc18b6d3730613a4129219218e56c"
+    },
+    {
+      "id": "6030",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:05",
+      "sha256": "59650ef5fd45ea2f4fd75925f1411aa1367e75b28a8b094b13de1423d8ade995"
+    },
+    {
+      "id": "6046",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:30",
+      "sha256": "2c44fde6c430f0eac4c7f4c8975bf3c7dbdffdac0c44920e38dbdc585e9eb9f6"
+    },
+    {
+      "id": "6047",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:11",
+      "sha256": "2b3c0696b8e57c01bed8e45113d9c3565058334b5223eaca9e8486a57512874c"
+    },
+    {
+      "id": "6048",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:42",
+      "sha256": "85a044715826b7fe84034fa2aaf9e8d7785569f4237c371033aab58691b91ae9"
+    },
+    {
+      "id": "6049",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:18",
+      "sha256": "b3a875200a51b129d426e511a9f03d1afda9c66e02326c963691944683110e08"
+    },
+    {
+      "id": "6051",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:06",
+      "sha256": "100845640e5652ce53fc5f33bf1d2afeaf31fceae99a8cd2609661db9d50e7ac"
+    },
+    {
+      "id": "6052",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:09",
+      "sha256": "fa63929f0b9b0c8765519d31c749518209653502434b9c6e0421b4d766e51b93"
+    },
+    {
+      "id": "6057",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:31",
+      "sha256": "57bf3f9af4f6ca7a637e5def954fcc15fe586fde7c33257d30b7bbd88c51fdbb"
+    },
+    {
+      "id": "6058",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:35",
+      "sha256": "72dd88923aade8587579dbdeca9e8bf657cf570ad0bea3697d0ae42a6aba3bbd"
+    },
+    {
+      "id": "6080",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:21",
+      "sha256": "8050dce5d7a27df2d3f4d84d5caae92b7dd08e1c44a5fb1d4f0b9988762ec53e"
+    },
+    {
+      "id": "6081",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:29",
+      "sha256": "47214d578c1e49d31c326d2b7ce244a41ca40983e3ab32ef34316ae3dc5f2224"
+    },
+    {
+      "id": "6085",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:12",
+      "sha256": "6770f54ff3ab299c1f38c1196442e5bf0fdfeab01558c42f6a9ddc140a01c136"
+    },
+    {
+      "id": "6086",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:39",
+      "sha256": "ab643cc418d6de0451ceb9eca59b66238542e91fadafe268b6e2e0d8a9f9541a"
+    },
+    {
+      "id": "6087",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:17",
+      "sha256": "ffd3295c3edde465a5a8b1108236ca05a65685b45fdc7d5a469aafc575820527"
+    },
+    {
+      "id": "6088",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:42",
+      "sha256": "acb20ecbe5202e593f5d16dec9ca7496389e5c0273fafaec3e37218229d88264"
+    },
+    {
+      "id": "6105",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:47",
+      "sha256": "7889ad6bc291126213e040b32055061e93b0b57849a03f05169b379c685330bd"
+    },
+    {
+      "id": "6112",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:50",
+      "sha256": "856819599327f0e272c5c4933bd0f9bebcea8fdafb5506885de501ffe64aecb8"
+    },
+    {
+      "id": "6122",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:08",
+      "sha256": "5ca8b3898b5b4512e396b06c516fb16e1704252ad72140ce727571a3e5218620"
+    },
+    {
+      "id": "6123",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:54",
+      "sha256": "cf1f29ac34e8fbd095b061e619323f697fc301ece4420339d971992f949b7189"
+    },
+    {
+      "id": "6124",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:53:58",
+      "sha256": "e0ce19f8eae7e5e1ffba267bf67e92a5c7a292819bc237256c0174060a23d89a"
+    },
+    {
+      "id": "6135",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:20",
+      "sha256": "e9b5d53905a3c98156b1a93e1b652c1d2ed4b2d9150d7c46e350fc10ce7430cc"
+    },
+    {
+      "id": "638",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:39",
+      "sha256": "80b598e51b3aedc8f620d70c7e301e11f40d8f14559e4f4856bfec82ea49c720"
+    },
+    {
+      "id": "639",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:03",
+      "sha256": "61d368e7cc438b863b68e15ba5897223d346d4873d3f3e5868666bcb00d58cd4"
+    },
+    {
+      "id": "669",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:07",
+      "sha256": "ed515b2bb6b7cf60056921149221ae6145819a43508c77bc2722f9d10c6aabec"
+    },
+    {
+      "id": "670",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:52",
+      "sha256": "a947d572b2ba134364ac24f7a98e7255e027bbdfd4172cbeb720a7fc454c8e05"
+    },
+    {
+      "id": "671",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:11",
+      "sha256": "40545ba720c284e1685b80f827cf07ecc5cfd03040b5b0fe6a3805b92a0424b0"
+    },
+    {
+      "id": "6820",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:37",
+      "sha256": "0b15ca32509095d352a4929b96291217b88b703623328b5979d6a96f7dc72be0"
+    },
+    {
+      "id": "6821",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:02",
+      "sha256": "cc961c24eb0f65feef931aa2ab9a293d82e6ed67ad1d132333715fc6426bbae6"
+    },
+    {
+      "id": "6822",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:39",
+      "sha256": "8e1ef213158b43ffaa077fb1ac0ef74936b5db03a237339bcda45f9c94dceb92"
+    },
+    {
+      "id": "6844",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:58",
+      "sha256": "645a043de804799fe4f1552d9868c60d4e36309195302931d31fe466664020fb"
+    },
+    {
+      "id": "6845",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:32",
+      "sha256": "687b442b5f8a3998964b26e69de4808f138136f636635ae74d6002ebf53bcccb"
+    },
+    {
+      "id": "6848",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:46",
+      "sha256": "11d940864589435be11a527eba51be86029ed9423c158d38c1aacce596e5ec00"
+    },
+    {
+      "id": "6849",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:12",
+      "sha256": "219e24343cd4e7598917330986703e0c012d7214edfe1a1f10ac43b71efb4239"
+    },
+    {
+      "id": "6852",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:14",
+      "sha256": "fd6ae1b41ca3fbbdaa0e0fbaf1bb287a68062b6d6e77cf3b83705991abe521f8"
+    },
+    {
+      "id": "6853",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:11",
+      "sha256": "38c081a69bbcc98a3607c8c75c650ef5167f78e647b95493685bb35f4804cb2a"
+    },
+    {
+      "id": "6854",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:47",
+      "sha256": "acfcb2b97029b05f5d720d1575d7881f2cce50b7d2bddf8f2c30f6057b2cdc16"
+    },
+    {
+      "id": "6857",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:48",
+      "sha256": "b94c322879b19f28b8e19c4b4b65b73d22d5d6a5587d953db9d943ccc39fb871"
+    },
+    {
+      "id": "687",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:18",
+      "sha256": "a8ba098b5788ba0d261c82333195141464a5126c5b60a256d94470651bb8ca08"
+    },
+    {
+      "id": "690",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:23",
+      "sha256": "24d8e385ed93abb267fcdf733799c4ff82e27dd2edb83e0876243b41c8a9650a"
+    },
+    {
+      "id": "692",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:27",
+      "sha256": "0245731dbfb7d7b8f64beb97a1e66014c61e6bf2a2cf7dfba52640f4ff1190b3"
+    },
+    {
+      "id": "7012",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:30",
+      "sha256": "0d116679be684cb89dd40ca66c94cf80d02ba6166b0ec8e0ccbbed416fef9bee"
+    },
+    {
+      "id": "7013",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:15",
+      "sha256": "618c4012510ca8b06d765dcd4355ab6a7eb99239e256b98d09d483b80e49db0b"
+    },
+    {
+      "id": "7014",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:22",
+      "sha256": "68b6ed36068355834185007fdb0bf712c034fb7f19b1ee4c74bc54c6bc508b33"
+    },
+    {
+      "id": "7015",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:39",
+      "sha256": "bc2c3dba1fbbf0ffc76fc251b84d012748f754900dec4352bab53ecc2d80dbd8"
+    },
+    {
+      "id": "7017",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:04",
+      "sha256": "cf96abb7589ea17b008dba5af13c4c3ddb2f6ce0d5f7c92c26e6e74989cb3950"
+    },
+    {
+      "id": "7155",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:22",
+      "sha256": "63c19cc7cfe9008e10c914b9cc6d5ac4ea8f6cf2f2dce5f9fbd5cac3cdbb6e3c"
+    },
+    {
+      "id": "7409",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:26",
+      "sha256": "4bdae2052864d540836a030959f3e87e8643529eee3deb1f78488eee3b7fbee0"
+    },
+    {
+      "id": "7418",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:15",
+      "sha256": "2620a85ea4347517f4473935dd042025fc67d5420878d6f8f7d406df83d974d8"
+    },
+    {
+      "id": "7419",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:24",
+      "sha256": "e7de724bfdc48a0e8ebc43650502067f65dce18b072599bae655fb4c38273327"
+    },
+    {
+      "id": "7527",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:05",
+      "sha256": "9cacd03921db63a6601d75e5d09943f5e520cbc4c03c611851dad7cd4287521e"
+    },
+    {
+      "id": "7562",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:57:56",
+      "sha256": "d7b01976944aa0af3f75aee54d065c498df241ad7dc8da57d29c930ae2d466bd"
+    },
+    {
+      "id": "7608",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:16",
+      "sha256": "7a1977f1e0008ba57c1c1629ebb9b4d95a82cdb03fb3ca9c2f05876592aa0f5a"
+    },
+    {
+      "id": "7629",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:26",
+      "sha256": "49e30fce5f5f01748390f5f81f5adae59711ade8e5b9a651aeeb274c2a1f9f63"
+    },
+    {
+      "id": "7681",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:13",
+      "sha256": "669d8a7528cf13db39703c65ff35313fec0059bf11af7e9b61b59ab397946eb6"
+    },
+    {
+      "id": "7685",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:18",
+      "sha256": "c0f817a448937661db15f53e02ce489d9fd549d56a2be74049668424303f287c"
+    },
+    {
+      "id": "7687",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:46",
+      "sha256": "1759390eac05fa5be17e05c8298a163419aaf2b2bb0d9f843cc39dfeb1b8f392"
+    },
+    {
+      "id": "7690",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:51",
+      "sha256": "266152890f1d36ce6e5563679c6d1ef1716f714fc61a5871cf62ec566a1bc868"
+    },
+    {
+      "id": "7692",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:30",
+      "sha256": "ba11089fe1eada2e499b7702e41c372c925f33870d87157a10bf83f48f05fecf"
+    },
+    {
+      "id": "7694",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:34",
+      "sha256": "1421536b4223599968ac574e571bd1102fcbe76e78defa397999aa83894362d7"
+    },
+    {
+      "id": "7698",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:35",
+      "sha256": "c2105650a9ccbed554c189f7974f3273da3d59af3ea7499da71c97d44aee2230"
+    },
+    {
+      "id": "7702",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:28",
+      "sha256": "d980562168fb012885fb70674becddd08bd39a6500d0a1fc19d21256a3a2c6ee"
+    },
+    {
+      "id": "7706",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:21",
+      "sha256": "7e0c3726e5fe0759e007f55405c531b6e1a177503fc3a42fd981d0ddad2eee24"
+    },
+    {
+      "id": "7707",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:57",
+      "sha256": "4ad04e7e1d1cf254e3313f6fc5f4d788c60913a034043a71e46ed6a1fac2e2d2"
+    },
+    {
+      "id": "7708",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:38",
+      "sha256": "fd50199b7db7a733be800bd2aceb47e6dca1ce4599857548a72c64ad6ee0f13e"
+    },
+    {
+      "id": "784",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:32",
+      "sha256": "37ff3cde419eb14f367aee9c467b8abad275e5bbee58b37dab3f4b05a772bbcd"
+    },
+    {
+      "id": "804",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:52",
+      "sha256": "54471b116cb8ce495cef7bb65ce91230b88acddea76e2757251c485521a30728"
+    },
+    {
+      "id": "805",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:54",
+      "sha256": "d8356beb243d83cb8eaaddaad941ef31c64b538b9798d2fffb55f8094c9693c2"
+    },
+    {
+      "id": "806",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:02",
+      "sha256": "1376b1e77f3cfb094d57bf68e850559e5a0b05fc17f9f0a71cfe9551eb7a8cf2"
+    },
+    {
+      "id": "8260",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:42",
+      "sha256": "37c6661a218e9258d4e375fd19ff1f9960b041c592545cc137977d7bf7942466"
+    },
+    {
+      "id": "8337",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:03:43",
+      "sha256": "658c3c7138f401c69225bafc044c63b9c07c7df425925cf5ca4b44a62a7afdcf"
+    },
+    {
+      "id": "847",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:49",
+      "sha256": "bc33b236e8b84936e730cc4b8248f063b56303b8fec1db401c656ba33ab0d8a8"
+    },
+    {
+      "id": "8606",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:45",
+      "sha256": "80c14df218d7eb490477a1914d83708fb6f655810303f0bb686a03aeb7c3037e"
+    },
+    {
+      "id": "8631",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:45",
+      "sha256": "9cdfcb5acc79322a8e35100ef837c329686b8bce42218d21f2b5fe38590da76e"
+    },
+    {
+      "id": "8632",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:26",
+      "sha256": "f1ce6f4d35f2eaa0772ccf0dd623ca720cf84be4751dd5f5270aee66daf95f24"
+    },
+    {
+      "id": "8635",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:04",
+      "sha256": "7e9b620f0751dedfd2cc80be7a034db50656699f8648538084dea7ccedbceaee"
+    },
+    {
+      "id": "8659",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:32",
+      "sha256": "f9bbf458c5237159d86ea45741f87aeac760955344b972540fa98813e4e78696"
+    },
+    {
+      "id": "872",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:00:49",
+      "sha256": "ed613c0e79d70fa238726c35693e0e0b70240bda58e546c0c8e0598891f33127"
+    },
+    {
+      "id": "8720",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:41",
+      "sha256": "4b57b3c696497f5759ae9881e62d354f2a67614a2ec70779853ca3c40d297866"
+    },
+    {
+      "id": "8727",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:06",
+      "sha256": "1ddf9c4e1bb836375b341c2acc8df52e7cc73bcc806578fe66e878b04140e46e"
+    },
+    {
+      "id": "873",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:22",
+      "sha256": "5172efb6567ec5b1773865d395fbea47ec3a3f34c2409831bc0b22f10ab505b3"
+    },
+    {
+      "id": "8739",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:38",
+      "sha256": "c40641603fb1e44d5407424c9510a4f6d2d6a65142294447ff34ebf7c824514c"
+    },
+    {
+      "id": "874",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:45",
+      "sha256": "358c7f9c43961894058eb986f89900ca2c47c24615e58676cf39ba6579927863"
+    },
+    {
+      "id": "8744",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:42",
+      "sha256": "9a02559effee51344bdef25a7cc928efb06c68991bcb599d58a860d8b482b5e9"
+    },
+    {
+      "id": "8760",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:25",
+      "sha256": "eec4a6b58d7d06c3d130b947a74bf04c5aa1feb04b4ab8e323cae40c2e919f87"
+    },
+    {
+      "id": "8767",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:46",
+      "sha256": "2b9a42b7e2450635268be63cc9e96c230e0cf5c7759cd0a5351e40ceeb5f6586"
+    },
+    {
+      "id": "8785",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:49",
+      "sha256": "5cd3f4005741b2e1a3efe996191c1f6aab979f991c327645e87fe987e9f1003e"
+    },
+    {
+      "id": "879",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:52",
+      "sha256": "576dc2695dc766f865682587dce81a65d5abfb505110a9eb139bcaeecf200130"
+    },
+    {
+      "id": "8856",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:56",
+      "sha256": "cee4874b5c5eecfa721b2603ab58ecdd4fffdf6f9a0f3806a67ba1e1e0cb1b0c"
+    },
+    {
+      "id": "8906",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:50",
+      "sha256": "f779d0ff79dcd1f256c9bae722ce8ed34e1b404fedaa01416f6ae159db14809b"
+    },
+    {
+      "id": "8978",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:54",
+      "sha256": "3a13f8fe94fe6227858cbdd971d220e79eba42d6f7e2f2d980212674ec3367f6"
+    },
+    {
+      "id": "912",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:54:59",
+      "sha256": "1788a5a7ff839109dba960542389bd77f5f6752c4db565e2a868fc4cc0f84e16"
+    },
+    {
+      "id": "9255",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:55:02",
+      "sha256": "0f00658b99b92c5d3de4b97510c85ab8538808a5aec0bb0d2ea0102464a15536"
+    },
+    {
+      "id": "9256",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:55:06",
+      "sha256": "4cdc6af81093d3059970b219f9416acb637581152e5201c9744d64160897f829"
+    },
+    {
+      "id": "9357",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:09",
+      "sha256": "04f9c8d9677d5779e945422e3f59008e1289ed2db5ca7a67875bb0989872b48b"
+    },
+    {
+      "id": "9664",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:43",
+      "sha256": "b60ebe55d59341902dc921d609b6ecddbdc214d4efc268b3d5b1dc77014da683"
+    },
+    {
+      "id": "9673",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:02:02",
+      "sha256": "b422104dd7e6e7c89b8cf5e18105411b51c0f7570db2e41f5585e8cd7f7a0241"
+    },
+    {
+      "id": "9681",
+      "origine": "téléchargée",
+      "date": "2026-10-07T18:55:09",
+      "sha256": "d6c1b5084c6e4c5a11136838212ceeb6bf55b697ab3665b00be819eeeff44814"
+    },
+    {
+      "id": "9687",
+      "origine": "cache historique",
+      "date": "2026-10-07T11:31:57",
+      "sha256": "59616d1909723b3fd065b25500b90f1a75e7f28fe121fe19429f7d0a75cc1786"
+    },
+    {
+      "id": "9902",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:04:59",
+      "sha256": "c01d06ad3def537bceabeacb270fc9037f22d56b86b161676d4157618f209d5e"
+    },
+    {
+      "id": "9917",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:29",
+      "sha256": "e2bb0e795e5460a753c59751282877cb60d65f266886f4e74d48589f4a125096"
+    },
+    {
+      "id": "9919",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:59:21",
+      "sha256": "ae8f633de3128979751dd956770d42b8fe45bb723032612e841a7c82f8c87a12"
+    },
+    {
+      "id": "9921",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:33",
+      "sha256": "621222e6e1fd350ffbedbad715a3be4a6ff74b381d7ee0db05ae5fc32d8baba4"
+    },
+    {
+      "id": "994",
+      "origine": "cache historique",
+      "date": "2026-10-06T19:58:19",
+      "sha256": "4847105f4278f6d06e75dc681b039441271f15e14416a19a25018d9eb761fc01"
+    },
+    {
+      "id": "995",
+      "origine": "cache historique",
+      "date": "2026-10-06T20:01:52",
+      "sha256": "0ad4e59ff8084e22ad20b3a672c75cb8616345932798792f6c6102ab7a85b929"
+    },
+    {
+      "id": "9957",
+      "origine": "cache historique",
+      "date": "2026-10-07T16:26:36",
+      "sha256": "1d9bb429020c505a2d2bb9afdecab7a589d6a3c5d3c13bd257c8ef56bd9b09ce"
+    },
+    {
+      "id": "997",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:06",
+      "sha256": "95935a4817f5d1c91fb0f7922f4ddf29ab5b99dee7f31295ef5f227dc66808a1"
+    },
+    {
+      "id": "9977",
+      "origine": "cache historique",
+      "date": "2026-10-06T16:27:06",
+      "sha256": "d0fbdf07ab5a605cd0abfd35b8d0fbf104414a0968ec7b43b2332202e3d1a4c9"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "605340ddc19a9.csv",
+      "sha256": "fad697b5d6be5d94fca10c8ac3f97ced52ae6f745bd2a5977bf5e2deda551328",
+      "date": "2026-10-06T16:24:55"
+    },
+    {
+      "nom": "sup2.csv",
+      "sha256": "8be533eb71b00ee31e273af61145b83b7be38c84297bfb39269c2730fab0425f",
+      "date": "2026-10-06T16:26:22"
+    },
+    {
+      "nom": "ij.json",
+      "sha256": "a321606b912795b232f1c8fc260ee853fca749da15f25d72087e7e2a02c677d0",
+      "date": "2026-10-07T18:09:53"
+    }
+  ],
+  "inserjeunes_url": "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-inserjeunes-lycee_pro-formation-fine/exports/json?where=annee%3D%22cumul+2023-2024%22&select=annee%2Cuai%2Ctype_diplome%2Clibelle_formation%2Ccode_formation_mefstat11%2Ctaux_poursuite_etudes%2Ctaux_emploi_6_mois",
+  "inserjeunes_ambigus": [
+    {
+      "uai": "0020051V",
+      "formation": "CAP ébéniste"
+    },
+    {
+      "uai": "0100023W",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0110007Y",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0110023R",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0110670U",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0130001F",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0130051K",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0131391S",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0180007K",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0212015B",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0220057T",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0280044W",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0280044W",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0290340M",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0300002P",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0300950V",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0310044E",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0310088C",
+      "formation": "CAP ébéniste"
+    },
+    {
+      "uai": "0311177L",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0311902Z",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0330028B",
+      "formation": "bac pro métiers de l'électricité et de ses environnements connectés"
+    },
+    {
+      "uai": "0330126H",
+      "formation": "BTS comptabilité et gestion"
+    },
+    {
+      "uai": "0333273D",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0333273D",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0350028R",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0350797B",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0380008C",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0391146J",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0421021G",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0421606T",
+      "formation": "CAP métiers de la mode - vêtement flou"
+    },
+    {
+      "uai": "0442725Y",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0490003M",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0510035L",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0510035L",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0520844K",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0530068L",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0540041B",
+      "formation": "BTS comptabilité et gestion"
+    },
+    {
+      "uai": "0540044E",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0540076P",
+      "formation": "BTS comptabilité et gestion"
+    },
+    {
+      "uai": "0542408Z",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0560027A",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0560200N",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0572757M",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0590122M",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0590214M",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0590282L",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0592967E",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0593061G",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0593078A",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0595657D",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0620109G",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0622949U",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0623902E",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0624141P",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0630020E",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0630020E",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0630021F",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0631985R",
+      "formation": "BTS maintenance des systèmes option B systèmes énergétiques et fluidiques"
+    },
+    {
+      "uai": "0641441U",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0690037R",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0690074F",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0690646C",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0691626T",
+      "formation": "CAP ébéniste"
+    },
+    {
+      "uai": "0710010A",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0750691U",
+      "formation": "BTS maintenance des systèmes option B systèmes énergétiques et fluidiques"
+    },
+    {
+      "uai": "0750711R",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0751883P",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0754037F",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0761356L",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0761735Y",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0761742F",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0770938B",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0800011C",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0810018E",
+      "formation": "BTS opticien-lunetier"
+    },
+    {
+      "uai": "0830923C",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0840005Z",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0860038Z",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0870019Y",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0870097H",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0910622G",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0912251C",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0920136Y",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0921166T",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0932120Z",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0932667U",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0940580V",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "0941018W",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "0941474S",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "0951811C",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "9711032V",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    },
+    {
+      "uai": "9711082Z",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "9711082Z",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "9720004X",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "9720005Y",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "9720350Y",
+      "formation": "BTS services et prestations des secteurs sanitaire et social"
+    },
+    {
+      "uai": "9720430K",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "9740002J",
+      "formation": "BTS économie sociale et familiale"
+    },
+    {
+      "uai": "9740054R",
+      "formation": "BTS maintenance des systèmes option A systèmes de production"
+    }
+  ],
+  "sans_uai": [
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10240",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10489",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1052",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10784",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10908",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11019",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11039",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11048",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11261",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1134",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11471",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11485",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11528",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11529",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11583",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11613",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11967",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12022",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12171",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12217",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12493",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12561",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12564",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12580",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12584",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1260",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12632",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12958",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12982",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12991",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1300",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13114",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13179",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13268",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13284",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13489",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13491",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13531",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13610",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13790",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13806",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13961",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13991",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14220",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14266",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14298",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14328",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14371",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14851",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14861",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14862",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14957",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1506",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15078",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15082",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15488",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15648",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15649",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.15916",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16065",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16136",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16173",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16262",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16275",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16345",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16351",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16581",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16589",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16590",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16592",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16742",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16794",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16925",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17007",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17008",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17044",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17081",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17086",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17132",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17245",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17260",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17361",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17374",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17413",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17449",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17504",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17555",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17604",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17656",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17676",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17688",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17775",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17777",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17923",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17940",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17989",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18013",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18054",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18056",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18219",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18262",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18348",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18394",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18404",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18475",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18511",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18549",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18629",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18805",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18838",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18891",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18914",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18958",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18980",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19018",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19045",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19090",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19110",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19114",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19122",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19146",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19152",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19212",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19213",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19244",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19291",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19319",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19369",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19399",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19423",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19501",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19550",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19653",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19705",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19711",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19785",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2153",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.21765",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.21767",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.21768",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2183",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22097",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22148",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22160",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22211",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22221",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22259",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22428",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22491",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22496",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22687",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22708",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22815",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22937",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2296",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22992",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22997",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22998",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23064",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23075",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23106",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23151",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23187",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2332",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23424",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23426",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23443",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23499",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23524",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23624",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23638",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23662",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23674",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23736",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23737",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23745",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23781",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24023",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24081",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24158",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24192",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24232",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24243",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24355",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24471",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24527",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24540",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24608",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24658",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24805",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24808",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24824",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24833",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24834",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24845",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24862",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24863",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24893",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24916",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.24918",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25041",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25048",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25066",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25189",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25190",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25191",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25229",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25252",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25293",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25306",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25330",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25336",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25360",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25361",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25364",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25365",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25371",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25402",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25403",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25407",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25409",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25476",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25505",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25520",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25521",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25531",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25540",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25542",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25548",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25549",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25589",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25649",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25759",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25782",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25789",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25826",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25827",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25830",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25956",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2600",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2606",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2959",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.3095",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.3159",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.3165",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.3693",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.3766",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.3926",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.4015",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.4025",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.4052",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.4241",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.4525",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.4768",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.4898",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5009",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5191",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5265",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5347",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5355",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5479",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5584",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5595",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5713",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5722",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5838",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5840",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5884",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.6175",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.6248",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.6543",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.6595",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.6606",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.6690",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.6997",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.7369",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.7524",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.7765",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.7913",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8012",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8242",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8369",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.844",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8518",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8555",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8632",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8690",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8711",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.872",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8751",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8789",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.8874",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.9088",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.9194",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.9616",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.9624",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.9764",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.9981",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/HAND.362",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/HAND.522",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/HAND.608",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/HAND.637",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/HAND.656"
+  ],
+  "urls_omises": [
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.11034",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.13281",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1540",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.16070",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17015",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17022",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17313",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.18587",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19293",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.19672",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.22201",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25207",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25208",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.25210",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.3544",
+    "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.5703"
+  ],
+  "exclusions": [
+    {
+      "n": "Institut de formation en soins infirmiers et d'aides-soignants - Centre hospitalier Princesse Grace",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1825",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Nicolas Barré - Établissement privé François d'Assise",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14267",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Nicolas Barré - Établissement privé François d'Assise",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14267",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Nicolas Barré - Établissement privé François d'Assise",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.14267",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "International University of Monaco",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2192",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "International University of Monaco",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2192",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Pavillon Bosio École supérieure d'arts plastiques de la ville de Monaco",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1824",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Institut de formation en soins infirmiers et d'aides-soignants - Centre hospitalier Princesse Grace",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1825",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Pavillon Bosio École supérieure d'arts plastiques de la ville de Monaco",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.1824",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Albert 1er",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.12268",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "International University of Monaco",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2192",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "International University of Monaco",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2192",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "International University of Monaco",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2192",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "International University of Monaco",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.2192",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    },
+    {
+      "n": "Lycée Rainier III",
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10397",
+      "motif": "Coordonnées invalides ou territoire de Monaco hors catalogue"
+    }
+  ]
+}
