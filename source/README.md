@@ -54,3 +54,77 @@ script avant une diffusion (au moins une fois par mois), changer `DV` dans
 Documentation officielle :
 https://api.apprentissage.beta.gouv.fr/fr/explorer/recherche-offre
 et https://api.apprentissage.beta.gouv.fr/fr/documentation-technique.
+
+
+## « Qui peut m’aider ? » — 30 académies
+
+Python 3 et `curl` ; `beautifulsoup4` uniquement pour collecter les fiches ANMDA.
+Depuis la racine :
+
+```sh
+python3 source/aide.py --academies toutes
+python3 source/aide.py --academies lyon lille aix-marseille rennes la-reunion
+```
+
+Sorties : `aide/data/<slug>.json` et `aide/<slug>/index.html`. Les petites pages
+chargent l’unique application `aide/index.html`, puis `aide/national.js`.
+`/aide/france/` ouvre le choix ou l’académie retenue ; `/aide/` reste l’Île-de-France.
+Sans paramètre, `aide.py` garde son mode historique : le lancer depuis le dossier
+contenant `annuaire-sp.json`, `bibliotheques.json`, `colleges_idf.json` (ou `colleges.json`) ;
+il y régénère `aide.json`. Le mode national n’écrit jamais `aide/aide.json`.
+
+Cache reprenable : `~/.cache/carte-stages-aide/` (`--cache`). Pour actualiser, choisir
+un cache vide et ajouter `--refresh-mda` ; sinon le relevé `aide/data/mda-france.json`
+est réutilisé. `--mda-only` collecte ANMDA avec 2,5 s entre téléchargements et un
+User-Agent navigateur. Examiner `mda-review.json` dans le cache pour les ateliers ;
+les exclusions motivées vont dans `aide/data/mda-exclusions.json`. `bilan.json`
+donne les effectifs, tailles, exclusions et requêtes sources exactes.
+
+### Sélecteur réutilisable
+
+`commun/academies.json` est la référence unique : `slug` stable, `nom`, `deps`, `region`.
+Elle suit les [30 académies du ministère](https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557)
+et l’[article R222-2](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071191/LEGISCTA000006151410/),
+consultés le 7 octobre 2026. Aucun des 101 départements n’est partagé. Les territoires
+non résolus restent signalés dans le [rapport](../aide/verification/rapport.md).
+
+```js
+import {initAcademie} from '../commun/academie.js';
+await initAcademie({mount, contenu, baseOutil: new URL('./', document.baseURI),
+  onSelect: async (academie, {signal}) => { /* charger academie.slug avec signal */ }
+});
+```
+
+Après `await chargerAcademies()`, `academieDepuisDepartement(code)` et
+`academieDepuisAdresse(featureBAN)` renvoient une entrée ou `null` si inconnue/ambiguë.
+Le module gère l’URL directe prioritaire, `stages.academie` avec try/catch, la question
+et « changer ». Les pages historiques ne le chargent pas. Les contours locaux
+`commun/contours/<dep>.json` (index `departements.json`) ne sont chargés qu’au clic GPS,
+pour les emprises concernées ; la position reste dans le téléphone. BAN n’est appelé
+que pendant la saisie. Les frontières simplifiées peuvent nécessiter le choix par ville.
+
+Sources : [Service-public.fr](https://api-lannuaire.service-public.fr/explore/dataset/api-lannuaire-administration/)
+(sans agents ni courriels), [Culture](https://www.data.gouv.fr/datasets/adresses-des-bibliotheques-publiques-2)
+(enquête 2023, export 27 août 2025, filtres historiques), [ANMDA](https://anmda.fr/fr/annuaire-mda),
+[collèges ouverts](https://data.education.gouv.fr/explore/dataset/fr-en-annuaire-education/) (UAI dédoublonnés),
+[contours Etalab/IGN 2025 à 100 m](https://etalab-datasets.geo.data.gouv.fr/contours-administratifs/2025/geojson/departements-100m.geojson)
+(Licence Ouverte) et [communes](https://geo.api.gouv.fr/decoupage-administratif/communes)
+(pour vérifier les codes postaux corses à la génération). Collecte du 7 octobre 2026.
+
+### Vérifications avant PR
+
+```sh
+python3 source/verif_idf.py --sources-idf /chemin/du/cache-historique
+python3 aide/tests/donnees.py
+# Serveur local actif (python3 -m http.server 8765) :
+BASE_URL=http://127.0.0.1:8765 node aide/tests/national.cjs
+```
+
+Node/Playwright nécessaires (`PLAYWRIGHT_MODULE` si installé hors dépôt).
+`verif_idf.py` ne modifie pas le dépôt : il régénère dans un dossier temporaire,
+compare les trois JSON à `origin/main` et les dix pages à GitHub Pages à 375 px.
+Sources absentes : résultat incomplet (code 2), jamais « oui » par défaut ; différence :
+code 1. Rapports et captures : `/tmp/verif-idf/` (`--rapport`) et `/tmp/aide-national/`
+(`TEST_OUTPUT`). Le déploiement canonique est utilisé car le domaine `/stages/`
+sert `accueil/`, pas la carte racine. La régénération des deux outils de formation
+sera ajoutée lors de leurs missions ; leurs fichiers et pages sont déjà comparés.

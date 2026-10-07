@@ -1,0 +1,18 @@
+Référence origin/main : 6ad173cdd030422e6995848b56ab2eac753a89b2
+aide/aide.json : identique à origin/main ; SHA-256 0e7273d055ab81dc8d2ab14fa4dca3fae6ef12283928ae2479aff6ee566625a7
+apres-3e/apres3e.json : identique à origin/main ; SHA-256 eb16cf4f0e77fa2fe076b71ee20fbec77636dcb075a289e894fc6b28c6374d8b
+formation/formations.json : identique à origin/main ; SHA-256 f7a477eff3766dfc24df573358658e067112c6b3f79f05bb9851cd3cee234270
+Régénération aide (mode par défaut) : identique à l’octet près
+Après le collège / Après le lycée : fichiers comparés ; régénération à ajouter lors de leurs missions nationales.
+/aide/ : identique, sans erreur
+/aide/#mda : identique, sans erreur
+/apres-3e/ : identique, sans erreur
+/apres-3e/#cuisine : identique, sans erreur
+/formation/ : identique, sans erreur
+/formation/#eeb : identique, sans erreur
+/formation/#iccer : identique, sans erreur
+/ : identique, sans erreur
+/henaff/ : identique, sans erreur
+/iccer : identique, sans erreur
+Île-de-France identique : oui
+Rapport et captures : /private/tmp/aide-france-cache/verif-idf-final

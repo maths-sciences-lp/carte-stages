@@ -1,0 +1,95 @@
+[
+  {
+    "t": "cio",
+    "n": "CIO – Montbrison",
+    "a": "Parc des Comtes-du-Forez",
+    "cp": "42600",
+    "v": "Montbrison",
+    "lat": 45.60884,
+    "lon": 4.06475,
+    "tel": "04 77 58 53 77",
+    "w": "https://montbrison.cio.ac-lyon.fr/spip/",
+    "h": [
+      "Lundi au vendredi : 9 h–12 h, 13 h 30–17 h 30"
+    ],
+    "sp": "https://lannuaire.service-public.gouv.fr/auvergne-rhone-alpes/loire/5b3bb67a-e2a6-4107-aebe-b70056019375",
+    "maj": "18/09/2025",
+    "dep": "Loire",
+    "ac": "Lyon"
+  },
+  {
+    "t": "ml",
+    "n": "Mission locale – Hem",
+    "a": "Maison de l'Emploi - PLIE - Mission Locale Val de Marque 4 parvis Berthelot",
+    "cp": "59510",
+    "v": "Hem",
+    "lat": 50.65487,
+    "lon": 3.18881,
+    "tel": "03 20 66 70 15",
+    "w": "https://www.mde-valdemarque.fr/",
+    "h": [
+      "Lundi au jeudi : 8 h 30–12 h 30, 13 h 30–16 h 30",
+      "Vendredi : 8 h 30–12 h"
+    ],
+    "sp": "https://lannuaire.service-public.gouv.fr/hauts-de-france/nord/4a0d18ba-9c3e-4540-a0cb-e7fe19293527",
+    "maj": "18/12/2024",
+    "dep": "Nord",
+    "ac": "Lille"
+  },
+  {
+    "t": "ij",
+    "n": "Point information jeunesse – Aubagne",
+    "a": "La Boussole 80 avenue des Sœurs-Gastine",
+    "cp": "13400",
+    "v": "Aubagne",
+    "lat": 43.2916,
+    "lon": 5.56287,
+    "tel": "04 42 01 56 56",
+    "w": "https://www.aubagne.fr/PIJ.html",
+    "h": [
+      "Lundi : 10 h 30–17 h 30",
+      "Mardi au jeudi : 8 h 45–17 h 30",
+      "Vendredi : 8 h 45–16 h 30"
+    ],
+    "sp": "https://lannuaire.service-public.gouv.fr/provence-alpes-cote-d-azur/bouches-du-rhone/1c264835-f078-4077-84e3-8d18c5294149",
+    "maj": "11/09/2026",
+    "dep": "Bouches-du-Rhône",
+    "ac": "Aix-Marseille"
+  },
+  {
+    "t": "bib",
+    "n": "Bibliothèque municipale Jacques Prevert",
+    "a": "Rue de la Mairie",
+    "cp": "29290",
+    "v": "Lanrivoaré",
+    "lat": 48.4737,
+    "lon": -4.63979,
+    "tel": "02 98 84 37 73",
+    "w": "http://www.bibliotheque.lanrivoare.fr/",
+    "pl": 10,
+    "po": 1,
+    "wifi": true,
+    "dim": true,
+    "h": [],
+    "dep": "Finistère",
+    "ac": "Rennes"
+  },
+  {
+    "t": "mda",
+    "n": "Maison des Adolescents de la Réunion - KAZ'ADO OUEST",
+    "a": "31 bis rue Labourdonnais",
+    "cp": "97460",
+    "v": "Saint Paul",
+    "tel": "02 62 74 22 40",
+    "h": [
+      "Lundi - Mardi : 8H30 - 16H00",
+      "Mercredi - Vendredi : 9h00 - 18h00",
+      "Jeudi : 8h30 - 12h00"
+    ],
+    "src": "https://anmda.fr/fr/maison-des-adolescents-de-la-reunion-kazado-ouest",
+    "lat": -20.93995,
+    "lon": 55.29371,
+    "dep": "La Réunion",
+    "ac": "La Réunion"
+  }
+]
