@@ -1,0 +1,1038 @@
+{
+  "date": "2026-10-07",
+  "academies": [
+    {
+      "slug": "aix-marseille",
+      "academie": "Aix-Marseille",
+      "formations": 159,
+      "offres": 1014,
+      "lycees": 140,
+      "colleges": 351,
+      "internats": {
+        "i": 62,
+        "sans": 70,
+        "a": 4,
+        "v": 4
+      },
+      "inserjeunes": 315,
+      "pression": 0,
+      "octets": 476831,
+      "gzip_octets": 54767
+    },
+    {
+      "slug": "amiens",
+      "academie": "Amiens",
+      "formations": 142,
+      "offres": 723,
+      "lycees": 107,
+      "colleges": 285,
+      "internats": {
+        "i": 83,
+        "a": 11,
+        "sans": 10,
+        "v": 3
+      },
+      "inserjeunes": 219,
+      "pression": 0,
+      "octets": 369156,
+      "gzip_octets": 41301
+    },
+    {
+      "slug": "besancon",
+      "academie": "Besançon",
+      "formations": 121,
+      "offres": 415,
+      "lycees": 78,
+      "colleges": 173,
+      "internats": {
+        "i": 59,
+        "v": 7,
+        "sans": 10,
+        "a": 2
+      },
+      "inserjeunes": 103,
+      "pression": 0,
+      "octets": 219043,
+      "gzip_octets": 25285
+    },
+    {
+      "slug": "bordeaux",
+      "academie": "Bordeaux",
+      "formations": 166,
+      "offres": 1111,
+      "lycees": 177,
+      "colleges": 473,
+      "internats": {
+        "i": 140,
+        "a": 12,
+        "v": 6,
+        "sans": 19
+      },
+      "inserjeunes": 347,
+      "pression": 0,
+      "octets": 520525,
+      "gzip_octets": 62319
+    },
+    {
+      "slug": "clermont-ferrand",
+      "academie": "Clermont-Ferrand",
+      "formations": 141,
+      "offres": 485,
+      "lycees": 84,
+      "colleges": 213,
+      "internats": {
+        "i": 69,
+        "v": 2,
+        "sans": 9,
+        "a": 4
+      },
+      "inserjeunes": 134,
+      "pression": 0,
+      "octets": 253920,
+      "gzip_octets": 28401
+    },
+    {
+      "slug": "corse",
+      "academie": "Corse",
+      "formations": 58,
+      "offres": 99,
+      "lycees": 12,
+      "colleges": 45,
+      "internats": {
+        "i": 10,
+        "v": 1,
+        "sans": 1
+      },
+      "inserjeunes": 20,
+      "pression": 0,
+      "octets": 57599,
+      "gzip_octets": 6032
+    },
+    {
+      "slug": "creteil",
+      "academie": "Créteil",
+      "formations": 149,
+      "offres": 1012,
+      "lycees": 152,
+      "colleges": 562,
+      "internats": {
+        "sans": 117,
+        "i": 25,
+        "v": 6,
+        "a": 4
+      },
+      "inserjeunes": 440,
+      "pression": 569,
+      "octets": 488115,
+      "gzip_octets": 61554
+    },
+    {
+      "slug": "dijon",
+      "academie": "Dijon",
+      "formations": 140,
+      "offres": 613,
+      "lycees": 97,
+      "colleges": 238,
+      "internats": {
+        "i": 80,
+        "a": 7,
+        "sans": 10
+      },
+      "inserjeunes": 137,
+      "pression": 0,
+      "octets": 336266,
+      "gzip_octets": 39323
+    },
+    {
+      "slug": "grenoble",
+      "academie": "Grenoble",
+      "formations": 151,
+      "offres": 1172,
+      "lycees": 191,
+      "colleges": 414,
+      "internats": {
+        "i": 143,
+        "a": 10,
+        "sans": 34,
+        "v": 4
+      },
+      "inserjeunes": 330,
+      "pression": 0,
+      "octets": 565562,
+      "gzip_octets": 73844
+    },
+    {
+      "slug": "guadeloupe",
+      "academie": "Guadeloupe",
+      "formations": 100,
+      "offres": 227,
+      "lycees": 26,
+      "colleges": 71,
+      "internats": {
+        "i": 9,
+        "v": 3,
+        "sans": 14
+      },
+      "inserjeunes": 71,
+      "pression": 0,
+      "octets": 115717,
+      "gzip_octets": 11175
+    },
+    {
+      "slug": "guyane",
+      "academie": "Guyane",
+      "formations": 107,
+      "offres": 230,
+      "lycees": 24,
+      "colleges": 59,
+      "internats": {
+        "v": 6,
+        "i": 10,
+        "sans": 7,
+        "a": 1
+      },
+      "inserjeunes": 88,
+      "pression": 0,
+      "octets": 116722,
+      "gzip_octets": 10437
+    },
+    {
+      "slug": "la-reunion",
+      "academie": "La Réunion",
+      "formations": 137,
+      "offres": 409,
+      "lycees": 44,
+      "colleges": 122,
+      "internats": {
+        "i": 21,
+        "sans": 6,
+        "a": 15,
+        "v": 2
+      },
+      "inserjeunes": 167,
+      "pression": 0,
+      "octets": 231669,
+      "gzip_octets": 18962
+    },
+    {
+      "slug": "lille",
+      "academie": "Lille",
+      "formations": 156,
+      "offres": 1399,
+      "lycees": 196,
+      "colleges": 586,
+      "internats": {
+        "i": 87,
+        "a": 30,
+        "sans": 62,
+        "v": 17
+      },
+      "inserjeunes": 444,
+      "pression": 0,
+      "octets": 654151,
+      "gzip_octets": 84851
+    },
+    {
+      "slug": "limoges",
+      "academie": "Limoges",
+      "formations": 116,
+      "offres": 247,
+      "lycees": 43,
+      "colleges": 111,
+      "internats": {
+        "i": 38,
+        "sans": 4,
+        "v": 1
+      },
+      "inserjeunes": 57,
+      "pression": 0,
+      "octets": 131614,
+      "gzip_octets": 14198
+    },
+    {
+      "slug": "lyon",
+      "academie": "Lyon",
+      "formations": 164,
+      "offres": 1053,
+      "lycees": 162,
+      "colleges": 403,
+      "internats": {
+        "i": 89,
+        "a": 22,
+        "sans": 48,
+        "v": 3
+      },
+      "inserjeunes": 332,
+      "pression": 0,
+      "octets": 517595,
+      "gzip_octets": 61216
+    },
+    {
+      "slug": "martinique",
+      "academie": "Martinique",
+      "formations": 102,
+      "offres": 182,
+      "lycees": 26,
+      "colleges": 77,
+      "internats": {
+        "sans": 10,
+        "v": 4,
+        "i": 11,
+        "a": 1
+      },
+      "inserjeunes": 59,
+      "pression": 0,
+      "octets": 100923,
+      "gzip_octets": 10354
+    },
+    {
+      "slug": "mayotte",
+      "academie": "Mayotte",
+      "formations": 85,
+      "offres": 136,
+      "lycees": 21,
+      "colleges": 36,
+      "internats": {
+        "sans": 19,
+        "v": 1,
+        "i": 1
+      },
+      "inserjeunes": 0,
+      "pression": 0,
+      "octets": 68473,
+      "gzip_octets": 6736
+    },
+    {
+      "slug": "montpellier",
+      "academie": "Montpellier",
+      "formations": 169,
+      "offres": 874,
+      "lycees": 129,
+      "colleges": 360,
+      "internats": {
+        "i": 87,
+        "sans": 29,
+        "v": 9,
+        "a": 4
+      },
+      "inserjeunes": 279,
+      "pression": 0,
+      "octets": 419208,
+      "gzip_octets": 47592
+    },
+    {
+      "slug": "nancy-metz",
+      "academie": "Nancy-Metz",
+      "formations": 136,
+      "offres": 695,
+      "lycees": 118,
+      "colleges": 319,
+      "internats": {
+        "i": 81,
+        "v": 1,
+        "a": 18,
+        "sans": 18
+      },
+      "inserjeunes": 235,
+      "pression": 0,
+      "octets": 373217,
+      "gzip_octets": 44210
+    },
+    {
+      "slug": "nantes",
+      "academie": "Nantes",
+      "formations": 171,
+      "offres": 1375,
+      "lycees": 226,
+      "colleges": 524,
+      "internats": {
+        "i": 164,
+        "sans": 42,
+        "v": 6,
+        "a": 14
+      },
+      "inserjeunes": 353,
+      "pression": 0,
+      "octets": 651934,
+      "gzip_octets": 82450
+    },
+    {
+      "slug": "nice",
+      "academie": "Nice",
+      "formations": 130,
+      "offres": 511,
+      "lycees": 60,
+      "colleges": 237,
+      "internats": {
+        "i": 26,
+        "sans": 27,
+        "a": 5,
+        "v": 2
+      },
+      "inserjeunes": 188,
+      "pression": 0,
+      "octets": 241725,
+      "gzip_octets": 23338
+    },
+    {
+      "slug": "normandie",
+      "academie": "Normandie",
+      "formations": 173,
+      "offres": 1107,
+      "lycees": 176,
+      "colleges": 475,
+      "internats": {
+        "i": 140,
+        "sans": 25,
+        "a": 6,
+        "v": 5
+      },
+      "inserjeunes": 336,
+      "pression": 0,
+      "octets": 536778,
+      "gzip_octets": 65617
+    },
+    {
+      "slug": "orleans-tours",
+      "academie": "Orléans-Tours",
+      "formations": 149,
+      "offres": 823,
+      "lycees": 120,
+      "colleges": 368,
+      "internats": {
+        "i": 95,
+        "a": 11,
+        "v": 3,
+        "sans": 11
+      },
+      "inserjeunes": 247,
+      "pression": 0,
+      "octets": 404341,
+      "gzip_octets": 46125
+    },
+    {
+      "slug": "paris",
+      "academie": "Paris",
+      "formations": 138,
+      "offres": 339,
+      "lycees": 79,
+      "colleges": 229,
+      "internats": {
+        "sans": 71,
+        "a": 1,
+        "v": 4,
+        "i": 3
+      },
+      "inserjeunes": 142,
+      "pression": 0,
+      "octets": 172993,
+      "gzip_octets": 20853
+    },
+    {
+      "slug": "poitiers",
+      "academie": "Poitiers",
+      "formations": 159,
+      "offres": 624,
+      "lycees": 107,
+      "colleges": 258,
+      "internats": {
+        "i": 94,
+        "sans": 10,
+        "v": 2,
+        "a": 1
+      },
+      "inserjeunes": 141,
+      "pression": 0,
+      "octets": 295486,
+      "gzip_octets": 33002
+    },
+    {
+      "slug": "reims",
+      "academie": "Reims",
+      "formations": 122,
+      "offres": 498,
+      "lycees": 68,
+      "colleges": 197,
+      "internats": {
+        "i": 59,
+        "a": 1,
+        "sans": 6,
+        "v": 2
+      },
+      "inserjeunes": 124,
+      "pression": 0,
+      "octets": 226851,
+      "gzip_octets": 22298
+    },
+    {
+      "slug": "rennes",
+      "academie": "Rennes",
+      "formations": 160,
+      "offres": 1101,
+      "lycees": 175,
+      "colleges": 463,
+      "internats": {
+        "i": 141,
+        "v": 10,
+        "a": 6,
+        "sans": 18
+      },
+      "inserjeunes": 270,
+      "pression": 0,
+      "octets": 536036,
+      "gzip_octets": 67987
+    },
+    {
+      "slug": "strasbourg",
+      "academie": "Strasbourg",
+      "formations": 119,
+      "offres": 502,
+      "lycees": 60,
+      "colleges": 241,
+      "internats": {
+        "i": 29,
+        "v": 2,
+        "sans": 21,
+        "a": 8
+      },
+      "inserjeunes": 178,
+      "pression": 0,
+      "octets": 244580,
+      "gzip_octets": 23934
+    },
+    {
+      "slug": "toulouse",
+      "academie": "Toulouse",
+      "formations": 164,
+      "offres": 961,
+      "lycees": 155,
+      "colleges": 415,
+      "internats": {
+        "i": 126,
+        "sans": 23,
+        "v": 4,
+        "a": 2
+      },
+      "inserjeunes": 275,
+      "pression": 0,
+      "octets": 444312,
+      "gzip_octets": 54567
+    },
+    {
+      "slug": "versailles",
+      "academie": "Versailles",
+      "formations": 144,
+      "offres": 1123,
+      "lycees": 162,
+      "colleges": 696,
+      "internats": {
+        "i": 38,
+        "sans": 120,
+        "a": 1,
+        "v": 3
+      },
+      "inserjeunes": 489,
+      "pression": 0,
+      "octets": 524535,
+      "gzip_octets": 66831
+    }
+  ],
+  "sources": [
+    {
+      "nom": "605340ddc19a9.csv",
+      "sha256": "fad697b5d6be5d94fca10c8ac3f97ced52ae6f745bd2a5977bf5e2deda551328",
+      "date_fichier": "2026-10-06T16:24:55"
+    },
+    {
+      "nom": "annuaire-national-complet.json",
+      "sha256": "776c642b88e7cbbbbaf74f8e57ef9348e91204b155c1e71e1cc26c2757b5d738",
+      "date_fichier": "2026-10-07T18:15:11"
+    },
+    {
+      "nom": "ij.json",
+      "sha256": "a321606b912795b232f1c8fc260ee853fca749da15f25d72087e7e2a02c677d0",
+      "date_fichier": "2026-10-07T18:09:53"
+    },
+    {
+      "nom": "pression_2025.json",
+      "sha256": "ae48fc53e935410b1761040b4f4a891f22dd700e1e70147ffaa5c3b7802a9092",
+      "date_fichier": "2026-10-07T15:49:05"
+    }
+  ],
+  "urls": {
+    "onisep": "https://opendata.onisep.fr/data/605340ddc19a9/2-ideo-actions-de-formation-initiale-univers-lycee.htm",
+    "annuaire": "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json?select=identifiant_de_l_etablissement%2Cnom_etablissement%2Ctype_etablissement%2Cnom_commune%2Clatitude%2Clongitude%2Ccode_departement%2Clibelle_academie%2Chebergement%2Cetat",
+    "inserjeunes": "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-inserjeunes-lycee_pro-formation-fine/exports/json?where=annee%3D%22cumul+2023-2024%22&select=annee%2Cuai%2Ctype_diplome%2Clibelle_formation%2Ccode_formation_mefstat11%2Ctaux_poursuite_etudes%2Ctaux_emploi_6_mois",
+    "pression": "https://orientation.ac-creteil.fr/bilans-de-laffectation-de-lorientation/"
+  },
+  "academies_hors_catalogue": {
+    "Collectivités d'Outre Mer": 408
+  },
+  "exclusions": [
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "classe de 2de professionnelle métiers des transitions numérique et énergétique",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "bac pro métiers de l'accueil",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "bac pro maintenance des systèmes de production connectés",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "classe de 2de professionnelle métiers de l'hôtellerie-restauration",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "classe de 2de professionnelle métiers du pilotage et de la maintenance d'installations automatisées",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "bac pro cuisine",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "classe de 2de professionnelle métiers de la relation client",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "bac pro assistance à la gestion des organisations et de leurs activités",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "bac pro métiers de l'électricité et de ses environnements connectés",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "bac pro métiers du commerce et de la vente option A animation et gestion de l'espace commercial",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "classe de 2de professionnelle métiers de la gestion administrative, du transport et de la logistique",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    },
+    {
+      "ac": "nice",
+      "uai": "1380017U",
+      "n": "Lycée Rainier III",
+      "formation": "bac pro commercialisation et services en restauration",
+      "motif": "Monaco rattaché à Nice dans Onisep : hors des départements du catalogue commun, cas à confirmer"
+    }
+  ],
+  "lycees_absents_annuaire": [
+    {
+      "ac": "aix-marseille",
+      "uai": "0040584N",
+      "nom": "École technique privée d'esthétique et de coiffure Vinceta"
+    },
+    {
+      "ac": "aix-marseille",
+      "uai": "0841204C",
+      "nom": "Groupe Belmont"
+    },
+    {
+      "ac": "aix-marseille",
+      "uai": "0841224Z",
+      "nom": "Centre de formation CFA Les Chênes"
+    },
+    {
+      "ac": "aix-marseille",
+      "uai": "0841231G",
+      "nom": "Academy formations training esthétique et coiffure"
+    },
+    {
+      "ac": "amiens",
+      "uai": "0601551K",
+      "nom": "Centre éducatif de formation professionnelle Hovia"
+    },
+    {
+      "ac": "amiens",
+      "uai": "0602021W",
+      "nom": "DG Formation Plus"
+    },
+    {
+      "ac": "bordeaux",
+      "uai": "",
+      "nom": "Institut national de jeunes sourds de Bordeaux"
+    },
+    {
+      "ac": "bordeaux",
+      "uai": "",
+      "nom": "Lycée agricole privé l'Ermitage - Campus Ermitage Sup'"
+    },
+    {
+      "ac": "bordeaux",
+      "uai": "",
+      "nom": "Lycée polyvalent de la mer - annexe de Biganos"
+    },
+    {
+      "ac": "bordeaux",
+      "uai": "",
+      "nom": "Micro-lycée Antoine Lomet"
+    },
+    {
+      "ac": "bordeaux",
+      "uai": "0333555K",
+      "nom": "Aérocampus Aquitaine"
+    },
+    {
+      "ac": "bordeaux",
+      "uai": "0333675R",
+      "nom": "École soin de soi"
+    },
+    {
+      "ac": "clermont-ferrand",
+      "uai": "0431032N",
+      "nom": "École nationale supérieure de pâtisserie - École Ducasse"
+    },
+    {
+      "ac": "clermont-ferrand",
+      "uai": "0632001H",
+      "nom": "Institut Agro - Enseignement à distance (ex CNPR)"
+    },
+    {
+      "ac": "creteil",
+      "uai": "0771125E",
+      "nom": "Centre médical et pédagogique pour adolescents de Neufmoutiers"
+    },
+    {
+      "ac": "dijon",
+      "uai": "",
+      "nom": "Lycée de la nouvelle chance"
+    },
+    {
+      "ac": "dijon",
+      "uai": "0212255M",
+      "nom": "École privée d'esthétique-coiffure"
+    },
+    {
+      "ac": "grenoble",
+      "uai": "0261392X",
+      "nom": "Campus Eduka et Terrade Valence"
+    },
+    {
+      "ac": "grenoble",
+      "uai": "0261569P",
+      "nom": "Drôme Profession Sport Animation"
+    },
+    {
+      "ac": "la-reunion",
+      "uai": "9741070V",
+      "nom": "GRETA Réunion Antenne Nord"
+    },
+    {
+      "ac": "la-reunion",
+      "uai": "9741070V",
+      "nom": "GRETA Réunion Antenne Sud"
+    },
+    {
+      "ac": "lille",
+      "uai": "",
+      "nom": "Centre régional d'éducation spécialisée pour déficients auditifs de Pont-à-Marcq"
+    },
+    {
+      "ac": "lille",
+      "uai": "",
+      "nom": "Lycée de la nouvelle chance du lycée professionnel Alfred Kastler"
+    },
+    {
+      "ac": "lille",
+      "uai": "0591843H",
+      "nom": "Communauté Albert Chatelet"
+    },
+    {
+      "ac": "lille",
+      "uai": "0593206P",
+      "nom": "Centre régional de formation des professionnels de l'enfance"
+    },
+    {
+      "ac": "lyon",
+      "uai": "",
+      "nom": "Institut de jeunes sourds Plein Vent"
+    },
+    {
+      "ac": "lyon",
+      "uai": "",
+      "nom": "Lycée de la nouvelle chance de Villeurbanne"
+    },
+    {
+      "ac": "lyon",
+      "uai": "0694253Y",
+      "nom": "Ipso Campus - site de Lyon"
+    },
+    {
+      "ac": "mayotte",
+      "uai": "9760443C",
+      "nom": "École d'apprentissage maritime"
+    },
+    {
+      "ac": "montpellier",
+      "uai": "",
+      "nom": "École Terrade Montpellier - Juvénal"
+    },
+    {
+      "ac": "montpellier",
+      "uai": "0301673F",
+      "nom": "Sud Formation Conseil"
+    },
+    {
+      "ac": "montpellier",
+      "uai": "1300023U",
+      "nom": "Lycée Comte de Foix"
+    },
+    {
+      "ac": "nancy-metz",
+      "uai": "",
+      "nom": "Lycée professionnel Nicole Mangin - Site Eugène Freyssinet"
+    },
+    {
+      "ac": "nancy-metz",
+      "uai": "0542584R",
+      "nom": "Biomewo"
+    },
+    {
+      "ac": "nantes",
+      "uai": "",
+      "nom": "Lycée nouvelle chance 53"
+    },
+    {
+      "ac": "nantes",
+      "uai": "",
+      "nom": "Lycée nouvelle chance 72"
+    },
+    {
+      "ac": "nantes",
+      "uai": "",
+      "nom": "École de production de Briacé"
+    },
+    {
+      "ac": "nice",
+      "uai": "",
+      "nom": "Pôle Écoles Méditerranée - Écoles des apprentis de la Marine"
+    },
+    {
+      "ac": "nice",
+      "uai": "0060818G",
+      "nom": "Institut libre d'études commerciales Cannes"
+    },
+    {
+      "ac": "nice",
+      "uai": "0831692N",
+      "nom": "FORMAPLUS"
+    },
+    {
+      "ac": "nice",
+      "uai": "0831693P",
+      "nom": "FORMAVAR"
+    },
+    {
+      "ac": "paris",
+      "uai": "",
+      "nom": "Institut national des jeunes aveugles Louis Braille"
+    },
+    {
+      "ac": "paris",
+      "uai": "0753184D",
+      "nom": "FERRANDI Paris, l'école française de gastronomie et de management hôtelier"
+    },
+    {
+      "ac": "paris",
+      "uai": "0754108H",
+      "nom": "École active et internationale de coiffure"
+    },
+    {
+      "ac": "paris",
+      "uai": "0754112M",
+      "nom": "Haute école de joaillerie"
+    },
+    {
+      "ac": "paris",
+      "uai": "0755544U",
+      "nom": "École Terrade Paris - Vaugirard"
+    },
+    {
+      "ac": "paris",
+      "uai": "0755904K",
+      "nom": "Institut Santé"
+    },
+    {
+      "ac": "paris",
+      "uai": "0756722Z",
+      "nom": "École des Arts textiles du Mobilier national du CFA des Manufactures nationales"
+    },
+    {
+      "ac": "poitiers",
+      "uai": "0161051F",
+      "nom": "Croix-Rouge Compétence Nouvelle-Aquitaine - site d'Angoulême"
+    },
+    {
+      "ac": "poitiers",
+      "uai": "0861273S",
+      "nom": "Centre national d'enseignement à distance"
+    },
+    {
+      "ac": "reims",
+      "uai": "",
+      "nom": "Maison familiale rurale de Haute-Marne, site de Doulaincourt"
+    },
+    {
+      "ac": "rennes",
+      "uai": "",
+      "nom": "Institut Paul Cézanne"
+    },
+    {
+      "ac": "rennes",
+      "uai": "0222053M",
+      "nom": "Maison familiale rurale Formations Compétences Bretagne Centre"
+    },
+    {
+      "ac": "rennes",
+      "uai": "0351926D",
+      "nom": "Centre médical et pédagogique - annexe du lycée Chateaubriand"
+    },
+    {
+      "ac": "rennes",
+      "uai": "0560840J",
+      "nom": "Unité d'enseignement Kerpape"
+    },
+    {
+      "ac": "rennes",
+      "uai": "0562058H",
+      "nom": "Lycée professionnel Saint-Michel - Apprentis d'Auteuil"
+    },
+    {
+      "ac": "strasbourg",
+      "uai": "",
+      "nom": "Mewo"
+    },
+    {
+      "ac": "versailles",
+      "uai": "0910876H",
+      "nom": "Centre médical et pédagogique-Annexe du lycée Rosa Parks de Montgeron"
+    },
+    {
+      "ac": "versailles",
+      "uai": "0922739C",
+      "nom": "École du service à la personne"
+    },
+    {
+      "ac": "versailles",
+      "uai": "0922909M",
+      "nom": "IFAC 78 site Voisins-le-Bretonneux"
+    },
+    {
+      "ac": "versailles",
+      "uai": "0950824E",
+      "nom": "Centre médical et pédagogique Jacques Arnaud-Annexe du lycée George Sand de Domont"
+    }
+  ],
+  "urls_omises": [
+    {
+      "ac": "amiens",
+      "lycee": "Lycée professionnel Édouard Gand",
+      "champ": "w",
+      "motif": "URL contenant un courriel ou protocole non web"
+    }
+  ],
+  "inserjeunes_ambigus": [
+    {
+      "uai": "0020051V",
+      "formation": "CAP ébéniste"
+    },
+    {
+      "uai": "0060042N",
+      "formation": "CAP équipier polyvalent du commerce"
+    },
+    {
+      "uai": "0180025E",
+      "formation": "CAP art et techniques de la bijouterie-joaillerie option bijouterie-joaillerie"
+    },
+    {
+      "uai": "0310088C",
+      "formation": "CAP ébéniste"
+    },
+    {
+      "uai": "0330028B",
+      "formation": "bac pro métiers de l'électricité et de ses environnements connectés"
+    },
+    {
+      "uai": "0350031U",
+      "formation": "CAP horlogerie"
+    },
+    {
+      "uai": "0421606T",
+      "formation": "CAP métiers de la mode - vêtement flou"
+    },
+    {
+      "uai": "0440537V",
+      "formation": "CAP horlogerie"
+    },
+    {
+      "uai": "0690660T",
+      "formation": "CAP équipier polyvalent du commerce"
+    },
+    {
+      "uai": "0690698J",
+      "formation": "CAP art et techniques de la bijouterie-joaillerie option bijouterie-joaillerie"
+    },
+    {
+      "uai": "0691626T",
+      "formation": "CAP ébéniste"
+    },
+    {
+      "uai": "0691723Y",
+      "formation": "CAP métiers de la coiffure"
+    },
+    {
+      "uai": "0691724Z",
+      "formation": "CAP métiers de la coiffure"
+    },
+    {
+      "uai": "0730776X",
+      "formation": "CAP équipier polyvalent du commerce"
+    },
+    {
+      "uai": "0750681H",
+      "formation": "CAP art et techniques de la bijouterie-joaillerie option bijouterie-joaillerie"
+    },
+    {
+      "uai": "0772244W",
+      "formation": "CAP équipier polyvalent du commerce"
+    }
+  ]
+}
