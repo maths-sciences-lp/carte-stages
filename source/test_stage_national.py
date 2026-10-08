@@ -30,7 +30,14 @@ class NationalTest(unittest.TestCase):
         occurrences = Counter(slug(n) for n in mapping)
         for name, sectors in mapping.items():
             key = slug(name, None) if occurrences[slug(name)] > 1 else slug(name)
-            self.assertEqual(forms[key]['s'], [slug(s) for s in sectors], name)
+            self.assertEqual([x for x in forms[key]['s'] if x != 'ecoles-maternelles-et-elementaires'], [slug(s) for s in sectors], name)
+
+    def test_ecoles_suivent_les_mairies_sauf_geometre_et_batiment(self):
+        from domaines import ECOLES_EXCLUES
+        for f in catalogue_formations()['formations']:
+            attendu = 'mairies-administrations' in f['s'] and f['k'] not in ECOLES_EXCLUES
+            self.assertEqual('ecoles-maternelles-et-elementaires' in f['s'], attendu, f['k'])
+        self.assertEqual(len(ECOLES_EXCLUES), 5)
 
     def test_un_cache_ancien_est_refuse(self):
         with tempfile.TemporaryDirectory() as directory:
