@@ -37,7 +37,7 @@ searchAdr=async v=>{
 };
 const address=$('adr').cloneNode(true);$('adr').replaceWith(address);
 address.addEventListener('input',()=>{
- clearTimeout(addressTimer);const seq=++addressRequest,v=address.value.trim(),slug=active?.slug;
+ clearTimeout(addressTimer);const seq=++addressRequest,v=address.value.trim(),slug=active?.slug;oublierMaison();
  $('asug').hidden=true;if(v.length<3)return;
  addressTimer=setTimeout(async()=>{
   try{const rows=await searchAdr(v);if(seq!==addressRequest||slug!==active?.slug)return;
@@ -73,7 +73,7 @@ await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSel
  if(!r.ok)throw new Error('Données indisponibles');
  const data=await r.json();if(signal.aborted)return;
  for(const f of data.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff'); // nom officiel accentué
- ++addressRequest;clearTimeout(addressTimer);active=ac;fermerVoisins();$('cvois').parentElement.hidden=SANS_VOISINS.has(ac.slug);D=data;dep=null;q='';offT.clear();offD.clear();intern=false;open.clear();
+ ++addressRequest;clearTimeout(addressTimer);active=ac;fermerVoisins();$('cvois').parentElement.hidden=SANS_VOISINS.has(ac.slug);D=data;oublierDeparts();q='';offT.clear();offD.clear();intern=false;open.clear();
  for(const id of ['adr','col','q'])$(id).value='';
  $('csug').hidden=true;$('asug').hidden=true;
  $('dmsg').textContent='Choisis ton collège ou ton adresse pour voir les lycées les plus proches.';
