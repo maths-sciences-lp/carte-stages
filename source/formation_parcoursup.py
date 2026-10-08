@@ -10,7 +10,7 @@ import re
 import urllib.parse
 
 from parcoursup import API, decoupe, km, meme_bts, nom_proche, norm
-from formation_national import ROOT, json_export
+from formation_national import ROOT, json_export, reunir_idf
 
 URL=API+'fr-esr-parcoursup/exports/json?'+urllib.parse.urlencode(dict(where='fili="BTS"',select='session,dep,region_etab_aff,acad_mies,cod_uai,g_ea_lib_vx,ville_etab,fil_lib_voe_acc,g_olocalisation_des_formations,capa_fin,voe_tot,acc_tot,acc_bp,lien_form_psup'))
 
@@ -89,3 +89,4 @@ def main():
         files.append(dict(slug=slug,relies=len(result),octets=path.stat().st_size,gzip_octets=len(gzip.compress(path.read_bytes(),mtime=0))))
     report=dict(date=datetime.date.today().isoformat(),session=session,source=URL,sha256=hashlib.sha256((cache/'parcoursup-national.json').read_bytes()).hexdigest(),regions=stats,fichiers=files,rapprochements=audit)
     (ROOT/'formation/data/bilan-parcoursup.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    reunir_idf()

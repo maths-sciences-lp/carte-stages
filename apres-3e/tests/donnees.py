@@ -45,7 +45,8 @@ for ac in catalog:
         assert f['e'] and f['t'] in {'CAP','Bac pro','2de pro'}
         assert set(f['d'])<={d['k'] for d in data['domaines']}
         for e in f['e']:
-            assert set(e)<={'n','st','a','cp','v','dep','ac','lat','lon','w','o','h','af','c','ij','it','ic','p'}
+            assert set(e)<={'n','st','a','cp','v','dep','ac','lat','lon','w','o','h','af','c','ij','it','ic','p','du'}
+            assert e.get('du',f['du']) and e.get('du')!=f['du']
             assert e['ac']==name
             assert -90<=e['lat']<=90 and -180<=e['lon']<=180
             assert e['v']!='Monaco'
@@ -56,6 +57,9 @@ for ac in catalog:
             if source:
                 candidates=source[(name,f['n'],e['o'])]
                 assert any(e['n']==r["Lieu d'enseignement (ENS) libellé"] and e['a']==r['ENS adresse'] and e['cp']==r['ENS code postal'] and e['h']==r['ENS hébergement'] for r in candidates)
+                # Durée du lycée : toutes les durées Onisep de cette offre, rien d'autre.
+                durees={r['AF durée cycle standard'] for r in candidates if r["Lieu d'enseignement (ENS) libellé"]==e['n']}
+                assert e.get('du',f['du'])==' ou '.join(sorted(durees)),(e['n'],f['n'],e.get('du',f['du']),durees)
                 assert any(f['d']==(C[r['Formation (FOR) libellé']].split(',') if r['Formation (FOR) libellé'] in C else domaines(r['Formation (FOR) libellé'],r['FOR indexation domaine web Onisep'])) for r in candidates)
     stats=next(r for r in bilan['academies'] if r['slug']==ac['slug'])
     assert stats['octets']==p.stat().st_size

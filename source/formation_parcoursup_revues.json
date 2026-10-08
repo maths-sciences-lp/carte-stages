@@ -44372,5 +44372,125 @@
     ],
     "distance_m": 11.7,
     "motif": "Noms examinés, même établissement identifié par son UAI dans les deux sources."
+  },
+  {
+    "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23305",
+    "parcoursup": 9830,
+    "decision": "confirme",
+    "date": "2026-10-08",
+    "nom": "Campus Saint-Aspais",
+    "nom_parcoursup": "Institution Saint Aspais",
+    "formation_parcoursup": "Comptabilité et gestion",
+    "uai_parcoursup": "0771238C",
+    "uai_onisep": [
+      "0772892A"
+    ],
+    "distance_m": 386.0,
+    "motif": "Noms examinés : Campus Saint-Aspais et Institution Saint Aspais, même ensemble scolaire de Melun, sites à 386 m ; UAI différents (pôle d'enseignement supérieur et institution)."
+  },
+  {
+    "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10004",
+    "parcoursup": 17849,
+    "decision": "confirme",
+    "date": "2026-10-08",
+    "nom": "Lycée professionnel privé ORT Daniel Mayer",
+    "nom_parcoursup": "Lycée ORT DANIEL MAYER",
+    "formation_parcoursup": "Comptabilité et gestion",
+    "uai_parcoursup": "0931796X",
+    "uai_onisep": [
+      "0930960N"
+    ],
+    "distance_m": 38.0,
+    "motif": "Noms examinés : même nom (ORT Daniel Mayer), même adresse à Montreuil (38 m) ; UAI différents (lycée professionnel et section de BTS)."
+  },
+  {
+    "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23305",
+    "parcoursup": 9831,
+    "decision": "confirme",
+    "date": "2026-10-08",
+    "nom": "Campus Saint-Aspais",
+    "nom_parcoursup": "Institution Saint Aspais",
+    "formation_parcoursup": "Services informatiques aux organisations",
+    "uai_parcoursup": "0771238C",
+    "uai_onisep": [
+      "0772892A"
+    ],
+    "distance_m": 386.0,
+    "motif": "Noms examinés : Campus Saint-Aspais et Institution Saint Aspais, même ensemble scolaire de Melun, sites à 386 m ; UAI différents (pôle d'enseignement supérieur et institution)."
+  },
+  {
+    "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17581",
+    "parcoursup": 14624,
+    "decision": "confirme",
+    "date": "2026-10-08",
+    "nom": "Lycée général et technologique de l'ensemble Saint-Marie (pôle STS)",
+    "nom_parcoursup": "LGT SAINTE MARIE",
+    "formation_parcoursup": "Services informatiques aux organisations",
+    "uai_parcoursup": "0942354Y",
+    "uai_onisep": [
+      "0942355Z"
+    ],
+    "distance_m": 11.6,
+    "motif": "Noms examinés : ensemble Sainte-Marie de Joinville-le-Pont, même adresse (12 m), UAI voisins 0942355Z (pôle STS) et 0942354Y (lycée)."
+  },
+  {
+    "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17581",
+    "parcoursup": 11533,
+    "decision": "confirme",
+    "date": "2026-10-08",
+    "nom": "Lycée général et technologique de l'ensemble Saint-Marie (pôle STS)",
+    "nom_parcoursup": "LGT SAINTE MARIE",
+    "formation_parcoursup": "Management Commercial Opérationnel",
+    "uai_parcoursup": "0942354Y",
+    "uai_onisep": [
+      "0942355Z"
+    ],
+    "distance_m": 11.6,
+    "motif": "Noms examinés : ensemble Sainte-Marie de Joinville-le-Pont, même adresse (12 m), UAI voisins 0942355Z (pôle STS) et 0942354Y (lycée)."
+  },
+  {
+    "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17581",
+    "parcoursup": 11534,
+    "decision": "confirme",
+    "date": "2026-10-08",
+    "nom": "Lycée général et technologique de l'ensemble Saint-Marie (pôle STS)",
+    "nom_parcoursup": "LGT SAINTE MARIE",
+    "formation_parcoursup": "Négociation et digitalisation de la Relation Client",
+    "uai_parcoursup": "0942354Y",
+    "uai_onisep": [
+      "0942355Z"
+    ],
+    "distance_m": 11.6,
+    "motif": "Noms examinés : ensemble Sainte-Marie de Joinville-le-Pont, même adresse (12 m), UAI voisins 0942355Z (pôle STS) et 0942354Y (lycée)."
+  },
+  {
+    "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17581",
+    "parcoursup": 11532,
+    "decision": "confirme",
+    "date": "2026-10-08",
+    "nom": "Lycée général et technologique de l'ensemble Saint-Marie (pôle STS)",
+    "nom_parcoursup": "LGT SAINTE MARIE",
+    "formation_parcoursup": "Commerce International",
+    "uai_parcoursup": "0942354Y",
+    "uai_onisep": [
+      "0942355Z"
+    ],
+    "distance_m": 11.6,
+    "motif": "Noms examinés : ensemble Sainte-Marie de Joinville-le-Pont, même adresse (12 m), UAI voisins 0942355Z (pôle STS) et 0942354Y (lycée)."
+  },
+  {
+    "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.21635",
+    "parcoursup": 11524,
+    "decision": "confirme",
+    "date": "2026-10-08",
+    "nom": "Lycée technologique privé CE3P",
+    "nom_parcoursup": "Lycée professionnel CE3P",
+    "formation_parcoursup": "Photographie",
+    "uai_parcoursup": "0941407U",
+    "uai_onisep": [
+      "0942145W"
+    ],
+    "distance_m": 14.1,
+    "motif": "Noms examinés : même nom (CE3P), même adresse à Ivry-sur-Seine (14 m) ; UAI différents (lycée technologique et lycée professionnel)."
   }
 ]

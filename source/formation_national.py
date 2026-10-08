@@ -49,6 +49,32 @@ def valid(row):
         return False
 
 
+IDF=('creteil','paris','versailles')
+
+
+def reunir_idf(outdir=None):
+    """Page /formation/ (Île-de-France) : un seul fichier, réuni à partir des trois
+    fichiers d'académie (mêmes données, mêmes règles). Les poursuites sont régionales :
+    les réunir évite de télécharger trois fois les mêmes lieux."""
+    outdir=outdir or ROOT/'formation/data'
+    if not all((outdir/f'{s}.json').exists() for s in IDF):return
+    L=[json.loads((outdir/f'{s}.json').read_text()) for s in IDF]
+    dip={}
+    for d in L:
+        for k,x in d['dip'].items():
+            if k in dip:
+                for c in ('ly','s','a'):dip[k][c]+=[v for v in x[c] if v not in dip[k][c]]
+            else:dip[k]={**x,'ly':list(x['ly']),'s':list(x['s']),'a':list(x['a'])}
+    out=dict(date=L[0]['date'],henaff=L[0]['henaff'],classes=L[0]['classes'],region=L[0]['region'],academie='Île-de-France',
+             lycees={k:v for d in L for k,v in d['lycees'].items()},dip=dict(sorted(dip.items(),key=lambda x:x[1]['lib'])),
+             suites={k:v for d in L for k,v in d['suites'].items()})
+    (outdir/'ile-de-france.json').write_text(json.dumps(out,ensure_ascii=False,separators=(',',':')))
+    if all((outdir/f'{s}-parcoursup.json').exists() for s in IDF):
+        P=[json.loads((outdir/f'{s}-parcoursup.json').read_text()) for s in IDF]
+        ps=dict(session=P[0]['session'],f={k:v for x in P for k,v in x['f'].items()})
+        (outdir/'ile-de-france-parcoursup.json').write_text(json.dumps(ps,ensure_ascii=False,separators=(',',':')))
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--academies',nargs='+',required=True,help='Slugs du catalogue commun ou toutes')
@@ -131,3 +157,4 @@ def main():
                 inserjeunes_url=IJ_URL,inserjeunes_ambigus=[dict(uai=u,formation=l) for u,l in sorted(uncertain)],
                 sans_uai=sorted(no_uai),urls_omises=sorted(urls),exclusions=excluded)
     (outdir/'bilan.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    reunir_idf(outdir)

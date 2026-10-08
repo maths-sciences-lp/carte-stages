@@ -57,6 +57,14 @@ def construire(rows,HEB,cols,cherche,pression=(),date='6 octobre 2026'):
             else:
                 libs=[cible] if cible in _par_uai[p['u']] else []
             for l in libs: PRESS[(p['u'],l)]=dict(v=p['v'],c=p['c'],**({'pc':1} if len(libs)>1 else {}))
+    # Durée : un même diplôme dure 1 an dans un lycée, 2 ans dans un autre (voire les deux dans le même).
+    # On garde la durée de chaque lycée, et pour la formation la plus fréquente (duv=1 quand elle varie).
+    DUR=collections.defaultdict(list)
+    for x in rows:
+        k=(x['ENS code UAI'] or x["Lieu d'enseignement (ENS) libellé"],x['Formation (FOR) libellé']); du=x['AF durée cycle standard']
+        if du not in DUR[k]: DUR[k].append(du)
+    def duree(k): return ' ou '.join(sorted(DUR[k]))
+    par_duree=getattr(cherche,'par_duree',False)
     F={}
     for x in rows:
         l=x['Formation (FOR) libellé']
@@ -69,15 +77,25 @@ def construire(rows,HEB,cols,cherche,pression=(),date='6 octobre 2026'):
         u=x['ENS code UAI'] or x["Lieu d'enseignement (ENS) libellé"]
         if u in f['e']: continue
         f['e'][u]=dict(n=x["Lieu d'enseignement (ENS) libellé"],st=x['ENS statut'],a=x['ENS adresse'],cp=x['ENS code postal'],v=x['ENS commune'],
-            dep=x['ENS département'],ac=x['ENS académie'],lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']),ij=cherche(x['ENS code UAI'],x['Formation (FOR) libellé']))
+            dep=x['ENS département'],ac=x['ENS académie'],lat=round(lat,5),lon=round(lon,5),w=x['ENS site web'],o=x['ENS URL et ID Onisep'],h=x['ENS hébergement'],af=x['AF page web'],c=frais(x['AF coût scolarité']),
+            ij=cherche(x['ENS code UAI'],l,DUR[(u,l)]) if par_duree else cherche(x['ENS code UAI'],l))
+        f['e'][u]['du']=duree((u,l))
         it,ic=internat(x['ENS code UAI'],x['ENS hébergement'],HEB)
         pr=PRESS.get((x['ENS code UAI'],l))
         if pr: f['e'][u]['p']=pr
         if it: f['e'][u]['it']=it
         if it and ic: f['e'][u]['ic']=ic
+    for f in F.values():
+        n=collections.Counter(e['du'] for e in f['e'].values())
+        if n:
+            f['du']=max(n,key=lambda k:(n[k],k))
+            if len(n)>1: f['duv']=1
+        for e in f['e'].values():
+            if e['du']==f['du']: del e['du']
     out=dict(date=date,domaines=[dict(k=k,i=i,n=n,s=s) for k,i,n,s,_,_ in DOM],
       formations=[dict(f,e=list(f['e'].values())) for f in sorted(F.values(),key=lambda f:({'2de pro':0,'Bac pro':1,'CAP':2}[f['t']],f['n']))])
-    out['colleges']=[dict(n=c['nom_etablissement'],v=' '.join(c['nom_commune'].split()),lat=round(c['latitude'],5),lon=round(c['longitude'],5)) for c in cols if c.get('latitude')]
+    # Ordre alphabétique (nom, commune) : les suggestions de collèges ne dépendent plus de l'ordre de l'export.
+    out['colleges']=sorted([dict(n=c['nom_etablissement'],v=' '.join(c['nom_commune'].split()),lat=round(c['latitude'],5),lon=round(c['longitude'],5)) for c in cols if c.get('latitude')],key=lambda c:(c['n'],c['v']))
     # mots que tapent les élèves (sigles, métiers) : mêmes listes que « Trouve ton stage »
     from aides import ALIAS, FAMILLES
     _AL={k.lower():v for k,v in ALIAS.items()}

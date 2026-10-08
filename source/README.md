@@ -13,6 +13,20 @@
 10. `accueil/` : page commune (Trouve ton stage, Après le collège, Après le lycée, Qui peut m’aider ? ; les adresses ne changent jamais, des liens ont été envoyés), cible de maths-sciences-pro.fr/stages/. Chiffres InserJeunes (sortants 2023-2024, data.education.gouv.fr, Licence Ouverte) reliés par `source/inserjeunes.py` (même UAI, même diplôme, même option).
 11. `aide/` : « Qui peut m’aider ? » (Île-de-France ; maisons des adolescents de Paris et Versailles dans `mda_idf.json`). `aide.json` fabriqué par `source/aide.py` : CIO, missions locales et Info Jeunes de l’annuaire Service-public.fr (API api-lannuaire, sans les noms des agents) ; maisons des adolescents saisies d’après l’ARS Île-de-France et anmda.fr (le type « mda » de l’annuaire désigne les maisons de l’autonomie) ; bibliothèques municipales et intercommunales du ministère de la Culture (enquête 2023, data.gouv.fr ; associatives et points ouverts moins de 4 h par semaine écartés).
 
+## Une seule source pour les trois outils d'orientation (octobre 2026)
+
+Depuis la mission 8.9, les pages Île-de-France (`/apres-3e/`, `/formation/`, `/aide/`) lisent les mêmes fichiers que les pages nationales : `apres-3e/data/{creteil,paris,versailles}.json`, `aide/data/{creteil,paris,versailles}.json` (réunis dans la page), et pour « Après le lycée » `formation/data/ile-de-france.json` et `ile-de-france-parcoursup.json`, réunis par `source/formation_national.py` (fonction `reunir_idf`) à partir des trois fichiers d'académie, pour ne pas télécharger trois fois les mêmes poursuites régionales. Adresses, liens (#cuisine, #eeb, #iccer, #mda…), section lycée Hénaff et premiers vœux de Créteil inchangés.
+
+La mise à jour annuelle passe donc seulement par les modes nationaux (`apres3e.py --academies toutes`, `aide.py --academies toutes`, `formation_national.py` puis `parcoursup.py --academies toutes`). Les fichiers historiques `apres3e.json`, `formations.json`, `parcoursup.json` et `aide.json` ne sont plus lus ; ils restent dans le dépôt jusqu'à décision de l'auteur.
+
+Corrections faites à cette occasion, pour toutes les académies :
+- durée : celle de chaque lycée (`du` par offre quand elle diffère de la durée la plus fréquente de la formation, `duv` quand elle varie) ; avant, la première ligne Onisep était recopiée ;
+- InserJeunes : le 3e chiffre du code MEFSTAT11 (2311 : CAP en 1 an, 2322 : CAP en 2 ans) départage les chiffres quand le lycée ne propose qu'une durée ; sinon aucun chiffre, comme avant ;
+- collèges : un collège et son annexe qui partagent le même UAI restent deux choix (ex. Collège La Salle - Saint-Rosaire, Sarcelles) ; suggestions triées par nom puis commune ;
+- sites internet des lieux d'aide : adresses sans protocole (`www.ville.fr`), `Https://`, `htpps://`, `http//` remises en forme ; textes qui ne sont pas des adresses (« non », « site de la mairie », courriels) écartés ;
+- maisons des adolescents d'Île-de-France : noms, adresses, communes, téléphones, horaires et public relus de `mda_idf.json` repris dans le mode national ;
+- Parcoursup : 8 rapprochements à noms différents confirmés dans `formation_parcoursup_revues.json` (mêmes établissements, UAI différents du même ensemble).
+
 ## Enrichissement La Bonne Alternance
 
 `lba.py` utilise l'export national officiel (`GET /api/job/v1/export`), puis

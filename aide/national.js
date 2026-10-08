@@ -39,7 +39,7 @@ if(ars){ars.previousSibling.textContent=ars.previousSibling.textContent.replace(
 const nationalFooter=document.createElement('p');nationalFooter.textContent='Localisation de l’académie : contours Etalab/IGN, Licence Ouverte.';
 main.querySelector('footer').prepend(nationalFooter);
 await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSelect:async(ac,{signal})=>{
- const response=await fetch(new URL('data/'+ac.slug+'.json',document.baseURI),{signal});
+ const response=await fetch(new URL('data/'+ac.slug+'.json?v=2026-10-08',document.baseURI),{signal});
  if(!response.ok)throw new Error('Données indisponibles');
  const data=await response.json();if(signal.aborted)return;
  ++addressRequest;active=ac;D=data;dep=null;offD.clear();nmax=8;

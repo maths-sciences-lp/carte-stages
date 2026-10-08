@@ -155,7 +155,13 @@ const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinate
 $('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
-if(!window.APRES3E_NATIONAL)fetch('apres3e.json?v=2026-10-08').then(r=>r.json()).then(d=>{D=d;for(const f of D.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
+// Île-de-France : les trois fichiers d'académie réunis (mêmes données que les pages nationales).
+const IDF_ACS=['creteil','paris','versailles'],cmp=(a,b)=>a<b?-1:a>b?1:0,RANG={'2de pro':0,'Bac pro':1,'CAP':2};
+function reunir(L){const F=new Map();
+ for(const d of L)for(const f of d.formations){for(const e of f.e)if(!e.du)e.du=f.du;const g=F.get(f.n);g?g.e.push(...f.e):F.set(f.n,{...f,e:[...f.e]});}
+ return{date:L[0].date,domaines:L[0].domaines,formations:[...F.values()].sort((a,b)=>RANG[a.t]-RANG[b.t]||cmp(a.n,b.n)),
+  colleges:L.flatMap(d=>d.colleges).sort((a,b)=>cmp(a.n,b.n)||cmp(a.v,b.v))};}
+if(!window.APRES3E_NATIONAL)Promise.all(IDF_ACS.map(s=>fetch('data/'+s+'.json?v=2026-10-08').then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();}))).then(reunir).then(d=>{D=d;for(const f of D.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
 </script>
 <script src="../commun/accessibilite.js"></script>
 </body></html>
