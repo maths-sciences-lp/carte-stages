@@ -16,14 +16,19 @@ GROUPES=[("Seconde",["tne","mnb","mama"],{"tne":"2nde TNE","mnb":"2nde MNB","mam
  ("Bac pro (1re et terminale)",["iccer","mee","tma","era","eeb","geometre"],{"iccer":"ICCER","mee":"MEE","tma":"TMA (menuisier agenceur)","era":"ERA (agencement)","eeb":"EEB (études du bâtiment)","geometre":"Géomètre"}),
  ("CAP",["mit","sdg","ebeniste"],{"mit":"CAP MIT","sdg":"CAP Signalétique","ebeniste":"CAP Ébéniste"}),
  ("BMA",["bma-ebeniste","bma-signaletique"],{"bma-ebeniste":"BMA Ébéniste","bma-signaletique":"BMA Signalétique"})]
+SECONDES={'tne','mnb','mama'}  # après la 2nde : la 1re au lycée, pas de poursuite d'études
 blocs=''
 for titre,codes,lab in GROUPES:
-    btns=''.join(f'<a class="cl" href="../{c}/"><b>{html.escape(lab[c])}</b><span>{html.escape(F[R[c]]["t"]+" "+F[R[c]]["n"])}</span></a>' for c in codes)
+    def carte(c):
+        apres='' if c in SECONDES else f'<a class="bt" href="../formation/#{c}">🎓 Après mon diplôme</a>'
+        return (f'<div class="cl"><b>{html.escape(lab[c])}</b><span>{html.escape(F[R[c]]["t"]+" "+F[R[c]]["n"])}</span>'
+                f'<div class="bts"><a class="bt" href="../{c}/">🎯 Mon stage</a>{apres}</div></div>')
+    btns=''.join(carte(c) for c in codes)
     blocs+=f'<h2>{html.escape(titre)}</h2><div class="grid">{btns}</div>'
 os.makedirs(os.path.join(OUT,'henaff'),exist_ok=True)
 open(os.path.join(OUT,'henaff','index.html'),'w').write(f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trouve ton stage – Lycée Eugène Hénaff</title>
+<title>Lycée Eugène Hénaff – Stage et orientation</title>
 <link rel="stylesheet" href="../fonts/fonts.css">
 <style>
 :root{{--ink:#15314f;--bg:#f5f7f9;--line:#e4e9ee;--mute:#667085;--card:#fff;--acc:#2a4f7c}}
@@ -36,9 +41,11 @@ h1{{font-family:'Bricolage Grotesque',system-ui;font-size:26px;margin:4px 0 4px}
 .lead{{color:var(--mute);margin:0 0 6px}}
 h2{{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10px}}
 .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}}
-.cl{{display:flex;flex-direction:column;gap:3px;padding:14px 16px;background:var(--card);border:2px solid var(--line);border-radius:16px;color:var(--ink);text-decoration:none;min-height:76px}}
-.cl:hover,.cl:focus-visible{{border-color:var(--acc);outline:none}}
-.cl b{{font-size:19px}}.cl span{{font-size:14px;color:var(--mute);line-height:1.3}}
+.cl{{display:flex;flex-direction:column;gap:3px;padding:14px 16px;background:var(--card);border:2px solid var(--line);border-radius:16px;color:var(--ink);min-height:76px}}
+.bts{{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}}
+.bt{{display:inline-block;padding:8px 12px;border:2px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;font-size:15px;font-weight:600}}
+.bt:hover,.bt:focus-visible{{border-color:var(--acc)}}
+.cl b{{font-size:19px}}.cl>span{{font-size:14px;color:var(--mute);line-height:1.3}}
 .autre{{display:inline-block;margin-top:26px;color:var(--acc)}}
 .credit{{margin-top:22px;font-size:13px;color:var(--mute)}}
 </style>
@@ -48,11 +55,12 @@ h2{{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10p
 <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
 <header><a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a></header>
 <main id="contenu-principal" tabindex="-1">
-<h1>🎯 Trouve ton stage</h1>
-<p class="lead">Lycée Eugène Hénaff · <b>Appuie sur ta classe</b> : la carte s’ouvre avec les entreprises de ton métier, au départ du lycée.</p>
+<h1>🏫 Lycée Eugène Hénaff</h1>
+<p class="lead"><b>Trouve ta classe</b>, puis choisis : <b>🎯 Mon stage</b> ouvre la carte des entreprises de ton métier, au départ du lycée ; <b>🎓 Après mon diplôme</b> montre les poursuites d’études possibles.</p>
 {blocs}
 <a class="autre" href="../">Une autre formation ? Ouvrir la carte complète →</a>
-<a class="autre" href="../formation/" style="margin-left:0;display:block;margin-top:12px">🎓 Après le lycée : trouve ta formation →</a>
+<a class="autre" href="../formation/" style="margin-left:0;display:block;margin-top:12px">🎓 Après le lycée : toutes les formations →</a>
+<a class="autre" href="../aide/" style="margin-left:0;display:block;margin-top:12px">🤝 Qui peut m’aider ? Orientation, emploi, un endroit pour travailler, besoin de parler →</a>
 <footer><p class="credit"><a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="../accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
 </footer>
 </main><script src="../commun/accessibilite.js"></script>
