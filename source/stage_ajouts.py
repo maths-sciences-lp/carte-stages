@@ -236,7 +236,7 @@ def main():
     report=dict(departements=summary,base_donnees=baseline,ajoutes=len(new),
                 lba_nouveaux=len(new_lba),export_lba=lba['export_le'],
                 perimetre='Départements explicitement autorisés : '+', '.join(args.deps),aucun_retrait=True,
-                collecte_initiale='2026-10-08',fichiers_sirene=touched)
+                collecte_initiale=catalog['date'],fichiers_sirene=touched)
     atomic_json(root/('rattrapage-idf-complement.json' if (args.cache/'configuration-stock.json').exists() else 'rattrapage-creteil.json'),report)
     atomic_json(done,report)
     print(f'{len(new)} établissements ajoutés localement ; {len(new_lba)} enrichis LBA ; rien publié.')

@@ -71,6 +71,11 @@ def main():
     atomic_json(target,selection)
     atomic_json(cache/'sondage-exclus-100.json',dict(echantillon=[]))
     atomic_json(cache/'sondage-population.json',population)
+    selected_pairs={(x['departement'],x['siren']) for x in sample}
+    reference={d:sorted(s for s in published[d] if (d,s[:9]) in selected_pairs) for d in deps}
+    ref=cache/'sondage-reference-publiee.json'
+    if ref.exists() and lire(ref)!=reference:raise ValueError('La référence publiée du sondage a changé')
+    atomic_json(ref,reference)
     for dep in deps:
         rows=lire(a.cache_national/'departements'/(dep+'.json'))['rows']
         selected={x['siren'] for x in sample if x['departement']==dep}

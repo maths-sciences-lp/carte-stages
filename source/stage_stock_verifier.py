@@ -50,7 +50,7 @@ def main():
     api=cache/'stock-api';api.mkdir(exist_ok=True)
     with (cache/'verrou').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        # Les 770 vérifications faites aujourd'hui restent des preuves valides.
+        # Les vérifications historiques déjà faites dans ce cache daté restent conservées.
         # Ne pas réécrire le cache d'origine ni refaire ces appels.
         for dep,s in tasks:
             old=cache/'temoin'/dep/(s+'.json');new=api/'temoin'/dep/(s+'.json')
@@ -79,7 +79,7 @@ def main():
             else:counts[x['dep']].update(v['rejets'])
         atomic_json(cache/'stock-verification-resultats.json',dict(
             terminee=True,attendus=len(tasks),ecarts_stock={d:dict(v) for d,v in counts.items()},
-            limite='Un rejet actuel ne prouve pas sa date de survenue entre le 1/10 et le 8/10.'))
+            limite='Un rejet actuel ne prouve pas sa date de survenue entre le stock et le contrôle API.'))
         print(json.dumps({d:dict(v) for d,v in counts.items()},ensure_ascii=False),flush=True)
 
 

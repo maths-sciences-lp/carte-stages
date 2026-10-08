@@ -60,7 +60,7 @@ def main():
         inventory[dep]={r['s'] for r in lire(cache/'departements'/(dep+'.json'))['rows']}
         published[dep]={r[7] for f in (a.donnees/'sirene'/dep).glob('*.json') for r in lire(f)}
     if (cache/'configuration-stock.json').exists():
-        inventory={d:{s for x in selection['echantillon'] if x['departement']==d for s in x['siret_recus']} for d in departements(cache)}
+        inventory={d:set(sites) for d,sites in lire(cache/'sondage-reference-publiee.json').items()}  # Référence figée avant ajout.
     cases=[]
     for result in results:
         dep,siren=result['dep'],result['siren']
@@ -90,8 +90,8 @@ def main():
     report=dict(graine=selection['graine'],population=selection['taille_population'],echantillon=len(cases),
                 couples_avec_omission=len(affected),taux_omission_mesure=len(affected)/len(cases),
                 couples_non_resolus=len(unresolved),cas=cases,
-                controle_stock='Tous les SIRET du stock du 1/10 des 100 couples, réinterrogés individuellement',
-                limite='Le sondage ne certifie ni la France entière ni les changements non observés après le 1/10.',
+                controle_stock='Tous les SIRET du stock du '+configuration(cache)['date_stock']+' des 100 couples, réinterrogés individuellement',
+                limite='Le sondage ne certifie ni la France entière ni les changements non observés depuis le millésime du stock.',
                 selection_a_elargir=bool(affected))
     atomic_json(cache/'sondage-resultats.json',report)
     print(json.dumps({k:v for k,v in report.items() if k!='cas'},ensure_ascii=False),flush=True)

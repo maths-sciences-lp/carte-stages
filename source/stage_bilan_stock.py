@@ -48,16 +48,24 @@ def main():
             if not f.exists():remaining.append(dict(dep=dep,siren=siren,motif='recherche_geographique_remplacee_par_stock_date'))
             else:
                 for item in lire(f)['incertains']:remaining.append(dict(dep=dep,siren=siren,**item))
+    fresh_inventory=not (cache/'configuration-stock.json').exists()
+    sample=lire(cache/'sondage-resultats.json')
+    saturated_sample=[x for x in sample['cas'] if x['liste_saturee']]
+    uncertain_sample=[x for x in sample['cas'] if x['liste_saturee'] or x['entreprise_introuvable'] or x.get('incertain_recherche')]
     coord=lire(cache/'stock-comparaison.json')
     summary=dict(stock=configuration(cache)['date_stock'],ecarts=len(expected),statuts=len(statuses),
                  sans_statut=0,par_departement={d:dict(v) for d,v in counts.items()},
                  siret_admissibles_et_classes=sorted(valid),
-                 listes_initiales_saturees=len(saturated),couples_geographiques_non_certifies=len(remaining),
+                 listes_initiales_saturees=len(saturated) if fresh_inventory else None,
+                 inventaire_api_initial_refait=fresh_inventory,
+                 listes_saturees_sondage=len(saturated_sample),couples_sondage_non_resolus=len(uncertain_sample),
+                 couples_geographiques_non_certifies=len(remaining),
                  limite_temporelle='Le stock daté du '+configuration(cache)['date_stock']+' ne prouve pas l’exhaustivité à la date de contrôle API. Les écarts de dates sont séparés des pertes ; aucune date de fermeture n’est déduite sans preuve.',
                  limite_coordonnees=f"Positions API conservées. {len(coord['ecarts_coordonnees_superieurs_50m'])} des {len(coord['controle_coordonnees'])} comparaisons Lambert93/WGS84 dépassent 50 m ; aucune substitution automatique.",
                  preuve='Chaque SIRET candidat du stock absent des données possède un contrôle individuel et un statut. Les autres sites du stock sont déjà présents.')
     atomic_json(cache/'stock-bilan.json',summary)
-    atomic_json(cache/'listes-saturees-et-limites.json',dict(listes_saturees=saturated,couples_non_certifies=remaining))
+    atomic_json(cache/'listes-saturees-et-limites.json',dict(inventaire_api_initial_refait=fresh_inventory,listes_saturees=saturated if fresh_inventory else None,
+        listes_saturees_sondage=saturated_sample,couples_sondage_non_resolus=uncertain_sample,couples_non_certifies=remaining))
     print(json.dumps({k:v for k,v in summary.items() if k!='siret_admissibles_et_classes'},ensure_ascii=False),flush=True)
 
 

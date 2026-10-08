@@ -122,6 +122,8 @@ def verifier(root, cache):
         links.append(result)
     declared = lire(cache/'ajouts-appliques.json')
     assert len(added) == declared['ajoutes']
+    declared_ids={s for v in declared['departements'].values() for s in v['siret_ajoutes']}
+    assert added == declared_ids, 'Les SIRET ajoutés diffèrent de la liste déclarée'
     stock=lire(cache/'stock-bilan.json')
     valid=set(stock['siret_admissibles_et_classes'])
     missing_stock=[x for x in lire(cache/'stock-controles-attendus.json')
