@@ -46,7 +46,7 @@ async function addressSearch(){
   $('amsg').textContent=rows.length?'':'Adresse pas trouvée. Écris le numéro, la rue et la ville.';
  }catch(e){if(request===seq)$('amsg').textContent='La recherche ne répond pas. Réessaie dans un instant.';}
 }
-address.addEventListener('input',()=>{++seq;clearTimeout(addressTimer);$('asug').hidden=true;addressTimer=setTimeout(addressSearch,250);});
+address.addEventListener('input',()=>{++seq;clearTimeout(addressTimer);effacerMaison();addressTimer=setTimeout(addressSearch,250);});
 address.addEventListener('keydown',e=>{if(e.key!=='Enter')return;e.preventDefault();const b=$('asug').querySelector('button');if(b&&!$('asug').hidden)b.click();else addressSearch();});
 const footer=main.querySelector('footer');
 footer.style.visibility='visible';typo(main);

@@ -26,7 +26,9 @@ a{color:var(--acc)}
 .site .badge-logo{width:32px;height:32px;border-radius:9px;background:var(--ink);display:grid;place-items:center;color:#fff;flex:none}
 .site b{font-family:var(--display);font-size:17px}
 .site span.back{margin-left:auto;font-size:14px;color:var(--mute)}
+#map-area{flex:1;min-width:0;min-height:0;display:flex;flex-direction:column}
 #map{flex:1;min-height:0}
+body.stage-question #map-area{display:none}
 .top{display:flex;align-items:center;gap:10px;padding:14px 16px 6px}
 .top h1{font-size:22px;margin:0;flex:1}
 .top p{margin:0}
@@ -93,6 +95,7 @@ dialog li{margin:6px 0}
 @media (max-width:900px){
  #app{display:block;height:auto}
  #panel{width:100%;border-right:0;overflow:visible}
+ #map-area{display:block}
  .tabs{display:flex;gap:8px;margin-top:10px}
  .tabs .btn{flex:1}
  .tabs .btn[aria-pressed=false]{background:var(--soft);color:var(--fg);border:1px solid var(--line)}
@@ -177,7 +180,7 @@ dialog li{margin:6px 0}
    © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
   </footer>
  </div>
- <div id="map"></div>
+ <div id="map-area"><div id="map"></div></div>
 </div>
 
 <dialog id="dlg" aria-labelledby="aide-titre">
@@ -234,8 +237,14 @@ function lbaHtml(p){
  return `<div class="lba-box">${recruiter?`<div class="badge">🎓 Recruteur potentiel en alternance</div><a href="${recruiter}" target="_blank" rel="noopener">Voir sur La bonne alternance ↗</a>`:''}${jobs.length?`<details><summary>Offres d’alternance en cours : tous métiers (${jobs.length})</summary><ul>${jobs.map(j=>`<li><a href="${lbaUrl(j.url)}" target="_blank" rel="noopener">${esc(j.title)} ↗</a></li>`).join('')}</ul><div>Vérifie le métier et le diplôme demandés dans chaque offre.</div></details>`:''}</div>`;
 }
 // ---------- carte (sur téléphone, la carte se place sous la liste, avant le bas de page)
-if(window.innerWidth<=900) $('panel').insertBefore($('map'),document.querySelector('footer'));
+const mobileMap=matchMedia('(max-width:900px)'),mapArea=$('map-area');
+function placerCarte(){
+ if(mobileMap.matches) $('panel').insertBefore(mapArea,$('panel').querySelector('footer'));
+ else $('app').append(mapArea);
+}
+placerCarte();
 const map=L.map('map',{preferCanvas:true}).fitBounds([[48.70,2.10],[49.05,2.65]]);
+mobileMap.addEventListener('change',()=>{placerCarte();map.invalidateSize();});
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
 const cl=L.markerClusterGroup({disableClusteringAtZoom:15,maxClusterRadius:45,spiderfyOnMaxZoom:false,showCoverageOnHover:false,chunkedLoading:true});
 map.addLayer(cl);

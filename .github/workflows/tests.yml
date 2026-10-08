@@ -52,6 +52,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Après le lycée, départ des trajets
+        run: node --test formation/tests/depart.cjs
       - name: Installer Playwright (Chromium)
         run: |
           npm install --no-save --prefix "$RUNNER_TEMP/pw" playwright@1
