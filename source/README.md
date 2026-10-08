@@ -13,6 +13,33 @@
 10. `accueil/` : page commune (Trouve ton stage, Après le collège, Après le lycée, Qui peut m’aider ? ; les adresses ne changent jamais, des liens ont été envoyés), cible de maths-sciences-pro.fr/stages/. Chiffres InserJeunes (sortants 2023-2024, data.education.gouv.fr, Licence Ouverte) reliés par `source/inserjeunes.py` (même UAI, même diplôme, même option).
 11. `aide/` : « Qui peut m’aider ? » (Île-de-France ; maisons des adolescents de Paris et Versailles dans `mda_idf.json`). `aide.json` fabriqué par `source/aide.py` : CIO, missions locales et Info Jeunes de l’annuaire Service-public.fr (API api-lannuaire, sans les noms des agents) ; maisons des adolescents saisies d’après l’ARS Île-de-France et anmda.fr (le type « mda » de l’annuaire désigne les maisons de l’autonomie) ; bibliothèques municipales et intercommunales du ministère de la Culture (enquête 2023, data.gouv.fr ; associatives et points ouverts moins de 4 h par semaine écartés).
 
+## Une seule source pour les trois outils d'orientation (octobre 2026)
+
+Depuis la mission 8.9, les pages Île-de-France (`/apres-3e/`, `/formation/`, `/aide/`) lisent les mêmes fichiers que les pages nationales : `apres-3e/data/{creteil,paris,versailles}.json`, `aide/data/{creteil,paris,versailles}.json` (réunis dans la page), et pour « Après le lycée » `formation/data/ile-de-france.json` et `ile-de-france-parcoursup.json`, réunis par `source/formation_national.py` (fonction `reunir_idf`) à partir des trois fichiers d'académie, pour ne pas télécharger trois fois les mêmes poursuites régionales. Adresses, liens (#cuisine, #eeb, #iccer, #mda…), section lycée Hénaff et premiers vœux de Créteil inchangés.
+
+La mise à jour annuelle passe donc seulement par les modes nationaux (`apres3e.py --academies toutes`, `aide.py --academies toutes`, `formation_national.py` puis `parcoursup.py --academies toutes`). Les fichiers historiques `apres3e.json`, `formations.json`, `parcoursup.json` et `aide.json` ne sont plus lus ; ils restent dans le dépôt jusqu'à décision de l'auteur.
+
+Corrections faites à cette occasion, pour toutes les académies :
+- durée : celle de chaque lycée (`du` par offre quand elle diffère de la durée la plus fréquente de la formation, `duv` quand elle varie) ; avant, la première ligne Onisep était recopiée ;
+- InserJeunes : le 3e chiffre du code MEFSTAT11 (2311 : CAP en 1 an, 2322 : CAP en 2 ans) départage les chiffres quand le lycée ne propose qu'une durée ; sinon aucun chiffre, comme avant ;
+- InserJeunes, Après le lycée : quand deux lignes au même intitulé exact existent pour un lycée et qu'un seul code est absent du cumul précédent (2022-2023), les deux chiffres sont affichés, « version récente du diplôme » puis « version précédente » (ex. BTS MS option B, lycée Raspail). Fichiers existants complétés sans régénération par `python3 source/apres_lycee.py --completer-inserjeunes --sources … --cache …` ; liste dans `formation/data/bilan.json` (`inserjeunes_deux_versions`) ;
+- collèges : un collège et son annexe qui partagent le même UAI restent deux choix (ex. Collège La Salle - Saint-Rosaire, Sarcelles) ; suggestions triées par nom puis commune ;
+- sites internet des lieux d'aide : adresses sans protocole (`www.ville.fr`), `Https://`, `htpps://`, `http//` remises en forme ; textes qui ne sont pas des adresses (« non », « site de la mairie », courriels) écartés ;
+- maisons des adolescents d'Île-de-France : noms, adresses, communes, téléphones, horaires et public relus de `mda_idf.json` repris dans le mode national ;
+- Parcoursup : 8 rapprochements à noms différents confirmés dans `formation_parcoursup_revues.json` (mêmes établissements, UAI différents du même ensemble).
+
+## « Après le lycée » : chercher dans toute la France (mission 8.7, octobre 2026)
+
+Bouton « Chercher dans toute la France » dans `/formation/` et `/formation/<académie>/`, éteint par défaut : la page et les liens des classes ne changent pas tant qu'on ne clique pas. Au clic, la page télécharge `formation/data/france/<id Onisep de la poursuite>.json` pour les seules poursuites du diplôme choisi, puis affiche tous les lieux de France du plus proche au plus loin (20 par 20), avec internat, InserJeunes et Parcoursup (`ps`, BTS).
+
+Fabrication : `python3 source/apres_lycee.py --toute-la-france --sources DOSSIER --cache CACHE`, après les fichiers d'académie et Parcoursup. Mêmes sources et mêmes règles (`lieu()` partagé avec `construire`, `preparer()`, `fabrique_cherche()`), poursuites = celles des fichiers d'académie ; un même UAI couvrant plusieurs campus garde un lieu par fiche Onisep. Contrôle : `python3 formation/tests/france.py` (chaque lieu d'académie retrouvé à l'identique, Parcoursup compris).
+
+## « Après le collège » : lycées des académies voisines (mission 8.6, octobre 2026)
+
+Bouton « Montrer aussi les lycées proches d'une autre académie » dans `/apres-3e/` et `/apres-3e/<académie>/`, éteint par défaut (page inchangée tant qu'on ne clique pas ; masqué pour la Corse et les académies d'outre-mer, sans voisin à moins de 30 km). Au clic : `apres-3e/data/<slug>-voisins.json` (ou `ile-de-france-voisins.json`) ajoute les offres des autres académies dont le lycée est à moins de 30 km de la limite (contours `commun/contours/`), avec l'étiquette « Autre académie : … » et le rappel Affelnet (jusqu'à 5 vœux hors académie en plus des 10 vœux dans l'académie). Premiers vœux de Créteil retirés de ces lieux.
+
+Fabrication : `python3 source/apres3e_voisins.py`, lancé aussi à la fin de `apres3e.py --academies toutes`. Lycées dont les coordonnées Onisep tombent à plus de 5 km de leur propre département écartés et listés dans `bilan-voisins.json` (octobre 2026 : École Terrade Nice, placée près d'Alençon). Contrôle : `python3 apres-3e/tests/voisins.py`.
+
 ## Enrichissement La Bonne Alternance
 
 `lba.py` utilise l'export national officiel (`GET /api/job/v1/export`), puis

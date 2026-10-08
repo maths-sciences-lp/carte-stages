@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-07",
+  "date": "2026-10-08",
   "academies": [
     {
       "slug": "aix-marseille",
@@ -16,8 +16,8 @@
       },
       "inserjeunes": 315,
       "pression": 0,
-      "octets": 476831,
-      "gzip_octets": 54767
+      "octets": 477663,
+      "gzip_octets": 54833
     },
     {
       "slug": "amiens",
@@ -25,7 +25,7 @@
       "formations": 142,
       "offres": 723,
       "lycees": 107,
-      "colleges": 285,
+      "colleges": 286,
       "internats": {
         "i": 83,
         "a": 11,
@@ -34,8 +34,8 @@
       },
       "inserjeunes": 219,
       "pression": 0,
-      "octets": 369156,
-      "gzip_octets": 41301
+      "octets": 369498,
+      "gzip_octets": 41327
     },
     {
       "slug": "besancon",
@@ -43,7 +43,7 @@
       "formations": 121,
       "offres": 415,
       "lycees": 78,
-      "colleges": 173,
+      "colleges": 175,
       "internats": {
         "i": 59,
         "v": 7,
@@ -52,8 +52,8 @@
       },
       "inserjeunes": 103,
       "pression": 0,
-      "octets": 219043,
-      "gzip_octets": 25285
+      "octets": 219512,
+      "gzip_octets": 25374
     },
     {
       "slug": "bordeaux",
@@ -70,8 +70,8 @@
       },
       "inserjeunes": 347,
       "pression": 0,
-      "octets": 520525,
-      "gzip_octets": 62319
+      "octets": 520902,
+      "gzip_octets": 62209
     },
     {
       "slug": "clermont-ferrand",
@@ -88,8 +88,8 @@
       },
       "inserjeunes": 134,
       "pression": 0,
-      "octets": 253920,
-      "gzip_octets": 28401
+      "octets": 254311,
+      "gzip_octets": 28408
     },
     {
       "slug": "corse",
@@ -97,7 +97,7 @@
       "formations": 58,
       "offres": 99,
       "lycees": 12,
-      "colleges": 45,
+      "colleges": 46,
       "internats": {
         "i": 10,
         "v": 1,
@@ -105,8 +105,8 @@
       },
       "inserjeunes": 20,
       "pression": 0,
-      "octets": 57599,
-      "gzip_octets": 6032
+      "octets": 57701,
+      "gzip_octets": 6046
     },
     {
       "slug": "creteil",
@@ -121,10 +121,10 @@
         "v": 6,
         "a": 4
       },
-      "inserjeunes": 440,
+      "inserjeunes": 441,
       "pression": 569,
-      "octets": 488115,
-      "gzip_octets": 61554
+      "octets": 488452,
+      "gzip_octets": 61536
     },
     {
       "slug": "dijon",
@@ -132,7 +132,7 @@
       "formations": 140,
       "offres": 613,
       "lycees": 97,
-      "colleges": 238,
+      "colleges": 241,
       "internats": {
         "i": 80,
         "a": 7,
@@ -140,8 +140,8 @@
       },
       "inserjeunes": 137,
       "pression": 0,
-      "octets": 336266,
-      "gzip_octets": 39323
+      "octets": 336976,
+      "gzip_octets": 39456
     },
     {
       "slug": "grenoble",
@@ -158,8 +158,8 @@
       },
       "inserjeunes": 330,
       "pression": 0,
-      "octets": 565562,
-      "gzip_octets": 73844
+      "octets": 566144,
+      "gzip_octets": 73911
     },
     {
       "slug": "guadeloupe",
@@ -175,8 +175,8 @@
       },
       "inserjeunes": 71,
       "pression": 0,
-      "octets": 115717,
-      "gzip_octets": 11175
+      "octets": 115738,
+      "gzip_octets": 11173
     },
     {
       "slug": "guyane",
@@ -193,8 +193,8 @@
       },
       "inserjeunes": 88,
       "pression": 0,
-      "octets": 116722,
-      "gzip_octets": 10437
+      "octets": 116743,
+      "gzip_octets": 10436
     },
     {
       "slug": "la-reunion",
@@ -211,8 +211,8 @@
       },
       "inserjeunes": 167,
       "pression": 0,
-      "octets": 231669,
-      "gzip_octets": 18962
+      "octets": 231870,
+      "gzip_octets": 19024
     },
     {
       "slug": "lille",
@@ -220,7 +220,7 @@
       "formations": 156,
       "offres": 1399,
       "lycees": 196,
-      "colleges": 586,
+      "colleges": 587,
       "internats": {
         "i": 87,
         "a": 30,
@@ -229,8 +229,8 @@
       },
       "inserjeunes": 444,
       "pression": 0,
-      "octets": 654151,
-      "gzip_octets": 84851
+      "octets": 654679,
+      "gzip_octets": 84988
     },
     {
       "slug": "limoges",
@@ -246,8 +246,8 @@
       },
       "inserjeunes": 57,
       "pression": 0,
-      "octets": 131614,
-      "gzip_octets": 14198
+      "octets": 131764,
+      "gzip_octets": 14242
     },
     {
       "slug": "lyon",
@@ -255,7 +255,7 @@
       "formations": 164,
       "offres": 1053,
       "lycees": 162,
-      "colleges": 403,
+      "colleges": 406,
       "internats": {
         "i": 89,
         "a": 22,
@@ -264,8 +264,8 @@
       },
       "inserjeunes": 332,
       "pression": 0,
-      "octets": 517595,
-      "gzip_octets": 61216
+      "octets": 518577,
+      "gzip_octets": 61286
     },
     {
       "slug": "martinique",
@@ -283,7 +283,7 @@
       "inserjeunes": 59,
       "pression": 0,
       "octets": 100923,
-      "gzip_octets": 10354
+      "gzip_octets": 10336
     },
     {
       "slug": "mayotte",
@@ -299,8 +299,8 @@
       },
       "inserjeunes": 0,
       "pression": 0,
-      "octets": 68473,
-      "gzip_octets": 6736
+      "octets": 68536,
+      "gzip_octets": 6765
     },
     {
       "slug": "montpellier",
@@ -317,8 +317,8 @@
       },
       "inserjeunes": 279,
       "pression": 0,
-      "octets": 419208,
-      "gzip_octets": 47592
+      "octets": 419881,
+      "gzip_octets": 47588
     },
     {
       "slug": "nancy-metz",
@@ -326,7 +326,7 @@
       "formations": 136,
       "offres": 695,
       "lycees": 118,
-      "colleges": 319,
+      "colleges": 323,
       "internats": {
         "i": 81,
         "v": 1,
@@ -335,8 +335,8 @@
       },
       "inserjeunes": 235,
       "pression": 0,
-      "octets": 373217,
-      "gzip_octets": 44210
+      "octets": 373853,
+      "gzip_octets": 44231
     },
     {
       "slug": "nantes",
@@ -351,10 +351,10 @@
         "v": 6,
         "a": 14
       },
-      "inserjeunes": 353,
+      "inserjeunes": 354,
       "pression": 0,
-      "octets": 651934,
-      "gzip_octets": 82450
+      "octets": 652479,
+      "gzip_octets": 82576
     },
     {
       "slug": "nice",
@@ -369,10 +369,10 @@
         "a": 5,
         "v": 2
       },
-      "inserjeunes": 188,
+      "inserjeunes": 189,
       "pression": 0,
-      "octets": 241725,
-      "gzip_octets": 23338
+      "octets": 241944,
+      "gzip_octets": 23305
     },
     {
       "slug": "normandie",
@@ -380,7 +380,7 @@
       "formations": 173,
       "offres": 1107,
       "lycees": 176,
-      "colleges": 475,
+      "colleges": 476,
       "internats": {
         "i": 140,
         "sans": 25,
@@ -389,8 +389,8 @@
       },
       "inserjeunes": 336,
       "pression": 0,
-      "octets": 536778,
-      "gzip_octets": 65617
+      "octets": 537584,
+      "gzip_octets": 65630
     },
     {
       "slug": "orleans-tours",
@@ -407,8 +407,8 @@
       },
       "inserjeunes": 247,
       "pression": 0,
-      "octets": 404341,
-      "gzip_octets": 46125
+      "octets": 404538,
+      "gzip_octets": 46078
     },
     {
       "slug": "paris",
@@ -425,8 +425,8 @@
       },
       "inserjeunes": 142,
       "pression": 0,
-      "octets": 172993,
-      "gzip_octets": 20853
+      "octets": 173358,
+      "gzip_octets": 20865
     },
     {
       "slug": "poitiers",
@@ -443,8 +443,8 @@
       },
       "inserjeunes": 141,
       "pression": 0,
-      "octets": 295486,
-      "gzip_octets": 33002
+      "octets": 295765,
+      "gzip_octets": 32988
     },
     {
       "slug": "reims",
@@ -461,8 +461,8 @@
       },
       "inserjeunes": 124,
       "pression": 0,
-      "octets": 226851,
-      "gzip_octets": 22298
+      "octets": 227015,
+      "gzip_octets": 22323
     },
     {
       "slug": "rennes",
@@ -479,8 +479,8 @@
       },
       "inserjeunes": 270,
       "pression": 0,
-      "octets": 536036,
-      "gzip_octets": 67987
+      "octets": 536478,
+      "gzip_octets": 67960
     },
     {
       "slug": "strasbourg",
@@ -497,8 +497,8 @@
       },
       "inserjeunes": 178,
       "pression": 0,
-      "octets": 244580,
-      "gzip_octets": 23934
+      "octets": 244736,
+      "gzip_octets": 23948
     },
     {
       "slug": "toulouse",
@@ -506,7 +506,7 @@
       "formations": 164,
       "offres": 961,
       "lycees": 155,
-      "colleges": 415,
+      "colleges": 419,
       "internats": {
         "i": 126,
         "sans": 23,
@@ -515,8 +515,8 @@
       },
       "inserjeunes": 275,
       "pression": 0,
-      "octets": 444312,
-      "gzip_octets": 54567
+      "octets": 445100,
+      "gzip_octets": 54627
     },
     {
       "slug": "versailles",
@@ -524,7 +524,7 @@
       "formations": 144,
       "offres": 1123,
       "lycees": 162,
-      "colleges": 696,
+      "colleges": 697,
       "internats": {
         "i": 38,
         "sans": 120,
@@ -533,8 +533,8 @@
       },
       "inserjeunes": 489,
       "pression": 0,
-      "octets": 524535,
-      "gzip_octets": 66831
+      "octets": 525003,
+      "gzip_octets": 67247
     }
   ],
   "sources": [
@@ -545,13 +545,13 @@
     },
     {
       "nom": "annuaire-national-complet.json",
-      "sha256": "776c642b88e7cbbbbaf74f8e57ef9348e91204b155c1e71e1cc26c2757b5d738",
-      "date_fichier": "2026-10-07T18:15:11"
+      "sha256": "d046b48a1dba288c09fcc5624a121394f14a1a1ad6efa83b9140ad977c0f26f3",
+      "date_fichier": "2026-10-08T13:16:39"
     },
     {
       "nom": "ij.json",
       "sha256": "a321606b912795b232f1c8fc260ee853fca749da15f25d72087e7e2a02c677d0",
-      "date_fichier": "2026-10-07T18:09:53"
+      "date_fichier": "2026-10-08T13:16:34"
     },
     {
       "nom": "pression_2025.json",
@@ -975,10 +975,6 @@
       "formation": "CAP ébéniste"
     },
     {
-      "uai": "0060042N",
-      "formation": "CAP équipier polyvalent du commerce"
-    },
-    {
       "uai": "0180025E",
       "formation": "CAP art et techniques de la bijouterie-joaillerie option bijouterie-joaillerie"
     },
@@ -997,10 +993,6 @@
     {
       "uai": "0421606T",
       "formation": "CAP métiers de la mode - vêtement flou"
-    },
-    {
-      "uai": "0440537V",
-      "formation": "CAP horlogerie"
     },
     {
       "uai": "0690660T",
@@ -1029,10 +1021,6 @@
     {
       "uai": "0750681H",
       "formation": "CAP art et techniques de la bijouterie-joaillerie option bijouterie-joaillerie"
-    },
-    {
-      "uai": "0772244W",
-      "formation": "CAP équipier polyvalent du commerce"
     }
   ]
 }

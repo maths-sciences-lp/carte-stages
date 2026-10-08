@@ -32,7 +32,10 @@ for ac in json.loads((ROOT/'commun/academies.json').read_text()):
    assert d['region'] in regions[f['o'],e['o']]
    assert e['af'].startswith('https://www.onisep.fr/')
    if e['ij']:
-    for v in e['ij'].values():assert v is None or 0<=v<=100
+    for x in e['ij']['v'] if 'v' in e['ij'] else [e['ij']]:
+     assert set(x)<={'p','e','r'} and x.get('r',None) in {None,'récente','précédente'}
+     for k in 'pe':assert x[k] is None or 0<=x[k]<=100
+    if 'v' in e['ij']:assert [x['r'] for x in e['ij']['v']]==['récente','précédente']
    k=f['o'].split('.')[-1]+'|'+e['o'].split('.')[-1];keys.add(k)
    if k not in ps['f']:continue
    x=ps['f'][k];r=psraw[x['g']];assert meme_bts(f['n'],r['fil_lib_voe_acc'])

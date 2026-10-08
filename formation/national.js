@@ -51,7 +51,7 @@ address.addEventListener('keydown',e=>{if(e.key!=='Enter')return;e.preventDefaul
 const footer=main.querySelector('footer');
 footer.style.visibility='visible';typo(main);
 await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSelect:async(ac,{signal})=>{
- async function data(name){const r=await fetch(new URL('data/'+name+'.json?v=2026-10-07',document.baseURI),{signal});if(!r.ok)throw Error('Données indisponibles');return r.json();}
+ async function data(name){const r=await fetch(new URL('data/'+name+'.json?v=2026-10-08b',document.baseURI),{signal});if(!r.ok)throw Error('Données indisponibles');return r.json();}
  const [d,ps]=await Promise.all([data(ac.slug),data(ac.slug+'-parcoursup')]);if(signal.aborted)return;
  active=ac;++seq;clearTimeout(addressTimer);D=d;PS=ps;cur=null;dep=null;off.clear();
  if(layer){layer.remove();layer=null;}

@@ -164,7 +164,11 @@ $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton tél
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
 document.querySelectorAll('a.tel').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Appel : '+a.dataset.s)));
 drawSit();
-if(!window.AIDE_NATIONAL) fetch('aide.json?v=2026-10-08').then(r=>r.json()).then(d=>{D=d;const k=location.hash.slice(1);if(k&&(k==='tout'||SIT.some(x=>x.k===k))){sit=k;drawSit();show(false);}});
+// Île-de-France : les trois fichiers d'académie réunis (mêmes données que les pages nationales).
+const cmp=(a,b)=>a<b?-1:a>b?1:0;
+function reunir(L){return{date:L[0].date,lieux:L.flatMap(d=>d.lieux).sort((a,b)=>cmp(a.t,b.t)||cmp(a.v,b.v)||cmp(a.n,b.n)),
+ colleges:L.flatMap(d=>d.colleges).sort((a,b)=>cmp(a.n,b.n)||cmp(a.v,b.v))};}
+if(!window.AIDE_NATIONAL) Promise.all(['creteil','paris','versailles'].map(s=>fetch('data/'+s+'.json?v=2026-10-08').then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();}))).then(reunir).then(d=>{D=d;const k=location.hash.slice(1);if(k&&(k==='tout'||SIT.some(x=>x.k===k))){sit=k;drawSit();show(false);}});
 </script>
 <script src="../commun/accessibilite.js"></script>
 </body></html>

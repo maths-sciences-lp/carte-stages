@@ -85,9 +85,19 @@ def coords(lat, lon):
 
 
 def safe_url(url):
+    # Beaucoup de fiches de bibliothèques écrivent « www.ville.fr » sans protocole,
+    # ou « Https:// » : on les garde en adresse complète. Un texte qui n'est pas une
+    # adresse (« Page dédiée au sein du site de la Mairie », adresse tronquée) ne donne
+    # pas de lien. Les noms de domaine accentués (guîtres.fr) restent acceptés.
+    url = (url or '').strip()
     if not url or '@' in url or re.search(r'(?i)(mailto:|javascript:)', url):
         return ''
-    return url if re.match(r'^https?://', url) else ''
+    m = re.match(r'(?i)(https?|htpps):?//', url)
+    protocole, reste = ('http' if m.group(1).lower() == 'http' else 'https', url[m.end():]) if m else ('https', url)
+    hote = re.split(r'[/?#]', reste, maxsplit=1)[0]
+    if re.search(r'\s', reste) or not re.fullmatch(r'(?i)(?:(?:[^\W_](?:[\w-]*[^\W_])?\.)+[^\W\d_]{2,}|\d{1,3}(?:\.\d{1,3}){3})(?::\d+)?', hote):
+        return ''
+    return f'{protocole}://{reste}'
 
 
 def telephone(value):
@@ -332,7 +342,13 @@ def build(args):
     decisions_path = OUT / 'mda-exclusions.json'
     decisions = json.loads(decisions_path.read_text()) if decisions_path.exists() else []
     omit = {r['src']: r['motif'] for r in decisions}
+    # Île-de-France : noms, adresses, communes, téléphones, horaires et public relus (source/mda_idf.json),
+    # repris tels quels ; le site internet de l'ANMDA complète une fiche qui n'en a pas.
+    relues = {m['src']: m for m in json.loads((ROOT / 'source' / 'mda_idf.json').read_text(encoding='utf-8'))}
     for m in mda:
+        r = relues.get(m['src'])
+        if r:
+            m = {**m, **{k: r[k] for k in ('n', 'a', 'v', 'tel', 'h', 'pub') if r.get(k)}, 'w': r.get('w') or m.get('w', '')}
         if m['src'] in omit or not coords(m.get('lat'),m.get('lon')) or not m['a'] or not m['cp']:
             excluded.append(dict(n=m['n'],src=m['src'],motif=omit.get(m['src'],'Adresse ou coordonnées absentes')))
             continue
@@ -349,8 +365,9 @@ def build(args):
         add(dict(t='mda',**m), d)
     edu_url = EDU + '?' + urllib.parse.urlencode(dict(where='type_etablissement="Collège" and etat="OUVERT"',select='identifiant_de_l_etablissement,nom_etablissement,nom_commune,latitude,longitude,code_departement,libelle_academie'))
     raw_colleges = get_json(edu_url, cache / 'colleges-national.json')
-    # L'annuaire peut donner plusieurs lignes pour le même UAI.
-    colleges = list({r['identifiant_de_l_etablissement']: r for r in raw_colleges
+    # L'annuaire peut donner plusieurs lignes pour le même UAI : un collège et son
+    # annexe (autre nom, autre commune) restent deux choix ; les vrais doublons non.
+    colleges = list({(r['identifiant_de_l_etablissement'], r['nom_etablissement'], r['nom_commune']): r for r in raw_colleges
                      if coords(r['latitude'], r['longitude'])}.values())
     hors_deps = collections.Counter(str(r['code_departement']) for r in colleges if str(r['code_departement']).lstrip('0').zfill(2) not in ACAD)
     today = datetime.date.today().isoformat()
@@ -358,8 +375,9 @@ def build(args):
     for s in selected:
         ac = SLUGS[s]
         ls = sorted([r for r in places if r['ac']==ac],key=lambda x:(x['t'],x['v'],x['n']))
-        cs = [dict(n=r['nom_etablissement'],v=' '.join(r['nom_commune'].split()),**coords(r['latitude'],r['longitude']),ac=ac)
-              for r in colleges if ACAD.get(str(r['code_departement']).lstrip('0').zfill(2))==ac and coords(r['latitude'],r['longitude'])]
+        # Ordre alphabétique (nom, commune) : les suggestions ne dépendent plus de l'ordre de l'export.
+        cs = sorted([dict(n=r['nom_etablissement'],v=' '.join(r['nom_commune'].split()),**coords(r['latitude'],r['longitude']),ac=ac)
+              for r in colleges if ACAD.get(str(r['code_departement']).lstrip('0').zfill(2))==ac and coords(r['latitude'],r['longitude'])],key=lambda c:(c['n'],c['v']))
         if not cs:
             raise ValueError('Aucun collège : '+ac)
         path = OUT / (s + '.json')
@@ -395,22 +413,6 @@ def generation_idf():
 
     ACAD = {'77': 'Créteil', '93': 'Créteil', '94': 'Créteil', '75': 'Paris', '78': 'Versailles', '91': 'Versailles', '92': 'Versailles', '95': 'Versailles'}
 
-    MDA = [
-        dict(n='Maison des adolescents CASITA', a='Hôpital Avicenne, 125 rue de Stalingrad', cp='93000', v='Bobigny', lat=48.91274, lon=2.43578,
-             tel='01 48 95 73 01', src='https://anmda.fr/fr/maison-des-adolescents-de-bobigny-casita'),
-        dict(n='Maison des adolescents CASADO', a='2 bis rue Gibault', cp='93200', v='Saint-Denis', lat=48.93511, lon=2.35530,
-             tel='01 48 13 16 43', src='https://anmda.fr/fr/maison-des-adolescents-casado-saint-denis'),
-        dict(n='Maison des adolescents AMICA', a='4 allée Albert Camus', cp='93390', v='Clichy-sous-Bois', lat=48.90616, lon=2.55760,
-             tel='01 43 88 23 64', w='http://www.mda93amica.fr/', h=['Du lundi au vendredi de 9 h 30 à 18 h'], pub='12 à 21 ans et leurs parents',
-             src='https://anmda.fr/fr/maison-des-adolescents-de-clichy-sous-bois-amica'),
-        dict(n='Maison de l’adolescent du Val-de-Marne', a='8 rue du Général Lacharrière', cp='94000', v='Créteil', lat=48.78770, lon=2.46421,
-             tel='01 57 02 23 90', pub='11 à 25 ans et leurs proches', src='https://anmda.fr/fr/maison-de-ladolescent'),
-        dict(n='Maison des adolescents Adobase (nord Seine-et-Marne)', a='7 rue du Docteur Nicole Mangin', cp='77400', v='Lagny-sur-Marne', lat=48.87321, lon=2.69809,
-             tel='01 60 54 30 73', src='https://anmda.fr/fr/maison-des-adolescents-adobase-nord-seine-et-marne'),
-        dict(n='Maison des adolescents ADO Sud 77', a='Maison des associations, 6 rue du Mont Ussy', cp='77300', v='Fontainebleau', lat=48.41463, lon=2.70203,
-             tel='06 71 81 87 41', h=['Sur rendez-vous, secrétariat tous les jours de 9 h à 17 h', 'Autre permanence : Maison pour tous, 4 rue Jules Ferry, Montereau-Fault-Yonne'],
-             src='https://anmda.fr/fr/maison-des-adolescents-ado-sud-77-seine-et-marne'),
-    ]
 
     def telecharge(fichier='annuaire-sp.json'):
         if os.path.exists(fichier):
@@ -440,7 +442,7 @@ def generation_idf():
                           lat=round(float(a['latitude']), 5), lon=round(float(a['longitude']), 5), tel=tel, w=w,
                           h=horaires(r['plage_ouverture']), sp=r['url_service_public'], maj=r['date_modification'][:10]))
 
-    MDA += json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'mda_idf.json')))
+    MDA = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'mda_idf.json')))
 
     for m in MDA:
         lieux.append(dict(t='mda', dep=DEPS[m['cp'][:2]], **{k: v for k, v in m.items()}))

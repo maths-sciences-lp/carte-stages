@@ -42,7 +42,7 @@ input[type=text]{flex:1;min-width:200px;padding:11px 12px;border:2px solid var(-
 .tag.prive{background:#fff4e5;color:#8a4b00}
 .li .row{margin-top:6px}.li .btn{padding:8px 12px;font-size:15px}
 #map{height:380px;border-radius:16px;border:1px solid var(--line);margin:10px 0}
-.note{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:15px;margin:12px 0}
+.note,.note-v{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:15px;margin:12px 0}
 footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-top:24px;padding-top:12px}
 [hidden]{display:none!important}
 </style>
@@ -74,6 +74,8 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
   <div class="chips" id="ftype"></div>
   <div class="chips" id="fdep"></div>
   <div class="chips" id="fint"></div>
+  <div class="chips"><button class="chip" id="cvois" aria-pressed="false">🧭 Montrer aussi les lycées proches d’une autre académie</button></div>
+  <p class="note-v" id="vmsg" hidden>🧭 Tu peux faire <b>jusqu’à 5 vœux dans d’autres académies</b>, en plus des 10 vœux dans ton académie (Affelnet). Ces lycées sont à moins de 30 km de la limite de ton académie. C’est l’académie du lycée qui décide : demande à ton collège comment faire.</p>
   <div class="row"><button class="btn" id="vL" aria-pressed="true">📋 Liste</button><button class="btn" id="vC" aria-pressed="false">🗺️ Carte</button></div>
   <div class="msg" id="count"></div>
   <div id="map" hidden></div>
@@ -101,6 +103,8 @@ const statut=s=>({'public':'Public','privé sous contrat':'Privé sous contrat',
 const TYPES=[['2de pro','2de pro (famille)'],['Bac pro','Bac pro'],['CAP','CAP']];
 const ACS=[['Créteil','Académie de Créteil (77, 93, 94)'],['Paris','Académie de Paris (75)'],['Versailles','Académie de Versailles (78, 91, 92, 95)']];
 let D=null, dom=null, q='', dep=null, offT=new Set(), offD=new Set(), intern=false, open=new Set(), map=null, layer=null;
+// Lycées proches d'une autre académie (data/<…>-voisins.json), chargés au clic seulement.
+let vois=false, D0=null, voisinsDe=()=>'ile-de-france';
 function drawDoms(){$('doms').innerHTML=D.domaines.map(d=>`<button class="dom" data-k="${d.k}" aria-pressed="${dom===d.k}"><span class="e">${d.i}</span><span><b>${esc(d.n)}</b><span>${esc(d.s)}</span></span></button>`).join('')+
  `<button class="dom" data-k="tout" aria-pressed="${dom==='tout'}"><span class="e">📋</span><span><b>Toutes les formations</b><span>la liste complète de l’académie</span></span></button>`;
  $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{dom=b.dataset.k;q='';$('q').value='';open=new Set();drawDoms();history.replaceState(null,'',location.pathname+location.search+'#'+dom);stat('domaine/'+dom,b.querySelector('b').textContent);show(true);});}
@@ -116,6 +120,7 @@ function chips(){$('ftype').innerHTML=TYPES.map(([k,l])=>`<button class="chip" d
 function lieuHTML({e,d}){const prive=/priv/.test(e.st);const o=dep?`&origin=${dep.lat},${dep.lon}`:'';
  const go=`https://www.google.com/maps/dir/?api=1${o}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
  return `<div class="li"><b>${esc(e.n)}</b><span class="tag ${prive?'prive':''}">${esc(statut(e.st))}</span>
+ ${e.x?`<div class="m">🧭 <b>Autre académie : ${esc(e.ac)}</b>. Demande possible, à voir avec ton professeur principal ou le Psy-EN.</div>`:''}
  <div class="m">${d!==null?'📍 <b>'+fmt(d)+' km</b> · ':''}${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}</div>
  ${e.it?`<div class="m">🛏️ ${e.it==='i'?'Internat'+(e.ic?' ('+esc(e.ic)+')':''):e.it==='a'?'Internat dans un autre lycée'+(e.ic?' ('+esc(e.ic)+')':''):'Internat : à vérifier auprès du lycée'}</div>`:''}
  ${e.p?`<div class="m">📈 En 2025 : <b>${e.p.v} premier${e.p.v>1?'s':''} vœu${e.p.v>1?'x':''} pour ${e.p.c} place${e.p.c>1?'s':''}</b>${e.p.pc?' (places communes à plusieurs CAP du lycée)':''}</div>`:''}
@@ -155,7 +160,28 @@ const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinate
 $('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
-if(!window.APRES3E_NATIONAL)fetch('apres3e.json?v=2026-10-08').then(r=>r.json()).then(d=>{D=d;for(const f of D.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
+function avecVoisins(base,V){const F=new Map(base.formations.map(f=>[f.n,{...f,e:[...f.e]}]));
+ for(const f of V.formations){const g=F.get(f.n);g?g.e.push(...f.e):F.set(f.n,{...f,e:[...f.e]});}
+ return{...base,formations:[...F.values()].sort((a,b)=>RANG[a.t]-RANG[b.t]||cmp(a.n,b.n))};} // RANG et cmp : définis avec le chargement Île-de-France ci-dessous
+function fermerVoisins(){vois=false;D0=null;$('cvois').setAttribute('aria-pressed','false');$('vmsg').hidden=true;}
+$('cvois').onclick=async()=>{const b=$('cvois');if(!D)return;
+ if(vois){D=D0;fermerVoisins();show(false);return;}
+ b.disabled=true;$('count').textContent='Chargement des lycées des académies voisines…';
+ try{const avant=D,r=await fetch(new URL('data/'+voisinsDe()+'-voisins.json?v=2026-10-08',document.baseURI));if(!r.ok)throw Error('Données indisponibles');
+  const V=await r.json();if(D!==avant)return;
+  if(!V.formations.length){$('count').textContent='Aucun lycée d’une autre académie à moins de 30 km.';return;}
+  for(const f of V.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');
+  D0=D;D=avecVoisins(D,V);vois=true;b.setAttribute('aria-pressed','true');$('vmsg').hidden=false;stat('filtre/voisins','Filtre : autres académies');}
+ catch(e){$('count').textContent='Les lycées des académies voisines ne répondent pas. Réessaie dans un instant.';return;}
+ finally{b.disabled=false;}
+ if(dom||q.length>=2)show(false);else $('count').textContent='Choisis un domaine ou cherche une formation.';};
+// Île-de-France : les trois fichiers d'académie réunis (mêmes données que les pages nationales).
+const IDF_ACS=['creteil','paris','versailles'],cmp=(a,b)=>a<b?-1:a>b?1:0,RANG={'2de pro':0,'Bac pro':1,'CAP':2};
+function reunir(L){const F=new Map();
+ for(const d of L)for(const f of d.formations){for(const e of f.e)if(!e.du)e.du=f.du;const g=F.get(f.n);g?g.e.push(...f.e):F.set(f.n,{...f,e:[...f.e]});}
+ return{date:L[0].date,domaines:L[0].domaines,formations:[...F.values()].sort((a,b)=>RANG[a.t]-RANG[b.t]||cmp(a.n,b.n)),
+  colleges:L.flatMap(d=>d.colleges).sort((a,b)=>cmp(a.n,b.n)||cmp(a.v,b.v))};}
+if(!window.APRES3E_NATIONAL)Promise.all(IDF_ACS.map(s=>fetch('data/'+s+'.json?v=2026-10-08').then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();}))).then(reunir).then(d=>{D=d;for(const f of D.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
 </script>
 <script src="../commun/accessibilite.js"></script>
 </body></html>

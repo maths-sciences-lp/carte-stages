@@ -99,7 +99,7 @@ def main():
     from inserjeunes import IJ, split
     uncertain_ij = set()
 
-    def cherche(uai, libelle):
+    def cherche(uai, libelle, durees=()):
         t, n = split(libelle)
         candidates = []
         for tt, nn, r in IJ.get(uai, []):
@@ -114,6 +114,13 @@ def main():
                 if difflib.SequenceMatcher(None, oa, ob).ratio() < .95:
                     continue
             candidates.append((score, r))
+        # Le 3e chiffre du code MEFSTAT11 est la durée du cycle (2311 : CAP en 1 an,
+        # 2322 : CAP en 2 ans). Quand le lycée propose une seule de ces durées, elle
+        # départage les chiffres ; sinon rien n'est choisi au hasard.
+        ans = {m.group(1) for d in durees for m in [re.match(r'(\d) an', d)] if m}
+        meme_duree = [(s, r) for s, r in candidates if r['code_formation_mefstat11'][2:3] in ans]
+        if len(ans) == 1 and meme_duree:
+            candidates = meme_duree
         # L'intitulé exact est prioritaire ; plusieurs formations/statistiques
         # encore possibles = aucun chiffre. Pas d'estimation ni de moyenne.
         if any(s == 1 for s, _ in candidates):
@@ -125,6 +132,7 @@ def main():
             return None
         _, p, e = next(iter(unique))
         return dict(p=p, e=e)
+    cherche.par_duree = True
 
     today = datetime.date.today().isoformat()
     outdir = ROOT/'apres-3e/data'
@@ -158,7 +166,8 @@ def main():
         for r in ann:
             if (r['type_etablissement'] == 'Collège' and r['etat'] == 'OUVERT'
                     and code_dep(r['code_departement']) in ac['deps'] and coords(r['latitude'], r['longitude'])):
-                colleges[r['identifiant_de_l_etablissement']] = r
+                # Un collège et son annexe peuvent partager le même UAI : garder les deux.
+                colleges[(r['identifiant_de_l_etablissement'], r['nom_etablissement'], r['nom_commune'])] = r
         if not academy_rows or not colleges:
             raise ValueError('Académie sans formations ou collèges : ' + ac['slug'])
         pression = json.loads(pression_path.read_text()) if ac['slug'] == 'creteil' else []
@@ -203,3 +212,7 @@ def main():
                   urls_omises=[dict(ac=a, lycee=n, champ=k, motif='URL contenant un courriel ou protocole non web') for a, n, k in sorted(urls_omises)],
                   inserjeunes_ambigus=[dict(uai=u, formation=l) for u, l in sorted(uncertain_ij)])
     (outdir/'bilan.json').write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    if set(selected) == {a['slug'] for a in catalog}:
+        # Lycées des académies voisines (mission 8.6) : recalculés avec toutes les académies.
+        from apres3e_voisins import main as voisins
+        voisins()
