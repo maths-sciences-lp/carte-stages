@@ -111,6 +111,32 @@ class NationalTest(unittest.TestCase):
             if 'travaux-publics-routes-reseaux' in s:
                 self.assertIn('reseaux-electriques-et-telecoms', s, k)
 
+    def test_filiere_batiment_communes_et_economistes(self):
+        from domaines import ECOLES_EXCLUES
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        for k in ECOLES_EXCLUES:
+            self.assertNotIn('mairies-administrations', forms[k], k)
+            self.assertIn('communes-et-intercommunalites', forms[k], k)
+        for k, s in forms.items():
+            if 'mairies-administrations' in s:
+                self.assertIn('communes-et-intercommunalites', s, k)
+            if 'bureaux-d-etudes-economistes-de-la-construction' in s:
+                self.assertIn('economistes-de-la-construction', s, k)
+        self.assertNotIn('bureaux-d-etudes-economistes-de-la-construction', forms['bac-pro-geometre'])
+        self.assertNotIn('bureaux-d-etudes-economistes-de-la-construction', forms['bac-pro-technicien-d-etudes-du-batiment-option-b-assistant-e'])
+        def lieu(siret, c, q, nj):
+            return dict(s=siret, n='LIEU ' + siret, e='', c=c, q=q, ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t='11', nj=nj, du='O', de='O', r=False)
+        groups, _ = preparer([lieu('1', '84.11Z', '84.11Z', '7210'),   # mairie
+                              lieu('2', '81.10Z', '84.11Z', '7210'),   # centre technique municipal
+                              lieu('3', '84.24Z', '84.11Z', '7210'),   # gendarmerie communale
+                              lieu('4', '84.11Z', '84.11Z', '7120'),   # service de l'État
+                              lieu('5', '84.11Z', '84.11Z', '7346')])  # communauté de communes
+        gardes = {r[7]: k for k, v in groups.items() for r in v}
+        self.assertEqual(gardes, {'1': 'communes-et-intercommunalites', '2': 'communes-et-intercommunalites',
+                                  '3': 'mairies-administrations', '4': 'mairies-administrations',
+                                  '5': 'communes-et-intercommunalites'})
+
     def test_export_incomplet_refuse(self):
         for raw in ['[{"workplace": {}}', '[{},', '[] contenu inattendu']:
             with self.subTest(raw=raw), self.assertRaises(ValueError):

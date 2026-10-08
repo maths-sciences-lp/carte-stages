@@ -14,6 +14,7 @@
 "bac pro aménagements paysagers": [
 "Paysagistes, espaces verts",
 "Mairies, administrations",
+"Communes et intercommunalités",
 "Horticulture, maraîchage, agriculture"
 ],
 "bac pro animation-enfance et personnes âgées": [
@@ -21,6 +22,7 @@
 "Personnes âgées (EHPAD, résidences)",
 "Crèches, petite enfance",
 "Mairies, administrations",
+"Communes et intercommunalités",
 "Associations (animation, solidarité)"
 ],
 "bac pro artisanat et métiers d'art option communication visuelle plurimédia": [
@@ -51,6 +53,7 @@
 "bac pro assistance à la gestion des organisations et de leurs activités": [
 "Comptabilité, conseil, gestion",
 "Mairies, administrations",
+"Communes et intercommunalités",
 "Secrétariat, accueil, centres d'appels",
 "Banques, assurances",
 "Agences immobilières, gestion de logements",
@@ -103,7 +106,8 @@
 "Horticulture, maraîchage, agriculture",
 "Fleuristes, jardineries",
 "Paysagistes, espaces verts",
-"Mairies, administrations"
+"Mairies, administrations",
+"Communes et intercommunalités"
 ],
 "bac pro construction et aménagement de véhicules": [
 "Poids lourds, utilitaires",
@@ -132,20 +136,21 @@
 "bac pro gestion des pollutions et protection de l'environnement": [
 "Déchets, recyclage, assainissement",
 "Nettoyage, propreté",
-"Mairies, administrations"
+"Mairies, administrations",
+"Communes et intercommunalités"
 ],
 "bac pro géomètre": [
 "Géomètres-experts, topographie",
-"Bureaux d'études, économistes de la construction",
 "Travaux publics, routes, réseaux",
 "Réseaux électriques et télécoms",
-"Mairies, administrations"
+"Communes et intercommunalités"
 ],
 "bac pro hygiène, propreté, stérilisation": [
 "Nettoyage, propreté",
 "Hôpitaux, cliniques, laboratoires",
 "Personnes âgées (EHPAD, résidences)",
-"Mairies, administrations"
+"Mairies, administrations",
+"Communes et intercommunalités"
 ],
 "bac pro installateur en chauffage, climatisation et énergies renouvelables": [
 "Plomberie, chauffage, climatisation, froid",
@@ -177,7 +182,8 @@
 "bac pro maintenance des matériels option C matériels d'espaces verts": [
 "Matériels agricoles, engins de chantier",
 "Paysagistes, espaces verts",
-"Mairies, administrations"
+"Mairies, administrations",
+"Communes et intercommunalités"
 ],
 "bac pro maintenance des systèmes de production connectés": [
 "Maintenance d'équipements, ascenseurs",
@@ -223,6 +229,7 @@
 "bac pro modélisation et prototypage 3D": [
 "Usinage, mécanique, outillage",
 "Bureaux d'études, économistes de la construction",
+"Économistes de la construction",
 "Plastique, verre, matériaux",
 "Aéronautique",
 "Ébénisterie, meubles, restauration de meubles"
@@ -231,6 +238,7 @@
 "Secrétariat, accueil, centres d'appels",
 "Hôtels",
 "Mairies, administrations",
+"Communes et intercommunalités",
 "Spectacle, musées, bibliothèques",
 "Supermarchés, grandes surfaces",
 "Banques, assurances",
@@ -263,7 +271,8 @@
 ],
 "bac pro métiers de la sécurité": [
 "Sécurité privée, surveillance",
-"Mairies, administrations"
+"Mairies, administrations",
+"Communes et intercommunalités"
 ],
 "bac pro métiers du commerce et de la vente option A animation et gestion de l'espace commercial": [
 "Supermarchés, grandes surfaces",
@@ -358,14 +367,15 @@
 ],
 "bac pro technicien d'études du bâtiment option A études et économie": [
 "Bureaux d'études, économistes de la construction",
+"Économistes de la construction",
 "Architectes",
 "Construction, maçonnerie, gros œuvre",
-"Mairies, administrations"
+"Communes et intercommunalités"
 ],
 "bac pro technicien d'études du bâtiment option B assistant en architecture": [
 "Architectes",
-"Bureaux d'études, économistes de la construction",
-"Mairies, administrations"
+"Économistes de la construction",
+"Communes et intercommunalités"
 ],
 "bac pro technicien de fabrication bois et matériaux associés": [
 "Menuiserie, agencement, serrurerie",
@@ -425,6 +435,7 @@
 "Crèches, petite enfance",
 "Loisirs, animation",
 "Mairies, administrations",
+"Communes et intercommunalités",
 "Aide à domicile"
 ],
 "CAP agent accompagnant au grand âge": [
@@ -596,7 +607,7 @@
 "Électricité du bâtiment",
 "Plomberie, chauffage, climatisation, froid",
 "Agences immobilières, gestion de logements",
-"Mairies, administrations",
+"Communes et intercommunalités",
 "Nettoyage, propreté",
 "Peinture, plâtre, carrelage, sols, isolation",
 "Personnes âgées (EHPAD, résidences)"
@@ -774,7 +785,8 @@
 "CAP valorisation des matières et propreté des espaces urbains": [
 "Déchets, recyclage, assainissement",
 "Nettoyage, propreté",
-"Mairies, administrations"
+"Mairies, administrations",
+"Communes et intercommunalités"
 ],
 "CAP vêtement de peau": [
 "Couture, confection",
@@ -798,7 +810,8 @@
 ],
 "CAPa jardinier-paysagiste": [
 "Paysagistes, espaces verts",
-"Mairies, administrations"
+"Mairies, administrations",
+"Communes et intercommunalités"
 ],
 "CAPa métiers de l'agriculture": [
 "Horticulture, maraîchage, agriculture"
@@ -813,7 +826,8 @@
 "Travaux agricoles, services aux cultures",
 "Matériels agricoles, engins de chantier",
 "Forêts, travaux forestiers",
-"Mairies, administrations"
+"Mairies, administrations",
+"Communes et intercommunalités"
 ],
 "bac pro boucher charcutier traiteur": [
 "Boucherie, charcuterie, poissonnerie",
@@ -872,6 +886,7 @@
 "Forêts, travaux forestiers",
 "Paysagistes, espaces verts",
 "Mairies, administrations",
+"Communes et intercommunalités",
 "Associations (animation, solidarité)"
 ],
 "bac pro interventions sur le patrimoine bâti option B charpente": [
@@ -881,7 +896,8 @@
 "bac pro maintenance environnementale et propreté des espaces urbains": [
 "Nettoyage, propreté",
 "Déchets, recyclage, assainissement",
-"Mairies, administrations"
+"Mairies, administrations",
+"Communes et intercommunalités"
 ],
 "bac pro métiers de l'entretien des textiles option A blanchisserie": [
 "Pressing, blanchisserie, retouches",
@@ -936,6 +952,7 @@
 "Personnes âgées (EHPAD, résidences)",
 "Loisirs, animation",
 "Mairies, administrations",
+"Communes et intercommunalités",
 "Associations (animation, solidarité)"
 ],
 "bac pro technicien conseil vente en animalerie": [
@@ -988,6 +1005,7 @@
 ],
 "CAP agent de prévention et de médiation": [
 "Mairies, administrations",
+"Communes et intercommunalités",
 "Associations (animation, solidarité)",
 "Agences immobilières, gestion de logements",
 "Transport de voyageurs"

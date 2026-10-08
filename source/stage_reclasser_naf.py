@@ -3,7 +3,8 @@
 Mêmes règles que stage_donnees.preparer, sans refaire la collecte :
 - découpage (domaines.DECOUPAGES) : un établissement d'une catégorie d'origine passe dans la
   nouvelle catégorie quand son activité (ou, à défaut, celle de son unité légale) y est rangée,
-  par exemple 42.22Z de « Travaux publics, routes, réseaux » vers « Réseaux électriques et télécoms » ;
+  par exemple 42.22Z de « Travaux publics, routes, réseaux » vers « Réseaux électriques et télécoms »,
+  ou, selon le propriétaire, « Mairies, administrations » vers « Communes et intercommunalités » ;
 - lieux sans personnel (domaines.SANS_PERSONNEL) : comptes de collectivités et fermes solaires
   retirés de la catégorie ;
 - codes retirés (domaines.CODES_RETIRES) : un établissement qui n'était dans la catégorie que par
@@ -18,7 +19,7 @@ activité et catégorie juridique de l'unité légale), tirés des stocks Sirene
   FROM read_parquet('<stock-etablissement>') e JOIN read_parquet('<stock-unite-legale>') u USING (siren)
   WHERE e.siret IN (SIRET des fichiers concernés)
 
-python3 source/stage_reclasser_naf.py --root /copie/carte-stages-donnees --naf insee.csv [--write]
+python3 source/stage_reclasser_naf.py --root /copie/carte-stages-donnees --naf insee.csv [--rapport reclassement-naf-lot.json] [--write]
 """
 import argparse
 import csv
@@ -30,7 +31,7 @@ import time
 
 from domaines import CODES_RETIRES, DECOUPAGES, DOMAINES, SANS_PERSONNEL
 from stage_collecte import atomic_json
-from stage_donnees import catalogue_formations, fichier, sans_personnel, slug
+from stage_donnees import affiner, catalogue_formations, fichier, sans_personnel, slug
 from stage_catalogues import ecrire_catalogues
 
 
@@ -42,6 +43,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--root', type=Path, required=True)
     p.add_argument('--naf', type=Path, required=True, help='CSV siret,naf,naf_u,cj')
+    p.add_argument('--rapport', default='reclassement-naf.json', help='Journal écrit à la racine des données (un par lot)')
     p.add_argument('--write', action='store_true')
     args = p.parse_args()
     root = args.root.resolve()
@@ -78,6 +80,9 @@ def main():
                                         naf=i['naf'], naf_unite_legale=i['naf_u'], categorie_juridique=i['cj']))
                     continue
                 cible = sec_of.get(i['naf']) or sec_of.get(i['naf_u'])
+                # Catégories sans code propre (communes) : même règle qu'à la collecte.
+                if affiner(k, i['naf'], i['cj']) in enfants:
+                    cible = affiner(k, i['naf'], i['cj'])
                 if cible is None and any(slug(n) == k and i['naf'] in c for n, c in CODES_RETIRES.items()):
                     cle = f"{k} {i['naf']} code retiré"
                     bilan['retires'][cle] = bilan['retires'].get(cle, 0) + 1
@@ -148,7 +153,7 @@ def main():
         w = csv.DictWriter(f, fieldnames=['fichier', 'octets', 'lignes'], lineterminator='\n')
         w.writeheader()
         w.writerows(sorted(rows.values(), key=lambda r: r['fichier']))
-    atomic_json(root/'reclassement-naf.json', dict(
+    atomic_json(root/args.rapport, dict(
         date=time.strftime('%Y-%m-%d'),
         regle=dict(decoupages={e: o for e, o in DECOUPAGES.items() if slug(e) in enfants}, sans_personnel=SANS_PERSONNEL,
                    codes_retires=CODES_RETIRES),

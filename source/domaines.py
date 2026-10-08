@@ -11,7 +11,10 @@ DOMAINES = {
   "Menuiserie, agencement, serrurerie": ["43.32A", "43.32B", "43.32C", "16.23Z", "25.12Z"],
   "Géomètres-experts, topographie": ["71.12A"],
   "Architectes": ["71.11Z"],
-  "Bureaux d'études, économistes de la construction": ["71.12B", "74.90A"],
+  # 74.90A séparé le 8/10/2026 (10 entreprises vérifiées, toutes du bâtiment) ; 71.12B reste
+  # seul ici : 20 vérifiées, la moitié seulement dans le bâtiment (le reste industrie, conseil).
+  "Bureaux d'études, économistes de la construction": ["71.12B"],
+  "Économistes de la construction": ["74.90A"],
   # ajout France — sources et limites : formation_secteurs_france.json
   "Éléments préfabriqués en béton": ["23.61Z"],
  },
@@ -128,6 +131,10 @@ DOMAINES = {
   # Sans code propre : écoles publiques rangées ici depuis « Mairies, administrations »
   # quand leur activité est 85.10Z ou 85.20Z (voir ECOLES_NAF) ; pas de collecte en plus.
   "Écoles maternelles et élémentaires": [],
+  # Sans code propre (8/10/2026) : établissements de « Mairies, administrations » dont le
+  # propriétaire est une collectivité ou une intercommunalité et l'activité propre 84.11Z,
+  # 84.13Z ou 81.10Z (mairies, services, centres techniques). Voir COMMUNES_NAF.
+  "Communes et intercommunalités": [],
   "Banques, assurances": ["64.19Z", "65.12Z", "66.22Z"],
   "Agences immobilières, gestion de logements": ["68.31Z", "68.32A", "68.20A"],
   "Secrétariat, accueil, centres d'appels": ["82.11Z", "82.19Z", "82.20Z", "82.30Z"],
@@ -241,7 +248,14 @@ DECOUPAGES = {
     "Réseaux électriques et télécoms": "Travaux publics, routes, réseaux",
     "Froid industriel, installation de machines": "Maintenance d'équipements, ascenseurs",
     "Réparation de machines et d'électronique": "Maintenance d'équipements, ascenseurs",
+    "Communes et intercommunalités": "Mairies, administrations",
+    "Économistes de la construction": "Bureaux d'études, économistes de la construction",
 }
+
+# Communes et intercommunalités : activité propre et catégorie juridique du propriétaire
+# (72… collectivités territoriales, 734…/735… intercommunalités et syndicats).
+COMMUNES_NAF = ('84.11Z', '84.13Z', '81.10Z')
+COMMUNES_CJ = ('72', '734', '735')
 
 # Codes retirés d'une catégorie après vérification : les établissements publiés qui n'y
 # étaient que par ce code en sortent (stage_reclasser_naf.py).

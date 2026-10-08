@@ -17,7 +17,7 @@ import urllib.parse
 
 from adresses import nettoie
 from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
-from domaines import DOMAINES, ECOLES_EXCLUES, ECOLES_NAF, FILTRES, MOTS_CLES, SANS_PERSONNEL, SOURCES_MOTS_CLES
+from domaines import COMMUNES_CJ, COMMUNES_NAF, DOMAINES, ECOLES_EXCLUES, ECOLES_NAF, FILTRES, MOTS_CLES, SANS_PERSONNEL, SOURCES_MOTS_CLES
 from stage_collecte import atomic_json, ROOT, EFFECTIFS, CODES
 
 EDU = 'https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json?'
@@ -77,6 +77,17 @@ def verifier_cache(cache):
         raise ValueError('Le cache ne correspond pas aux codes NAF des tables actuelles')
 
 
+def affiner(secteur, c, nj):
+    """Catégories sans code propre, tirées de « Mairies, administrations » : écoles, communes."""
+    if secteur != 'mairies-administrations':
+        return secteur
+    if c in ECOLES_NAF:
+        return 'ecoles-maternelles-et-elementaires'
+    if c in COMMUNES_NAF and str(nj or '').startswith(COMMUNES_CJ):
+        return 'communes-et-intercommunalites'
+    return secteur
+
+
 def sans_personnel(secteur, c, nj, q):
     """Compte de collectivité ou ferme solaire (domaines.SANS_PERSONNEL) : secteur en adresse."""
     proprios = next((v.get(c, ()) for n, v in SANS_PERSONNEL.items() if slug(n) == secteur), ())
@@ -108,8 +119,7 @@ def preparer(rows):
         if not k:
             excluded['activite_non_resolue'] += 1
             continue
-        if k == 'mairies-administrations' and r['c'] in ECOLES_NAF:
-            k = 'ecoles-maternelles-et-elementaires'
+        k = affiner(k, r['c'], r['nj'])
         if sans_personnel(k, r['c'], r['nj'], r['q']):
             excluded['sans_personnel'] += 1
             continue
