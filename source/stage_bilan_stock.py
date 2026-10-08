@@ -53,7 +53,7 @@ def main():
                  sans_statut=0,par_departement={d:dict(v) for d,v in counts.items()},
                  siret_admissibles_et_classes=sorted(valid),
                  listes_initiales_saturees=len(saturated),couples_geographiques_non_certifies=len(remaining),
-                 limite_temporelle='Le stock du 1/10 ne prouve pas l’exhaustivité au 8/10. Les écarts de dates sont séparés des pertes ; aucune date de fermeture n’est déduite sans preuve.',
+                 limite_temporelle='Le stock daté du '+configuration(cache)['date_stock']+' ne prouve pas l’exhaustivité à la date de contrôle API. Les écarts de dates sont séparés des pertes ; aucune date de fermeture n’est déduite sans preuve.',
                  limite_coordonnees=f"Positions API conservées. {len(coord['ecarts_coordonnees_superieurs_50m'])} des {len(coord['controle_coordonnees'])} comparaisons Lambert93/WGS84 dépassent 50 m ; aucune substitution automatique.",
                  preuve='Chaque SIRET candidat du stock absent des données possède un contrôle individuel et un statut. Les autres sites du stock sont déjà présents.')
     atomic_json(cache/'stock-bilan.json',summary)

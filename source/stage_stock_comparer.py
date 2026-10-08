@@ -57,7 +57,7 @@ def main():
     creer_diagnostic(c)
     stats = c.execute("SELECT CASE WHEN starts_with(codeCommuneEtablissement,'97') OR starts_with(codeCommuneEtablissement,'98') THEN substr(codeCommuneEtablissement,1,3) ELSE substr(codeCommuneEtablissement,1,2) END,motif,count(*) FROM diagnostic GROUP BY ALL ORDER BY ALL").fetchall()
     report = {'stock':configuration(cache)['date_stock'],'perimetre':departements(cache), 'departements':{},
-              'limite':'État du stock au 1/10, différent de la collecte du 8/10 ; candidats vérifiés individuellement avant ajout.'}
+              'limite':'État du stock au '+configuration(cache)['date_stock']+' ; candidats vérifiés individuellement à la date de contrôle avant ajout.'}
     existing = {}; current = {}
     for dep in departements(cache):
         existing[dep] = {r[7] for f in (a.donnees/'sirene'/dep).glob('*.json') for r in lire(f)}

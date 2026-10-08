@@ -6,6 +6,8 @@ import json
 import math
 from pathlib import Path
 import subprocess
+import re
+from urllib.parse import parse_qs
 
 from stage_collecte import ROOT, atomic_json
 
@@ -22,6 +24,30 @@ def proche(row, point):
     a, b = math.radians(row[3]-point['la']), math.radians(row[4]-point['lo'])
     h = math.sin(a/2)**2 + math.cos(math.radians(row[3]))*math.cos(math.radians(point['la']))*math.sin(b/2)**2
     return 12742*math.asin(math.sqrt(h)) <= 5
+
+
+def relever_liens(root, cache):
+    """Figer formation, UAI, nombres et empreinte des liens avant tout ajout."""
+    target=cache/'liens-avant.json'
+    if target.exists():
+        print('Relevé avant existant conservé'); return
+    catalog=lire(root/'catalogue.json')
+    forms={f['k']:f for f in catalog['formations']}
+    aliases=lire(ROOT/'stage/aliases-idf.json')
+    school=next(x for x in lire(ROOT/'data/lycees.json') if x['u']=='0932119Y')
+    records=[]
+    for name in ['tne','mnb','mama','iccer','mee','tma','era','eeb','geometre','mit','sdg','ebeniste','bma-ebeniste','bma-signaletique','ma','henaff']:
+        page=ROOT/name/'index.html';raw=page.read_bytes()
+        row=dict(adresse='/'+name+('/' if name=='henaff' else ''),sha256_page=hashlib.sha256(raw).hexdigest())
+        if name!='henaff':
+            match=re.search(r'location.replace\("[^"#]+#([^"\n]+)"\)',raw.decode())
+            if not match:raise ValueError('Redirection inconnue : '+name)
+            query=parse_qs(match[1]);key=query['f'][0]
+            f=forms[aliases.get(key,key)]
+            rows={r[7]:r for dep in ['75','77','78','91','92','93','94','95'] for k in f['s'] for r in lire(root/'sirene'/dep/(k+'.json'))}
+            row.update(formation=key,lycee=query['ly'],region=len(rows),cinq_km=sum(proche(r,school) for r in rows.values()))
+        records.append(row)
+    atomic_json(target,records)
 
 
 def verifier(root, cache):
@@ -118,5 +144,7 @@ if __name__ == '__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--root',type=Path,required=True)
     p.add_argument('--cache',type=Path,required=True)
+    p.add_argument('--avant',action='store_true')
     args=p.parse_args()
-    verifier(args.root,args.cache)
+    if args.avant:relever_liens(args.root,args.cache)
+    else:verifier(args.root,args.cache)

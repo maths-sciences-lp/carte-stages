@@ -1,5 +1,6 @@
 """Configuration immuable d'un rattrapage départemental, jamais national implicite."""
 import json
+import hashlib
 from pathlib import Path
 import shutil
 
@@ -7,7 +8,11 @@ import shutil
 def configuration(cache):
     path = Path(cache)/'configuration-stock.json'
     if path.exists():
-        return json.loads(path.read_text())
+        from stage_collecte import CODES
+        cfg=json.loads(path.read_text())
+        if cfg.get('empreinte_naf')!=hashlib.sha256('\n'.join(CODES).encode()).hexdigest():
+            raise ValueError('Les codes NAF ont changé depuis la préparation du cache')
+        return cfg
     return {'departements':['77','93','94'], 'date_stock':'2026-10-01', 'suffixe':'creteil'}
 
 

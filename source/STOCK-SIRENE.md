@@ -42,6 +42,7 @@ périmètre approuvé. Elles ne publient rien.
   --departements 75 78 91 92 95 --date-stock "$STOCK_DATE" \
   --url-etablissements "$STOCK_ETAB" --url-unites "$STOCK_UL"
 "$PY" source/stage_stock_temoin.py --cache "$CACHE" --phase unites
+"$PY" source/verif_stage_rattrapage.py --root "$DONNEES" --cache "$CACHE" --avant
 "$PY" source/stage_stock_preparer.py --cache "$CACHE" \
   --cache-national "$CACHE_API" --donnees "$DONNEES" \
   --communes "$COMMUNES" --graine 20261009

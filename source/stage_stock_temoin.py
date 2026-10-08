@@ -127,6 +127,8 @@ def main():
         urls={'etablissements':args.url_etablissements,'unites':args.url_unites}
         if not all(u.startswith(BASE) and u.endswith('.parquet') for u in urls.values()):
             parser.error('Utiliser les stocks officiels HTTPS de data.gouv.fr')
+        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}',args.date_stock) or any(u[len(BASE):len(BASE)+8]!=args.date_stock.replace('-','') for u in urls.values()):
+            parser.error('La date déclarée doit correspondre aux deux URL du millésime')
         configurer_cache(cache)
         cfg=dict(departements=deps,date_stock=args.date_stock,urls=urls,suffixe='extrait',
                  empreinte_naf=hashlib.sha256('\n'.join(CODES).encode()).hexdigest())
@@ -134,6 +136,8 @@ def main():
         if conf.exists() and json.loads(conf.read_text())!=cfg:
             raise ValueError('Cache associé à un autre périmètre ou stock')
         atomic_json(conf,cfg)
+    if not args.departements and not (cache/'configuration-stock.json').exists() and not (cache/'stock-etablissements-provenance.json').exists():
+        parser.error('Un nouveau cache exige un périmètre, une date et les URL du stock explicites')
     cfg=configuration(cache)
     output = extrait(cache,args.phase)
     if output.exists():

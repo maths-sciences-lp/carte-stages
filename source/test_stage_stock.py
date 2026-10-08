@@ -62,5 +62,29 @@ class SelectionTest(unittest.TestCase):
             atomic_json(cache/'departements/75.json',dict(rows=[{'s':'ancien'}]))
             self.assertEqual(candidats(cache,['75'])[0],{'75':{}})
 
+class PartialReaderTest(unittest.TestCase):
+    def test_relais_refuse_un_telechargement_complet(self):
+        import http.client
+        from http.server import ThreadingHTTPServer
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        import threading
+        from unittest.mock import patch
+        from stage_stock_temoin import PartialReader
+        with TemporaryDirectory() as tmp:
+            reader=PartialReader(Path(tmp),10_000_000)
+            server=ThreadingHTTPServer(('127.0.0.1',0),reader.handler())
+            thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+            try:
+                with patch('stage_stock_temoin.urllib.request.urlopen') as remote:
+                    conn=http.client.HTTPConnection('127.0.0.1',server.server_port)
+                    conn.request('GET','/etablissements.parquet')
+                    response=conn.getresponse();self.assertEqual(response.status,400);response.read();conn.close()
+                    conn=http.client.HTTPConnection('127.0.0.1',server.server_port)
+                    conn.request('GET','/etablissements.parquet',headers={'Range':'bytes=0-10000000'})
+                    response=conn.getresponse();self.assertEqual(response.status,413);response.read();conn.close()
+                    remote.assert_not_called()
+            finally:server.shutdown();server.server_close();thread.join()
+
 
 if __name__=='__main__':unittest.main()
