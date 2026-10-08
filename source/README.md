@@ -19,7 +19,7 @@ Troisième point de départ, à côté de « Mon collège » et « Chez moi » :
 
 ## Tests automatiques à chaque PR
 
-`.github/workflows/tests.yml` se lance à chaque PR vers `main` (et à la demande) : contrats de Trouve ton stage (`test_stage_*.py`), données d'Après le collège (dont académies voisines), de Qui peut m'aider ? et d'Après le lycée (toute la France), puis les trois `national.cjs` dans Chromium (30 académies, 375 px). `verif_idf.py` (comparaison avec la version en ligne) est informatif : résumé sur la page du lancement, rapport et captures en pièce jointe (14 jours). Gratuit pour un dépôt public.
+`.github/workflows/tests.yml` se lance à chaque PR vers `main`, après chaque fusion dans `main` (plusieurs PR fusionnées à la suite peuvent se gêner) et à la demande : contrats de Trouve ton stage (`test_stage_*.py`), données d'Après le collège (dont académies voisines), de Qui peut m'aider ? et d'Après le lycée (toute la France), puis les trois `national.cjs` dans Chromium (30 académies, 375 px). `verif_idf.py` (comparaison avec la version en ligne) est informatif : résumé sur la page du lancement, rapport et captures en pièce jointe (14 jours). Gratuit pour un dépôt public.
 
 ## Une seule source pour les trois outils d'orientation (octobre 2026)
 

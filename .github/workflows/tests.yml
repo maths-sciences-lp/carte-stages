@@ -1,9 +1,13 @@
 name: Tests
-# À chaque PR vers main : données d'abord (rapide), puis les pages dans un vrai navigateur.
+# À chaque PR vers main et après chaque fusion : données d'abord (rapide), puis les pages dans un vrai navigateur.
 # La comparaison avec la version en ligne (verif_idf.py) est informative : une nouveauté
 # voulue change forcément quelque chose ; son rapport est joint au lancement.
 on:
   pull_request:
+    branches: [main]
+  # Aussi après chaque fusion : plusieurs PR fusionnées à la suite peuvent se gêner
+  # sans qu'aucune, prise seule, ne le montre.
+  push:
     branches: [main]
   workflow_dispatch:
 permissions:
