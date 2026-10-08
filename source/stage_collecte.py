@@ -16,6 +16,9 @@ import subprocess
 import threading
 import time
 import urllib.parse
+import urllib.request
+import urllib.error
+from email.utils import parsedate_to_datetime
 
 from domaines import DOMAINES
 
@@ -24,6 +27,32 @@ API = 'https://recherche-entreprises.api.gouv.fr/search'
 EFFECTIFS = '01,02,03,11,12,21,22,31,32,41,42,51,52,53'.split(',')
 CODES = sorted({c for ss in DOMAINES.values() for cc in ss.values() for c in cc})
 USER_AGENT = 'CarteStages/1.0 (donnees publiques; maths-sciences-lp/carte-stages)'
+
+
+def couverture(company, dep):
+    """Le compteur national est une alerte possible, jamais un total départemental."""
+    entries = company.get('matching_etablissements') or []
+    opened = sorted({e['siret'] for e in entries if e.get('siret')
+                     and e.get('etat_administratif') == 'A'
+                     and dep_commune(e.get('commune')) == dep})
+    count = company.get('nombre_etablissements_ouverts')
+    return dict(siren=company['siren'], ouverts_nationaux=count,
+                ouverts_recus_departement=opened,
+                incomplet_possible=count is None or count > len(opened) or len(entries) >= 100,
+                liste_saturee=len(entries) >= 100,
+                nom=company.get('nom_raison_sociale') or company.get('nom_complet'),
+                naf=company.get('activite_principale'),
+                effectif=company.get('tranche_effectif_salarie'))
+
+
+def attente_retry(value, fallback):
+    try:
+        return max(0, float(value))
+    except (ValueError, TypeError):
+        try:
+            return max(0, parsedate_to_datetime(value).timestamp() - time.time())
+        except (ValueError, TypeError, AttributeError):
+            return fallback
 
 
 def dep_commune(code):
@@ -92,6 +121,8 @@ class Collector:
         self.lock = threading.Lock()
         self.next_request = 0
         self.requests = 0
+        self.errors = Counter()
+        self.audit_requests = self.cache/'requetes.jsonl'
 
     def get(self, params):
         url = API + '?' + urllib.parse.urlencode(params)
@@ -102,21 +133,30 @@ class Collector:
                     time.sleep(delay)
                 self.next_request = time.monotonic() + self.interval
                 self.requests += 1
-            # Pas de dirigeants dans la réponse ; pas de journal des résultats.
-            result = subprocess.run(['curl', '-sS', '--max-time', '60', '-A', USER_AGENT,
-                                     '-w', '\n%{http_code}', url], capture_output=True, text=True)
+                self.cache.mkdir(parents=True,exist_ok=True)
+                with self.audit_requests.open('a') as log:
+                    log.write(json.dumps(dict(date=datetime.now(timezone.utc).isoformat(),
+                        requete=hashlib.sha256(url.encode()).hexdigest(),essai=attempt+1))+'\n')
             try:
-                body, status = result.stdout.rsplit('\n', 1)
-                if status == '200':
-                    value = json.loads(body)
-                    if isinstance(value.get('results'), list):
-                        return value
-                if status in ('400', '401', '403', '404'):
-                    raise ValueError('API HTTP ' + status)
-            except (json.JSONDecodeError, ValueError) as err:
-                if str(err).startswith('API HTTP'):
+                request = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
+                with urllib.request.urlopen(request, timeout=60) as response:
+                    value = json.load(response)
+                if isinstance(value.get('results'), list):
+                    return value
+                raise ValueError('Réponse sans résultats')
+            except urllib.error.HTTPError as err:
+                with self.lock:
+                    self.errors[str(err.code)] += 1
+                if err.code in (400, 401, 403, 404):
                     raise
-            time.sleep(min(120, 5 * 2 ** attempt))
+                delay = attente_retry(err.headers.get('Retry-After'), min(120, 5 * 2 ** attempt))
+            except (urllib.error.URLError, TimeoutError, OSError, ValueError):
+                with self.lock:
+                    self.errors['transport_ou_json'] += 1
+                delay = min(120, 5 * 2 ** attempt)
+            # Le recul après 429 concerne tous les travailleurs, pas un seul.
+            with self.lock:
+                self.next_request = max(self.next_request, time.monotonic() + delay)
         raise RuntimeError('API indisponible après reprises ; cache conservé')
 
     def page(self, dep, codes, effectifs, page):
@@ -127,32 +167,28 @@ class Collector:
         key = hashlib.sha256(json.dumps(params, sort_keys=True).encode()).hexdigest()
         path = self.cache / 'pages' / dep / (key + '.json')
         if path.exists():
-            return json.loads(path.read_text())
+            saved = json.loads(path.read_text())
+            if saved.get('schema') == 2:
+                return saved
         result = self.get(params)
         total = int(result['total_results'])
         # L'API peut plafonner le compteur lui-même à 10 000 : égalité comprise.
         if total >= 10000:
             return dict(total=total, rows=[], exclusions={})
-        rows, excluded = [], Counter()
+        rows, excluded, companies = [], Counter(), []
         for company in result['results']:
             entries = company.get('matching_etablissements') or []
-            n = 1
-            while True:
-                for entry in entries:
-                    row = conserver(company, entry, dep, excluded)
-                    if row:
-                        rows.append(row)
-                if len(entries) < 100:
-                    break
-                n += 1
-                extra = self.get(dict(params, q=company['siren'], page=1, page_etablissements=n))
-                exact = [h for h in extra['results'] if h['siren'] == company['siren']]
-                if len(exact) != 1:
-                    raise RuntimeError('Pagination des établissements non résolue')
-                entries = exact[0].get('matching_etablissements') or []
-                if n > 1000:
-                    raise RuntimeError('Pagination des établissements excessive')
-        value = dict(total=total, pages=int(result['total_pages']), page=page,
+            # q=SIREN ignore les filtres et ne pagine pas matching_etablissements.
+            # Les alertes sont conservées pour le rattrapage géographique ciblé.
+            if company.get('nature_juridique') != '1000' and company.get('statut_diffusion') == 'O':
+                companies.append(couverture(company, dep))
+            for entry in entries:
+                row = conserver(company, entry, dep, excluded)
+                if row:
+                    rows.append(row)
+        value = dict(schema=2, total=total, pages=int(result['total_pages']), page=page,
+                     unites=[hashlib.sha256(h['siren'].encode()).hexdigest() for h in result['results']],
+                     entreprises=companies,
                      rows=rows, exclusions=dict(excluded), collected_at=datetime.now(timezone.utc).isoformat())
         atomic_json(path, value)
         return value
@@ -160,14 +196,19 @@ class Collector:
     def departement(self, dep):
         path = self.cache / 'departements' / (dep + '.json')
         if path.exists():
-            return json.loads(path.read_text())['bilan']
-        rows, exclusions = {}, Counter()
+            saved = json.loads(path.read_text())
+            if 'entreprises' not in saved:
+                raise ValueError('Ancien cache sans inventaire des entreprises : utiliser un cache séparé')
+            return saved['bilan']
+        rows, exclusions, companies = {}, Counter(), {}
         first_dates, pages = [], 0
 
         def lot(codes, effectifs):
             nonlocal pages
             first = self.page(dep, codes, effectifs, 1)
-            if first['total'] >= 10000:
+            # Les gros compteurs de l'API reposent sur une cardinalité estimée.
+            # Un lot plus petit évite de télécharger puis redécouper tout le lot.
+            if first['total'] >= 10000 or (first['total'] >= 2000 and (len(codes)>1 or len(effectifs)>1)):
                 if len(codes) > 1:
                     mid = len(codes) // 2
                     lot(codes[:mid], effectifs)
@@ -179,6 +220,7 @@ class Collector:
                 else:
                     raise RuntimeError('Plafond API atteint : ' + dep + '/' + codes[0])
                 return
+            units, totals = [], set()
             for number in range(1, max(1, first['pages']) + 1):
                 value = first if number == 1 else self.page(dep, codes, effectifs, number)
                 if value['total'] >= 10000:
@@ -186,15 +228,42 @@ class Collector:
                 pages += 1
                 first_dates.append(value['collected_at'])
                 exclusions.update(value['exclusions'])
+                units.extend(value['unites'])
+                totals.add(value['total'])
+                for company in value['entreprises']:
+                    companies[company['siren']] = company
                 for row in value['rows']:
                     rows[row['s']] = row
                 if pages % 100 == 0:
                     print(f'{dep} : {pages} pages, {len(rows)} établissements conservés', flush=True)
+            if totals != {len(set(units))}:
+                # Cardinalité Elasticsearch approximative, pas un décompte
+                # d'établissements. Conserver l'écart sans boucle de rattrapage
+                # destinée à forcer une fausse égalité.
+                key=hashlib.sha256(json.dumps([codes,effectifs]).encode()).hexdigest()
+                atomic_json(self.cache/'ecarts-compteur'/dep/(key+'.json'),
+                            dict(totaux_annonces=sorted(totals),entreprises_uniques=len(set(units)),
+                                 codes=codes,effectifs=effectifs,compteur_approximatif=True))
+            if len(units) != len(set(units)):
+                if len(codes) > 1:
+                    mid = len(codes) // 2
+                    lot(codes[:mid], effectifs)
+                    lot(codes[mid:], effectifs)
+                elif len(effectifs) > 1:
+                    mid = len(effectifs) // 2
+                    lot(codes, effectifs[:mid])
+                    lot(codes, effectifs[mid:])
+                else:
+                    atomic_json(self.cache/'deficits'/dep/(codes[0]+'-'+effectifs[0]+'.json'),
+                                dict(totaux=sorted(totals), recus=len(units), uniques=len(set(units))))
+                    raise RuntimeError('Lot déficitaire documenté : '+dep+'/'+codes[0])
 
         lot(CODES, EFFECTIFS)
         bilan = dict(dep=dep, etablissements=len(rows), pages=pages, exclusions=dict(exclusions),
+                     entreprises_a_examiner=sum(c['incomplet_possible'] for c in companies.values()),
+                     couverture_etablissements='non_certifiee',
                      debut=min(first_dates), fin=max(first_dates))
-        atomic_json(path, dict(bilan=bilan, rows=sorted(rows.values(), key=lambda r: r['s'])))
+        atomic_json(path, dict(bilan=bilan, rows=sorted(rows.values(), key=lambda r: r['s']), entreprises=companies))
         print(f'{dep} TERMINÉ : {len(rows)} établissements, {pages} pages', flush=True)
         return bilan
 
