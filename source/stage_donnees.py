@@ -17,7 +17,7 @@ import urllib.parse
 
 from adresses import nettoie
 from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
-from domaines import DOMAINES, FILTRES, MOTS_CLES, SOURCES_MOTS_CLES
+from domaines import DOMAINES, ECOLES_EXCLUES, ECOLES_NAF, FILTRES, MOTS_CLES, SOURCES_MOTS_CLES
 from stage_collecte import atomic_json, ROOT, EFFECTIFS, CODES
 
 EDU = 'https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json?'
@@ -55,6 +55,11 @@ def catalogue_formations():
         forms.append(dict(n=n, t='2nde pro', s=secs, a=a, k=slug('2nde '+n)))
     for n, (t, a, secs) in AUTRES.items():
         forms.append(dict(n=n, t=t, s=[name2k[x] for x in secs], a=a, k=slug(t+' '+n)))
+    # Écoles : mêmes formations que les mairies, sauf géomètre et bâtiment.
+    for f in forms:
+        if 'mairies-administrations' in f['s'] and f['k'] not in ECOLES_EXCLUES:
+            i = f['s'].index('mairies-administrations')
+            f['s'] = f['s'][:i+1] + ['ecoles-maternelles-et-elementaires'] + f['s'][i+1:]
     if len({f['k'] for f in forms}) != len(forms):
         raise ValueError('Deux formations ont la même adresse')
     # Les libellés d'effectifs restent ceux de la page historique.
@@ -96,6 +101,8 @@ def preparer(rows):
         if not k:
             excluded['activite_non_resolue'] += 1
             continue
+        if k == 'mairies-administrations' and r['c'] in ECOLES_NAF:
+            k = 'ecoles-maternelles-et-elementaires'
         nom = re.sub(r'\s+', ' ', r['n']).strip()
         nom = re.sub(r'(\([^()]*\))(\s*\1)+', r'\1', nom)
         nom = re.sub(r'^(.+?) \(\1\)$', r'\1', nom)

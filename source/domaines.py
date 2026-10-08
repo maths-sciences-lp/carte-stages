@@ -114,6 +114,9 @@ DOMAINES = {
  "Gestion, administration, accueil": {
   "Comptabilité, conseil, gestion": ["69.20Z", "70.22Z", "69.10Z"],
   "Mairies, administrations": ["84.11Z", "84.12Z", "84.13Z"],
+  # Sans code propre : écoles publiques rangées ici depuis « Mairies, administrations »
+  # quand leur activité est 85.10Z ou 85.20Z (voir ECOLES_NAF) ; pas de collecte en plus.
+  "Écoles maternelles et élémentaires": [],
   "Banques, assurances": ["64.19Z", "65.12Z", "66.22Z"],
   "Agences immobilières, gestion de logements": ["68.31Z", "68.32A", "68.20A"],
   "Secrétariat, accueil, centres d'appels": ["82.11Z", "82.19Z", "82.20Z", "82.30Z"],
@@ -193,3 +196,16 @@ FILTRES = {
  "Esthétique, soins de beauté": r"^(?!.*BAINS?[ -]DOUCHES)(?!(?:VILLE|COMMUNE) D)",
  "Laboratoires d'analyses et d'essais": r"LABO|ANALY|ESSAI|MESUR|METROLOG|EUROFINS|\bSGS\b|VERITAS|INTERTEK|EMITECH|CHIMI|MICROBIO|BACTERIO|HYGIENE ALIMENT|POLLUANT|TOXICO|WESSLING|\bALS\b|CONTROLE QUALITE|\bLNE\b",
 }
+
+# Écoles publiques : leur commune les fait entrer dans « Mairies, administrations » (repli sur
+# l'activité de l'unité légale, 84.11Z), alors que leur propre activité est l'enseignement.
+# Elles vont dans « Écoles maternelles et élémentaires », reliée aux mêmes formations que les
+# mairies, sauf géomètre et bâtiment, pour qui une école n'est pas un lieu de stage (audit du 8/10/2026).
+ECOLES_NAF = ('85.10Z', '85.20Z')
+ECOLES_EXCLUES = (
+    'bac-pro-geometre',
+    'bac-pro-technicien-d-etudes-du-batiment-option-a-etudes-et-e',
+    'bac-pro-technicien-d-etudes-du-batiment-option-b-assistant-e',
+    'cap-interventions-en-maintenance-technique-des-batiments',
+    '2nde-etudes-et-modelisation-numerique-du-batiment-emnb',
+)

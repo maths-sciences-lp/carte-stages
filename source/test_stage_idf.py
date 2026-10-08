@@ -10,7 +10,8 @@ class MigrationTest(unittest.TestCase):
         for f in old['formations']:
             if f['k'] in seen:continue
             seen.add(f['k']);n=next(n for n in new['formations'] if n['k']==aliases.get(f['k'],f['k']))
-            self.assertEqual((n['n'],n['s']),(f['n'],f['s']))
+            # « Écoles maternelles et élémentaires » est dérivée des mairies (audit du 8/10/2026).
+            self.assertEqual((n['n'],[x for x in n['s'] if x!='ecoles-maternelles-et-elementaires']),(f['n'],f['s']))
         self.assertEqual(len(seen),180);self.assertEqual(len(aliases),4)
     def test_manifeste_differe_et_departements_limitrophes(self):
         with tempfile.TemporaryDirectory() as t:
