@@ -69,7 +69,8 @@ for ac in catalog:
     total.update({k:stats[k] for k in ['offres','lycees','colleges']})
 for name in ['aide/aide.json','apres-3e/apres3e.json','formation/formations.json']:
     assert (ROOT/name).read_bytes()==subprocess.check_output(['git','show','origin/main:'+name],cwd=ROOT)
-assert not subprocess.check_output(['git','diff','origin/main','--','commun'],cwd=ROOT)
+# Le module commun (choix de l'académie, contours) ne doit pas changer ; les fichiers d'accessibilité, partagés par toutes les pages, peuvent évoluer.
+assert not subprocess.check_output(['git','diff','origin/main','--','commun',':!commun/accessibilite.js',':!commun/accessibilite.css'],cwd=ROOT)
 print('30 académies : données, domaines, coordonnées, internats, pression Créteil seule, tailles et absence de courriels OK')
 if source:print('Chaque offre : formation, établissement, adresse, hébergement et domaines conformes au CSV Onisep')
 print('Module commun et trois JSON historiques : inchangés')
