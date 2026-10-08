@@ -1,0 +1,427 @@
+{
+  "rayon_km": 30,
+  "academies": [
+    {
+      "slug": "aix-marseille",
+      "lycees": 70,
+      "offres": 535,
+      "formations": 144,
+      "academies_voisines": [
+        "Grenoble",
+        "Montpellier",
+        "Nice"
+      ],
+      "octets": 251239,
+      "gzip_octets": 21425
+    },
+    {
+      "slug": "amiens",
+      "lycees": 304,
+      "offres": 1904,
+      "formations": 191,
+      "academies_voisines": [
+        "Créteil",
+        "Lille",
+        "Normandie",
+        "Paris",
+        "Reims",
+        "Versailles"
+      ],
+      "octets": 794723,
+      "gzip_octets": 106268
+    },
+    {
+      "slug": "besancon",
+      "lycees": 75,
+      "offres": 502,
+      "formations": 126,
+      "academies_voisines": [
+        "Dijon",
+        "Grenoble",
+        "Lyon",
+        "Nancy-Metz",
+        "Reims",
+        "Strasbourg"
+      ],
+      "octets": 236625,
+      "gzip_octets": 22018
+    },
+    {
+      "slug": "bordeaux",
+      "lycees": 66,
+      "offres": 435,
+      "formations": 129,
+      "academies_voisines": [
+        "Limoges",
+        "Poitiers",
+        "Toulouse"
+      ],
+      "octets": 199869,
+      "gzip_octets": 17843
+    },
+    {
+      "slug": "clermont-ferrand",
+      "lycees": 103,
+      "offres": 651,
+      "formations": 140,
+      "academies_voisines": [
+        "Dijon",
+        "Grenoble",
+        "Limoges",
+        "Lyon",
+        "Montpellier",
+        "Orléans-Tours",
+        "Toulouse"
+      ],
+      "octets": 328395,
+      "gzip_octets": 32858
+    },
+    {
+      "slug": "corse",
+      "lycees": 0,
+      "offres": 0,
+      "formations": 0,
+      "academies_voisines": [],
+      "octets": 31,
+      "gzip_octets": 51
+    },
+    {
+      "slug": "creteil",
+      "lycees": 259,
+      "offres": 1566,
+      "formations": 190,
+      "academies_voisines": [
+        "Amiens",
+        "Dijon",
+        "Orléans-Tours",
+        "Paris",
+        "Reims",
+        "Versailles"
+      ],
+      "octets": 669343,
+      "gzip_octets": 86646
+    },
+    {
+      "slug": "dijon",
+      "lycees": 111,
+      "offres": 690,
+      "formations": 145,
+      "academies_voisines": [
+        "Besançon",
+        "Clermont-Ferrand",
+        "Créteil",
+        "Lyon",
+        "Orléans-Tours",
+        "Reims"
+      ],
+      "octets": 312416,
+      "gzip_octets": 32265
+    },
+    {
+      "slug": "grenoble",
+      "lycees": 170,
+      "offres": 1164,
+      "formations": 169,
+      "academies_voisines": [
+        "Aix-Marseille",
+        "Besançon",
+        "Clermont-Ferrand",
+        "Lyon",
+        "Montpellier"
+      ],
+      "octets": 543029,
+      "gzip_octets": 60983
+    },
+    {
+      "slug": "guadeloupe",
+      "lycees": 0,
+      "offres": 0,
+      "formations": 0,
+      "academies_voisines": [],
+      "octets": 31,
+      "gzip_octets": 51
+    },
+    {
+      "slug": "guyane",
+      "lycees": 0,
+      "offres": 0,
+      "formations": 0,
+      "academies_voisines": [],
+      "octets": 31,
+      "gzip_octets": 51
+    },
+    {
+      "slug": "la-reunion",
+      "lycees": 0,
+      "offres": 0,
+      "formations": 0,
+      "academies_voisines": [],
+      "octets": 31,
+      "gzip_octets": 51
+    },
+    {
+      "slug": "lille",
+      "lycees": 48,
+      "offres": 303,
+      "formations": 111,
+      "academies_voisines": [
+        "Amiens",
+        "Reims"
+      ],
+      "octets": 154257,
+      "gzip_octets": 12891
+    },
+    {
+      "slug": "limoges",
+      "lycees": 40,
+      "offres": 226,
+      "formations": 91,
+      "academies_voisines": [
+        "Bordeaux",
+        "Clermont-Ferrand",
+        "Orléans-Tours",
+        "Poitiers",
+        "Toulouse"
+      ],
+      "octets": 108471,
+      "gzip_octets": 9597
+    },
+    {
+      "slug": "lyon",
+      "lycees": 131,
+      "offres": 829,
+      "formations": 138,
+      "academies_voisines": [
+        "Besançon",
+        "Clermont-Ferrand",
+        "Dijon",
+        "Grenoble"
+      ],
+      "octets": 397295,
+      "gzip_octets": 43379
+    },
+    {
+      "slug": "martinique",
+      "lycees": 0,
+      "offres": 0,
+      "formations": 0,
+      "academies_voisines": [],
+      "octets": 31,
+      "gzip_octets": 51
+    },
+    {
+      "slug": "mayotte",
+      "lycees": 0,
+      "offres": 0,
+      "formations": 0,
+      "academies_voisines": [],
+      "octets": 31,
+      "gzip_octets": 51
+    },
+    {
+      "slug": "montpellier",
+      "lycees": 86,
+      "offres": 554,
+      "formations": 133,
+      "academies_voisines": [
+        "Aix-Marseille",
+        "Clermont-Ferrand",
+        "Grenoble",
+        "Toulouse"
+      ],
+      "octets": 256827,
+      "gzip_octets": 25099
+    },
+    {
+      "slug": "nancy-metz",
+      "lycees": 60,
+      "offres": 453,
+      "formations": 108,
+      "academies_voisines": [
+        "Besançon",
+        "Reims",
+        "Strasbourg"
+      ],
+      "octets": 204891,
+      "gzip_octets": 18021
+    },
+    {
+      "slug": "nantes",
+      "lycees": 113,
+      "offres": 645,
+      "formations": 136,
+      "academies_voisines": [
+        "Normandie",
+        "Orléans-Tours",
+        "Poitiers",
+        "Rennes"
+      ],
+      "octets": 293000,
+      "gzip_octets": 30071
+    },
+    {
+      "slug": "nice",
+      "lycees": 70,
+      "offres": 474,
+      "formations": 129,
+      "academies_voisines": [
+        "Aix-Marseille"
+      ],
+      "octets": 235842,
+      "gzip_octets": 19833
+    },
+    {
+      "slug": "normandie",
+      "lycees": 76,
+      "offres": 516,
+      "formations": 122,
+      "academies_voisines": [
+        "Amiens",
+        "Nantes",
+        "Orléans-Tours",
+        "Rennes",
+        "Versailles"
+      ],
+      "octets": 240738,
+      "gzip_octets": 22037
+    },
+    {
+      "slug": "orleans-tours",
+      "lycees": 119,
+      "offres": 845,
+      "formations": 137,
+      "academies_voisines": [
+        "Clermont-Ferrand",
+        "Créteil",
+        "Dijon",
+        "Limoges",
+        "Nantes",
+        "Normandie",
+        "Poitiers",
+        "Versailles"
+      ],
+      "octets": 392710,
+      "gzip_octets": 40756
+    },
+    {
+      "slug": "paris",
+      "lycees": 270,
+      "offres": 1768,
+      "formations": 154,
+      "academies_voisines": [
+        "Créteil",
+        "Versailles"
+      ],
+      "octets": 728902,
+      "gzip_octets": 95059
+    },
+    {
+      "slug": "poitiers",
+      "lycees": 89,
+      "offres": 477,
+      "formations": 127,
+      "academies_voisines": [
+        "Bordeaux",
+        "Limoges",
+        "Nantes",
+        "Orléans-Tours"
+      ],
+      "octets": 222540,
+      "gzip_octets": 21003
+    },
+    {
+      "slug": "reims",
+      "lycees": 75,
+      "offres": 446,
+      "formations": 114,
+      "academies_voisines": [
+        "Amiens",
+        "Besançon",
+        "Créteil",
+        "Dijon",
+        "Lille",
+        "Nancy-Metz"
+      ],
+      "octets": 215721,
+      "gzip_octets": 21528
+    },
+    {
+      "slug": "rennes",
+      "lycees": 47,
+      "offres": 290,
+      "formations": 103,
+      "academies_voisines": [
+        "Nantes",
+        "Normandie"
+      ],
+      "octets": 140283,
+      "gzip_octets": 12155
+    },
+    {
+      "slug": "strasbourg",
+      "lycees": 46,
+      "offres": 272,
+      "formations": 99,
+      "academies_voisines": [
+        "Besançon",
+        "Nancy-Metz"
+      ],
+      "octets": 144713,
+      "gzip_octets": 13222
+    },
+    {
+      "slug": "toulouse",
+      "lycees": 90,
+      "offres": 561,
+      "formations": 126,
+      "academies_voisines": [
+        "Bordeaux",
+        "Clermont-Ferrand",
+        "Limoges",
+        "Montpellier"
+      ],
+      "octets": 256462,
+      "gzip_octets": 24050
+    },
+    {
+      "slug": "versailles",
+      "lycees": 275,
+      "offres": 1680,
+      "formations": 183,
+      "academies_voisines": [
+        "Amiens",
+        "Créteil",
+        "Normandie",
+        "Orléans-Tours",
+        "Paris"
+      ],
+      "octets": 722359,
+      "gzip_octets": 95533
+    },
+    {
+      "slug": "ile-de-france",
+      "lycees": 70,
+      "offres": 522,
+      "formations": 116,
+      "academies_voisines": [
+        "Amiens",
+        "Dijon",
+        "Normandie",
+        "Orléans-Tours",
+        "Reims"
+      ],
+      "octets": 250403,
+      "gzip_octets": 23087
+    }
+  ],
+  "coordonnees_incoherentes": [
+    {
+      "n": "École Terrade Nice",
+      "cp": "06300",
+      "v": "Nice",
+      "lat": 48.4193,
+      "lon": 0.09623,
+      "o": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23658"
+    }
+  ]
+}

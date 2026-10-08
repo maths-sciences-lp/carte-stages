@@ -7,6 +7,9 @@ const lead=main.querySelector('.lead');main.insertBefore(contenu,lead);
 contenu.append(lead);
 for(const section of [...main.querySelectorAll(':scope > section')])contenu.append(section);
 let active=null,addressRequest=0,addressTimer;
+voisinsDe=()=>active.slug;
+// Académies sans lycée d'une autre académie à moins de 30 km (apres-3e/data/bilan-voisins.json) : pas de bouton.
+const SANS_VOISINS=new Set(["corse", "guadeloupe", "guyane", "la-reunion", "martinique", "mayotte"]);
 // AF page web peut être le site du lycée : le bouton Onisep doit ouvrir Onisep.
 const originalLieuHTML=lieuHTML;
 lieuHTML=({e,d})=>originalLieuHTML({e:{...e,af:e.o},d});
@@ -70,7 +73,7 @@ await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSel
  if(!r.ok)throw new Error('Données indisponibles');
  const data=await r.json();if(signal.aborted)return;
  for(const f of data.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff'); // nom officiel accentué
- ++addressRequest;clearTimeout(addressTimer);active=ac;D=data;dep=null;q='';offT.clear();offD.clear();intern=false;open.clear();
+ ++addressRequest;clearTimeout(addressTimer);active=ac;fermerVoisins();$('cvois').parentElement.hidden=SANS_VOISINS.has(ac.slug);D=data;dep=null;q='';offT.clear();offD.clear();intern=false;open.clear();
  for(const id of ['adr','col','q'])$(id).value='';
  $('csug').hidden=true;$('asug').hidden=true;
  $('dmsg').textContent='Choisis ton collège ou ton adresse pour voir les lycées les plus proches.';
