@@ -17,6 +17,12 @@
 
 Troisième point de départ, à côté de « Mon collège » et « Chez moi » : l'élève tape le nom de son lycée ou sa ville. Lycées ouverts de l'annuaire de l'Éducation nationale (`type_etablissement="Lycée"`, publics et privés, généraux, technologiques et professionnels), un fichier par académie (`aide/data/lycees/<slug>.json`, téléchargé au premier clic ; les trois de l'Île-de-France pour `/aide/`). Fabrication : `python3 source/aide_lycees.py`, lancé aussi à la fin de `aide.py --academies toutes`. Contrôle : `python3 aide/tests/lycees.py`. Nom officiel « Eugène Hénaff » corrigé à l'affichage.
 
+## Page « Mon lycée » (/lycee/, octobre 2026)
+
+Une page pour chaque lycée de France qui prépare un CAP, un bac pro, un BMA ou une 2de pro : l'élève (ou le professeur) tape le nom du lycée ou sa ville ; chaque formation a « 🎯 Mon stage » (Trouve ton stage avec la formation et le lycée déjà choisis) et « 🎓 Après mon diplôme » (Après le lycée, même principe). Adresse propre à chaque lycée : `/lycee/#<UAI>` (bouton « Copier le lien »). La page du lycée Eugène Hénaff (`/henaff/`) reste à part, avec ses noms de classes.
+
+Fabrication : `python3 source/lycees_pages.py --sources DOSSIER --catalogue /copie/carte-stages-donnees/catalogue-leger.json`, après Après le lycée (les liens « Après mon diplôme » n'existent que si le diplôme et le lycée y figurent). Correspondance diplôme Onisep → carte : intitulé (identifiants longs, sans lettre d'option, ou anciens identifiants coupés à 60 caractères, alias IDF) ; table explicite pour les 14 familles de 2de pro. Sorties : `lycee/data/index.json` (recherche, 61 Ko gzip) et `lycee/data/<académie>.json`. Contrôle : `python3 lycee/tests/donnees.py`.
+
 ## Tests automatiques à chaque PR
 
 `.github/workflows/tests.yml` se lance à chaque PR vers `main`, après chaque fusion dans `main` (plusieurs PR fusionnées à la suite peuvent se gêner) et à la demande : contrats de Trouve ton stage (`test_stage_*.py`), données d'Après le collège (dont académies voisines), de Qui peut m'aider ? et d'Après le lycée (toute la France), puis les trois `national.cjs` dans Chromium (30 académies, 375 px). `verif_idf.py` (comparaison avec la version en ligne) est informatif : résumé sur la page du lancement, rapport et captures en pièce jointe (14 jours). Gratuit pour un dépôt public.

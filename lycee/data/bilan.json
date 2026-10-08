@@ -1,0 +1,129 @@
+{
+  "lycees": 3183,
+  "formations": 21116,
+  "avec_carte": 20224,
+  "avec_apres": 15783,
+  "academies": {
+    "aix-marseille": {
+      "lycees": 140,
+      "octets_gzip": 12004
+    },
+    "amiens": {
+      "lycees": 107,
+      "octets_gzip": 9475
+    },
+    "besancon": {
+      "lycees": 78,
+      "octets_gzip": 6906
+    },
+    "bordeaux": {
+      "lycees": 173,
+      "octets_gzip": 13825
+    },
+    "clermont-ferrand": {
+      "lycees": 84,
+      "octets_gzip": 8188
+    },
+    "corse": {
+      "lycees": 12,
+      "octets_gzip": 2604
+    },
+    "creteil": {
+      "lycees": 150,
+      "octets_gzip": 12959
+    },
+    "dijon": {
+      "lycees": 96,
+      "octets_gzip": 8735
+    },
+    "grenoble": {
+      "lycees": 191,
+      "octets_gzip": 14797
+    },
+    "guadeloupe": {
+      "lycees": 26,
+      "octets_gzip": 4327
+    },
+    "guyane": {
+      "lycees": 24,
+      "octets_gzip": 4478
+    },
+    "la-reunion": {
+      "lycees": 44,
+      "octets_gzip": 6514
+    },
+    "lille": {
+      "lycees": 193,
+      "octets_gzip": 15391
+    },
+    "limoges": {
+      "lycees": 43,
+      "octets_gzip": 5176
+    },
+    "lyon": {
+      "lycees": 158,
+      "octets_gzip": 13546
+    },
+    "martinique": {
+      "lycees": 26,
+      "octets_gzip": 4310
+    },
+    "mayotte": {
+      "lycees": 21,
+      "octets_gzip": 3474
+    },
+    "montpellier": {
+      "lycees": 128,
+      "octets_gzip": 11897
+    },
+    "nancy-metz": {
+      "lycees": 115,
+      "octets_gzip": 10020
+    },
+    "nantes": {
+      "lycees": 221,
+      "octets_gzip": 16385
+    },
+    "nice": {
+      "lycees": 59,
+      "octets_gzip": 7009
+    },
+    "normandie": {
+      "lycees": 175,
+      "octets_gzip": 14483
+    },
+    "orleans-tours": {
+      "lycees": 120,
+      "octets_gzip": 10576
+    },
+    "paris": {
+      "lycees": 76,
+      "octets_gzip": 6735
+    },
+    "poitiers": {
+      "lycees": 107,
+      "octets_gzip": 9870
+    },
+    "reims": {
+      "lycees": 67,
+      "octets_gzip": 6965
+    },
+    "rennes": {
+      "lycees": 173,
+      "octets_gzip": 13588
+    },
+    "strasbourg": {
+      "lycees": 59,
+      "octets_gzip": 6557
+    },
+    "toulouse": {
+      "lycees": 155,
+      "octets_gzip": 12637
+    },
+    "versailles": {
+      "lycees": 162,
+      "octets_gzip": 13730
+    }
+  },
+  "index_octets_gzip": 60641
+}
