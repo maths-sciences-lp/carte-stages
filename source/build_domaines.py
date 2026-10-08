@@ -1,4 +1,9 @@
 import json,re,os,unicodedata,collections,sys
+if '--national' in sys.argv:
+    sys.argv.remove('--national')
+    from stage_donnees import main
+    main()
+    sys.exit(0)
 from domaines import DOMAINES, MOTS_CLES, SOURCES_MOTS_CLES, FILTRES
 from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
 from adresses import nettoie

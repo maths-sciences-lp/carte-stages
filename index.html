@@ -233,7 +233,7 @@ function lbaHtml(p){
  return `<div class="lba-box">${recruiter?`<div class="badge">🎓 Recruteur potentiel en alternance</div><a href="${recruiter}" target="_blank" rel="noopener">Voir sur La bonne alternance ↗</a>`:''}${jobs.length?`<details><summary>Offres d’alternance en cours : tous métiers (${jobs.length})</summary><ul>${jobs.map(j=>`<li><a href="${lbaUrl(j.url)}" target="_blank" rel="noopener">${esc(j.title)} ↗</a></li>`).join('')}</ul><div>Vérifie le métier et le diplôme demandés dans chaque offre.</div></details>`:''}</div>`;
 }
 const lbaSec=k=>LBAC[k]?Promise.resolve(LBAC[k]):fetch('data/lba/'+k+'.json?v='+DV).then(r=>r.ok?r.json():{}).catch(()=>({})).then(j=>LBAC[k]=j);
-fetch('data/lba/meta.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>{
+if(!window.STAGE_NATIONAL) fetch('data/lba/meta.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>{
  LBA=j; const d=Date.parse(j.updated_at);
  if(lbaAge()<=(j.recruiter_max_age_days||31)*DAY){const f=$('lba-source');f.hidden=false;
   f.innerHTML='Indications d’alternance : <a href="https://labonnealternance.apprentissage.beta.gouv.fr" target="_blank" rel="noopener">La bonne alternance</a> (service public de l’alternance), données du '+new Date(d).toLocaleDateString('fr-FR')+'. Un recruteur en alternance ne garantit pas un accueil en PFMP.<br>';}
@@ -263,7 +263,8 @@ function pop(p){
 }
 function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]>=9?'grande entreprise (groupe)':(r[5]?IDX.eff[r[5]-1]:''),s:r[7],f:k,rp:r[8]||''};
  p.tri=norm(titreP(p)); p.tri0=/^[a-z]/.test(p.tri)?0:1;
- p.mk=L.circleMarker([p.la,p.lo],{radius:8,color:'#fff',weight:2,fillColor:COL[k],fillOpacity:.95}).bindPopup(()=>pop(p),POPOPT);return p;}
+ p.mk=window.STAGE_NATIONAL?null:marqueur(p);return p;}
+function marqueur(p){return L.circleMarker([p.la,p.lo],{radius:8,color:'#fff',weight:2,fillColor:COL[p.f],fillOpacity:.95}).bindPopup(()=>pop(p),POPOPT);}
 async function loadSec(k){ if(!CACHE[k]) CACHE[k]=Promise.all([fetch('data/'+k+'.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}),lbaSec(k)]).then(([rows])=>rows.map(r=>mkP(r,k))); return CACHE[k]; }
 
 // ---------- étape 1 : formation ou domaine
@@ -305,6 +306,7 @@ async function choose(c){
  $('chosenTxt').textContent=title; $('pick').hidden=true; $('chosen').hidden=false; $('tiles').hidden=true; $('nosais').setAttribute('aria-expanded','false'); if(focusDansChoix)$('change').focus();
  $('secs').innerHTML=keys.map(k=>`<button class="chip" data-k="${k}" aria-pressed="true"><span class="dot" style="background:${COL[k]}"></span>${esc(secName[k])}</button>`).join('');
  setHash(); P=[]; $('count').textContent='Chargement…'; render(true);
+ if(window.STAGE_NATIONAL)return; // Le module national gère requêtes, reprises et changements de départ.
  try{ const parts=await Promise.all(keys.map(loadSec)); if(sel!==c) return; const vu=new Set(); P=parts.flat().filter(p=>!vu.has(p.s)&&vu.add(p.s)); }
  catch(e){ $('count').textContent='Chargement impossible : vérifie ta connexion.'; return; }
  render();
@@ -339,7 +341,7 @@ $('fromrow').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!
  syncFrom(); shown=40; render(); const o=pts[from]; if(o) map.setView([o.la,o.lo],13); else (from==='maison'?$('adr'):$('lyc')).focus();});
 // choix du lycée parmi les lycées d'Île-de-France qui proposent un CAP ou un bac pro
 let LY=[];
-fetch('data/lycees.json?v='+DV).then(r=>r.json()).then(j=>{LY=j;LY.forEach(l=>l.key=norm(l.n+' '+l.c+' '+l.p));initLycee();}).catch(()=>{});
+if(!window.STAGE_NATIONAL) fetch('data/lycees.json?v='+DV).then(r=>r.json()).then(j=>{LY=j;LY.forEach(l=>l.key=norm(l.n+' '+l.c+' '+l.p));initLycee();}).catch(()=>{});
 $('lyc').addEventListener('input',()=>{const q=norm($('lyc').value).trim();if(q.length<2){$('lsug').hidden=true;return;}
  const ws=q.split(/\s+/); const res=LY.filter(l=>ws.every(w=>l.key.includes(w))).slice(0,8);
  if(!res.length){$('lsug').innerHTML='<div class="msg" style="padding:12px">Lycée pas trouvé. Essaie le nom de ta ville.</div>';$('lsug').hidden=false;$('lsug').onclick=null;return;}
@@ -374,7 +376,9 @@ function render(loading){
  if(loading){$('list').innerHTML='';return;}
  if(o){ring.setLatLng([o.la,o.lo]).addTo(map);ring.setRadius(dist?dist*1000:0);P.forEach(p=>p.k=dk(p,o));} else ring.remove();
  let vis=P.filter(p=>on.has(p.f)&&(!o||!dist||p.k<=dist));
- cl.clearLayers(); cl.addLayers(vis.map(p=>p.mk));
+ cl.clearLayers();
+ if(window.STAGE_NATIONAL){const points=(o?vis.slice().sort((a,b)=>a.k-b.k):vis).slice(0,1500);cl.addLayers(points.map(p=>p.mk||(p.mk=marqueur(p))));}
+ else cl.addLayers(vis.map(p=>p.mk));
  if(o) vis.sort((a,b)=>a.k-b.k); else vis.sort((a,b)=>a.tri0-b.tri0||a.tri.localeCompare(b.tri));
  const n=vis.length;
  $('count').textContent=n? `${n.toLocaleString('fr-FR')} entreprise${n>1?'s':''}${o&&dist?` à moins de ${dist} km`:''}` : 'Aucune entreprise';
@@ -403,22 +407,23 @@ $('aide').onclick=()=>$('dlg').showModal();
 function setHash(){const h=new URLSearchParams(location.hash.slice(1)); if(booted){h.delete('f'); h.delete('d');} if(pts.lycee&&pts.lycee.u){h.delete('lycee');h.set('ly',pts.lycee.u);}
  if(booted&&sel&&sel.type==='f') h.set('f',sel.x.k); if(booted&&sel&&sel.type==='d') h.set('d',sel.i);
  try{history.replaceState(null,'','#'+h.toString().replace(/%2C/g,','));}catch(e){}}
-fetch('data/index.json?v='+DV).then(r=>r.json()).then(j=>{IDX=j;
+function demarrer(j){IDX=j;
  j.domaines.forEach(d=>d.s.forEach(s=>secName[s.k]=s.n));
  $('tiles').innerHTML=j.domaines.map((d,i)=>`<button class="tile" data-i="${i}"><span class="ic">${d.i}</span><span>${esc(d.d)}</span></button>`).join('');
  $('tiles').onclick=e=>{const b=e.target.closest('.tile');if(b)choose({type:'d',i:+b.dataset.i});};
  const h=new URLSearchParams(location.hash.slice(1));
  const ly=(h.get('lycee')||'').split(',').map(Number);
  if(ly.length===2&&ly.every(isFinite)&&Math.abs(ly[0])<=90){pts.lycee={la:ly[0],lo:ly[1],label:'Lycée'};placeMk('lycee');from='lycee';}
- try{const m=JSON.parse(localStorage.getItem('stages.maison')||'null');if(m&&isFinite(m.la)){pts.maison=m;placeMk('maison');$('amsg').textContent='✅ '+(m.label||'');if(!pts.lycee)from='maison';}}catch(e){}
+ if(!window.STAGE_NATIONAL) try{const m=JSON.parse(localStorage.getItem('stages.maison')||'null');if(m&&isFinite(m.la)){pts.maison=m;placeMk('maison');$('amsg').textContent='✅ '+(m.label||'');if(!pts.lycee)from='maison';}}catch(e){}
  syncFrom();
  const o=origin(); if(o) map.setView([o.la,o.lo],13);
  const f=h.get('f'), d=h.get('d');
  const fx=f&&j.formations.find(x=>x.k===f);
  booted=true;
  if(fx) choose({type:'f',x:fx}); else if(d&&j.domaines[+d]) choose({type:'d',i:+d}); else render();
- try{ if(!localStorage.getItem('stages.vu')){ localStorage.setItem('stages.vu','1'); if(!fx) $('dlg').showModal(); } }catch(e){}
-});
+ if(!window.STAGE_NATIONAL) try{ if(!localStorage.getItem('stages.vu')){ localStorage.setItem('stages.vu','1'); if(!fx) $('dlg').showModal(); } }catch(e){}
+}
+if(!window.STAGE_NATIONAL) fetch('data/index.json?v='+DV).then(r=>r.json()).then(demarrer);
 </script>
 <script src="commun/accessibilite.js"></script>
 </body>
