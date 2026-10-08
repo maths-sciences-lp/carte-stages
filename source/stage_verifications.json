@@ -379,5 +379,11 @@
     "text": "Offres d’alternance en cours : tous métiers (1)",
     "errors": []
   },
-  "non_regression": "Île-de-France identique : oui — contrôle final du 8 octobre 2026, 22 adresses, 175 fichiers de stages inchangés et quatre régénérations historiques identiques."
+  "non_regression": "Île-de-France identique : oui — contrôle final du 8 octobre 2026, 22 adresses, 175 fichiers de stages inchangés et quatre régénérations historiques identiques.",
+  "performance_region": {
+    "ms": 514,
+    "count": "24 586 entreprises",
+    "points": 1500,
+    "conditions": "CAP cuisine, Auvergne-Rhône-Alpes entière, 375 px, processeur ralenti quatre fois, fichiers locaux. Temps hors réseau mobile réel."
+  }
 }
