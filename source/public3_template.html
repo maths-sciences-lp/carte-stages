@@ -406,7 +406,7 @@ $('list').addEventListener('click',e=>{const b=e.target.closest('button[data-s]'
 $('aide').onclick=()=>$('dlg').showModal();
 function setHash(){const h=new URLSearchParams(location.hash.slice(1)); if(booted){h.delete('f'); h.delete('d');} if(pts.lycee&&pts.lycee.u){h.delete('lycee');h.set('ly',pts.lycee.u);}
  if(booted&&sel&&sel.type==='f') h.set('f',sel.x.k); if(booted&&sel&&sel.type==='d') h.set('d',sel.i);
- try{history.replaceState(null,'','#'+h.toString().replace(/%2C/g,','));}catch(e){}}
+ try{history.replaceState(null,'',location.pathname+location.search+'#'+h.toString().replace(/%2C/g,','));}catch(e){}}
 function demarrer(j){IDX=j;
  j.domaines.forEach(d=>d.s.forEach(s=>secName[s.k]=s.n));
  $('tiles').innerHTML=j.domaines.map((d,i)=>`<button class="tile" data-i="${i}"><span class="ic">${d.i}</span><span>${esc(d.d)}</span></button>`).join('');
