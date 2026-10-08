@@ -69,6 +69,7 @@
   const alt=document.createElement('aside');alt.setAttribute('aria-label','Alternative à la carte');alt.className='map-alternative';alt.innerHTML='Tous les lieux et leurs coordonnées sont aussi disponibles dans la <button type="button" class="btn light">Liste</button>.';
   map.before(alt);alt.querySelector('button').onclick=()=>{const b=$('vL')||$('tl');b?.click();b?.focus();};
   const sync=()=>alt.hidden=!visibles(map);new MutationObserver(sync).observe(map,{attributes:true,attributeFilter:['hidden','class']});new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});sync();
+  window.addEventListener('resize',sync);
  }
  document.addEventListener('click',e=>{if(e.target.closest('.skip-link')){e.preventDefault();const m=$('contenu-principal');m?.focus();m?.scrollIntoView();}});
 })();
