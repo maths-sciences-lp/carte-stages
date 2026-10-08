@@ -81,10 +81,13 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
  <div class="msg" id="aide">Choisis d’abord ta classe ou ton diplôme.</div>
  <div id="res" hidden>
   <div class="chips" id="chips"></div>
+  <div class="row" id="frrow"><button class="btn light" id="fr" aria-pressed="false">🗺️ Chercher dans toute la France</button></div>
+  <p class="note" id="frmsg" hidden>📮 Avec <b>Parcoursup</b>, tu peux candidater partout en France. Une formation loin de chez toi propose parfois un <b>internat</b>. Parles-en à ton professeur principal ou au Psy-EN (psychologue de l’Éducation nationale).</p>
   <div class="row"><button class="btn" id="vL" aria-pressed="true">📋 Liste</button><button class="btn" id="vC" aria-pressed="false">🗺️ Carte</button></div>
   <p id="count" class="msg" role="status" aria-live="polite"></p>
   <div id="map" hidden></div>
   <div id="list"></div>
+  <div class="row"><button class="btn light" id="plus" hidden>Voir 20 lieux de plus</button></div>
   <div class="note" id="ailleurs" hidden></div>
   <div class="note">💡 Ce sont des <b>exemples de poursuites d’études</b> donnés par l’Onisep. L’admission dépend de ton dossier<span id="bts"> : après un bac pro, un BTS est possible avec un très bon dossier ou une mention</span>. Parles-en à ton professeur principal ou au Psy-EN (psychologue de l’Éducation nationale).</div>
  </div>
@@ -103,9 +106,11 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const GC='https://maths-sciences.goatcounter.com/count', GC_ON=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)&&location.protocol!=='file:';
 function stat(c,t){if(!GC_ON)return;const q='?p='+encodeURIComponent('formation/'+c)+'&t='+encodeURIComponent(t||c)+'&e=true&rnd='+Math.random().toString(36).slice(2);if(navigator.sendBeacon)navigator.sendBeacon(GC+q);else(new Image()).src=GC+q;}
 let D=null, PS=null, cur=null, off=new Set(), dep=null, map=null, layer=null, IDX=[];
+// « Toute la France » : un fichier par poursuite (data/france/<id Onisep>.json), chargé au clic seulement.
+let fr=false, nmax=20; const FR={};
 const km=(a,b,c,d)=>{const R=6371,t=Math.PI/180,x=(c-a)*t,y=(d-b)*t,h=Math.sin(x/2)**2+Math.cos(a*t)*Math.cos(c*t)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h));};
 const statut=s=>({'public':'Public','privé sous contrat':'Privé sous contrat','privé hors contrat':'Privé hors contrat'})[s]||'Privé';
-const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
+const fmt=k=>k<10?k.toFixed(1).replace('.',','):Math.round(k).toLocaleString('fr-FR');
 const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const GROUPES=[['Bac pro',c=>c.n.startsWith('Bac pro')],['CAP',c=>c.n.startsWith('CAP')],['BMA',c=>c.n.startsWith('BMA')]];
 function drawClasses(){let h='';for(const[g,fn] of GROUPES){h+=`<div class="sub">${g}</div><div class="grid">`;for(const c of D.classes.filter(fn))h+=`<button class="cl" data-k="${c.k}" aria-pressed="${!!(cur&&cur.k===c.k)}">${esc(c.n)}</button>`;h+='</div>';}
@@ -119,6 +124,7 @@ function remplirLycees(){const d=D.dip[cur.d];const L=d.ly.filter(u=>D.lycees[u]
 function majHash(){history.replaceState(null,'',location.pathname+location.search+'#d='+cur.d+(cur.ly?'&ly='+cur.ly:''));}
 $('ly').onchange=()=>{if(!cur)return;cur.ly=$('ly').value||null;majHash();draw();};
 function montrer(user){drawClasses();const d=D.dip[cur.d];off=new Set();$('aide').hidden=true;$('res').hidden=false;
+ fr=false;nmax=20;$('fr').setAttribute('aria-pressed','false');$('frmsg').hidden=true;$('frrow').hidden=!d.s.length;
  $('chips').innerHTML=d.s.map((k,i)=>`<button class="chip" data-i="${i}" aria-pressed="true">${esc(D.suites[k].n.replace(/ option /,' – '))}</button>`).join('');
  $('chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;off.has(i)?off.delete(i):off.add(i);b.setAttribute('aria-pressed',!off.has(i));draw();});
  $('bts').hidden=!/^Bac pro/.test(d.lib);
@@ -133,27 +139,38 @@ $('q').addEventListener('input',()=>{const v=$('q').value.trim(),L=v.length<2?[]
  $('qsug').hidden=!L.length;$('qmsg').textContent=v.length>=3&&!L.length?'Pas trouvé en Île-de-France. Essaie un autre mot (ex. « vente », « électricien »).':'';});
 $('q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const b=$('qsug').querySelector('button');if(b&&!$('qsug').hidden)b.click();}});
 function origine(){if(dep)return dep;const l=cur&&cur.ly&&D.lycees[cur.ly];return l?{lat:l.lat,lon:l.lon,n:l.n}:null;}
-function lignes(){const o=origine(),L=[];D.dip[cur.d].s.forEach((k,i)=>{if(off.has(i))return;const f=D.suites[k];for(const e of f.e)L.push({f,e,d:o?km(o.lat,o.lon,e.lat,e.lon):null});});return o?L.sort((a,b)=>a.d-b.d):L.sort((a,b)=>a.e.v.localeCompare(b.e.v,'fr'));}
+function lignes(){const o=origine(),L=[];D.dip[cur.d].s.forEach((k,i)=>{if(off.has(i))return;const f=fr&&FR[D.suites[k].o]||D.suites[k];for(const e of f.e)L.push({f,e,d:o?km(o.lat,o.lon,e.lat,e.lon):null});});return o?L.sort((a,b)=>a.d-b.d):L.sort((a,b)=>a.e.v.localeCompare(b.e.v,'fr'));}
 const nb=n=>n.toLocaleString('fr-FR');
 // InserJeunes : un chiffre, ou deux quand le diplôme a deux versions publiées dans ce lycée.
 const ijTexte=x=>(x.p!=null?x.p+' % continuent leurs études':'')+(x.p!=null&&x.e!=null?' · ':'')+(x.e!=null?'parmi ceux qui arrêtent, '+x.e+' % ont un emploi 6 mois après':'');
-function psup(f,e){const x=PS&&PS.f[f.o.split('.').pop()+'|'+(e.o||'').split('.').pop()];if(!x)return'';
+function psup(f,e){const x=e.ps||PS&&PS.f[f.o.split('.').pop()+'|'+(e.o||'').split('.').pop()];if(!x)return'';
  return `<div class="m">🎯 Parcoursup ${PS.session}${x.co?' (1re année, commune aux options)':''} : <b>${nb(x.pl)} place${x.pl>1?'s':''} · ${nb(x.c)} candidat${x.c>1?'s':''} · ${x.bp} admis sur ${x.a} venaient d’un bac pro</b>${x.g?` <a href="https://dossierappel.parcoursup.fr/Candidats/public/fiches/afficherFicheFormation?g_ta_cod=${x.g}&typeBac=0&originePc=0" target="_blank" rel="noopener" data-s="parcoursup" style="font-size:13px">(fiche Parcoursup)</a>`:''}</div>`;}
-function draw(){if(!cur)return;const o=origine(),L=lignes();
- $('count').textContent=L.length+' résultat'+(L.length>1?'s':'');
- $('list').innerHTML=(o?'':'<p class="msg">👉 Choisis ton lycée (étape 1) ou pars de chez toi (étape 2) pour voir les plus proches en premier.</p>')+(L.length?L.map(({f,e,d})=>{const prive=/priv/.test(e.st);const go=`https://www.google.com/maps/dir/?api=1${o?`&origin=${o.lat},${o.lon}`:''}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
+function draw(){if(!cur)return;const o=origine(),L=lignes(),V=fr?L.slice(0,nmax):L;
+ $('count').textContent=fr?`${nb(L.length)} lieu${L.length>1?'x':''} en France`+(o?` · les ${Math.min(nmax,L.length)} plus proches`:''):L.length+' résultat'+(L.length>1?'s':'');
+ $('plus').hidden=!fr||L.length<=nmax||!$('map').hidden;
+ $('list').innerHTML=(o?'':'<p class="msg">👉 Choisis ton lycée (étape 1) ou pars de chez toi (étape 2) pour voir les plus proches en premier.</p>')+(V.length?V.map(({f,e,d})=>{const prive=/priv/.test(e.st);const go=`https://www.google.com/maps/dir/?api=1${o?`&origin=${o.lat},${o.lon}`:''}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
   const fiche=e.af||e.o;return `<div class="it"><div class="f">${esc(f.n)}</div><h3>${esc(e.n)}<span class="tag ${prive?'prive':''}">${esc(statut(e.st))}</span></h3>
   <div class="d">📍 ${d==null?esc(e.v):d<0.05?(dep?'Juste à côté':'Ton lycée'):fmt(d)+' km'}</div><div class="m">${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}${e.ij?`<div class="m">📊 Après cette formation, dans ce lycée : ${e.ij.v?e.ij.v.map(x=>`<br>· ${x.r==='récente'?'version récente du diplôme':'version précédente'} : <b>${ijTexte(x)}</b>`).join(''):`<b>${ijTexte(e.ij)}</b>`} <span style="font-size:13px">(InserJeunes, sortants 2023-2024)</span></div>`:''}${psup(f,e)}
   <div class="row"><a class="btn" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a><a class="btn light" href="${esc(fiche)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche Onisep</a>${e.w?`<a class="btn light" href="${esc(/^http/.test(e.w)?e.w:'https://'+e.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}</div></div>`;}).join(''):(D.dip[cur.d].s.length?'<p class="msg">Coche au moins une formation.</p>':''));
  $('list').querySelectorAll('a[data-s]').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Clic : '+a.dataset.s)));
- if(map) drawMap(L);}
+ if(map) drawMap(V);}
 function drawMap(L){const o=origine();if(layer)layer.remove();layer=L&&window.L?window.L.layerGroup().addTo(map):null;if(!layer)return;
  const pts=[];if(o){window.L.circleMarker([o.lat,o.lon],{radius:9,color:'#15314f',fillColor:'#15314f',fillOpacity:1}).bindPopup(esc(dep?'Toi':o.n)).addTo(layer);pts.push([o.lat,o.lon]);}
  for(const{f,e,d}of L){pts.push([e.lat,e.lon]);window.L.marker([e.lat,e.lon],{alt:e.n,title:e.n}).bindPopup(`<b>${esc(e.n)}</b><br>${esc(f.n)}${d!=null?'<br>'+fmt(d)+' km':''}`).addTo(layer);}
  if(pts.length)map.fitBounds(pts,{padding:[30,30],maxZoom:13});}
-function vue(c){$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
- if(c){if(!map){map=window.L.map('map');window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();drawMap(lignes());},50);}}
+function vue(c){$('plus').hidden=c||!fr||!cur||lignes().length<=nmax;$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
+ if(c){if(!map){map=window.L.map('map');window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();const L=lignes();drawMap(fr?L.slice(0,nmax):L);},50);}}
 $('vL').onclick=()=>vue(false);$('vC').onclick=()=>vue(true);
+async function chargerFrance(){const ids=[...new Set(D.dip[cur.d].s.map(k=>D.suites[k].o))].filter(o=>!FR[o]);
+ await Promise.all(ids.map(o=>fetch(new URL('data/france/'+o.split('.').pop()+'.json?v=2026-10-08',document.baseURI)).then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();}).then(x=>{FR[o]=x;})));}
+$('fr').onclick=async()=>{const b=$('fr'),d=cur&&cur.d;if(!d)return;
+ if(fr){fr=false;b.setAttribute('aria-pressed','false');$('frmsg').hidden=true;draw();return;}
+ b.disabled=true;$('count').textContent='Chargement des lieux de toute la France…';
+ try{await chargerFrance();if(!cur||cur.d!==d)return;fr=true;nmax=20;b.setAttribute('aria-pressed','true');$('frmsg').hidden=false;stat('france/'+d,'Toute la France');}
+ catch(e){$('count').textContent='La recherche dans toute la France ne répond pas. Réessaie dans un instant.';return;}
+ finally{b.disabled=false;}
+ draw();};
+$('plus').onclick=()=>{const debut=nmax;nmax+=20;draw();const t=$('list').querySelectorAll('h3')[debut];if(t){t.tabIndex=-1;t.focus();}};
 function depart(m){$('dLyc').setAttribute('aria-pressed',!m);$('dMai').setAttribute('aria-pressed',m);$('maison').hidden=!m;if(!m){dep=null;draw();}}
 $('dLyc').onclick=()=>depart(false);$('dMai').onclick=()=>{depart(true);$('adr').focus();};
 function setMaison(lat,lon,n){dep={lat,lon,n};$('asug').hidden=true;$('amsg').textContent='C’est noté : les distances partent de chez toi.';stat('depart/maison','Départ : maison');draw();}
