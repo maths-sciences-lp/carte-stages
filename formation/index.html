@@ -108,6 +108,10 @@ function stat(c,t){if(!GC_ON)return;const q='?p='+encodeURIComponent('formation/
 let D=null, PS=null, cur=null, off=new Set(), dep=null, departMaison=false, map=null, layer=null, IDX=[];
 // « Toute la France » : un fichier par poursuite (data/france/<id Onisep>.json), chargé au clic seulement.
 let fr=false, nmax=20; const FR={};
+// « Aussi possibles » : poursuites citées par l'Onisep mais absentes de la région, cherchées en France
+// grâce à data/france/index.json (nom → identifiant Onisep), chargé au premier clic.
+let FRI=null, FRA=[];
+const urlFormation=id=>'https://www.onisep.fr/http/redirection/formation/slug/FOR.'+id;
 // Nom officiel accentué (l'Onisep écrit « Eugène Henaff ») : liste des lycées et lieux de poursuite.
 const accent=s=>s.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');
 function accentuer(d){for(const l of Object.values(d.lycees||{}))l.n=accent(l.n);for(const f of Object.values(d.suites||{}))for(const e of f.e)e.n=accent(e.n);}
@@ -127,7 +131,7 @@ function remplirLycees(){const d=D.dip[cur.d];const L=d.ly.filter(u=>D.lycees[u]
 function majHash(){history.replaceState(null,'',location.pathname+location.search+'#d='+cur.d+(cur.ly?'&ly='+cur.ly:''));}
 $('ly').onchange=()=>{if(!cur)return;cur.ly=$('ly').value||null;majHash();draw();};
 function montrer(user){drawClasses();const d=D.dip[cur.d];off=new Set();$('aide').hidden=true;$('res').hidden=false;
- fr=false;nmax=20;$('fr').setAttribute('aria-pressed','false');$('frmsg').hidden=true;$('frrow').hidden=!d.s.length;
+ fr=false;nmax=20;$('fr').setAttribute('aria-pressed','false');$('frmsg').hidden=true;FRA=[];$('frrow').hidden=!d.s.length&&!d.a.length;
  $('chips').innerHTML=d.s.map((k,i)=>`<button class="chip" data-i="${i}" aria-pressed="true">${esc(D.suites[k].n.replace(/ option /,' – '))}</button>`).join('');
  $('chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;off.has(i)?off.delete(i):off.add(i);b.setAttribute('aria-pressed',!off.has(i));draw();});
  $('bts').hidden=!/^Bac pro/.test(d.lib);
@@ -142,7 +146,8 @@ $('q').addEventListener('input',()=>{const v=$('q').value.trim(),L=v.length<2?[]
  $('qsug').hidden=!L.length;$('qmsg').textContent=v.length>=3&&!L.length?'Pas trouvé en Île-de-France. Essaie un autre mot (ex. « vente », « électricien »).':'';});
 $('q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const b=$('qsug').querySelector('button');if(b&&!$('qsug').hidden)b.click();}});
 function origine(){if(departMaison)return dep;const l=cur&&cur.ly&&D.lycees[cur.ly];return l?{lat:l.lat,lon:l.lon,n:l.n}:null;}
-function lignes(){const o=origine(),L=[];D.dip[cur.d].s.forEach((k,i)=>{if(off.has(i))return;const f=fr&&FR[D.suites[k].o]||D.suites[k];for(const e of f.e)L.push({f,e,d:o?km(o.lat,o.lon,e.lat,e.lon):null});});return o?L.sort((a,b)=>a.d-b.d):L.sort((a,b)=>a.e.v.localeCompare(b.e.v,'fr'));}
+function lignes(){const o=origine(),L=[];D.dip[cur.d].s.forEach((k,i)=>{if(off.has(i))return;const f=fr&&FR[D.suites[k].o]||D.suites[k];for(const e of f.e)L.push({f,e,d:o?km(o.lat,o.lon,e.lat,e.lon):null});});
+ if(fr)for(const u of FRA){const f=FR[u];if(f)for(const e of f.e)L.push({f,e,d:o?km(o.lat,o.lon,e.lat,e.lon):null});}return o?L.sort((a,b)=>a.d-b.d):L.sort((a,b)=>a.e.v.localeCompare(b.e.v,'fr'));}
 const nb=n=>n.toLocaleString('fr-FR');
 // InserJeunes : un chiffre, ou deux quand le diplôme a deux versions publiées dans ce lycée.
 const ijTexte=x=>(x.p!=null?x.p+' % continuent leurs études':'')+(x.p!=null&&x.e!=null?' · ':'')+(x.e!=null?'parmi ceux qui arrêtent, '+x.e+' % ont un emploi 6 mois après':'');
@@ -164,12 +169,17 @@ function drawMap(L){const o=origine();if(layer)layer.remove();layer=L&&window.L?
 function vue(c){$('plus').hidden=c||!fr||!cur||lignes().length<=nmax;$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
  if(c){if(!map){map=window.L.map('map');window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();const L=lignes();drawMap(fr?L.slice(0,nmax):L);},50);}}
 $('vL').onclick=()=>vue(false);$('vC').onclick=()=>vue(true);
-async function chargerFrance(){const ids=[...new Set(D.dip[cur.d].s.map(k=>D.suites[k].o))].filter(o=>!FR[o]);
+async function chargerFrance(){const d=D.dip[cur.d],locales=d.s.map(k=>D.suites[k].o);
+ if(d.a.length&&!FRI)FRI=await fetch(new URL('data/france/index.json?v=2026-10-08',document.baseURI)).then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();});
+ FRA=[...new Set(d.a.map(n=>FRI&&FRI[n.toLowerCase()]).filter(Boolean).map(urlFormation))].filter(u=>!locales.includes(u));
+ const ids=[...new Set([...locales,...FRA])].filter(o=>!FR[o]);
  await Promise.all(ids.map(o=>fetch(new URL('data/france/'+o.split('.').pop()+'.json?v=2026-10-08',document.baseURI)).then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();}).then(x=>{for(const e of x.e)e.n=accent(e.n);FR[o]=x;})));}
 $('fr').onclick=async()=>{const b=$('fr'),d=cur&&cur.d;if(!d)return;
  if(fr){fr=false;b.setAttribute('aria-pressed','false');$('frmsg').hidden=true;draw();return;}
  b.disabled=true;$('count').textContent='Chargement des lieux de toute la France…';
- try{await chargerFrance();if(!cur||cur.d!==d)return;fr=true;nmax=20;b.setAttribute('aria-pressed','true');$('frmsg').hidden=false;stat('france/'+d,'Toute la France');}
+ try{await chargerFrance();if(!cur||cur.d!==d)return;
+  if(!D.dip[d].s.length&&!FRA.length){$('count').textContent='Aucun lieu en France pour ces poursuites dans les données Onisep.';return;}
+  fr=true;nmax=20;b.setAttribute('aria-pressed','true');$('frmsg').hidden=false;stat('france/'+d,'Toute la France');}
  catch(e){$('count').textContent='La recherche dans toute la France ne répond pas. Réessaie dans un instant.';return;}
  finally{b.disabled=false;}
  draw();};

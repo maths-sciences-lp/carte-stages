@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT/'formation/data'
 fr = {}
 for p in sorted((DATA/'france').glob('*.json')):
-    if p.name == 'bilan.json':
+    if p.name in ('bilan.json', 'index.json'):
         continue
     d = json.loads(p.read_text())
     assert p.stem == d['o'].rsplit('.', 1)[-1], p
@@ -34,3 +34,6 @@ for p in sorted(DATA.glob('*.json')):
             assert x.get('ps') == ps.get(f['o'].rsplit('.', 1)[-1]+'|'+e['o'].rsplit('.', 1)[-1]), (p.name, k, e['n'])
             n += 1
 print(f'{len(fr)} poursuites nationales ; {n} lieux d’académie retrouvés à l’identique (Parcoursup compris)')
+index = json.loads((DATA/'france'/'index.json').read_text())
+assert sorted(index.values()) == sorted(o.rsplit('.', 1)[-1] for o in fr), 'index.json ↔ fichiers'
+print(f'index : {len(index)} poursuites')
