@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mon lycée – Stage et orientation</title>
+<meta name="description" content="Les formations de ton lycée, avec la carte des entreprises pour ton stage et les poursuites d’études après ton diplôme. Tous les lycées professionnels de France.">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+:root{--ink:#15314f;--bg:#f5f7f9;--line:#e4e9ee;--mute:#667085;--card:#fff;--acc:#2a4f7c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.45 'Public Sans',system-ui,sans-serif}
+.site{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--card);border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none}
+.site .lg{width:32px;height:32px;border-radius:9px;background:var(--ink);display:grid;place-items:center;color:#fff}
+.site b{font-family:'Bricolage Grotesque',system-ui;font-size:17px}.site span.r{margin-left:auto;font-size:14px;color:var(--mute)}
+main{max-width:760px;margin:0 auto;padding:18px 16px 30px}
+h1{font-family:'Bricolage Grotesque',system-ui;font-size:26px;margin:4px 0 4px}
+.lead{color:var(--mute);margin:0 0 6px}
+h2{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.cl{display:flex;flex-direction:column;gap:3px;padding:14px 16px;background:var(--card);border:2px solid var(--line);border-radius:16px;color:var(--ink);min-height:76px}
+.bts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.bt{display:inline-block;padding:8px 12px;border:2px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;font-size:15px;font-weight:600}
+.bt:hover,.bt:focus-visible{border-color:var(--acc)}
+.cl b{font-size:19px}.cl>span{font-size:14px;color:var(--mute);line-height:1.3}
+.autre{display:inline-block;margin-top:26px;color:var(--acc)}
+.credit{margin-top:22px;font-size:13px;color:var(--mute)}
+.recherche{margin:14px 0 6px}.recherche label{display:block;font-weight:600;margin-bottom:6px}
+.recherche input{width:100%;padding:12px 14px;border:2px solid var(--line);border-radius:12px;font:inherit;background:var(--card);color:var(--ink)}
+.recherche input:focus{outline:none;border-color:var(--acc)}
+.sug{display:grid;gap:4px;margin-top:6px}.sug button{text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:inherit;color:var(--ink);cursor:pointer}
+.sug button:hover,.sug button:focus-visible{border-color:var(--acc)}
+.msg{color:var(--mute);font-size:15px;margin-top:6px}
+.note{background:#eef3f8;border-radius:14px;padding:12px 14px;font-size:15px;margin:12px 0}
+.copier{margin-top:18px;padding:10px 14px;border:0;border-radius:12px;background:var(--ink);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+[hidden]{display:none!important}
+</style>
+<script>if(!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}</script>
+<link rel="stylesheet" href="../commun/accessibilite.css">
+</head><body>
+<a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+<header><a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a></header>
+<main id="contenu-principal" tabindex="-1">
+<h1>🏫 Mon lycée</h1>
+<p class="lead">Tape le nom de ton lycée ou ta ville. Pour chaque formation : <b>🎯 Mon stage</b> ouvre la carte des entreprises de ton métier, au départ du lycée ; <b>🎓 Après mon diplôme</b> montre les poursuites d’études possibles.</p>
+<div class="recherche"><label for="lyq">Ton lycée ou ta ville</label><input type="search" id="lyq" placeholder="Ex. : lycée Jean Moulin, Bobigny…" autocomplete="off" aria-controls="lysug"><div class="sug" id="lysug" hidden></div><p class="msg" id="lymsg" role="status" aria-live="polite"></p></div>
+<section id="fiche" hidden aria-live="polite"></section>
+<p class="msg" style="margin-top:22px">Lycées professionnels de France préparant un CAP, un bac pro, un BMA ou une 2de pro (Onisep, octobre 2026). Ton lycée n’y est pas ? Utilise la <a href="../">carte des stages</a> et <a href="../formation/france/">Après le lycée</a>.</p>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+const accent=s=>s.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');
+const IDF=new Set(['creteil','paris','versailles']),HENAFF=new Set(['0932119Y','0931234L']);
+const GROUPES=[['2de pro','Seconde (famille de métiers)'],['Bac pro','Bac pro'],['CAP','CAP'],['CAP agricole','CAP agricole'],['BMA','BMA (brevet des métiers d’art)']];
+const V='?v=2026-10-08';let INDEX=null,ACS=null;const DATA={};
+const charger=u=>fetch(u+V).then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();});
+const pret=Promise.all([charger('data/index.json'),charger('../commun/academies.json')]).then(([i,a])=>{INDEX=i.map(r=>({u:r[0],n:accent(r[1]),v:r[2],ac:r[3],t:norm(accent(r[1])+' '+r[2])}));ACS=Object.fromEntries(a.map(x=>[x.slug,x.nom]));});
+const chemin=(outil,ac)=>IDF.has(ac)?(outil==='stage'?'../':'../'+outil+'/'):(outil==='stage'?'../stage/'+ac+'/':'../'+outil+'/'+ac+'/');
+$('lyq').addEventListener('input',async()=>{const v=norm($('lyq').value);if(v.length<2){$('lysug').hidden=true;$('lymsg').textContent='';return;}
+ try{await pret;}catch(e){$('lymsg').textContent='La liste des lycées ne répond pas. Réessaie dans un instant.';return;}
+ if(v!==norm($('lyq').value))return;
+ const mots=v.split(' '),L=INDEX.filter(x=>mots.every(m=>x.t.includes(m))).slice(0,8);
+ $('lysug').innerHTML=L.map((x,i)=>`<button type="button" data-i="${i}">${esc(x.n)} — ${esc(x.v)}</button>`).join('');$('lysug').hidden=!L.length;
+ $('lymsg').textContent=L.length?'':'Lycée pas trouvé. Essaie le nom de ta ville.';
+ $('lysug').onclick=e=>{const b=e.target.closest('button');if(b)choisir(L[+b.dataset.i].u,true);};});
+async function choisir(u,user){await pret;const x=INDEX.find(r=>r.u===u);if(!x){$('lymsg').textContent='Ce lien ne correspond à aucun lycée de la liste.';return;}
+ $('lysug').hidden=true;$('lyq').value=x.n+' — '+x.v;$('lymsg').textContent='Chargement…';
+ try{DATA[x.ac]=DATA[x.ac]||await charger('data/'+x.ac+'.json');}catch(e){$('lymsg').textContent='Les formations ne répondent pas. Réessaie dans un instant.';return;}
+ $('lymsg').textContent='';const ly=DATA[x.ac][u];
+ if(user)history.replaceState(null,'',location.pathname+location.search+'#'+u);
+ document.title=x.n+' – Mon lycée';
+ const carte=f=>{const titre=f[1].replace(/^(Bac pro|CAP agricole|CAP|BMA|2de pro) /,'');const b=[];
+  if(f[3])b.push(`<a class="bt" href="${chemin('stage',x.ac)}#f=${f[3]}&ly=${u}">🎯 Mon stage</a>`);
+  if(f[4])b.push(`<a class="bt" href="${chemin('formation',x.ac)}#d=${f[4]}&ly=${u}">🎓 Après mon diplôme</a>`);
+  return `<div class="cl"><b>${esc(titre[0].toUpperCase()+titre.slice(1))}</b><span>${esc(f[1])}</span>${b.length?`<div class="bts">${b.join('')}</div>`:'<span>Pas encore de carte des stages pour ce diplôme.</span>'}</div>`;};
+ $('fiche').innerHTML=`<h2 style="font-size:23px;margin-top:20px">${esc(x.n)}</h2><p class="lead">${esc(x.v)} · ${esc(ACS[x.ac]||'')}</p>`+
+  (HENAFF.has(u)?'<p class="note">🏫 Élève du lycée Eugène Hénaff ? <a href="../henaff/">Ta page avec tes classes en un clic</a>.</p>':'')+
+  GROUPES.map(([t,g])=>{const fs=ly.f.filter(f=>f[0]===t);return fs.length?`<h2>${g}</h2><div class="grid">${fs.map(carte).join('')}</div>`:'';}).join('')+
+  (ly.f.some(f=>f[0]==='2de pro')?'<p class="msg">Après une 2de pro « famille de métiers », tu choisis ton bac pro : regarde aussi les cartes des bacs pros du lycée.</p>':'')+
+  `<a class="autre" href="${chemin('apres-3e',x.ac)}">🧭 Après le collège : les formations près de chez toi →</a>`+
+  `<a class="autre" href="${chemin('aide',x.ac)}" style="display:block;margin-top:12px">🤝 Qui peut m’aider ? Orientation, emploi, un endroit pour travailler, besoin de parler →</a>`+
+  `<button type="button" class="copier" id="copier">📋 Copier le lien de cette page</button><p class="msg" id="copiemsg" role="status"></p>`;
+ $('fiche').hidden=false;
+ $('copier').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('copiemsg').textContent='Lien copié : tu peux le mettre dans Pronote, sur l’ENT ou en QR code.';}catch(e){$('copiemsg').textContent='Copie impossible : sélectionne l’adresse en haut de la page.';}};
+ if(user)$('fiche').querySelector('h2').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
+const h=location.hash.slice(1);if(/^[0-9]{7}[A-Z]$/.test(h))choisir(h,false);
+window.addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(/^[0-9]{7}[A-Z]$/.test(k))choisir(k,false);});
+</script>
+<footer><p class="credit"><a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="../accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
+</footer>
+</main><script src="../commun/accessibilite.js"></script>
+</body></html>
+
