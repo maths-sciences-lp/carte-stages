@@ -29,6 +29,7 @@ def main():
     api=cache/'sondage-api';api.mkdir(exist_ok=True)
     collector=Rattrapage(api,5)
     geography=lire(cache/'communes-reference.json')
+    stock_sites=lire(cache/'stock-sondage-sites.json')
     companies={d:lire(cache/'departements'/(d+'.json'))['entreprises'] for d in departements(cache)}
     with (cache/'verrou').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -40,7 +41,13 @@ def main():
             # La réponse q=SIREN ne fournit pas la liste publique des sites.
             # Recherche locale par nom puis contrôle exact du SIREN, complétée
             # par le témoin stock et les contrôles individuels de TOUS ses sites.
-            result=collector.groupe_communes(dep,companies[dep][siren],[x for x in geography if x.startswith(dep)])
+            company=companies[dep][siren]
+            for site in stock_sites:
+                if site['dep']==dep and site['siren']==siren:
+                    checked=lire(cache/'stock-api/temoin'/dep/(site['siret']+'.json'))
+                    if checked['rows'] and checked['entreprises']:
+                        company=checked['entreprises'][0]; break
+            result=collector.groupe_communes(dep,company,[x for x in geography if x.startswith(dep)])
             value=dict(dep=dep,siren=siren,date=datetime.now(timezone.utc).isoformat(),
                        rows=result['rows'],trouve=result['trouve'],
                        sature=result['incertain']=='liste_saturee',
