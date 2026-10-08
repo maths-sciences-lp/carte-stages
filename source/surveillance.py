@@ -81,7 +81,12 @@ if catalogue:
         fichiers = [k for k, v in d.get('secteurs', {}).items() if v.get('n')]
         if fichiers:  # un fichier d'entreprises par département suffit à détecter une panne
             donnees(f'{DONNEES}sirene/{dep}/{fichiers[0]}.json')
-fraicheur(SITE + 'data/lba/meta.json', 'Île-de-France')
+# La carte IDF et les cartes nationales lisent désormais le même export LBA.
+# data/lba reste une archive : sa date ne doit pas déclencher une fausse alerte.
+for nom in ('catalogue-leger.json', 'catalogues/ile-de-france.json'):
+    leger = donnees(DONNEES + nom)
+    if leger and leger.get('format') != 'leger-v1':
+        problemes.append(f'Catalogue léger incompatible : {nom}')
 fraicheur(DONNEES + 'lba/meta.json', 'France')
 code, _ = lire(DOMAINE)
 if code != 200:

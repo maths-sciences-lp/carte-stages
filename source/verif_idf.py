@@ -102,6 +102,7 @@ def main():
     parser.add_argument('--sources-idf',type=Path,help='Dossier des sources historiques : annuaire-sp.json, bibliotheques.json, colleges_idf.json (ou colleges.json)')
     parser.add_argument('--sources-apres3e',type=Path,help='Cache historique : 605340ddc19a9.csv, ij.json, annuaire_hebergement.json, pression_2025.json, colleges_idf.json (ou colleges.json)')
     parser.add_argument('--sources-formation',type=Path,help='Cache historique : 605340ddc19a9.csv, sup2.csv, ij.json et fiches/')
+    parser.add_argument('--donnees-nationales',type=Path,help='Mission 8.5 : copie des données pour le contrat fonctionnel de la carte')
     parser.add_argument('--accessibilite',action='store_true',help='Compare aussi le contenu historique après retrait strict des seuls ajouts de navigation/libellés RGAA ; conserve les textes bruts dans le rapport')
     parser.add_argument('--rapport',type=Path,default=Path(tempfile.gettempdir())/'verif-idf')
     parser.add_argument('--en-ligne',default='https://maths-sciences-lp.github.io/carte-stages',help='Déploiement canonique du dépôt ; /stages/ est un accueil distinct sur le domaine personnalisé')
@@ -217,7 +218,14 @@ def main():
     handler=functools.partial(QuietHandler,directory=str(ROOT))
     server=http.server.ThreadingHTTPServer(('127.0.0.1',0),handler)
     thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
-    config=dict(accessibilite=args.accessibilite,pages=PAGES,local=f'http://127.0.0.1:{server.server_port}',online=args.en_ligne,output=str(out))
+    pages=PAGES
+    if args.donnees_nationales:
+        pages=[p for p in PAGES if p.startswith(('/aide/','/apres-3e/','/formation/','/henaff/'))]+['/accueil/']
+        # Les pages hors carte doivent aussi rester identiques à la référence Git.
+        for directory in ['aide','apres-3e','formation','henaff','accueil']:
+            for name in subprocess.check_output(['git','ls-tree','-r','--name-only',ref,'--',directory],cwd=ROOT,text=True).splitlines():
+                if (ROOT/name).read_bytes()!=subprocess.check_output(['git','show',ref+':'+name],cwd=ROOT):differences.append(name)
+    config=dict(accessibilite=args.accessibilite,pages=pages,local=f'http://127.0.0.1:{server.server_port}',online=args.en_ligne,output=str(out))
     (out/'config.json').write_text(json.dumps(config));(out/'navigateur.cjs').write_text(BROWSER)
     # Un ancien résultat ne peut jamais faire passer une exécution en échec.
     (out/'pages.json').unlink(missing_ok=True)
@@ -231,10 +239,24 @@ def main():
             for row in rows:
                 if not row['identique'] or not row['sans_erreur']:
                     differences.append(row['page']);log(json.dumps(row,ensure_ascii=False))
+        if args.donnees_nationales:
+            config.update(root=str(ROOT),data=str(args.donnees_nationales.resolve()))
+            (out/'config-carte.json').write_text(json.dumps(config))
+            result=subprocess.run(['node',str(ROOT/'source/verif_stage_idf.cjs'),str(out/'config-carte.json')],capture_output=True,text=True)
+            log(result.stdout.strip())
+            if result.returncode:
+                log('Contrat carte NON VÉRIFIÉ : '+result.stderr.strip());differences.append('Contrat carte')
+            else:
+                # Comparaison de chaque nombre avant/après et causes, données locales.
+                from verif_stage_comptages import comparer
+                comptages=comparer(ROOT,args.donnees_nationales)
+                (out/'carte-comptages.json').write_text(json.dumps(comptages,ensure_ascii=False,indent=2))
+                for r in comptages:log(f"{r['adresse']} ({r['rayon']} km) : {r['avant']} → {r['apres']} ; +{r['ajouts']} / −{r['retraits']} ; "+str(r['causes']))
     finally:
         server.shutdown();server.server_close()
     ok=not differences and not incomplet
-    log('Île-de-France identique : '+('oui' if ok else 'non'))
+    log(('Autres pages Île-de-France identiques et contrat carte vérifié : ' if args.donnees_nationales else 'Île-de-France identique : ')+('oui' if ok else 'non'))
+    if args.donnees_nationales:log('Carte volontairement différente : données nationales du 08/10/2026 ; détails des écarts dans carte-comptages.json et source/verification-idf-national/.')
     if incomplet:log('Vérification complète non établie : '+' ; '.join(incomplet)+'. Ne pas confondre avec une différence constatée.')
     if differences:log('Différences ou erreurs constatées : '+', '.join(differences))
     log('Rapport et captures : '+str(out))

@@ -1,6 +1,6 @@
 /* Même interface et mêmes correspondances ; fichiers département/secteur à la demande. */
 import {initAcademie,academieDepuisAdresse,chargerAcademies} from '../commun/academie.js';
-const DATA=new URL('https://maths-sciences-lp.github.io/carte-stages-donnees/');
+import {json,secteur,alternance} from './donnees.js';
 const main=$('contenu-principal'),lead=main.querySelector('.lead');
 const mount=document.createElement('div');mount.className='stage-academie';main.querySelector('.top').after(mount);
 const contenu=document.createElement('div');contenu.id='nationalContent';contenu.hidden=true;
@@ -9,13 +9,7 @@ const style=document.createElement('style');style.textContent=`#nationalContent 
 const carteNote=document.createElement('p');carteNote.className='stage-note';carteNote.id='stage-map-note';carteNote.hidden=true;carteNote.textContent='La carte montre les 1 500 premiers résultats. Tous les résultats restent disponibles dans la liste.';$('s3').append(carteNote);
 const retry=document.createElement('button');retry.id='stage-retry';retry.className='btn light';retry.textContent='Réessayer le chargement';retry.hidden=true;$('s3').append(retry);
 let catalogue,active,regionDeps=[],request=0,selectionSignal,loadedSignature='',loadingSignature='',timerLoad,failedSignature='';
-const files=new Map(),schools=new Map();
-async function json(path,{signal,version,optional=false}={}){
- const url=new URL(path,DATA);if(version)url.searchParams.set('v',version);
- const response=await fetch(url,{signal,cache:version?'default':'no-cache'});
- if(!response.ok){if(optional)return null;throw Error('Données indisponibles');}
- return response.json();
-}
+const schools=new Map();
 function memo(cache,key,callback){if(!cache.has(key))cache.set(key,callback().catch(e=>{cache.delete(key);throw e;}));return cache.get(key);}
 function departementsUtiles(){
  const o=origin();if(!o)return [];
@@ -27,15 +21,8 @@ function departementsUtiles(){
 function signature(){const o=origin();return JSON.stringify([active?.slug,sel?.type==='f'?sel.x.k:sel?.i,dist,o?.la,o?.lo]);}
 loadSec=async k=>{
  if(!origin())return [];
- const deps=departementsUtiles(),version=catalogue.version;
- const rows=await Promise.all(deps.map(async dep=>{
-  const file=catalogue.departements[dep].secteurs[k];if(!file?.n)return [];
-  const key=version+'/'+dep+'/'+k;
-  const values=await memo(files,key,()=>json('sirene/'+dep+'/'+k+'.json',{version:file.sha256}));
-  if(LBA?.files?.[dep]?.includes(k)){const lba=await memo(files,'lba/'+LBA.updated_at+'/'+dep+'/'+k,()=>json('lba/'+dep+'/'+k+'.json',{version:LBA.updated_at,optional:true}).catch(()=>null));
-   if(lba)LBAC[k]=Object.assign(LBAC[k]||{},lba);}
-  return values;
- }));
+ const deps=departementsUtiles(),meta=await alternance();
+ const rows=await Promise.all(deps.map(dep=>secteur(catalogue,dep,k,meta)));
  const o=origin();return rows.flat().filter(r=>!dist||dk({la:r[3],lo:r[4]},o)<=dist).map(r=>mkP(r,k));
 };
 const legacyRender=render;
@@ -94,12 +81,12 @@ $('dists').querySelector('[data-d="0"]').textContent='Toute la région';
 const footer=document.querySelector('footer');
 for(const node of [...footer.childNodes])if(node.nodeType===3)node.textContent=node.textContent.replace(/\), \d{1,2} [a-zéû]+ \d{4}, /u,'), ');
 const sourceDate=document.createElement('p');sourceDate.id='stage-source-date';footer.prepend(sourceDate);
-const sourceSchools=document.createElement('p');sourceSchools.textContent='Lycées proposant une voie professionnelle : annuaire de l’Éducation nationale. Les entreprises proposées correspondent à des types d’activité ; vérifie avec ton professeur les activités possibles pour ton stage.';footer.append(sourceSchools);
+const sourceSchools=document.createElement('p');sourceSchools.textContent='Lycées proposant une voie professionnelle : annuaire de l’Éducation nationale et Onisep. Les entreprises proposées correspondent à des types d’activité ; vérifie avec ton professeur les activités possibles pour ton stage.';footer.append(sourceSchools);
 const syncQuestion=()=>{document.body.classList.toggle('stage-question',contenu.hidden);if(contenu.hidden){++request;++addressSeq;clearTimeout(timerLoad);cl.clearLayers();}else setTimeout(()=>map.invalidateSize(),0);};
 new MutationObserver(syncQuestion).observe(contenu,{attributes:true,attributeFilter:['hidden']});syncQuestion();
 await chargerAcademies();
 await initAcademie({mount,contenu,baseOutil:new URL('stage/',document.baseURI),onSelect:async(ac,{signal})=>{
- const data=catalogue||await json('catalogue.json',{signal});
+ const data=catalogue||await json('catalogue-leger.json',{signal});
  if(data.schema!==1||!data.academies.some(a=>a.slug===ac.slug))throw Error('Académie indisponible');
  const deps=data.academies.filter(a=>a.region===ac.region).flatMap(a=>a.deps);
  const lists=await Promise.all(deps.map(dep=>memo(schools,data.version+'/'+dep,()=>json('lycees/'+dep+'.json',{version:data.departements[dep].lycees.sha256}))));
@@ -117,7 +104,5 @@ await initAcademie({mount,contenu,baseOutil:new URL('stage/',document.baseURI),o
  sourceDate.textContent='Données préparées le '+new Date(data.date+'T12:00:00').toLocaleDateString('fr-FR')+'.';
  const bounds=deps.map(d=>data.departements[d].bbox);map.fitBounds([[Math.min(...bounds.map(b=>b[1])),Math.min(...bounds.map(b=>b[0]))],[Math.max(...bounds.map(b=>b[3])),Math.max(...bounds.map(b=>b[2]))]]);
  demarrer(data);initLycee();
- json('lba/meta.json',{signal,optional:true}).then(meta=>{if(signal.aborted||!meta)return;LBA=meta;loadedSignature='';failedSignature='';
-  if(lbaAge()<=(meta.recruiter_max_age_days||31)*DAY){$('lba-source').hidden=false;$('lba-source').textContent='Indications La bonne alternance du '+new Date(meta.updated_at).toLocaleDateString('fr-FR')+'. Un recruteur en alternance ne garantit pas un accueil en stage. ';}render();
- }).catch(()=>{});
+
 }});

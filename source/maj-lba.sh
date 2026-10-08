@@ -1,6 +1,6 @@
 #!/bin/zsh
 # PROPOSITION À RELIRE : ne remplace pas la tâche launchd installée.
-# Sans argument : prépare deux copies locales, sans publication.
+# Sans argument : prépare une copie des données et une copie du code, sans publication.
 # Après validation et installation seulement : --publier pour la tâche mensuelle.
 # Un échec conserve les fichiers servis. Les copies préparées restent inspectables.
 set -euo pipefail
@@ -46,23 +46,13 @@ git -C "$DATA_DEPOT" worktree add -q --detach "$DATA_TRAVAIL" "$BASE_DATA"
 
 # L'export brut et la clé ne sont jamais écrits. Le programme ne remplace les
 # dossiers de ces copies qu'après lecture complète et validation de l'export.
-python3 "$SITE_TRAVAIL/source/lba.py" --national --root "$DATA_TRAVAIL" --idf-root "$SITE_TRAVAIL" --write
-python3 - "$SITE_TRAVAIL" "$DATA_TRAVAIL" <<'PY'
-import json,re,sys
-from datetime import datetime
+python3 "$SITE_TRAVAIL/source/lba.py" --national --root "$DATA_TRAVAIL" --write
+python3 - "$DATA_TRAVAIL" <<'PYTHON'
+import json,sys
 from pathlib import Path
-site,data=map(Path,sys.argv[1:])
-for root in [site/'data/lba',data/'lba']:
-    for path in root.rglob('*.json'):
-        json.loads(path.read_text())
-if json.loads((site/'data/lba/meta.json').read_text())['updated_at'] != json.loads((data/'lba/meta.json').read_text())['updated_at']:
-    raise ValueError('Dates des deux exports différentes')
-version=datetime.now().strftime('%Y-%m-%d-%H%M%S')+'-lba'
-for path in [site/'index.html',site/'source/public3_template.html']:
-    new,n=re.subn(r"const DV='[^']*'", "const DV='"+version+"'",path.read_text())
-    if n != 1: raise ValueError('Version DV absente ou ambiguë')
-    path.write_text(new)
-PY
+for path in (Path(sys.argv[1])/'lba').rglob('*.json'):
+    json.loads(path.read_text())
+PYTHON
 
 committer() {
   local copie="$1"; shift
@@ -75,16 +65,14 @@ committer() {
   fi
 }
 committer "$DATA_TRAVAIL" lba
-committer "$SITE_TRAVAIL" data/lba index.html source/public3_template.html
-echo "Deux versions préparées et vérifiées : $BASE_TRAVAIL"
+echo "Données nationales préparées et vérifiées : $BASE_TRAVAIL"
 if [[ "$MODE" != --publier ]]; then
   echo "Rien publié. Ces copies Git conservent les commits pour relecture."
   exit 0
 fi
 
-# Pas de push forcé, pas de réécriture d'historique. Les deux pushes ne sont
-# pas atomiques : si le second échoue, l'IDF garde ses anciennes données valides.
-# Vérifier les deux bases avant le premier push limite ce risque.
+# Une seule version LBA pour les deux cartes ; aucun fichier historique modifié.
+# Vérifier les deux bases : les tables du site doivent rester celles utilisées.
 git -C "$SITE_TRAVAIL" fetch -q origin main
 git -C "$DATA_TRAVAIL" fetch -q origin main
 [[ "$(git -C "$SITE_TRAVAIL" rev-parse origin/main)" == "$BASE_SITE" &&
@@ -93,9 +81,7 @@ git -C "$DATA_TRAVAIL" fetch -q origin main
   exit 1
 }
 git -C "$DATA_TRAVAIL" push -q origin HEAD:main
-ECHEC="Les données nationales ont été poussées ; l’Île-de-France garde sa dernière version. La copie site est conservée pour terminer la publication."
-git -C "$SITE_TRAVAIL" push -q origin HEAD:main
-echo "Deux mises à jour poussées. Le déploiement GitHub Pages reste à vérifier."
+echo "Données nationales poussées. Le déploiement GitHub Pages reste à vérifier."
 git -C "$SITE_DEPOT" worktree remove "$SITE_TRAVAIL"
 git -C "$DATA_DEPOT" worktree remove "$DATA_TRAVAIL"
 rmdir "$BASE_TRAVAIL"
