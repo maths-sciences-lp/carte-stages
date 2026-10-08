@@ -195,6 +195,9 @@ def toute_la_france(src,cache):
                plus_gros_gzip=max(g for _,_,g in stats),total_gzip=sum(g for _,_,g in stats),
                inserjeunes_ambigus=len(uncertain),exclusions=len(excluded))
     (fr/'bilan.json').write_text(json.dumps(bilan,ensure_ascii=False,indent=2)+'\n')
+    # Index nom de la poursuite → identifiant Onisep : permet de chercher en France une poursuite
+    # citée par l'Onisep mais absente de la région de l'élève (« Aussi possibles »).
+    (fr/'index.json').write_text(json.dumps(index,ensure_ascii=False,separators=(',',':'),sort_keys=True))
     print(bilan)
 
 
