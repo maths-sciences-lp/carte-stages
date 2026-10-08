@@ -1,0 +1,84 @@
+[
+  {
+    "departement": "75",
+    "motifs_api": {
+      "sans_position": 67,
+      "ferme_ou_autre_departement": 135,
+      "unite_non_active": 21,
+      "naf_unite_hors_liste": 8,
+      "non_diffusible": 2
+    },
+    "hors_filtre_nom": 221
+  },
+  {
+    "departement": "77",
+    "motifs_api": {
+      "sans_position": 629,
+      "unite_non_active": 12,
+      "ferme_ou_autre_departement": 45,
+      "naf_unite_hors_liste": 1,
+      "non_diffusible": 2
+    },
+    "hors_filtre_nom": 115
+  },
+  {
+    "departement": "78",
+    "motifs_api": {
+      "sans_position": 357,
+      "unite_non_active": 8,
+      "ferme_ou_autre_departement": 36,
+      "naf_unite_hors_liste": 2
+    },
+    "hors_filtre_nom": 101
+  },
+  {
+    "departement": "91",
+    "motifs_api": {
+      "sans_position": 223,
+      "ferme_ou_autre_departement": 19,
+      "unite_non_active": 4
+    },
+    "hors_filtre_nom": 125
+  },
+  {
+    "departement": "92",
+    "motifs_api": {
+      "sans_position": 26,
+      "unite_non_active": 16,
+      "ferme_ou_autre_departement": 52,
+      "naf_unite_hors_liste": 5
+    },
+    "hors_filtre_nom": 132
+  },
+  {
+    "departement": "93",
+    "motifs_api": {
+      "ferme_ou_autre_departement": 40,
+      "sans_position": 47,
+      "unite_non_active": 27,
+      "naf_unite_hors_liste": 2
+    },
+    "hors_filtre_nom": 85
+  },
+  {
+    "departement": "94",
+    "motifs_api": {
+      "sans_position": 118,
+      "ferme_ou_autre_departement": 50,
+      "naf_unite_hors_liste": 1,
+      "unite_non_active": 6
+    },
+    "hors_filtre_nom": 92
+  },
+  {
+    "departement": "95",
+    "motifs_api": {
+      "sans_position": 230,
+      "ferme_ou_autre_departement": 22,
+      "unite_non_active": 10,
+      "naf_unite_hors_liste": 1,
+      "non_diffusible": 1
+    },
+    "hors_filtre_nom": 93
+  }
+]

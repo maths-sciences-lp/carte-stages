@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-08T15:54:31.563427",
+  "fichiers": [
+    {
+      "fichier": "stock-etablissements-creteil.parquet",
+      "octets": 59138377,
+      "sha256": "e781b9a73d90773d8ca113a4de6eedfc3572da9791589e6a349a8bed33e2d058"
+    },
+    {
+      "fichier": "stock-unites-creteil.parquet",
+      "octets": 18664430,
+      "sha256": "29d7afdeb62ed86c6f0f99179da762741ef9093f62a28092ab9409ce069049d0"
+    }
+  ],
+  "preuves_conservees": true
+}

@@ -1,0 +1,689 @@
+{
+  "statut": "echantillon_prepare_non_verifie",
+  "graine": 20261008,
+  "taille_population": 33113,
+  "methode": "Tirage uniforme parmi les alertes écartées par le compteur national, population triée département puis SIREN. Le premier sondage général est conservé comme contrôle complémentaire.",
+  "population_sha256": "1e6e20e018024555c5648eacf1046ac5c7259391ae21745121fa4f2d5b2e2c7e",
+  "echantillon": [
+    {
+      "departement": "93",
+      "siren": "884789801",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "88478980100021",
+        "88478980100039"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "497864363",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "808013973",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "804015592",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "410964183",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "41096418300033"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "848693776",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "832306260",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "83230626000015"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "539946244",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "914861166",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "91486116600025"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "622046902",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "62204690200129"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "530128248",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "53012824800099"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "318671625",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "844646042",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "84464604200029"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "423884592",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "508009974",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "419651799",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "41965179900076"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "753524826",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "801292145",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "878678358",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "822629689",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "539725853",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "501682264",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "849813852",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "882326614",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "88232661400048"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "521789917",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "52178991700023"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "917977688",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "91797768800014"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "840566772",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "839479755",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "533940904",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "53394090400014"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "338022825",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "393567706",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "39356770600030"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "812605194",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "909596322",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "722000395",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "72200039500110"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "312285133",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "31228513300095"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "784393142",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "78439314200046"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "949033948",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "94903394800074"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "339077125",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "389321779",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "38932177900016"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "518001078",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "51800107800055"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "821711850",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "310517826",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "888703808",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "514027945",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "51402794500039"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "818463010",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "442133278",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "828127365",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "839878733",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "83987873300014"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "326753613",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "32675361300040"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "501766349",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "914824800",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "391494143",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "39149414300145"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "791470263",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "422858175",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "42285817500017"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "793693797",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "823442256",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "794574921",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "79457492100027"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "889520938",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "488624826",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "798159919",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "389275454",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "483220216",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "977494319",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "803961705",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "801960683",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "80196068300036"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "895082618",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "89508261800011"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "883002206",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "408403293",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "984969568",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "414983916",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "41498391600035"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "481699452",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "804473502",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "495057432",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "49505743200090"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "842608234",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "893023713",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "89302371300025"
+      ]
+    },
+    {
+      "departement": "93",
+      "siren": "833312556",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "353295520",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "35329552000053",
+        "35329552000087"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "388055493",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "811199892",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "890671894",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "832198568",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "321422560",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "32142256000276"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "844286526",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "828960989",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "794630574",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "79463057400125"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "325885879",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "315483784",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "879632578",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "908851363",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "482470333",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "93",
+      "siren": "851753442",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "85175344200025"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "592026355",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "59202635500038"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "722006301",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "72200630100062"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "478827652",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "47882765200023"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "391635844",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "890936958",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "89093695800028"
+      ]
+    },
+    {
+      "departement": "77",
+      "siren": "352610372",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "94",
+      "siren": "815420344",
+      "alerte_initiale": true,
+      "siret_recus": []
+    },
+    {
+      "departement": "77",
+      "siren": "749946588",
+      "alerte_initiale": true,
+      "siret_recus": [
+        "74994658800037"
+      ]
+    },
+    {
+      "departement": "94",
+      "siren": "572224863",
+      "alerte_initiale": true,
+      "siret_recus": []
+    }
+  ]
+}

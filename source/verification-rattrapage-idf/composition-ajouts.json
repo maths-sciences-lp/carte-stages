@@ -1,0 +1,219 @@
+{
+  "etablissements": 23004,
+  "organismes": 546,
+  "principaux_organismes": [
+    {
+      "siren": "217500016",
+      "nom": "VILLE DE PARIS",
+      "ajoutes": 2766
+    },
+    {
+      "siren": "662025196",
+      "nom": "ELIOR RESTAURATION FRANCE (ELIOR RESTAURATION ENSEIGNEMENT - ELIOR RESTAURATION SANTE)",
+      "ajoutes": 1092
+    },
+    {
+      "siren": "356000000",
+      "nom": "LA POSTE",
+      "ajoutes": 983
+    },
+    {
+      "siren": "552120222",
+      "nom": "SOCIETE GENERALE (SG)",
+      "ajoutes": 689
+    },
+    {
+      "siren": "552081317",
+      "nom": "ELECTRICITE DE FRANCE (EDF)",
+      "ajoutes": 627
+    },
+    {
+      "siren": "662042449",
+      "nom": "BNP PARIBAS (HELLO BANK!)",
+      "ajoutes": 621
+    },
+    {
+      "siren": "338253230",
+      "nom": "SODEXO ENTREPRISES",
+      "ajoutes": 498
+    },
+    {
+      "siren": "632041042",
+      "nom": "COMPASS GROUP FRANCE",
+      "ajoutes": 494
+    },
+    {
+      "siren": "954509741",
+      "nom": "CREDIT LYONNAIS (LCL)",
+      "ajoutes": 458
+    },
+    {
+      "siren": "572102176",
+      "nom": "SOGERES",
+      "ajoutes": 447
+    },
+    {
+      "siren": "775672272",
+      "nom": "CROIX ROUGE FRANCAISE (CRF)",
+      "ajoutes": 402
+    },
+    {
+      "siren": "784939688",
+      "nom": "PICARD SURGELES",
+      "ajoutes": 380
+    },
+    {
+      "siren": "382900942",
+      "nom": "CAISSE D'EPARGNE ET DE PREVOYANCE ILE-DE-FRANCE (CEIDF)",
+      "ajoutes": 346
+    },
+    {
+      "siren": "542095336",
+      "nom": "LAGARDERE TRAVEL RETAIL FRANCE (COFEC - RELAY, RELAY STORE, RELAY SHOP, RELAY WEB, RELAY INTERNATIONAL)",
+      "ajoutes": 340
+    },
+    {
+      "siren": "180089013",
+      "nom": "CENTRE NATIONAL DE LA RECHERCHE SCIENTIFIQUE (CNRS)",
+      "ajoutes": 313
+    },
+    {
+      "siren": "380129866",
+      "nom": "ORANGE",
+      "ajoutes": 277
+    },
+    {
+      "siren": "267500049",
+      "nom": "CENTRE D'ACTION SOCIALE DE LA VILLE DE PARIS (CASVP)",
+      "ajoutes": 252
+    },
+    {
+      "siren": "338253131",
+      "nom": "SOCIETE FRANCAISE DE RESTAURATION ET SERVICES (SODEXO ECOLES & UNIVERSITES DEL APPRO LES PETITS GASTRONOMES SODEXO ENSEIGNEMENT SUPERIEUR) (SFRS)",
+      "ajoutes": 249
+    },
+    {
+      "siren": "542066238",
+      "nom": "ETABLISSEMENTS NICOLAS",
+      "ajoutes": 218
+    },
+    {
+      "siren": "542016381",
+      "nom": "CREDIT INDUSTRIEL ET COMMERCIAL (CIC)",
+      "ajoutes": 207
+    },
+    {
+      "siren": "343262622",
+      "nom": "LIDL",
+      "ajoutes": 207
+    },
+    {
+      "siren": "477181010",
+      "nom": "API RESTAURATION",
+      "ajoutes": 202
+    },
+    {
+      "siren": "775665615",
+      "nom": "CAISS REGIO CREDI AGRIC MUTUEL PARIS IDF",
+      "ajoutes": 200
+    },
+    {
+      "siren": "447818600",
+      "nom": "EVANCIA (BABILOU)",
+      "ajoutes": 194
+    },
+    {
+      "siren": "775684970",
+      "nom": "ASSOCIATION AURORE",
+      "ajoutes": 187
+    }
+  ],
+  "secteurs": {
+    "superettes-alimentation-generale": 519,
+    "laboratoires-d-analyses-et-d-essais": 17,
+    "comptabilite-conseil-gestion": 112,
+    "commerce-de-gros-entre-entreprises": 238,
+    "pharmacie-optique-protheses": 374,
+    "eau-potable-captage-traitement-distribution": 67,
+    "pressing-blanchisserie-retouches": 45,
+    "tapisserie-decoration-textile": 17,
+    "hopitaux-cliniques-laboratoires": 190,
+    "paysagistes-espaces-verts": 111,
+    "hotels": 90,
+    "production-et-distribution-d-energie": 769,
+    "loisirs-animation": 808,
+    "reparation-d-ordinateurs-et-de-telephones": 8,
+    "cuir-maroquinerie-cordonnerie": 3,
+    "creches-petite-enfance": 1000,
+    "supermarches-grandes-surfaces": 607,
+    "poste-courrier": 983,
+    "electricite-du-batiment": 15,
+    "entrepots-logistique": 119,
+    "secretariat-accueil-centres-d-appels": 87,
+    "transport-de-voyageurs": 171,
+    "handicap-foyers-esat-ime": 91,
+    "telecommunications": 392,
+    "fleuristes-jardineries": 74,
+    "associations-animation-solidarite": 206,
+    "securite-privee-surveillance": 32,
+    "personnes-agees-ehpad-residences": 179,
+    "transport-de-marchandises-livraison": 29,
+    "poids-lourds-utilitaires": 2,
+    "concessionnaires-vente-de-vehicules-et-pieces": 132,
+    "garages-carrosseries-voitures": 152,
+    "clubs-et-salles-de-sport": 486,
+    "mairies-administrations": 2232,
+    "magasins-specialises-bricolage-maison-sport-high-tech": 805,
+    "coiffure": 34,
+    "forets-travaux-forestiers": 4,
+    "plomberie-chauffage-climatisation-froid": 188,
+    "agences-immobilieres-gestion-de-logements": 159,
+    "boulangerie-patisserie": 54,
+    "interim-recrutement": 318,
+    "elements-prefabriques-en-beton": 2,
+    "parfumerie-cosmetiques": 232,
+    "maintenance-d-equipements-ascenseurs": 18,
+    "traiteurs": 78,
+    "veterinaires-soins-aux-animaux": 179,
+    "restauration-rapide": 246,
+    "materiels-agricoles-engins-de-chantier": 86,
+    "vetements-chaussures-accessoires": 1215,
+    "aide-a-domicile": 107,
+    "dechets-recyclage-assainissement": 183,
+    "primeur-fromagerie-epicerie-fine-cave": 222,
+    "publicite-design-graphique": 27,
+    "restauration-collective-cantines-entreprises": 3926,
+    "nettoyage-proprete": 48,
+    "photographie": 50,
+    "restaurants": 112,
+    "laboratoires-de-recherche-scientifique": 370,
+    "banques-assurances": 3696,
+    "travaux-publics-routes-reseaux": 50,
+    "couture-confection": 5,
+    "spectacle-musees-bibliotheques": 117,
+    "chimie-pharmacie-cosmetiques-papier": 6,
+    "services-informatiques-reseaux": 18,
+    "viticulture-vinification": 2,
+    "activites-sportives-dont-ecuries-de-course": 3,
+    "enseignement-culturel-conservatoires": 34,
+    "cafes-bars": 1,
+    "autres-elevages-dont-animaux-de-compagnie-apiculture": 1,
+    "architectes": 2,
+    "esthetique-soins-de-beaute": 23,
+    "bureaux-d-etudes-economistes-de-la-construction": 12,
+    "construction-maconnerie-gros-uvre": 7,
+    "menuiserie-agencement-serrurerie": 1,
+    "audiovisuel-cinema-son": 1,
+    "geometres-experts-topographie": 1,
+    "ebenisterie-meubles-restauration-de-meubles": 1,
+    "bijouterie-horlogerie": 1,
+    "ecoles-de-sport-equitation": 1,
+    "grossistes-en-fruits-et-legumes": 2,
+    "plastique-verre-materiaux": 1,
+    "electronique-materiel-electrique": 3
+  },
+  "ville_paris": {
+    "siret": 2766,
+    "adresses": 2337
+  }
+}

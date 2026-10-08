@@ -1,0 +1,103 @@
+{
+  "graine": 20261010,
+  "controle_le": "2026-10-08T16:14:49.345490+02:00",
+  "methode": "Fiches publiques de l’Annuaire lues dans le navigateur ; premier candidat tiré dans chaque département.",
+  "controles": [
+    {
+      "departement": "75",
+      "siret": "54209533605566",
+      "nom": "LAGARDERE TRAVEL RETAIL FRANCE — KIOSQUE QUAI PORTE 4",
+      "adresse": "Point de vente 326215, 13 rue d’Amsterdam, 75008 Paris",
+      "naf_etablissement": "47.62Z",
+      "nature_juridique": "Société en nom collectif",
+      "etablissement_actif": true,
+      "unite_active": true,
+      "url": "https://annuaire-entreprises.data.gouv.fr/etablissement/54209533605566",
+      "present_dans_liste_ajouts_valides": true,
+      "naf_utilise_par_collecte": "47.62Z",
+      "naf_unite": "47.62Z",
+      "tranche_unite": "42",
+      "nature_juridique_api": "5202"
+    },
+    {
+      "departement": "78",
+      "siret": "55204695507972",
+      "nom": "ENGIE ENERGIE SERVICES",
+      "adresse": "Versailles Grand Siècle, 1 rue de l’École des Postes, 78000 Versailles",
+      "naf_etablissement": "35.30Z",
+      "nature_juridique": "SA à conseil d’administration",
+      "etablissement_actif": true,
+      "unite_active": true,
+      "url": "https://annuaire-entreprises.data.gouv.fr/etablissement/55204695507972",
+      "present_dans_liste_ajouts_valides": true,
+      "naf_utilise_par_collecte": "35.30Z",
+      "naf_unite": "35.30Z",
+      "tranche_unite": "53",
+      "nature_juridique_api": "5599"
+    },
+    {
+      "departement": "91",
+      "siret": "38290094200378",
+      "nom": "CAISSE D’EPARGNE ET DE PREVOYANCE ILE-DE-FRANCE",
+      "adresse": "2 rue Roger Salengro, 91270 Vigneux-sur-Seine",
+      "naf_etablissement": "64.19Z",
+      "nature_juridique": "Caisse d’épargne et de prévoyance à forme coopérative",
+      "etablissement_actif": true,
+      "unite_active": true,
+      "url": "https://annuaire-entreprises.data.gouv.fr/etablissement/38290094200378",
+      "present_dans_liste_ajouts_valides": true,
+      "naf_utilise_par_collecte": "64.19Z",
+      "naf_unite": "64.19Z",
+      "tranche_unite": "51",
+      "nature_juridique_api": "5196"
+    },
+    {
+      "departement": "92",
+      "siret": "77568873206803",
+      "nom": "APF FRANCE HANDICAP — SESSD",
+      "adresse": "55 rue Gustave Courbet, 92220 Bagneux",
+      "naf_etablissement": "88.91B",
+      "nature_juridique": "Association déclarée, reconnue d’utilité publique",
+      "etablissement_actif": true,
+      "unite_active": true,
+      "url": "https://annuaire-entreprises.data.gouv.fr/etablissement/77568873206803",
+      "present_dans_liste_ajouts_valides": true,
+      "naf_utilise_par_collecte": "88.91B",
+      "naf_unite": "88.10B",
+      "tranche_unite": "53",
+      "nature_juridique_api": "9230"
+    },
+    {
+      "departement": "95",
+      "siret": "59203393008065",
+      "nom": "ME GROUP FRANCE — PHOTOMATON",
+      "adresse": "Parking centre commercial Carrefour, avenue Robert Schuman, 95350 Saint-Brice-sous-Forêt",
+      "naf_etablissement": "96.01B",
+      "nature_juridique": "SAS",
+      "etablissement_actif": true,
+      "unite_active": true,
+      "url": "https://annuaire-entreprises.data.gouv.fr/etablissement/59203393008065",
+      "present_dans_liste_ajouts_valides": true,
+      "naf_utilise_par_collecte": "96.01B",
+      "naf_unite": "96.09Z",
+      "tranche_unite": "32",
+      "nature_juridique_api": "5710"
+    }
+  ],
+  "candidats_ecartes": [
+    {
+      "departement": "95",
+      "siret": "48751426700276",
+      "nom": "MAISONS PIERRE",
+      "adresse": "Moisselles Domexpo Nord RN 1, 95560 Baillet-en-France",
+      "naf_etablissement": "41.10A",
+      "nature_juridique": "SAS",
+      "etablissement_actif": true,
+      "unite_active": true,
+      "url": "https://annuaire-entreprises.data.gouv.fr/etablissement/48751426700276",
+      "ajout_final_a_confirmer": true,
+      "motif_non_ajout": "sans_position_API"
+    }
+  ],
+  "dernier_controle_le": "2026-10-08T17:06:53.449494+02:00"
+}

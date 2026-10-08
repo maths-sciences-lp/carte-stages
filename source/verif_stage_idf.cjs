@@ -10,7 +10,7 @@ const extra=['cap-cuisine','cap-boulanger','cap-patissier','cap-accompagnant-edu
 const historic=new Map();for(const f of old.formations)if(!historic.has(f.k))historic.set(f.k,f);
 for(const [k,f] of historic){const n=cat.formations.find(n=>n.k===(aliases[k]||k));assert(n,k);assert.deepEqual(n.s,f.s,k);assert.equal(n.n,f.n,k);}
 assert.equal(historic.size,180);assert.equal(schools.length,469);
-const report={cles:historic.size,lycees:schools.length,adresses:[],mesures:[],frontieres:[],erreurs:[]};
+const report={cles:historic.size,lycees:schools.length,adresses:[],henaff:[],mesures:[],frontieres:[],erreurs:[]};
 (async()=>{
  const browser=await chromium.launch();
  async function context(width=375){const c=await browser.newContext({viewport:{width,height:812}});
@@ -25,6 +25,11 @@ const report={cles:historic.size,lycees:schools.length,adresses:[],mesures:[],fr
  for(const width of [375,320]){
   const c=await context(width),page=await c.newPage();const errors=[];
   page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  await page.goto(cfg.local+'/henaff/',{waitUntil:'networkidle'});
+  const henaff=await page.evaluate(()=>({liens:[...document.querySelectorAll('a.bt')].filter(a=>a.textContent.includes('Mon stage')).map(a=>new URL(a.href).pathname),width:document.documentElement.scrollWidth,viewport:innerWidth}));
+  assert(henaff.width<=henaff.viewport,'/henaff/ débordement');
+  assert.deepEqual(henaff.liens.sort(),short.filter(s=>s!=='ma').map(s=>'/'+s+'/').sort());
+  report.henaff.push({width,...henaff});
   const routes=['/',...short.map(s=>'/'+s),...extra.map(f=>'/#f='+f+'&ly=0932119Y'),...Object.keys(aliases).map(f=>'/#f='+f+'&ly=0932119Y'),'/#d=0&ly=0932119Y','/#f=cap-cuisine&d=2&ly=0932119Y','/#f=cap-cuisine&d=2','/#ly=0932119Y','/#d=2','/#f=cap-cuisine&lycee=48.874884,2.430721'];
   for(const route of routes){await page.goto('about:blank');await page.goto(cfg.local+route,{waitUntil:'domcontentloaded'});const selected=route!=='/'&&!/^\/#ly=/.test(route);await ready(page,selected);
    const s=await page.evaluate(()=>({formation:sel?.type==='f'?sel.x.k:null,domaine:sel?.type==='d'?sel.i:null,lycee:pts.lycee?.u||null,count:$('count').textContent,hash:location.hash,width:document.documentElement.scrollWidth,viewport:innerWidth,question:document.body.innerText.includes('Tu habites où')}));
@@ -76,7 +81,16 @@ const report={cles:historic.size,lycees:schools.length,adresses:[],mesures:[],fr
   const matcher='https://maths-sciences-lp.github.io/carte-stages-donnees/sirene/**';
   await c.route(matcher,r=>fail?r.fulfill({status:503,body:'Indisponible'}):r.fallback());
   await p.goto(cfg.local+'/iccer');await p.locator('#idf-retry').waitFor({state:'visible'});assert.equal(await p.evaluate(()=>P.length),0);
-  fail=false;await p.locator('#idf-retry').click();await ready(p,true);assert.equal(await p.evaluate(()=>P.filter(p=>dk(p,origin())<=5).length),777);await c.close();
+  fail=false;await p.locator('#idf-retry').click();await ready(p,true);
+  // Le rattrapage Sirene ajoute des entreprises : comparer aux fichiers de
+  // référence du test, plutôt qu'au nombre figé du 8 octobre avant rattrapage.
+  const iccerKey=new URLSearchParams((await p.evaluate(()=>location.hash)).slice(1)).get('f');
+  const iccer=cat.formations.find(f=>f.k===(aliases[iccerKey]||iccerKey));
+  const point=schools.find(l=>l.u==='0932119Y'),expected=new Map();
+  for(const dep of ['75','77','78','91','92','93','94','95'])for(const k of iccer.s)
+   for(const r of read(path.join(cfg.data,'sirene',dep,k+'.json')))expected.set(r[7],r);
+  const rad=x=>x*Math.PI/180,near=r=>12742*Math.asin(Math.sqrt(Math.sin(rad(r[3]-point.la)/2)**2+Math.cos(rad(point.la))*Math.cos(rad(r[3]))*Math.sin(rad(r[4]-point.lo)/2)**2))<=5;
+  assert.equal(await p.evaluate(()=>P.filter(p=>dk(p,origin())<=5).length),[...expected.values()].filter(near).length);await c.close();
  }
  report.etats='Maison persistante ; stockage refusé ; badges LBA ; reprise HTTP 503 vérifiés';
  // Mesure contrôlée : navigateur 375 px, processeur ralenti x4, fichiers locaux.

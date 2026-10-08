@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-08T16:20:52.209441+02:00",
+  "etape": "Extraction et comparaison achevées ; contrôles API en cours, listes SIRET et sondage conservés",
+  "fichiers": [
+    {
+      "fichier": "stock-etablissements-extrait.parquet",
+      "sha256": "b5b77d9382524d6c97230e2ba86b350fd72f3e08d2c3716712b24a33ed6420b7",
+      "octets": 150699864
+    },
+    {
+      "fichier": "stock-unites-extrait.parquet",
+      "sha256": "b8edc03ea744169f0656b030a2b13fa54eebc87c057e0d580e0515d144b6cc46",
+      "octets": 43252144
+    }
+  ]
+}
