@@ -34,6 +34,12 @@ Bouton « Chercher dans toute la France » dans `/formation/` et `/formation/<ac
 
 Fabrication : `python3 source/apres_lycee.py --toute-la-france --sources DOSSIER --cache CACHE`, après les fichiers d'académie et Parcoursup. Mêmes sources et mêmes règles (`lieu()` partagé avec `construire`, `preparer()`, `fabrique_cherche()`), poursuites = celles des fichiers d'académie ; un même UAI couvrant plusieurs campus garde un lieu par fiche Onisep. Contrôle : `python3 formation/tests/france.py` (chaque lieu d'académie retrouvé à l'identique, Parcoursup compris).
 
+## « Après le collège » : lycées des académies voisines (mission 8.6, octobre 2026)
+
+Bouton « Montrer aussi les lycées proches d'une autre académie » dans `/apres-3e/` et `/apres-3e/<académie>/`, éteint par défaut (page inchangée tant qu'on ne clique pas ; masqué pour la Corse et les académies d'outre-mer, sans voisin à moins de 30 km). Au clic : `apres-3e/data/<slug>-voisins.json` (ou `ile-de-france-voisins.json`) ajoute les offres des autres académies dont le lycée est à moins de 30 km de la limite (contours `commun/contours/`), avec l'étiquette « Autre académie : … » et le rappel Affelnet (jusqu'à 5 vœux hors académie en plus des 10 vœux dans l'académie). Premiers vœux de Créteil retirés de ces lieux.
+
+Fabrication : `python3 source/apres3e_voisins.py`, lancé aussi à la fin de `apres3e.py --academies toutes`. Lycées dont les coordonnées Onisep tombent à plus de 5 km de leur propre département écartés et listés dans `bilan-voisins.json` (octobre 2026 : École Terrade Nice, placée près d'Alençon). Contrôle : `python3 apres-3e/tests/voisins.py`.
+
 ## Enrichissement La Bonne Alternance
 
 `lba.py` utilise l'export national officiel (`GET /api/job/v1/export`), puis

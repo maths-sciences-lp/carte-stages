@@ -212,3 +212,7 @@ def main():
                   urls_omises=[dict(ac=a, lycee=n, champ=k, motif='URL contenant un courriel ou protocole non web') for a, n, k in sorted(urls_omises)],
                   inserjeunes_ambigus=[dict(uai=u, formation=l) for u, l in sorted(uncertain_ij)])
     (outdir/'bilan.json').write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    if set(selected) == {a['slug'] for a in catalog}:
+        # Lycées des académies voisines (mission 8.6) : recalculés avec toutes les académies.
+        from apres3e_voisins import main as voisins
+        voisins()
