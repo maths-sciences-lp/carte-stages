@@ -334,7 +334,7 @@ $('fromrow').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!
  syncFrom(); shown=40; render(); const o=pts[from]; if(o) map.setView([o.la,o.lo],13); else (from==='maison'?$('adr'):$('lyc')).focus();});
 // choix du lycée parmi les lycées d'Île-de-France qui proposent un CAP ou un bac pro
 let LY=[];
-if(!window.STAGE_NATIONAL) fetch('data/lycees.json?v='+DV).then(r=>r.json()).then(j=>{LY=j;LY.forEach(l=>l.key=norm(l.n+' '+l.c+' '+l.p));initLycee();}).catch(()=>{});
+if(!window.STAGE_NATIONAL) fetch('data/lycees.json?v='+DV).then(r=>r.json()).then(j=>{LY=j;LY.forEach(l=>{l.n=l.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');l.key=norm(l.n+' '+l.c+' '+l.p);});initLycee();}).catch(()=>{});
 $('lyc').addEventListener('input',()=>{const q=norm($('lyc').value).trim();if(q.length<2){$('lsug').hidden=true;return;}
  const ws=q.split(/\s+/); const res=LY.filter(l=>ws.every(w=>l.key.includes(w))).slice(0,8);
  if(!res.length){$('lsug').innerHTML='<div class="msg" style="padding:12px">Lycée pas trouvé. Essaie le nom de ta ville.</div>';$('lsug').hidden=false;$('lsug').onclick=null;return;}
