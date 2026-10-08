@@ -137,6 +137,31 @@ class NationalTest(unittest.TestCase):
                                   '3': 'mairies-administrations', '4': 'mairies-administrations',
                                   '5': 'communes-et-intercommunalites'})
 
+    def test_filiere_bois_menuiserie_bois_et_metal(self):
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        bois, metal = 'menuiserie-bois-agencement', 'menuiserie-metallique-serrurerie'
+        self.assertFalse(any('menuiserie-agencement-serrurerie' in s for s in forms.values()))
+        for k in ('cap-ebeniste', 'bma-ebeniste', 'cap-charpentier-bois', 'cap-menuisier-fabricant',
+                  'bac-pro-technicien-constructeur-bois'):
+            self.assertEqual([bois in forms[k], metal in forms[k]], [True, False], k)
+        for k in ('bac-pro-technicien-menuisier-agenceur', 'bac-pro-etude-et-realisation-d-agencement',
+                  'cap-menuisier-installateur', '2nde-agencement-menuiserie-et-ameublement-mama'):
+            self.assertEqual([bois in forms[k], metal in forms[k]], [True, True], k)
+        for k in ('cap-metallier', 'bac-pro-ouvrages-du-batiment-metallerie', 'cap-ferronnier-d-art'):
+            self.assertEqual([bois in forms[k], metal in forms[k]], [False, True], k)
+        from aides import FAMILLES
+        self.assertNotIn('bac pro technicien constructeur bois', FAMILLES['Agencement, menuiserie et ameublement (MAMA)'][1])
+        def lieu(siret, c, nom):
+            return dict(s=siret, n=nom, e='', c=c, q=c, ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t='11', nj='5710', du='O', de='O', r=False)
+        groups, _ = preparer([lieu('1', '43.32A', 'MENUISERIE DUPONT'),
+                              lieu('2', '43.32B', 'SERRURERIE MARTIN'),
+                              lieu('3', '43.32B', 'MENUISERIE GENERALE LEROY'),   # nom bois : aussi en bois
+                              lieu('4', '43.34Z', 'ALUMINIUM CONCEPT AGENCEMENT')])  # nom métal : pas en bois
+        dans = {k: sorted(r[7] for r in v) for k, v in groups.items()}
+        self.assertEqual(dans[bois], ['1', '3'])
+        self.assertEqual(dans[metal], ['2', '3'])
+
     def test_export_incomplet_refuse(self):
         for raw in ['[{"workplace": {}}', '[{},', '[] contenu inattendu']:
             with self.subTest(raw=raw), self.assertRaises(ValueError):

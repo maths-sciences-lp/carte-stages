@@ -87,7 +87,7 @@ ALIAS["bac pro technicien menuisier agenceur"] += " MA"
 FAMILLES = {
  "Transitions numérique et énergétique (TNE)": ("TNE 2nde TNE", ["bac pro métiers de l'électricité et de ses environnements connectés", "bac pro installateur en chauffage, climatisation et énergies renouvelables", "bac pro métiers du froid et des énergies renouvelables", "bac pro maintenance et efficacité énergétique", "bac pro cybersécurité, informatique et réseaux, électronique"]),
  "Études et modélisation numérique du bâtiment (EMNB)": ("MNB EMNB 2nde MNB", ["bac pro technicien d'études du bâtiment option A études et économie", "bac pro technicien d'études du bâtiment option B assistant en architecture", "bac pro géomètre"]),
- "Agencement, menuiserie et ameublement (MAMA)": ("MAMA 2nde MAMA", ["bac pro technicien menuisier agenceur", "bac pro étude et réalisation d'agencement", "bac pro technicien de fabrication bois et matériaux associés", "bac pro technicien constructeur bois"]),
+ "Agencement, menuiserie et ameublement (MAMA)": ("MAMA 2nde MAMA", ["bac pro technicien menuisier agenceur", "bac pro étude et réalisation d'agencement", "bac pro technicien de fabrication bois et matériaux associés"]),
  "Construction durable, bâtiment et travaux publics": ("CDBTP 2nde bâtiment", ["bac pro aménagement et finition du bâtiment", "bac pro organisation et réalisation du gros oeuvre", "bac pro travaux publics", "bac pro interventions sur le patrimoine bâti option A maçonnerie", "bac pro menuiserie aluminium-verre", "bac pro ouvrages du bâtiment : métallerie"]),
  "Gestion administrative, transport et logistique (GATL)": ("GATL 2nde GATL", ["bac pro assistance à la gestion des organisations et de leurs activités", "bac pro métiers de la logistique", "bac pro organisation de transport de marchandises"]),
  "Relation client (MRC)": ("MRC 2nde MRC vente commerce accueil", ["bac pro métiers du commerce et de la vente option A animation et gestion de l'espace commercial", "bac pro métiers du commerce et de la vente option B prospection clientèle et valorisation de l'offre commerciale", "bac pro métiers de l'accueil"]),
@@ -103,11 +103,11 @@ FAMILLES = {
 
 # Autres diplômes du lycée (hors CAP / bac pro) : brevets des métiers d'art
 AUTRES = {
- "Ébéniste": ("BMA", "BMA ébéniste ébénisterie", ["Ébénisterie, meubles, restauration de meubles", "Menuiserie, agencement, serrurerie", "Tapisserie, décoration textile"]),
+ "Ébéniste": ("BMA", "BMA ébéniste ébénisterie", ["Ébénisterie, meubles, restauration de meubles", "Menuiserie bois, agencement", "Tapisserie, décoration textile"]),
  "Arts graphiques option signalétique": ("BMA", "BMA signalétique enseigne graphisme", ["Enseignes, signalétique, marquage", "Imprimerie, prépresse, reliure", "Publicité, design graphique"]),
 }
 
 # Secteurs imposés pour une famille de 2nde (au lieu de la réunion des secteurs de ses bacs pro)
 FAMILLES_SECTEURS = {
- "Agencement, menuiserie et ameublement (MAMA)": ["Menuiserie, agencement, serrurerie", "Ébénisterie, meubles, restauration de meubles", "Tapisserie, décoration textile"],
+ "Agencement, menuiserie et ameublement (MAMA)": ["Menuiserie bois, agencement", "Menuiserie métallique, serrurerie", "Ébénisterie, meubles, restauration de meubles", "Tapisserie, décoration textile"],
 }
