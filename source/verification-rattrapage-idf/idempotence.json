@@ -1,0 +1,14 @@
+{
+  "fichiers_verifies": 21601,
+  "empreintes_identiques": true,
+  "recalculs": [
+    {
+      "cache": "creteil",
+      "nouveaux_apres_recalcul": 0
+    },
+    {
+      "cache": "idf",
+      "nouveaux_apres_recalcul": 0
+    }
+  ]
+}

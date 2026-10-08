@@ -1,0 +1,21 @@
+{
+  "source": "https://static.data.gouv.fr/resources/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/20261001-073325/stock-stockunitelegale-parquet.parquet",
+  "stock": "2026-10-01",
+  "departements": [
+    "75",
+    "78",
+    "91",
+    "92",
+    "95"
+  ],
+  "debut": "2026-10-08T13:53:27.172298+00:00",
+  "duckdb": "1.5.6",
+  "lignes": 5314813,
+  "octets_fichier": 43252144,
+  "sha256": "b8edc03ea744169f0656b030a2b13fa54eebc87c057e0d580e0515d144b6cc46",
+  "succes": true,
+  "fin": "2026-10-08T13:54:30.008755+00:00",
+  "duree_secondes": 62.752,
+  "octets_transferes": 227663203,
+  "requetes_http": 1223
+}

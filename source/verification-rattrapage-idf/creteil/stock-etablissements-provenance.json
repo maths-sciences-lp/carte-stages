@@ -1,0 +1,19 @@
+{
+  "source": "https://static.data.gouv.fr/resources/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/20261001-073823/stock-stocketablissement-parquet.parquet",
+  "stock": "2026-10-01",
+  "departements": [
+    "77",
+    "93",
+    "94"
+  ],
+  "debut": "2026-10-08T12:10:04.663842+00:00",
+  "duckdb": "1.5.6",
+  "lignes": 2712772,
+  "octets_fichier": 59138377,
+  "sha256": "e781b9a73d90773d8ca113a4de6eedfc3572da9791589e6a349a8bed33e2d058",
+  "succes": true,
+  "fin": "2026-10-08T12:12:45.853673+00:00",
+  "duree_secondes": 161.137,
+  "octets_transferes": 1046820706,
+  "requetes_http": 2509
+}

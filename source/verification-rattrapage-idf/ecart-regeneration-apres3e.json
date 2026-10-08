@@ -1,0 +1,528 @@
+{
+  "reference": "fc81722f0f2fd085b2120b8cedfc2579eaac5d08",
+  "fichier": "apres-3e/apres3e.json",
+  "fichier_servi_inchange": true,
+  "colleges_meme_ensemble": true,
+  "colleges_nombre": 1488,
+  "ecarts_positionnels": 6019,
+  "champs": {
+    "lat": 1486,
+    "lon": 1486,
+    "n": 1485,
+    "v": 1460,
+    "duv": 34,
+    "du": 68
+  },
+  "ecarts_formations": [
+    {
+      "chemin": "/formations/42/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/42/e/44/du",
+      "avant": "ABSENT",
+      "regenere": "3 ans"
+    },
+    {
+      "chemin": "/formations/43/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/43/e/1/du",
+      "avant": "ABSENT",
+      "regenere": "3 ans"
+    },
+    {
+      "chemin": "/formations/43/e/5/du",
+      "avant": "ABSENT",
+      "regenere": "3 ans"
+    },
+    {
+      "chemin": "/formations/72/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/72/e/35/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/72/e/56/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/73/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/73/e/4/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/99/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/99/e/2/du",
+      "avant": "ABSENT",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/107/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/107/e/1/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/108/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/108/e/5/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/108/e/6/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/108/e/21/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/110/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/110/e/2/du",
+      "avant": "ABSENT",
+      "regenere": "3 ans"
+    },
+    {
+      "chemin": "/formations/117/du",
+      "avant": "1 an",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/117/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/117/e/0/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/121/du",
+      "avant": "1 an",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/122/du",
+      "avant": "1 an",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/124/du",
+      "avant": "1 an",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/124/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/124/e/0/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/128/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/128/e/0/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/135/du",
+      "avant": "1 an",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/135/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/135/e/0/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/142/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/142/e/2/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/143/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/143/e/1/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/144/du",
+      "avant": "2 ans",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/144/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/144/e/0/du",
+      "avant": "ABSENT",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/144/e/5/du",
+      "avant": "ABSENT",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/144/e/7/du",
+      "avant": "ABSENT",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/144/e/8/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/144/e/9/du",
+      "avant": "ABSENT",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/144/e/10/du",
+      "avant": "ABSENT",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/144/e/12/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/149/du",
+      "avant": "1 an",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/151/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/151/e/1/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/152/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/152/e/1/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/161/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/161/e/2/du",
+      "avant": "ABSENT",
+      "regenere": "3 ans"
+    },
+    {
+      "chemin": "/formations/162/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/162/e/3/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/163/du",
+      "avant": "1 an",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/163/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/163/e/0/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/165/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/165/e/3/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/166/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/166/e/2/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/172/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/172/e/3/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/172/e/4/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/172/e/5/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/172/e/6/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/172/e/7/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/172/e/8/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/172/e/10/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/172/e/11/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/173/du",
+      "avant": "1 an",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/173/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/173/e/0/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/174/du",
+      "avant": "1 an",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/174/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/174/e/0/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/175/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/175/e/0/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/180/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/180/e/9/du",
+      "avant": "ABSENT",
+      "regenere": "3 ans"
+    },
+    {
+      "chemin": "/formations/181/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/181/e/2/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/181/e/5/du",
+      "avant": "ABSENT",
+      "regenere": "2 ans"
+    },
+    {
+      "chemin": "/formations/184/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/184/e/15/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/186/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/186/e/5/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/186/e/8/du",
+      "avant": "ABSENT",
+      "regenere": "3 ans"
+    },
+    {
+      "chemin": "/formations/186/e/11/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/189/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/189/e/4/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/198/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/198/e/1/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/198/e/3/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/198/e/4/du",
+      "avant": "ABSENT",
+      "regenere": "1 an ou 2 ans"
+    },
+    {
+      "chemin": "/formations/199/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/199/e/7/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/199/e/12/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/200/duv",
+      "avant": "ABSENT",
+      "regenere": 1
+    },
+    {
+      "chemin": "/formations/200/e/45/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    },
+    {
+      "chemin": "/formations/200/e/46/du",
+      "avant": "ABSENT",
+      "regenere": "1 an"
+    }
+  ]
+}

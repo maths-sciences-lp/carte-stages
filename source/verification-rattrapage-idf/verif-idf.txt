@@ -1,0 +1,74 @@
+Référence origin/main : fc81722f0f2fd085b2120b8cedfc2579eaac5d08
+aide/aide.json : identique à origin/main ; SHA-256 0e7273d055ab81dc8d2ab14fa4dca3fae6ef12283928ae2479aff6ee566625a7
+apres-3e/apres3e.json : identique à origin/main ; SHA-256 eb16cf4f0e77fa2fe076b71ee20fbec77636dcb075a289e894fc6b28c6374d8b
+formation/formations.json : identique à origin/main ; SHA-256 f7a477eff3766dfc24df573358658e067112c6b3f79f05bb9851cd3cee234270
+formation/parcoursup.json : identique à origin/main ; SHA-256 0ad318607fb6555474ae039dcb9414e05286b53e07a3a091e3ed8fa4313b61f0
+Données Trouve ton stage Île-de-France : 175 fichiers ; identiques à l’octet près
+Régénération aide (mode par défaut) : identique à l’octet près
+Régénération Après le collège (mode par défaut) : DIFFÉRENTE — consulter apres3e-regenere.json
+Régénération Après le lycée (mode par défaut) : identique à l’octet près
+Régénération Parcoursup (mode par défaut) : identique à l’octet près
+/aide/ : identique, sans erreur
+/aide/#mda : identique, sans erreur
+/apres-3e/ : identique, sans erreur
+/apres-3e/#cuisine : identique, sans erreur
+/formation/ : identique, sans erreur
+/formation/#eeb : identique, sans erreur
+/formation/#iccer : identique, sans erreur
+/henaff/ : identique, sans erreur
+/formation/#mee : identique, sans erreur
+/formation/#tma : identique, sans erreur
+/formation/#era : identique, sans erreur
+/formation/#geometre : identique, sans erreur
+/formation/#mit : identique, sans erreur
+/formation/#sdg : identique, sans erreur
+/formation/#ebeniste : identique, sans erreur
+/formation/#bma-ebeniste : identique, sans erreur
+/formation/#bma-signaletique : identique, sans erreur
+/formation/#d=5601&ly=0932119Y : identique, sans erreur
+/accueil/ : identique, sans erreur
+Carte : 62 parcours à 320/375 px ; 180 clés ; 469 UAI ; frontières et clavier vérifiés ; aucune erreur.
+/tne (0 km) : 16711 → 18154 ; +1465 / −22 ; {'Autre secteur dans le nouveau classement': 4, 'Fermé lors du contrôle API du 08/10/2026': 18}
+/tne (5 km) : 1484 → 1576 ; +96 / −4 ; {'Fermé lors du contrôle API du 08/10/2026': 4}
+/mnb (0 km) : 36329 → 38489 ; +2240 / −80 ; {'Autre secteur dans le nouveau classement': 62, 'Fermé lors du contrôle API du 08/10/2026': 16, 'Diffusion restreinte lors du contrôle API': 2}
+/mnb (5 km) : 3763 → 4335 ; +573 / −1 ; {'Fermé lors du contrôle API du 08/10/2026': 1}
+/mama (0 km) : 5555 → 5573 ; +22 / −4 ; {'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/mama (5 km) : 631 → 631 ; +2 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/iccer (0 km) : 8554 → 9544 ; +1000 / −10 ; {'Autre secteur dans le nouveau classement': 3, 'Fermé lors du contrôle API du 08/10/2026': 7}
+/iccer (5 km) : 782 → 838 ; +58 / −2 ; {'Fermé lors du contrôle API du 08/10/2026': 2}
+/mee (0 km) : 8554 → 9544 ; +1000 / −10 ; {'Autre secteur dans le nouveau classement': 3, 'Fermé lors du contrôle API du 08/10/2026': 7}
+/mee (5 km) : 782 → 838 ; +58 / −2 ; {'Fermé lors du contrôle API du 08/10/2026': 2}
+/tma (0 km) : 5296 → 5299 ; +7 / −4 ; {'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/tma (5 km) : 603 → 601 ; +0 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/era (0 km) : 5296 → 5299 ; +7 / −4 ; {'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/era (5 km) : 603 → 601 ; +0 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/eeb (0 km) : 34517 → 36621 ; +2183 / −79 ; {'Autre secteur dans le nouveau classement': 62, 'Fermé lors du contrôle API du 08/10/2026': 15, 'Diffusion restreinte lors du contrôle API': 2}
+/eeb (5 km) : 3674 → 4242 ; +569 / −1 ; {'Fermé lors du contrôle API du 08/10/2026': 1}
+/geometre (0 km) : 19460 → 21621 ; +2228 / −67 ; {'Autre secteur dans le nouveau classement': 60, 'Fermé lors du contrôle API du 08/10/2026': 7}
+/geometre (5 km) : 1382 → 1955 ; +573 / −0 ; {}
+/mit (0 km) : 8189 → 8429 ; +250 / −10 ; {'Autre secteur dans le nouveau classement': 3, 'Fermé lors du contrôle API du 08/10/2026': 7}
+/mit (5 km) : 758 → 777 ; +21 / −2 ; {'Fermé lors du contrôle API du 08/10/2026': 2}
+/sdg (0 km) : 5621 → 5654 ; +43 / −10 ; {'Fermé lors du contrôle API du 08/10/2026': 8, 'Autre secteur dans le nouveau classement': 2}
+/sdg (5 km) : 787 → 786 ; +1 / −2 ; {'Fermé lors du contrôle API du 08/10/2026': 2}
+/ebeniste (0 km) : 5296 → 5299 ; +7 / −4 ; {'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/ebeniste (5 km) : 603 → 601 ; +0 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/bma-ebeniste (0 km) : 5555 → 5573 ; +22 / −4 ; {'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/bma-ebeniste (5 km) : 631 → 631 ; +2 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/bma-signaletique (0 km) : 5621 → 5654 ; +43 / −10 ; {'Fermé lors du contrôle API du 08/10/2026': 8, 'Autre secteur dans le nouveau classement': 2}
+/bma-signaletique (5 km) : 787 → 786 ; +1 / −2 ; {'Fermé lors du contrôle API du 08/10/2026': 2}
+/ma (0 km) : 5296 → 5299 ; +7 / −4 ; {'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/ma (5 km) : 603 → 601 ; +0 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/#f=cap-cuisine (0 km) : 41297 → 45953 ; +4690 / −34 ; {'Fermé lors du contrôle API du 08/10/2026': 28, 'Autre secteur dans le nouveau classement': 6}
+/#f=cap-cuisine (5 km) : 5237 → 5571 ; +337 / −3 ; {'Fermé lors du contrôle API du 08/10/2026': 3}
+/#f=cap-boulanger (0 km) : 12880 → 13515 ; +646 / −11 ; {'Autre secteur dans le nouveau classement': 6, 'Fermé lors du contrôle API du 08/10/2026': 5}
+/#f=cap-boulanger (5 km) : 1786 → 1845 ; +59 / −0 ; {}
+/#f=cap-patissier (0 km) : 35632 → 36554 ; +952 / −30 ; {'Autre secteur dans le nouveau classement': 9, 'Fermé lors du contrôle API du 08/10/2026': 21}
+/#f=cap-patissier (5 km) : 4593 → 4670 ; +78 / −1 ; {'Fermé lors du contrôle API du 08/10/2026': 1}
+/#f=cap-accompagnant-educatif-petite-enfance (0 km) : 20738 → 24861 ; +4184 / −61 ; {'Autre secteur dans le nouveau classement': 57, 'Fermé lors du contrôle API du 08/10/2026': 4}
+/#f=cap-accompagnant-educatif-petite-enfance (5 km) : 1858 → 2837 ; +980 / −1 ; {'Fermé lors du contrôle API du 08/10/2026': 1}
+/#f=bac-pro-accompagnement-soins-et-services-a-la-personne (0 km) : 10575 → 12297 ; +1737 / −15 ; {'Fermé lors du contrôle API du 08/10/2026': 2, 'Autre secteur dans le nouveau classement': 13}
+/#f=bac-pro-accompagnement-soins-et-services-a-la-personne (5 km) : 1015 → 1347 ; +334 / −2 ; {'Autre secteur dans le nouveau classement': 1, 'Fermé lors du contrôle API du 08/10/2026': 1}
+Autres pages Île-de-France identiques et contrat carte vérifié : non
+Carte volontairement différente : données nationales du 08/10/2026 ; détails des écarts dans carte-comptages.json et source/verification-idf-national/.
+Différences ou erreurs constatées : apres3e régénéré
+Rapport et captures : /private/tmp/verif-idf-rattrapage-reprise
