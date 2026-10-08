@@ -2,7 +2,9 @@
 import gzip,hashlib,json,tempfile,unittest
 from pathlib import Path
 from stage_catalogues import ecrire_catalogues,IDF,LIMITROPHES
-from stage_donnees import catalogue_formations
+from stage_donnees import catalogue_formations,slug
+from domaines import DECOUPAGES
+origine={slug(k):slug(v) for k,v in DECOUPAGES.items()}
 ROOT=Path(__file__).resolve().parents[1]
 class MigrationTest(unittest.TestCase):
     def test_alias_reproduisent_premiere_option_historique(self):
@@ -10,8 +12,12 @@ class MigrationTest(unittest.TestCase):
         for f in old['formations']:
             if f['k'] in seen:continue
             seen.add(f['k']);n=next(n for n in new['formations'] if n['k']==aliases.get(f['k'],f['k']))
-            # « Écoles maternelles et élémentaires » est dérivée des mairies (audit du 8/10/2026).
-            self.assertEqual((n['n'],[x for x in n['s'] if x!='ecoles-maternelles-et-elementaires']),(f['n'],f['s']))
+            # Catégories découpées depuis 2026-10 (écoles, réseaux…) : ramenées à leur origine.
+            # Ajouts voulus : la 2de TNE reçoit aussi les entreprises du bac pro CIEL (8/10/2026).
+            ajouts=['services-informatiques-reseaux','reparation-d-ordinateurs-et-de-telephones','electronique-materiel-electrique'] if 'tne' in n['k'] else []
+            # Retrait voulu : le CAP monteur en installations thermiques n'a plus de réparateurs de machines.
+            retraits=['maintenance-d-equipements-ascenseurs'] if n['k']=='cap-monteur-en-installations-thermiques' else []
+            self.assertEqual((n['n'],list(dict.fromkeys(origine.get(x,x) for x in n['s']))),(f['n'],[x for x in f['s'] if x not in retraits]+ajouts))
         self.assertEqual(len(seen),180);self.assertEqual(len(aliases),4)
     def test_manifeste_differe_et_departements_limitrophes(self):
         with tempfile.TemporaryDirectory() as t:

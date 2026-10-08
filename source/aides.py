@@ -85,7 +85,7 @@ ICON = {
 ALIAS["bac pro technicien menuisier agenceur"] += " MA"
 # Familles de métiers de 2nde pro : l'élève voit les entreprises de tous les bacs pro de sa famille.
 FAMILLES = {
- "Transitions numérique et énergétique (TNE)": ("TNE 2nde TNE", ["bac pro métiers de l'électricité et de ses environnements connectés", "bac pro installateur en chauffage, climatisation et énergies renouvelables", "bac pro métiers du froid et des énergies renouvelables", "bac pro maintenance et efficacité énergétique"]),
+ "Transitions numérique et énergétique (TNE)": ("TNE 2nde TNE", ["bac pro métiers de l'électricité et de ses environnements connectés", "bac pro installateur en chauffage, climatisation et énergies renouvelables", "bac pro métiers du froid et des énergies renouvelables", "bac pro maintenance et efficacité énergétique", "bac pro cybersécurité, informatique et réseaux, électronique"]),
  "Études et modélisation numérique du bâtiment (EMNB)": ("MNB EMNB 2nde MNB", ["bac pro technicien d'études du bâtiment option A études et économie", "bac pro technicien d'études du bâtiment option B assistant en architecture", "bac pro géomètre"]),
  "Agencement, menuiserie et ameublement (MAMA)": ("MAMA 2nde MAMA", ["bac pro technicien menuisier agenceur", "bac pro étude et réalisation d'agencement", "bac pro technicien de fabrication bois et matériaux associés", "bac pro technicien constructeur bois"]),
  "Construction durable, bâtiment et travaux publics": ("CDBTP 2nde bâtiment", ["bac pro aménagement et finition du bâtiment", "bac pro organisation et réalisation du gros oeuvre", "bac pro travaux publics", "bac pro interventions sur le patrimoine bâti option A maçonnerie", "bac pro menuiserie aluminium-verre", "bac pro ouvrages du bâtiment : métallerie"]),
