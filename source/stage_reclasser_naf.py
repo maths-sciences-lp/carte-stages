@@ -7,6 +7,8 @@ Mêmes règles que stage_donnees.preparer, sans refaire la collecte :
   ou, selon le propriétaire, « Mairies, administrations » vers « Communes et intercommunalités » ;
 - lieux sans personnel (domaines.SANS_PERSONNEL) : comptes de collectivités et fermes solaires
   retirés de la catégorie ;
+- catégorie remplacée (absente de DOMAINES, présente dans DECOUPAGES) : ses établissements vont
+  dans les nouvelles catégories par leur code ou leur nom (MOTS_CLES), puis ses fichiers disparaissent ;
 - codes retirés (domaines.CODES_RETIRES) : un établissement qui n'était dans la catégorie que par
   ce code en sort (62.02A, conseil en systèmes et logiciels).
 Les badges La bonne alternance suivent l'établissement. Les formations viennent du code
@@ -26,10 +28,11 @@ import csv
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
 import time
 
-from domaines import CODES_RETIRES, DECOUPAGES, DOMAINES, SANS_PERSONNEL
+from domaines import CODES_RETIRES, DECOUPAGES, DOMAINES, MOTS_CLES, SANS_PERSONNEL
 from stage_collecte import atomic_json
 from stage_donnees import affiner, catalogue_formations, fichier, sans_personnel, slug
 from stage_catalogues import ecrire_catalogues
@@ -62,9 +65,30 @@ def main():
     origines = set(enfants.values()) | {slug(s) for s in SANS_PERSONNEL} | {slug(s) for s in CODES_RETIRES}
     rangs, journal = {}, []
     bilan = dict(deplaces={}, retires={}, sans_code_insee=0)
+    # Catégorie remplacée (absente de DOMAINES) : chaque établissement va dans la nouvelle
+    # catégorie de son code, et aussi dans celles dont le nom correspond (MOTS_CLES), comme
+    # à la collecte ; sinon il reste seulement dans sa catégorie d'origine. Ex. 2026-10 :
+    # « Menuiserie, agencement, serrurerie » → bois / métallique.
+    actuelles = {slug(s) for ss in DOMAINES.values() for s in ss}
+    remplacees = {o for o in enfants.values() if o not in actuelles}
+    mots = {slug(n): re.compile(rx) for n, rx in MOTS_CLES.items()}
     for dep in sorted(catalog['departements']):
         secteurs = catalog['departements'][dep]['secteurs']
-        for k in sorted(origines & set(secteurs)):
+        for k in sorted(remplacees & set(secteurs)):
+            for r in lire(root/'sirene'/dep/(k+'.json')):
+                i = insee.get(r[7]) or {}
+                fils = [e for e, o in enfants.items() if o == k]
+                cibles = {c for c in (sec_of.get(i.get('naf')) or sec_of.get(i.get('naf_u')),) if c in fils}
+                texte = (r[0] + ' ' + (r[1] or '')).upper()
+                cibles |= {e for e in fils if e in mots and mots[e].search(texte) and 'ENSEIGNEMENT' not in texte}
+                for cible in sorted(cibles) or [None]:
+                    if cible:
+                        rangs.setdefault((dep, cible), []).append(r)
+                    cle = f'{k} -> {cible or "hors de ses nouvelles catégories"}'
+                    bilan['deplaces'][cle] = bilan['deplaces'].get(cle, 0) + 1
+                    journal.append(dict(dep=dep, siret=r[7], nom=r[0], enseigne=r[1], de=k, vers=cible,
+                                        naf=i.get('naf'), naf_unite_legale=i.get('naf_u'), categorie_juridique=i.get('cj')))
+        for k in sorted((origines - remplacees) & set(secteurs)):
             rows = lire(root/'sirene'/dep/(k+'.json'))
             reste = []
             for r in rows:
@@ -105,6 +129,10 @@ def main():
         rows = sorted(rows)
         if rows or k in catalog['departements'][dep]['secteurs']:
             catalog['departements'][dep]['secteurs'][k] = fichier(path, rows)
+    for dep, details in catalog['departements'].items():
+        for k in remplacees & set(details['secteurs']):
+            del details['secteurs'][k]
+            (root/'sirene'/dep/(k+'.json')).unlink()
     # Badges La bonne alternance : suivent l'établissement, disparaissent avec lui.
     meta = lire(root/'lba/meta.json')
     for dep in sorted({j['dep'] for j in journal}):
@@ -115,11 +143,16 @@ def main():
             d = lire(src)
             moves = {}
             for j in journal:
-                if j['dep'] == dep and j['de'] == k and j['siret'] in d:
-                    e = d.pop(j['siret'])
-                    if j['vers']:
-                        moves.setdefault(j['vers'], {})[j['siret']] = e
-            atomic_json(src, d)
+                if j['dep'] == dep and j['de'] == k and j['siret'] in d and j['vers']:
+                    moves.setdefault(j['vers'], {})[j['siret']] = d[j['siret']]
+            for j in journal:
+                if j['dep'] == dep and j['de'] == k:
+                    d.pop(j['siret'], None)
+            if k in remplacees:
+                src.unlink()
+                meta['files'][dep] = [f for f in meta['files'].get(dep, []) if f != k]
+            else:
+                atomic_json(src, d)
             for cible, entrees in moves.items():
                 dst = root/'lba'/dep/(cible+'.json')
                 atomic_json(dst, {**(lire(dst) if dst.exists() else {}), **entrees})
@@ -149,6 +182,7 @@ def main():
         path = root/name
         if path.exists():
             rows[name] = dict(fichier=name, octets=path.stat().st_size, lignes=len(lire(path)))
+    rows = {n: r for n, r in rows.items() if (root/n).exists()}
     with sizepath.open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=['fichier', 'octets', 'lignes'], lineterminator='\n')
         w.writeheader()

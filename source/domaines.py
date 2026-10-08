@@ -8,7 +8,10 @@ DOMAINES = {
   # aux électriciens et à la 2de TNE ; les formations des travaux publics gardent les deux.
   "Réseaux électriques et télécoms": ["42.22Z"],
   "Peinture, plâtre, carrelage, sols, isolation": ["43.31Z", "43.33Z", "43.34Z", "43.39Z", "43.29A"],
-  "Menuiserie, agencement, serrurerie": ["43.32A", "43.32B", "43.32C", "16.23Z", "25.12Z"],
+  # Ancienne « Menuiserie, agencement, serrurerie » séparée le 9/10/2026 (filière bois,
+  # 10 entreprises vérifiées par code) : 43.32B et 25.12Z sont du métal 10 fois sur 10.
+  "Menuiserie bois, agencement": ["43.32A", "43.32C", "16.23Z"],
+  "Menuiserie métallique, serrurerie": ["43.32B", "25.12Z"],
   "Géomètres-experts, topographie": ["71.12A"],
   "Architectes": ["71.11Z"],
   # 74.90A séparé le 8/10/2026 (10 entreprises vérifiées, toutes du bâtiment) ; 71.12B reste
@@ -201,7 +204,8 @@ SOURCES_MOTS_CLES = ["Bâtiment et travaux publics", "Énergie, électricité, c
  "Bois, ameublement, métiers d'art", "Communication visuelle, impression, audiovisuel"]
 MOTS_CLES = {
  "Enseignes, signalétique, marquage": r"\b(ENSEIGNES?|SIGNALETIQUES?|SIGNALISATION|MARQUAGES?|COVERING|ADHESIFS?|LETTRAGES?|SERIGRAPH\w*|STICKERS?|PLV|GRAVURES?)\b",
- "Menuiserie, agencement, serrurerie": r"\b(AGENCEMENTS?|AGENCEUR|MENUISERIES?|MENUISIER|EBENISTERIE|EBENISTE)\b",
+ # Noms en aluminium, métal ou serrurerie exclus : ils relèvent de la menuiserie métallique.
+ "Menuiserie bois, agencement": r"^(?!.*\b(?:ALU\w*|METALL\w*|SERRUR\w*|FERRONN\w*|ACIER)\b).*\b(AGENCEMENTS?|AGENCEUR|MENUISERIES?|MENUISIER|EBENISTERIE|EBENISTE)\b",
  "Plomberie, chauffage, climatisation, froid": r"\b(CHAUFFAGE|CLIMATISATION|CLIMATIQUE|THERMIQUE|PLOMBERIE|PLOMBIER|FRIGORIFIQUE|POMPES? A CHALEUR)\b",
  "Géomètres-experts, topographie": r"\b(GEOMETRES?|TOPOGRAPH\w*)\b",
 }
@@ -250,6 +254,8 @@ DECOUPAGES = {
     "Réparation de machines et d'électronique": "Maintenance d'équipements, ascenseurs",
     "Communes et intercommunalités": "Mairies, administrations",
     "Économistes de la construction": "Bureaux d'études, économistes de la construction",
+    "Menuiserie bois, agencement": "Menuiserie, agencement, serrurerie",
+    "Menuiserie métallique, serrurerie": "Menuiserie, agencement, serrurerie",
 }
 
 # Communes et intercommunalités : activité propre et catégorie juridique du propriétaire

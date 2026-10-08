@@ -8,7 +8,8 @@
 ],
 "bac pro aménagement et finition du bâtiment": [
 "Peinture, plâtre, carrelage, sols, isolation",
-"Menuiserie, agencement, serrurerie",
+"Menuiserie bois, agencement",
+"Menuiserie métallique, serrurerie",
 "Construction, maçonnerie, gros œuvre"
 ],
 "bac pro aménagements paysagers": [
@@ -218,7 +219,7 @@
 "Bateaux, nautisme"
 ],
 "bac pro menuiserie aluminium-verre": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie métallique, serrurerie",
 "Plastique, verre, matériaux"
 ],
 "bac pro microtechniques": [
@@ -309,7 +310,7 @@
 "Réseaux électriques et télécoms"
 ],
 "bac pro ouvrages du bâtiment : métallerie": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie métallique, serrurerie",
 "Chaudronnerie, soudure, structures métalliques"
 ],
 "bac pro perruquier posticheur": [
@@ -362,7 +363,7 @@
 "Horticulture, maraîchage, agriculture"
 ],
 "bac pro technicien constructeur bois": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie bois, agencement",
 "Construction, maçonnerie, gros œuvre"
 ],
 "bac pro technicien d'études du bâtiment option A études et économie": [
@@ -378,7 +379,7 @@
 "Communes et intercommunalités"
 ],
 "bac pro technicien de fabrication bois et matériaux associés": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie bois, agencement",
 "Ébénisterie, meubles, restauration de meubles"
 ],
 "bac pro technicien en appareillage orthopédique": [
@@ -403,7 +404,8 @@
 "Chaudronnerie, soudure, structures métalliques"
 ],
 "bac pro technicien menuisier agenceur": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie bois, agencement",
+"Menuiserie métallique, serrurerie",
 "Ébénisterie, meubles, restauration de meubles"
 ],
 "bac pro technicien modeleur": [
@@ -423,7 +425,8 @@
 "Construction, maçonnerie, gros œuvre"
 ],
 "bac pro étude et réalisation d'agencement": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie bois, agencement",
+"Menuiserie métallique, serrurerie",
 "Ébénisterie, meubles, restauration de meubles"
 ],
 "CAP accessoiriste réalisateur": [
@@ -500,7 +503,7 @@
 "Concessionnaires, vente de véhicules et pièces"
 ],
 "CAP charpentier bois": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie bois, agencement",
 "Construction, maçonnerie, gros œuvre"
 ],
 "CAP chocolaterie-confiserie": [
@@ -580,7 +583,7 @@
 ],
 "CAP ferronnier d'art": [
 "Chaudronnerie, soudure, structures métalliques",
-"Menuiserie, agencement, serrurerie"
+"Menuiserie métallique, serrurerie"
 ],
 "CAP fleuriste": [
 "Fleuristes, jardineries"
@@ -653,15 +656,16 @@
 "Peinture, plâtre, carrelage, sols, isolation"
 ],
 "CAP menuisier aluminium-verre": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie métallique, serrurerie",
 "Plastique, verre, matériaux"
 ],
 "CAP menuisier fabricant": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie bois, agencement",
 "Ébénisterie, meubles, restauration de meubles"
 ],
 "CAP menuisier installateur": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie bois, agencement",
+"Menuiserie métallique, serrurerie",
 "Ébénisterie, meubles, restauration de meubles"
 ],
 "CAP modèles et moules céramiques": [
@@ -675,7 +679,7 @@
 "Plomberie, chauffage, climatisation, froid"
 ],
 "CAP métallier": [
-"Menuiserie, agencement, serrurerie",
+"Menuiserie métallique, serrurerie",
 "Chaudronnerie, soudure, structures métalliques"
 ],
 "CAP métiers de l'enseigne et de la signalétique": [
@@ -794,7 +798,7 @@
 ],
 "CAP ébéniste": [
 "Ébénisterie, meubles, restauration de meubles",
-"Menuiserie, agencement, serrurerie"
+"Menuiserie bois, agencement"
 ],
 "CAP électricien": [
 "Électricité du bâtiment",
@@ -891,7 +895,7 @@
 ],
 "bac pro interventions sur le patrimoine bâti option B charpente": [
 "Construction, maçonnerie, gros œuvre",
-"Menuiserie, agencement, serrurerie"
+"Menuiserie bois, agencement"
 ],
 "bac pro maintenance environnementale et propreté des espaces urbains": [
 "Nettoyage, propreté",
