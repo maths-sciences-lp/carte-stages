@@ -390,6 +390,10 @@ def build(args):
                sources=dict(service_public=sp_url,bibliotheques=BIB,colleges=edu_url,mda=ANMDA,academies=ACADEMIES_SOURCE,contours=CONTOURS)))
     for row in summary:
         print(row)
+    if args.academies == ['toutes']:
+        # Départ « Mon lycée » : lycées de l'annuaire, un fichier par académie.
+        from aide_lycees import main as lycees
+        lycees(cache)
 
 
 def generation_idf():

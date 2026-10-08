@@ -61,8 +61,9 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
 </section>
 
 <section class="step"><h2><span class="n">2</span>D’où tu pars</h2>
- <div class="row"><button class="btn" id="dCol" aria-pressed="false">🏫 Mon collège</button><button class="btn" id="dMai" aria-pressed="true">🏠 Chez moi</button></div>
+ <div class="row"><button class="btn" id="dCol" aria-pressed="false">🏫 Mon collège</button><button class="btn" id="dLyc" aria-pressed="false">🎓 Mon lycée</button><button class="btn" id="dMai" aria-pressed="true">🏠 Chez moi</button></div>
  <div id="pCol" hidden style="margin-top:10px"><div class="row"><label class="field-label" for="col">Ton collège ou ta ville</label><input type="text" id="col" placeholder="Nom de ton collège ou de ta ville"></div><div class="sug" id="csug" hidden></div></div>
+ <div id="pLyc" hidden style="margin-top:10px"><div class="row"><label class="field-label" for="lyc">Ton lycée ou ta ville</label><input type="text" id="lyc" placeholder="Nom de ton lycée ou de ta ville"></div><div class="sug" id="lsug" hidden></div></div>
  <div id="pMai" style="margin-top:10px"><div class="row"><label class="field-label" for="adr">Ton adresse</label><input type="text" id="adr" placeholder="Ton adresse ou ta ville" autocomplete="street-address"><button class="btn light" id="geo">📍 Me localiser</button></div><div class="sug" id="asug" hidden></div></div>
  <div class="msg" id="dmsg">Indique ta ville ou ton adresse pour voir les lieux les plus proches.</div>
 </section>
@@ -149,9 +150,23 @@ const L_=window.L;
 function vue(c){$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
  if(c){if(!map){map=L_.map('map');L_.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();show(false);},50);}else show(false);}
 $('vL').onclick=()=>vue(false);$('vC').onclick=()=>vue(true);
-function mode(m){$('dCol').setAttribute('aria-pressed',m==='col');$('dMai').setAttribute('aria-pressed',m==='mai');$('pCol').hidden=m!=='col';$('pMai').hidden=m!=='mai';}
-$('dCol').onclick=()=>{mode('col');$('col').focus();};$('dMai').onclick=()=>{mode('mai');$('adr').focus();};
-function setDep(lat,lon,n,src){dep={lat,lon,n};$('csug').hidden=true;$('asug').hidden=true;$('dmsg').textContent='C’est noté : départ '+n+'.';stat('depart/'+src,'Départ : '+src);show(false);}
+function mode(m){$('dCol').setAttribute('aria-pressed',m==='col');$('dLyc').setAttribute('aria-pressed',m==='lyc');$('dMai').setAttribute('aria-pressed',m==='mai');$('pCol').hidden=m!=='col';$('pLyc').hidden=m!=='lyc';$('pMai').hidden=m!=='mai';}
+$('dCol').onclick=()=>{mode('col');$('col').focus();};
+// « Mon lycée » : lycées de l'annuaire de l'Éducation nationale (data/lycees/<académie>.json), chargés au premier clic.
+let LY=null,lyceesDe=()=>['creteil','paris','versailles'];
+const accent=s=>s.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');
+async function chargerLycees(){if(LY)return LY;const ac=lyceesDe().join();
+ const L=await Promise.all(lyceesDe().map(s=>fetch(new URL('data/lycees/'+s+'.json?v=2026-10-08',document.baseURI)).then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();})));
+ if(ac!==lyceesDe().join())return chargerLycees();
+ return LY=L.flatMap(d=>d.lycees).map(l=>({...l,n:accent(l.n)}));}
+$('dLyc').onclick=()=>{mode('lyc');$('lyc').focus();chargerLycees().catch(()=>$('dmsg').textContent='La liste des lycées ne répond pas. Réessaie dans un instant.');};
+$('lyc').addEventListener('input',async()=>{const v=norm($('lyc').value.trim());if(v.length<2){$('lsug').hidden=true;return;}
+ let L;try{L=await chargerLycees();}catch(e){$('dmsg').textContent='La liste des lycées ne répond pas. Réessaie dans un instant.';return;}
+ if(v!==norm($('lyc').value.trim()))return;
+ const mots=v.split(' ').filter(Boolean),r=L.filter(l=>{const t=norm(l.n+' '+l.v);return mots.every(m=>t.includes(m));}).slice(0,8);
+ sugList($('lsug'),r,l=>l.n+' — '+l.v,l=>{$('lyc').value=l.n+' — '+l.v;setDep(l.lat,l.lon,/^Lyc[ée]e /i.test(l.n)?'du '+l.n.replace(/^Lyc[ée]e /i,'lycée '):'de '+l.n,'lycee');});
+ if(!r.length){$('lsug').innerHTML='<p class="msg" style="padding:8px">Lycée pas trouvé. Essaie le nom de ta ville.</p>';$('lsug').hidden=false;}});$('dMai').onclick=()=>{mode('mai');$('adr').focus();};
+function setDep(lat,lon,n,src){dep={lat,lon,n};$('csug').hidden=true;$('lsug').hidden=true;$('asug').hidden=true;$('dmsg').textContent='C’est noté : départ '+n+'.';stat('depart/'+src,'Départ : '+src);show(false);}
 function sugList(box,list,label,pick){box.innerHTML='';list.forEach(x=>{const b=document.createElement('button');b.textContent=label(x);b.onclick=()=>pick(x);box.appendChild(b);});box.hidden=!list.length;}
 $('col').addEventListener('input',()=>{const v=norm($('col').value.trim());if(v.length<2||!D){$('csug').hidden=true;return;}
  const r=D.colleges.filter(c=>norm(c.n+' '+c.v).includes(v)).slice(0,8);
