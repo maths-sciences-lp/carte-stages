@@ -1,4 +1,9 @@
 import json,subprocess,time,urllib.parse,os,sys
+if '--national' in sys.argv:
+    sys.argv.remove('--national')
+    from stage_collecte import main
+    main()
+    sys.exit(0)
 from domaines import DOMAINES
 EMP="01,02,03,11,12,21,22,31,32,41,42,51,52,53"; DEPS=['75','77','78','91','92','93','94','95']
 DONE='idf/fait.txt'; OUT='idf/etablissements.jsonl'

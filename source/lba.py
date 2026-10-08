@@ -162,7 +162,25 @@ def enrich(rows, allowed, now):
     return companies, counts
 
 
+def ouvrir_export(input_path, now):
+    """Un seul export national ; le jeton et l'URL signée restent en mémoire."""
+    if input_path:
+        return input_path.open(encoding='utf-8'), now.isoformat()
+    key = os.environ.get('LBA_API_KEY') or KEY_FILE.read_text().strip()
+    req = urllib.request.Request(EXPORT_API, headers={'Authorization': 'Bearer ' + key})
+    with urllib.request.urlopen(req, timeout=30) as response:
+        info = json.load(response)
+    url = safe_url(info.get('url'))
+    if not url or timestamp(info.get('lastUpdate')) is None:
+        raise ValueError('Réponse export invalide.')
+    return io.TextIOWrapper(urllib.request.urlopen(url, timeout=60), encoding='utf-8'), info['lastUpdate']
+
+
 def main():
+    if '--national' in sys.argv:
+        sys.argv.remove('--national')
+        from stage_lba import main as national
+        return national()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=ROOT)
     parser.add_argument('--write', action='store_true', help='Écrire data/lba/ (un fichier par secteur).')
@@ -171,20 +189,7 @@ def main():
     now = datetime.now(timezone.utc)
     allowed = catalogue(args.root)
     print(f'{len(allowed)} SIRET existants ; aucune nouvelle entreprise ajoutée.', flush=True)
-    if args.input:
-        stream = args.input.open(encoding='utf-8')
-        updated = now.isoformat()
-    else:
-        key = os.environ.get('LBA_API_KEY') or KEY_FILE.read_text().strip()
-        req = urllib.request.Request(EXPORT_API, headers={'Authorization': 'Bearer ' + key})
-        with urllib.request.urlopen(req, timeout=30) as response:
-            info = json.load(response)
-        url = safe_url(info.get('url'))
-        if not url or timestamp(info.get('lastUpdate')) is None:
-            raise ValueError('Réponse export invalide.')
-        updated = info['lastUpdate']
-        # L'URL de téléchargement signée est éphémère ; ne pas la journaliser.
-        stream = io.TextIOWrapper(urllib.request.urlopen(url, timeout=60), encoding='utf-8')
+    stream, updated = ouvrir_export(args.input, now)
     with stream:
         companies, counts = enrich(records(stream), allowed, now)
     if counts['opportunities'] == 0:

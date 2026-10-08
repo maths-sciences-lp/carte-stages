@@ -23,6 +23,7 @@ DATA = ['aide/aide.json', 'apres-3e/apres3e.json', 'formation/formations.json']
 DATA.append('formation/parcoursup.json')
 PAGES += ['/formation/#'+k for k in ['mee','tma','era','geometre','mit','sdg','ebeniste','bma-ebeniste','bma-signaletique']]
 PAGES.append('/formation/#d=5601&ly=0932119Y')
+PAGES += ['/tne', '/#f=cap-cuisine&ly=0932119Y']
 BROWSER = r'''
 const fs=require('fs'),path=require('path');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
@@ -117,6 +118,22 @@ def main():
         equal=actual==expected
         log(f'{name} : '+('identique à origin/main' if equal else 'DIFFÉRENT de origin/main')+' ; SHA-256 '+hashlib.sha256(actual).hexdigest())
         if not equal:differences.append(name)
+    # L'extension nationale ne remplace aucun fichier servi par la carte IDF,
+    # y compris ses badges LBA. Comparaison exhaustive des fichiers historiques.
+    stage_files=subprocess.check_output(['git','ls-tree','-r','--name-only',ref,'--','data/'],cwd=ROOT,text=True).splitlines()
+    stage_rows=[]
+    for name in stage_files:
+        expected=subprocess.check_output(['git','show',ref+':'+name],cwd=ROOT)
+        actual=(ROOT/name).read_bytes() if (ROOT/name).is_file() else None
+        equal=actual==expected
+        stage_rows.append(dict(fichier=name,identique=equal,sha256=hashlib.sha256(actual).hexdigest() if actual is not None else None))
+        if not equal:
+            log(name+' : DIFFÉRENT de origin/main');differences.append(name)
+    extra=[str(p.relative_to(ROOT)) for p in (ROOT/'data').rglob('*') if p.is_file() and str(p.relative_to(ROOT)) not in stage_files]
+    for name in extra:
+        log(name+' : fichier ajouté dans les données historiques');differences.append(name)
+    (out/'donnees-stages.json').write_text(json.dumps(stage_rows,ensure_ascii=False,indent=2)+'\n')
+    log('Données Trouve ton stage Île-de-France : '+str(len(stage_rows))+' fichiers ; '+('identiques à l’octet près' if all(r['identique'] for r in stage_rows) and not extra else 'DIFFÉRENCES, voir donnees-stages.json'))
     # Exécute réellement le mode par défaut, dans un dossier temporaire isolé.
     with tempfile.TemporaryDirectory(prefix='regen-idf-') as tmp:
         tmp=Path(tmp)
