@@ -3,6 +3,7 @@
 Les compteurs de l'API sont des alertes. Les réponses saturées ou discordantes
 sont listées, jamais présentées comme une recherche exhaustive actuelle.
 """
+from stage_stock_config import configuration, departements, extrait, espace_libre
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -28,7 +29,7 @@ def main():
     api=cache/'sondage-api';api.mkdir(exist_ok=True)
     collector=Rattrapage(api,5)
     geography=lire(cache/'communes-reference.json')
-    companies={d:lire(cache/'departements'/(d+'.json'))['entreprises'] for d in ('77','93','94')}
+    companies={d:lire(cache/'departements'/(d+'.json'))['entreprises'] for d in departements(cache)}
     with (cache/'verrou').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         start=time.monotonic();stamp=datetime.now(timezone.utc).isoformat()
@@ -55,9 +56,11 @@ def main():
                 secondes=time.monotonic()-start,requetes=collector.requests,erreurs=dict(collector.errors)))
     stock=lire(cache/'stock-sondage-sites.json')
     inventory={};published={}
-    for dep in ('77','93','94'):
+    for dep in departements(cache):
         inventory[dep]={r['s'] for r in lire(cache/'departements'/(dep+'.json'))['rows']}
         published[dep]={r[7] for f in (a.donnees/'sirene'/dep).glob('*.json') for r in lire(f)}
+    if (cache/'configuration-stock.json').exists():
+        inventory={d:{s for x in selection['echantillon'] if x['departement']==d for s in x['siret_recus']} for d in departements(cache)}
     cases=[]
     for result in results:
         dep,siren=result['dep'],result['siren']
@@ -65,8 +68,13 @@ def main():
         # Ajouter tous les sites du stock réinterrogés individuellement, même
         # s'ils n'apparaissent pas dans la liste limitée de la réponse SIREN.
         sites=[x for x in stock if x['dep']==dep and x['siren']==siren]
-        for x in sites:
-            checked=lire(cache/'stock-api/temoin'/dep/(x['siret']+'.json'))
+        controls=lire(cache/'stock-verifications-attendues.json')
+        siret_controls={x['siret'] for x in sites}
+        siret_controls.update(x['siret'] for x in controls['explications_cache']
+                             if x['dep']==dep and x['siret'].startswith(siren))
+        for siret in sorted(siret_controls):
+            checked=lire(cache/'stock-api/temoin'/dep/(siret+'.json'))
+            if not checked['rows']:rows.pop(siret,None)
             rows.update({r['s']:r for r in checked['rows']})
         classified,rejected=preparer(rows.values())
         valid={r[7] for values in classified.values() for r in values}

@@ -1,4 +1,5 @@
 """Contrôle individuel reprenable des écarts au stock et du sondage Créteil."""
+from stage_stock_config import configuration, departements, extrait, espace_libre
 import argparse
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
@@ -33,12 +34,14 @@ def main():
     # L'ancien cache ne sert jamais d'explication par un simple compteur.
     # Vérifier ses identifiants exacts dans le département concerné.
     explanation=set()
-    for dep in ('77','93','94'):
+    for dep in departements(cache):
         for row in lire(a.cache_national/'departements'/(dep+'.json'))['rows']:
             if (dep,row['s'][:9]) in pairs:explanation.add((dep,row['s']))
         for x in sample['echantillon']:
             if x['departement']==dep:
                 sample_tasks.update((dep,s) for s in x['siret_recus'])
+    historical=lire(cache/'temoin-attendu.json')
+    tasks.update((d,s) for d,sites in historical.items() for s in sites)
     tasks.update(sample_tasks|explanation)
     atomic_json(cache/'stock-verifications-attendues.json',dict(
         controles=[dict(dep=d,siret=s) for d,s in sorted(tasks)],
@@ -64,9 +67,12 @@ def main():
                         secondes=time.monotonic()-start,requetes=collector.requests,erreurs=dict(collector.errors))
             atomic_json(cache/'executions'/(stamp.replace(':','-')+'.json'),record)
             print(json.dumps(record,ensure_ascii=False),flush=True)
+        for d,sites in historical.items():
+            for s in sites:
+                atomic_json(cache/'temoin'/d/(s+'.json'),lire(api/'temoin'/d/(s+'.json')))
         missing=[(d,s) for d,s in tasks if not (api/'temoin'/d/(s+'.json')).exists()]
         if missing:raise RuntimeError('Contrôles encore manquants')
-        counts={d:Counter() for d in ('77','93','94')}
+        counts={d:Counter() for d in departements(cache)}
         for x in expected:
             v=lire(api/'temoin'/x['dep']/(x['siret']+'.json'))
             if v['rows']:counts[x['dep']]['admissibles']+=1

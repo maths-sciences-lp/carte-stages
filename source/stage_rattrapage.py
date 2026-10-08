@@ -204,8 +204,11 @@ def preparer_cibles(args):
                 selected.append(c)
         selected.sort(key=lambda c:(c['siren'] not in witnessed,-(c['ouverts_nationaux'] or 0),c['siren']))
         codes=[c for c in geography if c.startswith(dep)]
-        # Pour la généralisation : remplacer les communes de Paris/Lyon/Marseille
-        # par les arrondissements municipaux explicitement référencés.
+        for generic,prefix,n in [('75056','751',20),('69123','6938',9),('13055','132',16)]:
+            if generic in codes:
+                codes.remove(generic)
+                codes.extend(prefix+str(i).zfill(5-len(prefix)) for i in range(1,n+1))
+        codes=sorted(set(codes))
         if not codes:raise ValueError('Référentiel de communes absent : '+dep)
         tasks.extend((dep,c,codes) for c in selected)
         report[dep]=dict(entreprises=len(companies),alertes_departement=sum(c['incomplet_possible'] for c in companies.values()),
@@ -232,8 +235,9 @@ def main():
     parser.add_argument('--deps', nargs='+', required=True)
     parser.add_argument('--phase', choices=['inventaire','cibles','communes'], required=True)
     args = parser.parse_args()
-    if any(d not in ['77','93','94'] for d in args.deps):
-        parser.error('Ce pilote est limité aux départements autorisés 77, 93, 94')
+    allowed={d for a in json.loads((ROOT/'commun/academies.json').read_text()) for d in a['deps']}
+    if set(args.deps)-allowed:
+        parser.error('Département hors du périmètre des académies couvertes')
     configurer_cache(args.cache)
     with (args.cache/'verrou').open('w') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX|fcntl.LOCK_NB)

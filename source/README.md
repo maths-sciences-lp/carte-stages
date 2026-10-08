@@ -155,3 +155,11 @@ code 1. Rapports et captures : `/tmp/verif-idf/` (`--rapport`) et `/tmp/aide-na
 (`TEST_OUTPUT`). Le déploiement canonique est utilisé car le domaine `/stages/`
 sert `accueil/`, pas la carte racine. La régénération des deux outils de formation
 sera ajoutée lors de leurs missions ; leurs fichiers et pages sont déjà comparés.
+
+
+## Contrôle annuel Sirene et rattrapage des établissements
+
+La phase API seule ne certifie pas tous les sites des entreprises multisites.
+Avant validation annuelle, suivre [le contrôle par le stock officiel](STOCK-SIRENE.md) :
+comparaison des SIRET par département, vérifications individuelles, sondage et
+ajouts sans retrait. La mise à jour mensuelle LBA reste inchangée.

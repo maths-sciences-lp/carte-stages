@@ -3,6 +3,7 @@
 Sans --write : bilan local seulement. Les fichiers de production et data/
 historique ne sont jamais écrits. L'export LBA reste en mémoire.
 """
+from stage_stock_config import departements, espace_libre
 import argparse
 import csv
 from collections import Counter, defaultdict
@@ -32,6 +33,7 @@ def candidats(cache, deps):
                              ('sondage',sorted((cache/'sondage-api/entreprises-v2'/dep).glob('*.json'))),
                              ('stock',sorted((cache/'stock-api/temoin'/dep).glob('*.json')))]:
             for p in paths:
+                if phase=='inventaire' and (cache/'configuration-stock.json').exists(): continue
                 value=lire(p)
                 if phase in ('temoin','stock') and not value['rows']:
                     # Le contrôle SIRET individuel prime sur une réponse de lot.
@@ -133,14 +135,15 @@ def main():
     p.add_argument('--deps',nargs='+',required=True)
     p.add_argument('--write',action='store_true')
     args=p.parse_args();root=args.root.resolve()
-    if root==ROOT or not(root/'.git').exists() or set(args.deps)-{'77','93','94'}:
-        p.error('Une copie séparée du dépôt de données et le seul périmètre Créteil sont requis')
+    if root==ROOT or not(root/'.git').exists() or set(args.deps)!=set(departements(args.cache)):
+        p.error('Une copie séparée du dépôt de données et le périmètre exact du cache sont requis')
     branch=subprocess.check_output(['git','branch','--show-current'],cwd=root,text=True).strip()
     if branch in ('main','master','') or not (root/'.git').is_file():
         p.error('Écriture réservée à un worktree sur une branche de travail')
     done=args.cache/'ajouts-appliques.json'
     if done.exists():
         print('Ajouts déjà appliqués ; conserver le bilan initial.');return
+    espace_libre(root,100_000_000)
     if args.write:verifier_fin_pilote(args.cache,args.deps)
     catalog,groups,summary,new=preparer_ajouts(root,args.cache,args.deps)
     atomic_json(args.cache/'bilan-ajouts.json',summary)
@@ -232,9 +235,9 @@ def main():
     atomic_json(root/'lba/meta.json',meta)
     report=dict(departements=summary,base_donnees=baseline,ajoutes=len(new),
                 lba_nouveaux=len(new_lba),export_lba=lba['export_le'],
-                perimetre='Pilote Créteil uniquement',aucun_retrait=True,
+                perimetre='Départements explicitement autorisés : '+', '.join(args.deps),aucun_retrait=True,
                 collecte_initiale='2026-10-08',fichiers_sirene=touched)
-    atomic_json(root/'rattrapage-creteil.json',report)
+    atomic_json(root/('rattrapage-idf-complement.json' if (args.cache/'configuration-stock.json').exists() else 'rattrapage-creteil.json'),report)
     atomic_json(done,report)
     print(f'{len(new)} établissements ajoutés localement ; {len(new_lba)} enrichis LBA ; rien publié.')
 

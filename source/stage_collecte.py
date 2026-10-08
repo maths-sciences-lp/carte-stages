@@ -14,6 +14,7 @@ import math
 from pathlib import Path
 import subprocess
 import threading
+import shutil
 import time
 import urllib.parse
 import urllib.request
@@ -125,6 +126,8 @@ class Collector:
         self.audit_requests = self.cache/'requetes.jsonl'
 
     def get(self, params):
+        if shutil.disk_usage(self.cache if self.cache.exists() else self.cache.parent).free < 2_000_000_000:
+            raise RuntimeError('Arrêt disque : moins de 2 Go libres ; cache valide conservé')
         url = API + '?' + urllib.parse.urlencode(params)
         for attempt in range(8):
             with self.lock:
@@ -297,8 +300,10 @@ def main():
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
             results.extend(pool.map(collector.departement, dict.fromkeys(deps)))
     atomic_json(args.cache/'bilan-collecte.json', dict(source=API, departements=results,
-                requetes_cette_execution=collector.requests, codes=CODES, effectifs=EFFECTIFS))
-    print('COLLECTE TERMINÉE', flush=True)
+                requetes_cette_execution=collector.requests, codes=CODES, effectifs=EFFECTIFS,
+                completude_etablissements='non_certifiee_sans_comparaison_stock',
+                suite='source/STOCK-SIRENE.md'))
+    print('PHASE API TERMINÉE — contrôle des établissements par le stock encore requis (source/STOCK-SIRENE.md)', flush=True)
 
 
 if __name__ == '__main__':

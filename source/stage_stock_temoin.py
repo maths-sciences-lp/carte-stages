@@ -1,4 +1,4 @@
-"""Extrait Créteil du stock officiel par lectures HTTP partielles mesurées.
+"""Extrait départemental du stock officiel par lectures HTTP partielles mesurées.
 
 Ne sauvegarde jamais les stocks nationaux. Le relais local refuse tout GET sans
 Range et toute réponse autre que 206. Aucun nom de personne n'est sélectionné.
@@ -16,6 +16,9 @@ import threading
 import time
 import urllib.request
 
+from stage_stock_config import configuration, departements, extrait, espace_libre
+from stage_collecte import CODES, atomic_json, configurer_cache
+
 BASE = 'https://static.data.gouv.fr/resources/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/'
 URLS = {
     'etablissements': BASE+'20261001-073823/stock-stocketablissement-parquet.parquet',
@@ -28,8 +31,9 @@ def now():
 
 
 class PartialReader:
-    def __init__(self, cache, budget):
+    def __init__(self, cache, budget, urls=None):
         self.cache, self.budget = cache, budget
+        self.urls = urls or URLS
         self.lock = threading.Lock()
         self.bytes = self.reserved = self.requests = 0
         self.started = now()
@@ -49,9 +53,11 @@ class PartialReader:
 
             def forward(self, get):
                 key = self.path.strip('/').removesuffix('.parquet')
-                if key not in URLS:
+                if key not in parent.urls:
                     self.send_error(404); return
-                headers = {'User-Agent': 'CarteStages/1.0 (temoin Creteil)', 'Accept-Encoding': 'identity'}
+                if shutil.disk_usage(parent.cache).free < 2_000_000_000:
+                    self.send_error(507, 'Less than 2 GB free; safe stop'); return
+                headers = {'User-Agent': 'CarteStages/1.0 (temoin departemental)', 'Accept-Encoding': 'identity'}
                 size = 0
                 if get:
                     rg = self.headers.get('Range', '')
@@ -69,7 +75,7 @@ class PartialReader:
                 status = None
                 error = None
                 try:
-                    req = urllib.request.Request(URLS[key], headers=headers, method='GET' if get else 'HEAD')
+                    req = urllib.request.Request(parent.urls[key], headers=headers, method='GET' if get else 'HEAD')
                     with urllib.request.urlopen(req, timeout=90) as response:
                         status = response.status
                         if get and (status != 206 or int(response.headers.get('Content-Length', '-1')) != size):
@@ -105,15 +111,36 @@ def main():
     parser.add_argument('--cache', type=Path, required=True)
     parser.add_argument('--phase', choices=URLS, required=True)
     parser.add_argument('--budget-mo', type=int, default=1300)
+    parser.add_argument('--departements', nargs='+')
+    parser.add_argument('--date-stock')
+    parser.add_argument('--url-etablissements')
+    parser.add_argument('--url-unites')
     args = parser.parse_args()
     cache = args.cache.resolve()
     cache.mkdir(parents=True, exist_ok=True)
-    output = cache/('stock-'+args.phase+'-creteil.parquet')
+    if args.departements:
+        deps=sorted(set(args.departements))
+        if not all(re.fullmatch(r'(?:[0-9]{2,3}|2[AB])',d) for d in deps):
+            parser.error('Codes département invalides')
+        if not all((args.date_stock,args.url_etablissements,args.url_unites)):
+            parser.error('Date et deux URL du stock obligatoires pour un nouveau périmètre')
+        urls={'etablissements':args.url_etablissements,'unites':args.url_unites}
+        if not all(u.startswith(BASE) and u.endswith('.parquet') for u in urls.values()):
+            parser.error('Utiliser les stocks officiels HTTPS de data.gouv.fr')
+        configurer_cache(cache)
+        cfg=dict(departements=deps,date_stock=args.date_stock,urls=urls,suffixe='extrait',
+                 empreinte_naf=hashlib.sha256('\n'.join(CODES).encode()).hexdigest())
+        conf=cache/'configuration-stock.json'
+        if conf.exists() and json.loads(conf.read_text())!=cfg:
+            raise ValueError('Cache associé à un autre périmètre ou stock')
+        atomic_json(conf,cfg)
+    cfg=configuration(cache)
+    output = extrait(cache,args.phase)
     if output.exists():
         print('Extrait existant conservé :', output); return
     if shutil.disk_usage(cache).free < 2_000_000_000:
         raise RuntimeError('Moins de 2 Go libres : extraction reportée')
-    reader = PartialReader(cache,args.budget_mo*1_000_000)
+    reader = PartialReader(cache,args.budget_mo*1_000_000,cfg.get('urls'))
     server = ThreadingHTTPServer(('127.0.0.1',0),reader.handler())
     threading.Thread(target=server.serve_forever,daemon=True).start()
     conn = duckdb.connect()
@@ -125,7 +152,7 @@ def main():
     url = f'http://127.0.0.1:{server.server_port}/{args.phase}.parquet'
     temp = output.with_suffix('.part')
     started = time.monotonic()
-    report = dict(source=URLS[args.phase],stock='2026-10-01',departements=['77','93','94'],
+    report = dict(source=reader.urls[args.phase],stock=cfg['date_stock'],departements=departements(cache),
                   debut=reader.started,duckdb=duckdb.__version__)
     try:
         if args.phase == 'etablissements':
@@ -134,10 +161,10 @@ def main():
                 nomenclatureActivitePrincipaleEtablissement, trancheEffectifsEtablissement,
                 codeCommuneEtablissement, coordonneeLambertAbscisseEtablissement,
                 coordonneeLambertOrdonneeEtablissement
-                FROM read_parquet($src) WHERE substr(codeCommuneEtablissement,1,2) IN ('77','93','94')"""
-            conn.execute('COPY ('+query+") TO $dest (FORMAT PARQUET, COMPRESSION ZSTD)",{"src":url,"dest":str(temp)})
+                FROM read_parquet($src) WHERE CASE WHEN starts_with(codeCommuneEtablissement,'97') OR starts_with(codeCommuneEtablissement,'98') THEN substr(codeCommuneEtablissement,1,3) ELSE substr(codeCommuneEtablissement,1,2) END IN (SELECT unnest($deps))"""
+            conn.execute('COPY ('+query+") TO $dest (FORMAT PARQUET, COMPRESSION ZSTD)",{"src":url,"dest":str(temp),"deps":departements(cache)})
         else:
-            etab = cache/'stock-etablissements-creteil.parquet'
+            etab = extrait(cache,'etablissements')
             conn.execute('CREATE TEMP TABLE candidats AS SELECT DISTINCT siren FROM read_parquet(?)',[str(etab)])
             query = """SELECT siren, etatAdministratifUniteLegale, statutDiffusionUniteLegale,
                 categorieJuridiqueUniteLegale, activitePrincipaleUniteLegale,

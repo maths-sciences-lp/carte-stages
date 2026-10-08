@@ -1,4 +1,5 @@
 """Contrôle indépendant des ajouts locaux du pilote, sans appel à l'API."""
+from stage_stock_config import departements
 import argparse
 import hashlib
 import json
@@ -31,13 +32,13 @@ def verifier(root, cache):
     oldfiles = set(git(root, 'ls-tree', '-r', '--name-only', baseline).decode().splitlines())
     allowed = {'catalogue.json', 'catalogue-leger.json', 'catalogues/ile-de-france.json',
                'bilan.json', 'tailles-fichiers.csv', 'bilan-academies.csv', 'lba/meta.json',
-               'rattrapage-creteil.json'}
+               'rattrapage-creteil.json', 'rattrapage-idf-complement.json'}
     before_all, after_all, added = set(), set(), set()
     rows_added, preserved, added_lba = 0, 0, 0
     for name in changes:
         parts = name.split('/')
         if parts[0] in ('sirene', 'lba') and len(parts) == 3:
-            assert parts[1] in ('77','93','94'), name
+            assert parts[1] in departements(cache), name
             old = json.loads(git(root, 'show', baseline+':'+name)) if name in oldfiles else {}
             new = lire(root/name)
             if parts[0] == 'sirene':
@@ -51,12 +52,12 @@ def verifier(root, cache):
                 assert all(new.get(k) == v for k,v in old.items()), name+' : LBA ancienne modifiée'
                 added_lba += len(new.keys()-old.keys())
         elif parts[0] == 'manifestes':
-            assert parts[1] in ('77.json','93.json','94.json'), name
+            assert parts[1] in [d+'.json' for d in departements(cache)], name
         else:
             assert name in allowed, name+' : changement hors périmètre'
     assert not before_all-after_all
     hashes = 0
-    bydep={d:set() for d in ('77','93','94')}
+    bydep={d:set() for d in departements(cache)}
     for dep, d in catalog['departements'].items():
         assert lire(root/'manifestes'/(dep+'.json')) == d['secteurs']
         for k, item in d['secteurs'].items():
@@ -64,7 +65,7 @@ def verifier(root, cache):
             raw = path.read_bytes()
             assert len(raw) == item['bytes'], str(path)
             assert hashlib.sha256(raw).hexdigest() == item['sha256'], str(path)
-            if dep in ('77','93','94'):
+            if dep in departements(cache):
                 values=json.loads(raw)
                 assert len(values) == item['n']
                 bydep[dep].update(r[7] for r in values)

@@ -3,6 +3,7 @@
 Le stock au 1/10 est un témoin indépendant daté, pas une preuve de l'état au
 8/10. Les candidats sont toujours revérifiés par SIRET avant tout ajout.
 """
+from stage_stock_config import configuration, departements, extrait, espace_libre
 import argparse
 from collections import Counter
 import hashlib
@@ -37,9 +38,14 @@ def main():
     p.add_argument('--cache', type=Path, required=True)
     p.add_argument('--donnees', type=Path, required=True)
     a = p.parse_args()
+    cache=a.cache
+    if (cache/'ajouts-appliques.json').exists():
+        print('Comparaison initiale conservée après application des ajouts'); return
+    espace_libre(cache)
     c = duckdb.connect()
+    c.execute("SET memory_limit='384MB'")
     for phase, table in [('etablissements','e'),('unites','u')]:
-        f = a.cache/('stock-'+phase+'-creteil.parquet')
+        f = extrait(cache,phase)
         provenance = lire(a.cache/('stock-'+phase+'-provenance.json'))
         if hashlib.sha256(f.read_bytes()).hexdigest() != provenance['sha256']:
             raise ValueError('Empreinte invalide : '+phase)
@@ -49,17 +55,17 @@ def main():
     # L'API filtre l'activité ET l'effectif de l'unité légale. Ne pas filtrer
     # uniquement le NAF établissement : cela perdrait des sites admissibles.
     creer_diagnostic(c)
-    stats = c.execute("SELECT substr(codeCommuneEtablissement,1,2),motif,count(*) FROM diagnostic GROUP BY ALL ORDER BY ALL").fetchall()
-    report = {'stock':'2026-10-01','perimetre':['77','93','94'], 'departements':{},
+    stats = c.execute("SELECT CASE WHEN starts_with(codeCommuneEtablissement,'97') OR starts_with(codeCommuneEtablissement,'98') THEN substr(codeCommuneEtablissement,1,3) ELSE substr(codeCommuneEtablissement,1,2) END,motif,count(*) FROM diagnostic GROUP BY ALL ORDER BY ALL").fetchall()
+    report = {'stock':configuration(cache)['date_stock'],'perimetre':departements(cache), 'departements':{},
               'limite':'État du stock au 1/10, différent de la collecte du 8/10 ; candidats vérifiés individuellement avant ajout.'}
     existing = {}; current = {}
-    for dep in ('77','93','94'):
+    for dep in departements(cache):
         existing[dep] = {r[7] for f in (a.donnees/'sirene'/dep).glob('*.json') for r in lire(f)}
         current[dep] = {r['s']:r for r in lire(a.cache/'departements'/(dep+'.json'))['rows']}
         for f in sorted((a.cache/'temoin'/dep).glob('*.json')):
             current[dep].update({r['s']:r for r in lire(f)['rows']})
         report['departements'][dep] = {'repartition_stock':{reason:n for d,reason,n in stats if d==dep}}
-    rows = c.execute("""SELECT siret,siren,substr(codeCommuneEtablissement,1,2),
+    rows = c.execute("""SELECT siret,siren,CASE WHEN starts_with(codeCommuneEtablissement,'97') OR starts_with(codeCommuneEtablissement,'98') THEN substr(codeCommuneEtablissement,1,3) ELSE substr(codeCommuneEtablissement,1,2) END,
         coordonneeLambertAbscisseEtablissement,coordonneeLambertOrdonneeEtablissement,
         nomenclatureActivitePrincipaleEtablissement,nomenclatureActivitePrincipaleUniteLegale
         FROM diagnostic WHERE motif='candidat' ORDER BY siret""").fetchall()
@@ -78,7 +84,7 @@ def main():
             lon=lat=None; bydep[dep]['sans_coordonnees_stock']+=1
         if s in existing[dep]: bydep[dep]['deja_presents'] += 1
         else:
-            todo.append({'dep':dep,'siret':s,'source':'stock_2026-10-01'})
+            todo.append({'dep':dep,'siret':s,'source':'stock_'+configuration(cache)['date_stock']})
             bydep[dep]['absents_donnees'] += 1
         if len([v for v in positions if v['dep']==dep])<10 and s in current[dep] and lat is not None:
             api=current[dep][s]
@@ -95,7 +101,7 @@ def main():
     c.execute('CREATE TABLE sondage(dep VARCHAR,siren VARCHAR)')
     c.executemany('INSERT INTO sondage VALUES (?,?)',sorted({(x['departement'],x['siren']) for x in sample['echantillon']}))
     sample_rows=c.execute("""SELECT d.siret,d.siren,s.dep,d.motif FROM diagnostic d JOIN sondage s
-       ON d.siren=s.siren AND substr(d.codeCommuneEtablissement,1,2)=s.dep ORDER BY d.siret""").fetchall()
+       ON d.siren=s.siren AND CASE WHEN starts_with(d.codeCommuneEtablissement,'97') OR starts_with(d.codeCommuneEtablissement,'98') THEN substr(d.codeCommuneEtablissement,1,3) ELSE substr(d.codeCommuneEtablissement,1,2) END=s.dep ORDER BY d.siret""").fetchall()
     atomic_json(a.cache/'stock-sondage-sites.json',[dict(siret=s,siren=sir,dep=d,motif=m) for s,sir,d,m in sample_rows])
     atomic_json(a.cache/'stock-candidats-attendus.json',expected)
     atomic_json(a.cache/'stock-controles-attendus.json',todo)

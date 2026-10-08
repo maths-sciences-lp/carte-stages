@@ -35,4 +35,32 @@ class StockTest(unittest.TestCase):
         c.close()
 
 
+class SelectionTest(unittest.TestCase):
+    def test_comparaison_siret_par_departement_sans_compensation(self):
+        from stage_stock_preparer import selectionner
+        candidates={('75','A'):{'A1','A2'},('92','A'):{'A3'},('75','B'):{'B1','B2'}}
+        published={'75':{'A1','B1','B2'},'92':{'A2','A3'}}
+        pop,sample=selectionner(candidates,published,{'A','B'},2,20261009)
+        self.assertEqual({(x['departement'],x['siren']) for x in pop},{('92','A'),('75','B')})
+        self.assertEqual(sample,selectionner(candidates,published,{'A','B'},2,20261009)[1])
+
+    def test_seuil_disque(self):
+        from unittest.mock import patch
+        from types import SimpleNamespace
+        from stage_stock_config import espace_libre
+        with patch('stage_stock_config.shutil.disk_usage',return_value=SimpleNamespace(free=1_999_999_999)):
+            with self.assertRaises(RuntimeError):espace_libre('.')
+
+    def test_descriptions_historiques_ne_deviennent_pas_des_ajouts(self):
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+        from stage_collecte import atomic_json
+        from stage_ajouts import candidats
+        with TemporaryDirectory() as tmp:
+            cache=Path(tmp)
+            atomic_json(cache/'configuration-stock.json',{})
+            atomic_json(cache/'departements/75.json',dict(rows=[{'s':'ancien'}]))
+            self.assertEqual(candidats(cache,['75'])[0],{'75':{}})
+
+
 if __name__=='__main__':unittest.main()

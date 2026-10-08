@@ -1,4 +1,5 @@
 """Preuves du pilote : un statut par écart SIRET et limites explicites."""
+from stage_stock_config import configuration, departements, extrait, espace_libre
 import argparse
 from collections import Counter
 import csv
@@ -23,7 +24,7 @@ def main():
     rows={r['s']:r for x in checked.values() for r in x['rows']}
     grouped,_=preparer(rows.values())
     valid={r[7] for group in grouped.values() for r in group}
-    statuses=[];counts={d:Counter() for d in ('77','93','94')}
+    statuses=[];counts={d:Counter() for d in departements(cache)}
     for x in expected:
         s,dep=x['siret'],x['dep'];v=checked[s]
         if s in valid:
@@ -39,7 +40,7 @@ def main():
         w=csv.DictWriter(f,fieldnames=list(statuses[0]),lineterminator='\n');w.writeheader();w.writerows(statuses)
     saturated=[];remaining=[]
     initial=lire(cache/'cibles.json')
-    for dep in ('77','93','94'):
+    for dep in departements(cache):
         for siren,c in lire(cache/'departements'/(dep+'.json'))['entreprises'].items():
             if c['liste_saturee']:saturated.append(dict(dep=dep,siren=siren,nom=c.get('nom')))
         for siren in initial[dep]['cibles_siren']:
@@ -48,7 +49,7 @@ def main():
             else:
                 for item in lire(f)['incertains']:remaining.append(dict(dep=dep,siren=siren,**item))
     coord=lire(cache/'stock-comparaison.json')
-    summary=dict(stock='2026-10-01',ecarts=len(expected),statuts=len(statuses),
+    summary=dict(stock=configuration(cache)['date_stock'],ecarts=len(expected),statuts=len(statuses),
                  sans_statut=0,par_departement={d:dict(v) for d,v in counts.items()},
                  siret_admissibles_et_classes=sorted(valid),
                  listes_initiales_saturees=len(saturated),couples_geographiques_non_certifies=len(remaining),
