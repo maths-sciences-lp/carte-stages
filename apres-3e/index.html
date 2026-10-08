@@ -155,7 +155,7 @@ const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinate
 $('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
-if(!window.APRES3E_NATIONAL)fetch('apres3e.json?v=2026-10-08').then(r=>r.json()).then(d=>{D=d;drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
+if(!window.APRES3E_NATIONAL)fetch('apres3e.json?v=2026-10-08').then(r=>r.json()).then(d=>{D=d;for(const f of D.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');drawDoms();const k=location.hash.slice(1);if(k&&(k==='tout'||D.domaines.some(x=>x.k===k))){dom=k;drawDoms();show(false);}});
 </script>
 <script src="../commun/accessibilite.js"></script>
 </body></html>

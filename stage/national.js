@@ -95,7 +95,7 @@ await initAcademie({mount,contenu,baseOutil:new URL('stage/',document.baseURI),o
  loadedSignature='';loadingSignature='';failedSignature='';retry.hidden=true;P=[];sel=null;booted=false;on.clear();cl.clearLayers();ring.remove();
  for(const key of ['maison','lycee']){pts[key]=null;if(mks[key]){mks[key].remove();delete mks[key];}}
  Object.keys(LBAC).forEach(k=>delete LBAC[k]);LBA=null;$('lba-source').hidden=true;
- LY=lists.flat();LY.forEach(l=>l.key=norm(l.n+' '+l.c+' '+l.p));
+ LY=lists.flat();LY.forEach(l=>{l.n=l.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');l.key=norm(l.n+' '+l.c+' '+l.p);});
  $('adr').value='';$('lyc').value='';$('f').value='';$('chosen').hidden=true;$('pick').hidden=false;
  ['amsg','lmsg'].forEach(k=>$(k).textContent='');['fsug','asug','lsug'].forEach(k=>$(k).hidden=true);
  from='maison';shown=40;dist=5;document.querySelectorAll('#dists .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.d==='5'));

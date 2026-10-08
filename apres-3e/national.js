@@ -69,6 +69,7 @@ await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSel
  const r=await fetch(new URL('data/'+ac.slug+'.json?v=2026-10-07',document.baseURI),{signal});
  if(!r.ok)throw new Error('Données indisponibles');
  const data=await r.json();if(signal.aborted)return;
+ for(const f of data.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff'); // nom officiel accentué
  ++addressRequest;clearTimeout(addressTimer);active=ac;D=data;dep=null;q='';offT.clear();offD.clear();intern=false;open.clear();
  for(const id of ['adr','col','q'])$(id).value='';
  $('csug').hidden=true;$('asug').hidden=true;
