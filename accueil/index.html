@@ -19,14 +19,15 @@ h2{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10px
 .cl b{font-size:19px}.cl span{font-size:14px;color:var(--mute);line-height:1.3}
 .autre{display:inline-block;margin-top:26px;color:var(--acc)}
 .credit{margin-top:22px;font-size:13px;color:var(--mute)}
-.choix{display:grid;gap:12px;margin-top:14px}
+.choix{display:grid;gap:12px;margin-top:14px}.choix[hidden]{display:none}
 .c{display:flex;gap:14px;align-items:center;padding:18px;background:var(--card);border:2px solid var(--line);border-radius:18px;color:var(--ink);text-decoration:none}
 .c:hover,.c:focus-visible{border-color:var(--acc);outline:none}
 .c .e{font-size:38px;line-height:1;flex:none}
 .c b{display:block;font-family:'Bricolage Grotesque',system-ui;font-size:21px;margin-bottom:2px}
 .c span.t{font-size:15px;color:var(--mute);line-height:1.35}
 .c .go{margin-left:auto;font-size:22px;color:var(--acc);flex:none}
-.stage-france{display:block;margin:6px 0 0;padding:10px 18px;color:var(--acc);font-size:16px;text-underline-offset:3px}
+.lieu{margin:10px 0 0;font-size:16px;color:var(--ink)}.lieu button{font:inherit;color:var(--acc);background:none;border:0;padding:6px 2px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.henaff{margin:16px 0 0;font-size:16px}
 .bas{margin-top:22px;font-size:15px}
 </style>
 <script>if(!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}</script>
@@ -36,27 +37,27 @@ h2{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10px
 <header><a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a></header>
 <main id="contenu-principal" tabindex="-1">
 <h1>Stages et orientation</h1>
-<p class="lead"><b>Que cherches-tu ?</b> Appuie sur ton choix.</p>
+<p class="lead">Partout en France, gratuit et sans compte. <b>Que cherches-tu ?</b> Appuie sur ton choix.</p>
+<div id="lieu" class="lieu"><span>📍 Île-de-France</span> · <button type="button" id="changer-lieu">changer</button></div>
+<div id="choix-lieu"></div>
 <div class="choix">
 <div>
-<a class="c" href="../"><span class="e" aria-hidden="true">🎯</span><span><b>Trouve ton stage</b><span class="t">Je suis au lycée pro : les entreprises de mon métier, près de chez moi ou du lycée.</span></span><span class="go" aria-hidden="true">→</span></a>
-<a class="stage-france" href="../stage/france/">Tu habites ailleurs en France ? Indique ta ville</a>
+<a class="c" data-outil="stage" href="../"><span class="e" aria-hidden="true">🎯</span><span><b>Trouve ton stage</b><span class="t">Je suis au lycée pro : les entreprises de mon métier, près de chez moi ou du lycée.</span></span><span class="go" aria-hidden="true">→</span></a>
 </div>
 <div>
-<a class="c" href="../apres-3e/"><span class="e" aria-hidden="true">🧭</span><span><b>Après le collège</b><span class="t"><strong style="color:var(--ink)">Trouve ta formation.</strong> Je suis en 3e : CAP, seconde pro ou bac pro selon ce qui me plaît (Île-de-France).</span></span><span class="go" aria-hidden="true">→</span></a>
-<a class="stage-france" href="../apres-3e/france/">Tu habites ailleurs en France ? Indique ta ville</a>
+<a class="c" data-outil="apres-3e" href="../apres-3e/"><span class="e" aria-hidden="true">🧭</span><span><b>Après le collège</b><span class="t"><strong style="color:var(--ink)">Trouve ta formation.</strong> Je suis en 3e : CAP, seconde pro ou bac pro selon ce qui me plaît.</span></span><span class="go" aria-hidden="true">→</span></a>
 </div>
 <div>
-<a class="c" href="../formation/"><span class="e" aria-hidden="true">🎓</span><span><b>Après le lycée</b><span class="t"><strong style="color:var(--ink)">Trouve ta formation.</strong> Je finis mon CAP, mon bac pro ou mon BMA : BTS, bac pro, DN MADE… près de chez moi (Île-de-France).</span></span><span class="go" aria-hidden="true">→</span></a>
-<a class="stage-france" href="../formation/france/">Tu habites ailleurs en France ? Indique ta ville</a>
+<a class="c" data-outil="formation" href="../formation/"><span class="e" aria-hidden="true">🎓</span><span><b>Après le lycée</b><span class="t"><strong style="color:var(--ink)">Trouve ta formation.</strong> Je finis mon CAP, mon bac pro ou mon BMA : BTS, bac pro, DN MADE… près de chez moi.</span></span><span class="go" aria-hidden="true">→</span></a>
 </div>
 <div>
-<a class="c" href="../aide/"><span class="e" aria-hidden="true">🤝</span><span><b>Qui peut m’aider ?</b><span class="t">Orientation, apprentissage, emploi, un endroit pour travailler ou besoin de parler : les lieux gratuits près de chez moi (Île-de-France).</span></span><span class="go" aria-hidden="true">→</span></a>
-<a class="stage-france" href="../aide/france/">Tu habites ailleurs en France ? Indique ta ville</a>
+<a class="c" data-outil="aide" href="../aide/"><span class="e" aria-hidden="true">🤝</span><span><b>Qui peut m’aider ?</b><span class="t">Orientation, apprentissage, emploi, un endroit pour travailler ou besoin de parler : les lieux gratuits près de chez moi.</span></span><span class="go" aria-hidden="true">→</span></a>
 </div>
 </div>
-<footer><p class="bas">🏫 Élève du lycée Eugène Hénaff ? <a href="../henaff/">Ta classe en un clic</a> · <a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="../accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a></p>
+<p class="henaff">🏫 Élève du lycée Eugène Hénaff ? <a href="../henaff/">Ta classe en un clic</a></p>
+<footer><p class="bas"><a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="../accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a></p>
 <p class="credit">Gratuit, sans compte, sans publicité · données publiques (Insee, Onisep, Éducation nationale, Service-public.fr)<br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
 </footer>
 </main><script src="../commun/accessibilite.js"></script>
+<script type="module" src="accueil.js"></script>
 </body></html>
