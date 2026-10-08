@@ -188,5 +188,8 @@ MOTS_CLES = {
 FILTRES = {
  # ajout France : 32.99Z couvre aussi de nombreux objets sans rapport avec la mode.
  "Fleurs artificielles, parures de mode": r"FLEUR|FLORAL|PLUMASS|PARUR",
+ # 96.04Z (entretien corporel) contient aussi les bains-douches municipaux : ni les
+ # bains-douches ni les communes ne relèvent de l'esthétique (octobre 2026, audit Codex).
+ "Esthétique, soins de beauté": r"^(?!.*BAINS?[ -]DOUCHES)(?!(?:VILLE|COMMUNE) D)",
  "Laboratoires d'analyses et d'essais": r"LABO|ANALY|ESSAI|MESUR|METROLOG|EUROFINS|\bSGS\b|VERITAS|INTERTEK|EMITECH|CHIMI|MICROBIO|BACTERIO|HYGIENE ALIMENT|POLLUANT|TOXICO|WESSLING|\bALS\b|CONTROLE QUALITE|\bLNE\b",
 }
