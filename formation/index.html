@@ -135,13 +135,15 @@ $('q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();con
 function origine(){if(dep)return dep;const l=cur&&cur.ly&&D.lycees[cur.ly];return l?{lat:l.lat,lon:l.lon,n:l.n}:null;}
 function lignes(){const o=origine(),L=[];D.dip[cur.d].s.forEach((k,i)=>{if(off.has(i))return;const f=D.suites[k];for(const e of f.e)L.push({f,e,d:o?km(o.lat,o.lon,e.lat,e.lon):null});});return o?L.sort((a,b)=>a.d-b.d):L.sort((a,b)=>a.e.v.localeCompare(b.e.v,'fr'));}
 const nb=n=>n.toLocaleString('fr-FR');
+// InserJeunes : un chiffre, ou deux quand le diplôme a deux versions publiées dans ce lycée.
+const ijTexte=x=>(x.p!=null?x.p+' % continuent leurs études':'')+(x.p!=null&&x.e!=null?' · ':'')+(x.e!=null?'parmi ceux qui arrêtent, '+x.e+' % ont un emploi 6 mois après':'');
 function psup(f,e){const x=PS&&PS.f[f.o.split('.').pop()+'|'+(e.o||'').split('.').pop()];if(!x)return'';
  return `<div class="m">🎯 Parcoursup ${PS.session}${x.co?' (1re année, commune aux options)':''} : <b>${nb(x.pl)} place${x.pl>1?'s':''} · ${nb(x.c)} candidat${x.c>1?'s':''} · ${x.bp} admis sur ${x.a} venaient d’un bac pro</b>${x.g?` <a href="https://dossierappel.parcoursup.fr/Candidats/public/fiches/afficherFicheFormation?g_ta_cod=${x.g}&typeBac=0&originePc=0" target="_blank" rel="noopener" data-s="parcoursup" style="font-size:13px">(fiche Parcoursup)</a>`:''}</div>`;}
 function draw(){if(!cur)return;const o=origine(),L=lignes();
  $('count').textContent=L.length+' résultat'+(L.length>1?'s':'');
  $('list').innerHTML=(o?'':'<p class="msg">👉 Choisis ton lycée (étape 1) ou pars de chez toi (étape 2) pour voir les plus proches en premier.</p>')+(L.length?L.map(({f,e,d})=>{const prive=/priv/.test(e.st);const go=`https://www.google.com/maps/dir/?api=1${o?`&origin=${o.lat},${o.lon}`:''}&destination=${encodeURIComponent(e.n+', '+e.a+', '+e.cp+' '+e.v)}&travelmode=transit`;
   const fiche=e.af||e.o;return `<div class="it"><div class="f">${esc(f.n)}</div><h3>${esc(e.n)}<span class="tag ${prive?'prive':''}">${esc(statut(e.st))}</span></h3>
-  <div class="d">📍 ${d==null?esc(e.v):d<0.05?(dep?'Juste à côté':'Ton lycée'):fmt(d)+' km'}</div><div class="m">${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}${e.ij?`<div class="m">📊 Après cette formation, dans ce lycée : <b>${e.ij.p!=null?e.ij.p+' % continuent leurs études':''}${e.ij.p!=null&&e.ij.e!=null?' · ':''}${e.ij.e!=null?'parmi ceux qui arrêtent, '+e.ij.e+' % ont un emploi 6 mois après':''}</b> <span style="font-size:13px">(InserJeunes, sortants 2023-2024)</span></div>`:''}${psup(f,e)}
+  <div class="d">📍 ${d==null?esc(e.v):d<0.05?(dep?'Juste à côté':'Ton lycée'):fmt(d)+' km'}</div><div class="m">${esc(e.a)}, ${esc(e.cp)} ${esc(e.v)}${e.h&&/avec/.test(e.h)?' · internat possible':''}</div>${e.c?`<div class="m">💶 Frais de scolarité : ${esc(e.c)}</div>`:''}${e.ij?`<div class="m">📊 Après cette formation, dans ce lycée : ${e.ij.v?e.ij.v.map(x=>`<br>· ${x.r==='récente'?'version récente du diplôme':'version précédente'} : <b>${ijTexte(x)}</b>`).join(''):`<b>${ijTexte(e.ij)}</b>`} <span style="font-size:13px">(InserJeunes, sortants 2023-2024)</span></div>`:''}${psup(f,e)}
   <div class="row"><a class="btn" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a><a class="btn light" href="${esc(fiche)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche Onisep</a>${e.w?`<a class="btn light" href="${esc(/^http/.test(e.w)?e.w:'https://'+e.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}</div></div>`;}).join(''):(D.dip[cur.d].s.length?'<p class="msg">Coche au moins une formation.</p>':''));
  $('list').querySelectorAll('a[data-s]').forEach(a=>a.addEventListener('click',()=>stat('clic/'+a.dataset.s,'Clic : '+a.dataset.s)));
  if(map) drawMap(L);}
@@ -165,7 +167,7 @@ $('geo').onclick=()=>{if(!navigator.geolocation){$('amsg').textContent='Ton tél
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setMaison(p.coords.latitude,p.coords.longitude,'Ta position');},()=>$('amsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
 function lireHash(){const h=location.hash.slice(1);if(!h)return;if(h.startsWith('d=')){const p=new URLSearchParams(h);if(!cur||cur.d!==p.get('d')||cur.ly!==p.get('ly'))choisirDip(p.get('d'),p.get('ly'),false);}else if(!cur||cur.k!==h)choisirClasse(h,false);}
 // Île-de-France : fichier réuni par source/formation_national.py à partir des trois fichiers d'académie.
-const charger=n=>fetch('data/'+n+'.json?v=2026-10-08').then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();});
+const charger=n=>fetch('data/'+n+'.json?v=2026-10-08b').then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();});
 if(!window.FORMATION_NATIONAL)charger('ile-de-france').then(d=>{D=d;IDX=Object.entries(D.dip).map(([id,x])=>({id,lib:x.lib,n:x.ly.length,t:norm(x.lib+' '+x.al)}));drawClasses();lireHash();});
 if(!window.FORMATION_NATIONAL)charger('ile-de-france-parcoursup').then(d=>{PS=d;draw();}).catch(()=>{});
 window.addEventListener('hashchange',()=>{if(D)lireHash();});

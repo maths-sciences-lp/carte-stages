@@ -22,6 +22,7 @@ La mise à jour annuelle passe donc seulement par les modes nationaux (`apres3e.
 Corrections faites à cette occasion, pour toutes les académies :
 - durée : celle de chaque lycée (`du` par offre quand elle diffère de la durée la plus fréquente de la formation, `duv` quand elle varie) ; avant, la première ligne Onisep était recopiée ;
 - InserJeunes : le 3e chiffre du code MEFSTAT11 (2311 : CAP en 1 an, 2322 : CAP en 2 ans) départage les chiffres quand le lycée ne propose qu'une durée ; sinon aucun chiffre, comme avant ;
+- InserJeunes, Après le lycée : quand deux lignes au même intitulé exact existent pour un lycée et qu'un seul code est absent du cumul précédent (2022-2023), les deux chiffres sont affichés, « version récente du diplôme » puis « version précédente » (ex. BTS MS option B, lycée Raspail). Fichiers existants complétés sans régénération par `python3 source/apres_lycee.py --completer-inserjeunes --sources … --cache …` ; liste dans `formation/data/bilan.json` (`inserjeunes_deux_versions`) ;
 - collèges : un collège et son annexe qui partagent le même UAI restent deux choix (ex. Collège La Salle - Saint-Rosaire, Sarcelles) ; suggestions triées par nom puis commune ;
 - sites internet des lieux d'aide : adresses sans protocole (`www.ville.fr`), `Https://`, `htpps://`, `http//` remises en forme ; textes qui ne sont pas des adresses (« non », « site de la mairie », courriels) écartés ;
 - maisons des adolescents d'Île-de-France : noms, adresses, communes, téléphones, horaires et public relus de `mda_idf.json` repris dans le mode national ;

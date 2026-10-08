@@ -20,6 +20,22 @@ from formation_collecte import fiches
 ROOT=Path(__file__).resolve().parents[1]
 IJ_URL='https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-inserjeunes-lycee_pro-formation-fine/exports/json?'+urllib.parse.urlencode(dict(
     where='annee="cumul 2023-2024"',select='annee,uai,type_diplome,libelle_formation,code_formation_mefstat11,taux_poursuite_etudes,taux_emploi_6_mois'))
+# Codes déjà publiés dans le cumul précédent : un code absent de cette liste est la
+# version récente du diplôme (ex. BTS MS option B, 32221025015 apparu en 2023-2024).
+IJ_PREC_URL='https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-inserjeunes-lycee_pro-formation-fine/exports/json?'+urllib.parse.urlencode(dict(
+    where='annee="cumul 2022-2023"',select='code_formation_mefstat11',group_by='code_formation_mefstat11'))
+
+
+def deux_versions(candidates,anciens):
+    """Deux lignes InserJeunes au même intitulé exact, dans le même lycée, dont une seule
+    a un code nouveau : les deux chiffres sont publiés, version récente d'abord.
+    Sinon None (aucun chiffre, pas de choix au hasard ni de moyenne)."""
+    exact={r['code_formation_mefstat11']:r for s,r in candidates if s==1}
+    if len(exact)!=2 or len(candidates)!=2:return None
+    recents=[c for c in exact if c not in anciens]
+    if len(recents)!=1:return None
+    ordre=[recents[0]]+[c for c in exact if c!=recents[0]]
+    return [dict(p=exact[c]['taux_poursuite_etudes'],e=exact[c]['taux_emploi_6_mois'],r=r) for c,r in zip(ordre,('récente','précédente'))]
 
 
 def json_export(url, path):
@@ -47,6 +63,54 @@ def valid(row):
         return math.isfinite(lat) and math.isfinite(lon) and -90<=lat<=90 and -180<=lon<=180 and (lat,lon)!=(0,0)
     except (TypeError,ValueError):
         return False
+
+
+def candidats(IJ,split,uai,libelle):
+    """Lignes InserJeunes compatibles avec une formation d'un lycée (intitulé exact prioritaire)."""
+    t,n=split(libelle);candidates=[]
+    for tt,nn,r in IJ.get(uai,[]):
+        if tt!=t:continue
+        score=difflib.SequenceMatcher(None,nn,n).ratio()
+        if score<.95:continue
+        if nn!=n and ('option' in nn or 'option' in n):
+            oa=re.sub(r'^ [a-e] ',' ',nn.split('option',1)[1]) if 'option' in nn else ''
+            ob=re.sub(r'^ [a-e] ',' ',n.split('option',1)[1]) if 'option' in n else ''
+            if difflib.SequenceMatcher(None,oa,ob).ratio()<.95:continue
+        candidates.append((score,r))
+    if any(s==1 for s,_ in candidates):candidates=[(s,r) for s,r in candidates if s==1]
+    return candidates
+
+
+def completer_inserjeunes(src,cache):
+    """Ajoute les deux chiffres (deux_versions) aux fichiers déjà publiés, sans tout régénérer :
+    mêmes sources (CSV Onisep, ij.json) et même règle que la fabrication."""
+    src,cache=Path(src).resolve(),Path(cache).resolve()
+    rows=load(src/'605340ddc19a9.csv',regions=())+load(src/'sup2.csv',regions=())
+    lien={(r['ENS URL et ID Onisep'],r['FOR URL et ID Onisep']):(r['ENS code UAI'],r['Formation (FOR) libellé']) for r in rows if r['ENS code UAI']}
+    json_export(IJ_URL,cache/'ij.json')
+    anciens={r['code_formation_mefstat11'] for r in json_export(IJ_PREC_URL,cache/'ij-codes-2022-2023.json')}
+    here=os.getcwd();os.chdir(cache)
+    from inserjeunes import IJ,split
+    os.chdir(here)
+    outdir=ROOT/'formation/data';resolus=set();total=0
+    for path in sorted(outdir.glob('*.json')):
+        if path.name.startswith(('bilan','ile-de-france')) or path.name.endswith('-parcoursup.json'):continue
+        data=json.loads(path.read_text());n=0
+        for f in data['suites'].values():
+            for e in f['e']:
+                if e.get('ij') or (e['o'],f['o']) not in lien:continue
+                uai,libelle=lien[(e['o'],f['o'])]
+                v=deux_versions(candidats(IJ,split,uai,libelle),anciens)
+                if v:e['ij']=dict(v=v);n+=1;resolus.add((uai,libelle))
+        if n:path.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':')))
+        total+=n;print(path.stem,n)
+    bilan=outdir/'bilan.json';b=json.loads(bilan.read_text())
+    b['inserjeunes_ambigus']=[x for x in b['inserjeunes_ambigus'] if (x['uai'],x['formation']) not in resolus]
+    b['inserjeunes_deux_versions']=[dict(uai=u,formation=l) for u,l in sorted(resolus)]
+    b['inserjeunes_prec_url']=IJ_PREC_URL
+    bilan.write_text(json.dumps(b,ensure_ascii=False,indent=2)+'\n')
+    reunir_idf(outdir)
+    print('lieux avec deux chiffres :',total,'· couples lycée/formation :',len(resolus))
 
 
 IDF=('creteil','paris','versailles')
@@ -77,10 +141,13 @@ def reunir_idf(outdir=None):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--academies',nargs='+',required=True,help='Slugs du catalogue commun ou toutes')
+    p.add_argument('--academies',nargs='+',help='Slugs du catalogue commun ou toutes')
+    p.add_argument('--completer-inserjeunes',action='store_true',help='Ajoute seulement les chiffres « deux versions » aux fichiers existants')
     p.add_argument('--sources',type=Path,default=Path.cwd(),help='605340ddc19a9.csv, sup2.csv et fiches historiques')
     p.add_argument('--cache',type=Path,default=Path.home()/'.cache/carte-stages-formation')
     args=p.parse_args();src=args.sources.resolve();cache=args.cache.resolve();cache.mkdir(parents=True,exist_ok=True)
+    if args.completer_inserjeunes:return completer_inserjeunes(src,cache)
+    if not args.academies:p.error('--academies est obligatoire')
     catalog=json.loads((ROOT/'commun/academies.json').read_text())
     selected={a['slug'] for a in catalog} if args.academies==['toutes'] else set(args.academies)
     if selected-{a['slug'] for a in catalog}:p.error('Académie inconnue')
@@ -90,24 +157,18 @@ def main():
     ids={r['FOR URL et ID Onisep'].rsplit('.',1)[-1] for r in lycee if r['ENS académie'] in names and r['FOR type'] in TYPES}
     journal=fiches(ids,src,cache)
     json_export(IJ_URL,cache/'ij.json')
+    anciens={r['code_formation_mefstat11'] for r in json_export(IJ_PREC_URL,cache/'ij-codes-2022-2023.json')}
     os.chdir(cache)
     from inserjeunes import IJ,split
     uncertain=set()
 
     def cherche(uai,libelle):
-        t,n=split(libelle);candidates=[]
-        for tt,nn,r in IJ.get(uai,[]):
-            if tt!=t:continue
-            score=difflib.SequenceMatcher(None,nn,n).ratio()
-            if score<.95:continue
-            if nn!=n and ('option' in nn or 'option' in n):
-                oa=re.sub(r'^ [a-e] ',' ',nn.split('option',1)[1]) if 'option' in nn else ''
-                ob=re.sub(r'^ [a-e] ',' ',n.split('option',1)[1]) if 'option' in n else ''
-                if difflib.SequenceMatcher(None,oa,ob).ratio()<.95:continue
-            candidates.append((score,r))
-        if any(s==1 for s,_ in candidates):candidates=[(s,r) for s,r in candidates if s==1]
+        candidates=candidats(IJ,split,uai,libelle)
         values={(r['code_formation_mefstat11'],r['taux_poursuite_etudes'],r['taux_emploi_6_mois']) for _,r in candidates}
-        if len(values)>1:uncertain.add((uai,libelle))
+        if len(values)>1:
+            v=deux_versions(candidates,anciens)
+            if v:return dict(v=v)
+            uncertain.add((uai,libelle))
         if len(values)!=1:return None
         _,p,e=next(iter(values));return dict(p=p,e=e)
 
@@ -154,7 +215,7 @@ def main():
     page=ROOT/'formation/france/index.html';page.parent.mkdir(parents=True,exist_ok=True);page.write_text(route('France'))
     report=dict(date=datetime.date.today().isoformat(),academies=summary,fiches=journal,
                 sources=[dict(nom=q.name,sha256=hashlib.sha256(q.read_bytes()).hexdigest(),date=datetime.datetime.fromtimestamp(q.stat().st_mtime).isoformat(timespec='seconds')) for q in [src/'605340ddc19a9.csv',src/'sup2.csv',cache/'ij.json']],
-                inserjeunes_url=IJ_URL,inserjeunes_ambigus=[dict(uai=u,formation=l) for u,l in sorted(uncertain)],
+                inserjeunes_url=IJ_URL,inserjeunes_prec_url=IJ_PREC_URL,inserjeunes_ambigus=[dict(uai=u,formation=l) for u,l in sorted(uncertain)],
                 sans_uai=sorted(no_uai),urls_omises=sorted(urls),exclusions=excluded)
     (outdir/'bilan.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     reunir_idf(outdir)
