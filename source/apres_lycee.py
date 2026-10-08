@@ -58,6 +58,15 @@ def exemples(forid, fiches_dir='fiches'):
             for t in re.findall(r'<a [^>]*>(.*?)</a>', s[i:j], flags=re.S)]
 
 
+def lieu(x, lat, lon, cherche):
+    """Un lieu de poursuite d'études (même forme dans les pages d'académie et « toute la France »)."""
+    return dict(n=x["Lieu d'enseignement (ENS) libellé"], st=x['ENS statut'], a=x['ENS adresse'],
+                cp=x['ENS code postal'], v=x['ENS commune'], lat=round(lat, 5), lon=round(lon, 5),
+                w=x['ENS site web'], o=x['ENS URL et ID Onisep'], h=x['ENS hébergement'],
+                af=x['AF page web'], c=frais(x['AF coût scolarité']),
+                ij=cherche(x['ENS code UAI'], x['Formation (FOR) libellé']))
+
+
 def construire(lycee, rows, ACADS, cherche, fiches_dir='fiches', historique=True):
     par_lib = collections.defaultdict(list)
     for x in rows:
@@ -99,11 +108,7 @@ def construire(lycee, rows, ACADS, cherche, fiches_dir='fiches', historique=True
             u = x['ENS code UAI'] or x["Lieu d'enseignement (ENS) libellé"]
             if u in seen:
                 continue
-            seen[u] = dict(n=x["Lieu d'enseignement (ENS) libellé"], st=x['ENS statut'], a=x['ENS adresse'],
-                           cp=x['ENS code postal'], v=x['ENS commune'], lat=round(lat, 5), lon=round(lon, 5),
-                           w=x['ENS site web'], o=x['ENS URL et ID Onisep'], h=x['ENS hébergement'],
-                           af=x['AF page web'], c=frais(x['AF coût scolarité']),
-                           ij=cherche(x['ENS code UAI'], x['Formation (FOR) libellé']))
+            seen[u] = lieu(x, lat, lon, cherche)
             f = f or dict(t=x['FOR type'], o=x['FOR URL et ID Onisep'], d=x['AF durée cycle standard'])
         suites[cle] = dict(n=cap1(nom), **(f or {}), e=list(seen.values()))
         return cle if seen else None

@@ -14,7 +14,7 @@ import re
 import subprocess
 import urllib.parse
 
-from apres_lycee import TYPES, construire, load
+from apres_lycee import TYPES, construire, lieu, load
 from formation_collecte import fiches
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -113,6 +113,91 @@ def completer_inserjeunes(src,cache):
     print('lieux avec deux chiffres :',total,'· couples lycée/formation :',len(resolus))
 
 
+def fabrique_cherche(IJ,split,anciens,uncertain):
+    """InserJeunes d'un lycée pour une formation : un chiffre, deux versions, ou rien."""
+    def cherche(uai,libelle):
+        candidates=candidats(IJ,split,uai,libelle)
+        values={(r['code_formation_mefstat11'],r['taux_poursuite_etudes'],r['taux_emploi_6_mois']) for _,r in candidates}
+        if len(values)>1:
+            v=deux_versions(candidates,anciens)
+            if v:return dict(v=v)
+            uncertain.add((uai,libelle))
+        if len(values)!=1:return None
+        _,p,e=next(iter(values));return dict(p=p,e=e)
+    return cherche
+
+
+def preparer(rows,excluded,no_uai,urls):
+    """Lignes Onisep publiables : coordonnées valides, hors Monaco, sans courriel."""
+    result=[]
+    for x in rows:
+        if not valid(x) or x['ENS commune']=='Monaco':
+            excluded.append(dict(n=x["Lieu d'enseignement (ENS) libellé"],o=x['ENS URL et ID Onisep'],motif='Coordonnées invalides ou territoire de Monaco hors catalogue'))
+            continue
+        x=x.copy()
+        if not x['ENS code UAI']:
+            no_uai.add(x['ENS URL et ID Onisep'])
+            # Identifiant local explicite ; jamais présenté comme un UAI réel.
+            x['ENS code UAI']='onisep:'+x['ENS URL et ID Onisep'].rsplit('.',1)[-1]
+        for k in ['ENS site web','AF page web','ENS hébergement','AF coût scolarité']:
+            if re.search(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}',x[k]):
+                urls.add(x['ENS URL et ID Onisep']);x[k]=''
+        result.append(x)
+    return result
+
+
+def toute_la_france(src,cache):
+    """« Chercher dans toute la France » : un fichier par poursuite d'études (data/france/<id>.json),
+    tous les lieux de France, mêmes règles que les pages d'académie, chiffres Parcoursup joints (ps).
+    Poursuites = celles proposées dans au moins une académie (fichiers d'académie existants)."""
+    src,cache=Path(src).resolve(),Path(cache).resolve()
+    outdir=ROOT/'formation/data'
+    lycee=load(src/'605340ddc19a9.csv',regions=());sup=load(src/'sup2.csv',regions=())
+    json_export(IJ_URL,cache/'ij.json')
+    anciens={r['code_formation_mefstat11'] for r in json_export(IJ_PREC_URL,cache/'ij-codes-2022-2023.json')}
+    here=os.getcwd();os.chdir(cache)
+    from inserjeunes import IJ,split
+    os.chdir(here)
+    uncertain=set();excluded=[];no_uai=set();urls=set()
+    cherche=fabrique_cherche(IJ,split,anciens,uncertain)
+    rows=preparer(sup,excluded,no_uai,urls)+preparer(lycee,excluded,no_uai,urls)
+    par_lib=collections.defaultdict(list)
+    for x in rows:par_lib[x['Formation (FOR) libellé'].lower()].append(x)
+    academies=[p for p in sorted(outdir.glob('*.json')) if not p.name.startswith(('bilan','ile-de-france')) and not p.name.endswith('-parcoursup.json')]
+    cles={};ps={}
+    for p in academies:
+        for k,f in json.loads(p.read_text())['suites'].items():cles.setdefault(k,{c:f[c] for c in ('n','t','o','d')})
+        q=p.with_name(p.stem+'-parcoursup.json')
+        if q.exists():ps.update(json.loads(q.read_text())['f'])
+    fr=outdir/'france';fr.mkdir(exist_ok=True)
+    for old in fr.glob('*.json'):old.unlink()
+    index={};stats=[]
+    for k,tete in sorted(cles.items()):
+        fo=tete['o'];seen={}
+        for x in par_lib.get(k,[]):
+            lat,lon=float(x['ENS latitude']),float(x['ENS longitude'])
+            # Un même UAI peut couvrir plusieurs campus dans des régions différentes :
+            # chaque fiche Onisep d'établissement reste un lieu.
+            u=(x['ENS code UAI'] or x["Lieu d'enseignement (ENS) libellé"],x['ENS URL et ID Onisep'])
+            if u in seen:continue
+            e=lieu(x,lat,lon,cherche);e['af']=e['o']
+            cle_ps=fo.rsplit('.',1)[-1]+'|'+e['o'].rsplit('.',1)[-1]
+            if cle_ps in ps:e['ps']=ps[cle_ps]
+            seen[u]=e
+            if x['FOR URL et ID Onisep']!=fo:raise ValueError('Identifiant Onisep différent pour '+k)
+        if not seen:continue
+        fid=fo.rsplit('.',1)[-1]
+        # Nom, type et durée : ceux des pages d'académie (même poursuite, même affichage).
+        out=dict(tete,e=list(seen.values()))
+        path=fr/(fid+'.json');path.write_text(json.dumps(out,ensure_ascii=False,separators=(',',':')))
+        index[k]=fid;stats.append((len(seen),path.stat().st_size,len(gzip.compress(path.read_bytes(),mtime=0))))
+    bilan=dict(date=datetime.date.today().isoformat(),poursuites=len(index),lieux=sum(n for n,_,_ in stats),
+               plus_gros_gzip=max(g for _,_,g in stats),total_gzip=sum(g for _,_,g in stats),
+               inserjeunes_ambigus=len(uncertain),exclusions=len(excluded))
+    (fr/'bilan.json').write_text(json.dumps(bilan,ensure_ascii=False,indent=2)+'\n')
+    print(bilan)
+
+
 IDF=('creteil','paris','versailles')
 
 
@@ -143,10 +228,12 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--academies',nargs='+',help='Slugs du catalogue commun ou toutes')
     p.add_argument('--completer-inserjeunes',action='store_true',help='Ajoute seulement les chiffres « deux versions » aux fichiers existants')
+    p.add_argument('--toute-la-france',action='store_true',help='Fabrique seulement data/france/ (un fichier par poursuite)')
     p.add_argument('--sources',type=Path,default=Path.cwd(),help='605340ddc19a9.csv, sup2.csv et fiches historiques')
     p.add_argument('--cache',type=Path,default=Path.home()/'.cache/carte-stages-formation')
     args=p.parse_args();src=args.sources.resolve();cache=args.cache.resolve();cache.mkdir(parents=True,exist_ok=True)
     if args.completer_inserjeunes:return completer_inserjeunes(src,cache)
+    if args.toute_la_france:return toute_la_france(src,cache)
     if not args.academies:p.error('--academies est obligatoire')
     catalog=json.loads((ROOT/'commun/academies.json').read_text())
     selected={a['slug'] for a in catalog} if args.academies==['toutes'] else set(args.academies)
@@ -160,35 +247,9 @@ def main():
     anciens={r['code_formation_mefstat11'] for r in json_export(IJ_PREC_URL,cache/'ij-codes-2022-2023.json')}
     os.chdir(cache)
     from inserjeunes import IJ,split
-    uncertain=set()
-
-    def cherche(uai,libelle):
-        candidates=candidats(IJ,split,uai,libelle)
-        values={(r['code_formation_mefstat11'],r['taux_poursuite_etudes'],r['taux_emploi_6_mois']) for _,r in candidates}
-        if len(values)>1:
-            v=deux_versions(candidates,anciens)
-            if v:return dict(v=v)
-            uncertain.add((uai,libelle))
-        if len(values)!=1:return None
-        _,p,e=next(iter(values));return dict(p=p,e=e)
-
-    excluded=[];no_uai=set();urls=set()
-    def prepare(rows):
-        result=[]
-        for x in rows:
-            if not valid(x) or x['ENS commune']=='Monaco':
-                excluded.append(dict(n=x["Lieu d'enseignement (ENS) libellé"],o=x['ENS URL et ID Onisep'],motif='Coordonnées invalides ou territoire de Monaco hors catalogue'))
-                continue
-            x=x.copy()
-            if not x['ENS code UAI']:
-                no_uai.add(x['ENS URL et ID Onisep'])
-                # Identifiant local explicite ; jamais présenté comme un UAI réel.
-                x['ENS code UAI']='onisep:'+x['ENS URL et ID Onisep'].rsplit('.',1)[-1]
-            for k in ['ENS site web','AF page web','ENS hébergement','AF coût scolarité']:
-                if re.search(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}',x[k]):
-                    urls.add(x['ENS URL et ID Onisep']);x[k]=''
-            result.append(x)
-        return result
+    uncertain=set();excluded=[];no_uai=set();urls=set()
+    cherche=fabrique_cherche(IJ,split,anciens,uncertain)
+    prepare=lambda rows:preparer(rows,excluded,no_uai,urls)
 
     lycee=prepare(lycee);sup=prepare(sup)
     outdir=ROOT/'formation/data';outdir.mkdir(parents=True,exist_ok=True)

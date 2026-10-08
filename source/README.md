@@ -28,6 +28,12 @@ Corrections faites à cette occasion, pour toutes les académies :
 - maisons des adolescents d'Île-de-France : noms, adresses, communes, téléphones, horaires et public relus de `mda_idf.json` repris dans le mode national ;
 - Parcoursup : 8 rapprochements à noms différents confirmés dans `formation_parcoursup_revues.json` (mêmes établissements, UAI différents du même ensemble).
 
+## « Après le lycée » : chercher dans toute la France (mission 8.7, octobre 2026)
+
+Bouton « Chercher dans toute la France » dans `/formation/` et `/formation/<académie>/`, éteint par défaut : la page et les liens des classes ne changent pas tant qu'on ne clique pas. Au clic, la page télécharge `formation/data/france/<id Onisep de la poursuite>.json` pour les seules poursuites du diplôme choisi, puis affiche tous les lieux de France du plus proche au plus loin (20 par 20), avec internat, InserJeunes et Parcoursup (`ps`, BTS).
+
+Fabrication : `python3 source/apres_lycee.py --toute-la-france --sources DOSSIER --cache CACHE`, après les fichiers d'académie et Parcoursup. Mêmes sources et mêmes règles (`lieu()` partagé avec `construire`, `preparer()`, `fabrique_cherche()`), poursuites = celles des fichiers d'académie ; un même UAI couvrant plusieurs campus garde un lieu par fiche Onisep. Contrôle : `python3 formation/tests/france.py` (chaque lieu d'académie retrouvé à l'identique, Parcoursup compris).
+
 ## Enrichissement La Bonne Alternance
 
 `lba.py` utilise l'export national officiel (`GET /api/job/v1/export`), puis
