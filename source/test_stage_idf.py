@@ -20,4 +20,11 @@ class MigrationTest(unittest.TestCase):
             self.assertEqual(set(lite['departements']),set(IDF+LIMITROPHES));self.assertEqual(lite['domaines'][0]['s'][0]['c'],16)
             for d,meta in lite['departements'].items():
                 self.assertNotIn('secteurs',meta);self.assertEqual(meta['manifeste'],hashlib.sha256((p/'manifestes'/f'{d}.json').read_bytes()).hexdigest())
+    def test_apercu_regional_sans_catalogue_idf_trompeur(self):
+        with tempfile.TemporaryDirectory() as t:
+            p=Path(t);cat={'academies':[], 'domaines':[], 'departements':{'69':{'secteurs':{},'bbox':[0,0,1,1]}}}
+            (p/'catalogue.json').write_text(json.dumps(cat))
+            sizes=ecrire_catalogues(p)
+            self.assertIn('catalogue-leger.json',sizes)
+            self.assertFalse((p/'catalogues/ile-de-france.json').exists())
 if __name__=='__main__':unittest.main()

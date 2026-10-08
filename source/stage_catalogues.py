@@ -27,15 +27,21 @@ def ecrire_catalogues(root):
         details.pop('secteurs')
         details['manifeste'] = hashlib.sha256(path.read_bytes()).hexdigest()
     atomic_json(root/'catalogue-leger.json', light)
-    idf = deepcopy(light)
-    idf['departements'] = {dep: idf['departements'][dep] for dep in IDF + LIMITROPHES}
-    idf['academies'] = [a for a in idf['academies'] if set(a['deps']) <= set(IDF)]
-    for domain in idf['domaines']:
-        for sector in domain['s']:
-            sector['c'] = sum(full['departements'][dep]['secteurs'][sector['k']]['n'] for dep in IDF)
-    atomic_json(root/'catalogues/ile-de-france.json', idf)
+    names = ['catalogue.json', 'catalogue-leger.json']
+    if set(IDF + LIMITROPHES) <= set(light['departements']):
+        idf = deepcopy(light)
+        idf['departements'] = {dep: idf['departements'][dep] for dep in IDF + LIMITROPHES}
+        idf['academies'] = [a for a in idf['academies'] if set(a['deps']) <= set(IDF)]
+        for domain in idf['domaines']:
+            for sector in domain['s']:
+                sector['c'] = sum(full['departements'][dep]['secteurs'][sector['k']]['n'] for dep in IDF)
+        atomic_json(root/'catalogues/ile-de-france.json', idf)
+        names.append('catalogues/ile-de-france.json')
+    else:
+        # Un aperçu régional ne doit pas exposer un ancien catalogue IDF complet.
+        (root/'catalogues/ile-de-france.json').unlink(missing_ok=True)
     sizes = {}
-    for name in ['catalogue.json', 'catalogue-leger.json', 'catalogues/ile-de-france.json']:
+    for name in names:
         raw = (root/name).read_bytes()
         sizes[name] = {'octets': len(raw), 'gzip': len(gzip.compress(raw, mtime=0))}
     return sizes
