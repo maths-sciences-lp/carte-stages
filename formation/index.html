@@ -108,6 +108,9 @@ function stat(c,t){if(!GC_ON)return;const q='?p='+encodeURIComponent('formation/
 let D=null, PS=null, cur=null, off=new Set(), dep=null, map=null, layer=null, IDX=[];
 // « Toute la France » : un fichier par poursuite (data/france/<id Onisep>.json), chargé au clic seulement.
 let fr=false, nmax=20; const FR={};
+// Nom officiel accentué (l'Onisep écrit « Eugène Henaff ») : liste des lycées et lieux de poursuite.
+const accent=s=>s.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');
+function accentuer(d){for(const l of Object.values(d.lycees||{}))l.n=accent(l.n);for(const f of Object.values(d.suites||{}))for(const e of f.e)e.n=accent(e.n);}
 const km=(a,b,c,d)=>{const R=6371,t=Math.PI/180,x=(c-a)*t,y=(d-b)*t,h=Math.sin(x/2)**2+Math.cos(a*t)*Math.cos(c*t)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h));};
 const statut=s=>({'public':'Public','privé sous contrat':'Privé sous contrat','privé hors contrat':'Privé hors contrat'})[s]||'Privé';
 const fmt=k=>k<10?k.toFixed(1).replace('.',','):Math.round(k).toLocaleString('fr-FR');
@@ -162,7 +165,7 @@ function vue(c){$('plus').hidden=c||!fr||!cur||lignes().length<=nmax;$('vL').set
  if(c){if(!map){map=window.L.map('map');window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();const L=lignes();drawMap(fr?L.slice(0,nmax):L);},50);}}
 $('vL').onclick=()=>vue(false);$('vC').onclick=()=>vue(true);
 async function chargerFrance(){const ids=[...new Set(D.dip[cur.d].s.map(k=>D.suites[k].o))].filter(o=>!FR[o]);
- await Promise.all(ids.map(o=>fetch(new URL('data/france/'+o.split('.').pop()+'.json?v=2026-10-08',document.baseURI)).then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();}).then(x=>{FR[o]=x;})));}
+ await Promise.all(ids.map(o=>fetch(new URL('data/france/'+o.split('.').pop()+'.json?v=2026-10-08',document.baseURI)).then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();}).then(x=>{for(const e of x.e)e.n=accent(e.n);FR[o]=x;})));}
 $('fr').onclick=async()=>{const b=$('fr'),d=cur&&cur.d;if(!d)return;
  if(fr){fr=false;b.setAttribute('aria-pressed','false');$('frmsg').hidden=true;draw();return;}
  b.disabled=true;$('count').textContent='Chargement des lieux de toute la France…';
@@ -185,7 +188,7 @@ $('geo').onclick=()=>{if(!navigator.geolocation){$('amsg').textContent='Ton tél
 function lireHash(){const h=location.hash.slice(1);if(!h)return;if(h.startsWith('d=')){const p=new URLSearchParams(h);if(!cur||cur.d!==p.get('d')||cur.ly!==p.get('ly'))choisirDip(p.get('d'),p.get('ly'),false);}else if(!cur||cur.k!==h)choisirClasse(h,false);}
 // Île-de-France : fichier réuni par source/formation_national.py à partir des trois fichiers d'académie.
 const charger=n=>fetch('data/'+n+'.json?v=2026-10-08b').then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();});
-if(!window.FORMATION_NATIONAL)charger('ile-de-france').then(d=>{D=d;IDX=Object.entries(D.dip).map(([id,x])=>({id,lib:x.lib,n:x.ly.length,t:norm(x.lib+' '+x.al)}));drawClasses();lireHash();});
+if(!window.FORMATION_NATIONAL)charger('ile-de-france').then(d=>{D=d;accentuer(D);IDX=Object.entries(D.dip).map(([id,x])=>({id,lib:x.lib,n:x.ly.length,t:norm(x.lib+' '+x.al)}));drawClasses();lireHash();});
 if(!window.FORMATION_NATIONAL)charger('ile-de-france-parcoursup').then(d=>{PS=d;draw();}).catch(()=>{});
 window.addEventListener('hashchange',()=>{if(D)lireHash();});
 </script>

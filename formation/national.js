@@ -53,7 +53,7 @@ footer.style.visibility='visible';typo(main);
 await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSelect:async(ac,{signal})=>{
  async function data(name){const r=await fetch(new URL('data/'+name+'.json?v=2026-10-08b',document.baseURI),{signal});if(!r.ok)throw Error('Données indisponibles');return r.json();}
  const [d,ps]=await Promise.all([data(ac.slug),data(ac.slug+'-parcoursup')]);if(signal.aborted)return;
- active=ac;++seq;clearTimeout(addressTimer);D=d;PS=ps;cur=null;dep=null;off.clear();
+ active=ac;++seq;clearTimeout(addressTimer);D=d;accentuer(D);PS=ps;cur=null;dep=null;off.clear();
  if(layer){layer.remove();layer=null;}
  for(const id of ['q','adr'])$(id).value='';
  for(const id of ['qsug','asug','lyc','res'])$(id).hidden=true;
