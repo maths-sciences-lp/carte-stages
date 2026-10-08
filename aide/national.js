@@ -42,8 +42,8 @@ await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSel
  const response=await fetch(new URL('data/'+ac.slug+'.json?v=2026-10-08',document.baseURI),{signal});
  if(!response.ok)throw new Error('Données indisponibles');
  const data=await response.json();if(signal.aborted)return;
- ++addressRequest;active=ac;D=data;dep=null;offD.clear();nmax=8;
- $('adr').value='';$('col').value='';$('csug').hidden=true;$('asug').hidden=true;
+ ++addressRequest;active=ac;D=data;dep=null;offD.clear();nmax=8;LY=null;lyceesDe=()=>[ac.slug];
+ $('adr').value='';$('col').value='';$('lyc').value='';$('csug').hidden=true;$('lsug').hidden=true;$('asug').hidden=true;
  $('dmsg').textContent='Indique ta ville ou ton adresse pour voir les lieux les plus proches.';
  if(layer){layer.remove();layer=null;}
  lead.textContent='Des lieux gratuits pour les jeunes — '+ac.nom+', du plus proche au plus éloigné.';
