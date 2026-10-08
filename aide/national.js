@@ -19,7 +19,7 @@ searchAdr=async v=>{
 const address=$('adr').cloneNode(true);$('adr').replaceWith(address);
 let addressTimer,addressRequest=0;
 address.addEventListener('input',()=>{
- clearTimeout(addressTimer);const seq=++addressRequest,v=address.value.trim(),slug=active?.slug;
+ clearTimeout(addressTimer);const seq=++addressRequest,v=address.value.trim(),slug=active?.slug;oublierMaison();
  $('asug').hidden=true;if(v.length<3)return;
  addressTimer=setTimeout(async()=>{
   try{const rows=await searchAdr(v);if(seq!==addressRequest||slug!==active?.slug)return;
@@ -42,7 +42,7 @@ await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSel
  const response=await fetch(new URL('data/'+ac.slug+'.json?v=2026-10-08',document.baseURI),{signal});
  if(!response.ok)throw new Error('Données indisponibles');
  const data=await response.json();if(signal.aborted)return;
- ++addressRequest;active=ac;D=data;dep=null;offD.clear();nmax=8;LY=null;lyceesDe=()=>[ac.slug];
+ ++addressRequest;active=ac;D=data;oublierDeparts();offD.clear();nmax=8;LY=null;lyceesDe=()=>[ac.slug];
  $('adr').value='';$('col').value='';$('lyc').value='';$('csug').hidden=true;$('lsug').hidden=true;$('asug').hidden=true;
  $('dmsg').textContent='Indique ta ville ou ton adresse pour voir les lieux les plus proches.';
  if(layer){layer.remove();layer=null;}

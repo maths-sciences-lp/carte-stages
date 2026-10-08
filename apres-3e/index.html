@@ -147,9 +147,16 @@ function drawMap(items){if(layer)layer.remove();layer=L.layerGroup().addTo(map);
 function vue(c){$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
  if(c){if(!map){map=L.map('map');L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();show(false);},50);}}
 $('vL').onclick=()=>vue(false);$('vC').onclick=()=>vue(true);
-function mode(m){$('dCol').setAttribute('aria-pressed',m==='col');$('dMai').setAttribute('aria-pressed',m==='mai');$('pCol').hidden=m!=='col';$('pMai').hidden=m!=='mai';}
+function mode(m){$('dCol').setAttribute('aria-pressed',m==='col');$('dMai').setAttribute('aria-pressed',m==='mai');$('pCol').hidden=m!=='col';$('pMai').hidden=m!=='mai';modeDep=m;rafraichirDep();}
 $('dCol').onclick=()=>mode('col');$('dMai').onclick=()=>{mode('mai');$('adr').focus();};
-function setDep(lat,lon,n,src){dep={lat,lon,n};$('csug').hidden=true;$('asug').hidden=true;$('dmsg').textContent='C’est noté : départ '+n+'.';stat('depart/'+src,'Départ : '+src);if(dom||q.length>=2)show(false);}
+// Chaque point de départ garde ses coordonnées : revenir à un onglet reprend les siennes.
+const DEPS={};let modeDep=document.querySelector('#dCol[aria-pressed=true]')?'col':'mai',adrSeq=0;
+const CLE_DEP={college:'col',lycee:'lyc',maison:'mai',position:'mai'};
+const INVITE={col:'Tape le nom de ton collège.',lyc:'Tape le nom de ton lycée.',mai:'Tape ton adresse ou utilise « Me localiser ».'};
+function rafraichirDep(){dep=DEPS[modeDep]||null;if(dep)$('dmsg').textContent=dep.msg;else if(/^C’est noté/.test($('dmsg').textContent))$('dmsg').textContent=INVITE[modeDep];if(dom||q.length>=2)show(false);}
+function oublierMaison(){delete DEPS.mai;if(modeDep==='mai')rafraichirDep();}
+function oublierDeparts(){for(const k in DEPS)delete DEPS[k];dep=null;}
+function setDep(lat,lon,n,src){const k=CLE_DEP[src]||'mai';DEPS[k]={lat,lon,n,msg:'C’est noté : départ '+n+'.'};if(k!==modeDep)return;dep=DEPS[k];$('csug').hidden=true;$('asug').hidden=true;$('dmsg').textContent='C’est noté : départ '+n+'.';stat('depart/'+src,'Départ : '+src);if(dom||q.length>=2)show(false);}
 function sugList(box,list,label,pick){box.innerHTML='';list.forEach(x=>{const b=document.createElement('button');b.textContent=label(x);b.onclick=()=>pick(x);box.appendChild(b);});box.hidden=!list.length;}
 $('col').addEventListener('input',()=>{const v=norm($('col').value.trim());if(v.length<2){$('csug').hidden=true;return;}
  const r=D.colleges.filter(c=>norm(c.n+' '+c.v).includes(v)).slice(0,8);
@@ -157,7 +164,7 @@ $('col').addEventListener('input',()=>{const v=norm($('col').value.trim());if(v.
 const IDF=/^(75|77|78|91|92|93|94|95)/;let timer=null;
 async function searchAdr(v){const r=await fetch('https://api-adresse.data.gouv.fr/search/?autocomplete=1&limit=15&lat=48.85&lon=2.6&q='+encodeURIComponent(v)).then(r=>r.json());return(r.features||[]).filter(f=>IDF.test(f.properties.postcode||'')).slice(0,5);}
 const pickAdr=f=>{$('adr').value=f.properties.label;setDep(f.geometry.coordinates[1],f.geometry.coordinates[0],'de chez toi','maison');};
-$('adr').addEventListener('input',()=>{clearTimeout(timer);const v=$('adr').value.trim();if(v.length<4){$('asug').hidden=true;return;}timer=setTimeout(async()=>{try{sugList($('asug'),await searchAdr(v),f=>f.properties.label,pickAdr);}catch(e){}},250);});
+$('adr').addEventListener('input',()=>{clearTimeout(timer);const s=++adrSeq,v=$('adr').value.trim();oublierMaison();$('asug').hidden=true;if(v.length<4)return;timer=setTimeout(async()=>{try{const r=await searchAdr(v);if(s===adrSeq&&$('adr').value.trim()===v)sugList($('asug'),r,f=>f.properties.label,pickAdr);}catch(e){}},250);});
 $('geo').onclick=()=>{if(!navigator.geolocation){$('dmsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('dmsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setDep(p.coords.latitude,p.coords.longitude,'de ta position','position');},()=>$('dmsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
 function avecVoisins(base,V){const F=new Map(base.formations.map(f=>[f.n,{...f,e:[...f.e]}]));

@@ -68,6 +68,9 @@ jobs:
       - name: Qui peut m'aider ?
         env: {BASE_URL: 'http://127.0.0.1:8766', NODE_PATH: '${{ runner.temp }}/pw/node_modules', PLAYWRIGHT_MODULE: '${{ runner.temp }}/pw/node_modules/playwright', TEST_OUTPUT: '${{ runner.temp }}/aide'}
         run: node aide/tests/national.cjs
+      - name: Départs et suggestions d'adresse (Après le collège, Qui peut m'aider ?)
+        env: {BASE_URL: 'http://127.0.0.1:8766', NODE_PATH: '${{ runner.temp }}/pw/node_modules', PLAYWRIGHT_MODULE: '${{ runner.temp }}/pw/node_modules/playwright'}
+        run: node apres-3e/tests/departs.cjs
       - name: Après le lycée
         env: {BASE_URL: 'http://127.0.0.1:8766', NODE_PATH: '${{ runner.temp }}/pw/node_modules', PLAYWRIGHT_MODULE: '${{ runner.temp }}/pw/node_modules/playwright', TEST_OUTPUT: '${{ runner.temp }}/formation'}
         run: node formation/tests/national.cjs
