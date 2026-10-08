@@ -1,8 +1,9 @@
 # Trouve ton stage : préparation nationale
 
 Les données nationales sont préparées dans le dépôt séparé
-`maths-sciences-lp/carte-stages-donnees`. Les fichiers historiques de `data/`,
-les liens de classes et `/` continuent de servir l’Île-de-France.
+`maths-sciences-lp/carte-stages-donnees`. La carte `/` et les liens de classes conservent leur interface francilienne,
+mais utilisent les mêmes fichiers nationaux. Les anciens fichiers `data/` sont
+conservés ; seul `data/lycees.json` reste utilisé par la carte historique.
 L’entrée nationale est `/stage/france/`, puis `/stage/<académie>/`.
 Le choix d’académie utilise `commun/academie.js` sans modification.
 
@@ -64,7 +65,8 @@ un dossier neuf : une reprise ne rafraîchit pas les pages déjà téléchargée
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 source/build_domaines.py --national \
   --cache "$HOME/.cache/carte-stages-national-naf-962f31271c45" \
-  --sortie "$HOME/Developer/carte-stages-donnees-france"
+  --sortie "$HOME/Developer/carte-stages-donnees-france" \
+  --onisep /cache/605340ddc19a9.csv
 ```
 
 La génération exige les 101 départements des 30 académies. `--academies` permet
@@ -73,6 +75,9 @@ comme couverture nationale. Le dépôt de sortie doit être une copie Git sépar
 Les fichiers sont découpés en `sirene/<département>/<secteur>.json` et
 `lycees/<département>.json`. `catalogue.json` fournit tailles, empreintes,
 départements et formations ; `bilan.json` détaille exclusions et volumes.
+Le complément Onisep conserve les établissements existants et consigne les cas
+incertains dans `rapport-lycees-onisep.json`. Les catalogues légers sont générés
+automatiquement ; un aperçu régional incomplet ne produit pas de catalogue IDF.
 Les établissements sans nom utilisable sont exclus et comptés, sans nom inventé.
 
 Les pages chargent les secteurs utiles autour du point de départ, y compris
@@ -89,32 +94,28 @@ PYTHONDONTWRITEBYTECODE=1 python3 source/lba.py --national \
 
 Sans `--write`, seul un bilan est produit. Le mode national refuse un catalogue
 incomplet ou dont les fichiers ne correspondent pas aux empreintes.
-Il ne modifie pas `data/lba/` du site. L’option `--idf-root <copie temporaire>`
-permet de préparer aussi l’Île-de-France à partir du **même export**, pour la
-future tâche mensuelle. La clé est lue en mémoire depuis son emplacement local
-habituel ; ni clé, ni URL signée, ni export brut ne sont écrits dans les dépôts.
+Il ne modifie pas `data/lba/` du site. L’option historique `--idf-root` reste
+compatible mais n’est plus utilisée par `maj-lba.sh` : les deux cartes lisent
+l’export national. La clé reste en mémoire ; ni clé, ni URL signée, ni export
+brut ne sont écrits dans les dépôts.
 
-Le script `source/maj-lba.sh` est une **proposition à relire**, pas le script
-installé. Il crée deux copies Git temporaires, télécharge et valide les deux
-enrichissements, puis prépare les commits. Sans argument, il ne pousse rien.
-Une erreur de téléchargement, un export incomplet ou l’absence de tout
-rapprochement dans l’un des catalogues préserve les dernières versions.
-
-Après validation et installation explicites seulement, `--publier` permettrait
-la publication mensuelle habituelle dans les deux dépôts, sans push forcé ni
-réécriture d’historique. Les deux pushes ne peuvent pas être atomiques : si le
-second échoue, les données nationales peuvent être mises à jour tandis que
-l’Île-de-France conserve sa dernière version valide. Les copies et commits sont
-alors conservés pour terminer l’opération. Les déploiements Pages restent à vérifier.
-Ne pas remplacer le script launchd existant dans cette mission.
+Le script `source/maj-lba.sh` est une **proposition à relire**. Il crée une copie
+Git du code et une des données, mais prépare uniquement l’enrichissement LBA
+national. Sans argument, il ne pousse rien. Un export incomplet ou invalide
+préserve les derniers fichiers servis. Après validation explicite, `--publier`
+ne pousse que la copie des données, sans réécriture d’historique. Les bases Git
+sont contrôlées avant ce push. La tâche installée n’est pas modifiée ici ; le
+lanceur qui récupère le script de main utilisera sa nouvelle version après fusion.
 
 ## Contrôles et validation avant fusion
 
 - `python3 -m unittest discover -s source -p test_stage_national.py` : reprise
   du cache, correspondances, exclusions, export LBA incomplet et restauration
   des deux versions sur échec simulé.
-- `source/verif_idf.py` : régénérations historiques, comparaison des 175 fichiers
-  de données de stages et contrôle des 22 adresses à 375 px.
+- `source/verif_idf.py --donnees-nationales /copie/donnees` : régénérations
+  historiques, 175 fichiers conservés et autres pages identiques ; contrat des
+  adresses de la carte, 180 clés, 469 UAI, 62 parcours à 320/375 px, frontières,
+  clavier et mesures. Voir `verification-idf-national/RAPPORT.md`.
 - Lyon, Lille, Aix-Marseille, Rennes, La Réunion : adresse directe, localisation
   simulée, ville saisie, changement d’académie, données réelles et erreurs navigateur.
 - Les temps mesurés localement avec un processeur ralenti ne remplacent pas une

@@ -1,0 +1,76 @@
+[
+  {
+    "date": "2026-10-08",
+    "url": "https://recherche-entreprises.api.gouv.fr/search?activite_principale=35.11Z&departement=75&etat_administratif=A&tranche_effectif_salarie=01%2C02%2C03%2C11%2C12%2C21%2C22%2C31%2C32%2C41%2C42%2C51%2C52%2C53&per_page=25&page=1&limite_matching_etablissements=100",
+    "siren": "552081317",
+    "etablissements_retournes": [
+      {
+        "siret": "55208131712278",
+        "etat": "A",
+        "naf": "35.13Z"
+      },
+      {
+        "siret": "55208131712310",
+        "etat": "A",
+        "naf": "35.13Z"
+      },
+      {
+        "siret": "55208131712765",
+        "etat": "A",
+        "naf": "35.13Z"
+      },
+      {
+        "siret": "55208131712294",
+        "etat": "F",
+        "naf": "40.1Z"
+      },
+      {
+        "siret": "55208131712302",
+        "etat": "F",
+        "naf": "40.1Z"
+      },
+      {
+        "siret": "55208131712757",
+        "etat": "F",
+        "naf": "40.1Z"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-08",
+    "url": "https://recherche-entreprises.api.gouv.fr/search?activite_principale=35.11Z&departement=75&etat_administratif=A&tranche_effectif_salarie=01%2C02%2C03%2C11%2C12%2C21%2C22%2C31%2C32%2C41%2C42%2C51%2C52%2C53&per_page=25&page=1&limite_matching_etablissements=100&minimal=true&include=matching_etablissements",
+    "siren": "552081317",
+    "etablissements_retournes": [
+      {
+        "siret": "55208131712278",
+        "etat": "A",
+        "naf": "35.13Z"
+      },
+      {
+        "siret": "55208131712310",
+        "etat": "A",
+        "naf": "35.13Z"
+      },
+      {
+        "siret": "55208131712765",
+        "etat": "A",
+        "naf": "35.13Z"
+      },
+      {
+        "siret": "55208131712294",
+        "etat": "F",
+        "naf": "40.1Z"
+      },
+      {
+        "siret": "55208131712302",
+        "etat": "F",
+        "naf": "40.1Z"
+      },
+      {
+        "siret": "55208131712757",
+        "etat": "F",
+        "naf": "40.1Z"
+      }
+    ]
+  }
+]

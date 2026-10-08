@@ -233,14 +233,6 @@ function lbaHtml(p){
  if(!recruiter&&!jobs.length)return '';
  return `<div class="lba-box">${recruiter?`<div class="badge">🎓 Recruteur potentiel en alternance</div><a href="${recruiter}" target="_blank" rel="noopener">Voir sur La bonne alternance ↗</a>`:''}${jobs.length?`<details><summary>Offres d’alternance en cours : tous métiers (${jobs.length})</summary><ul>${jobs.map(j=>`<li><a href="${lbaUrl(j.url)}" target="_blank" rel="noopener">${esc(j.title)} ↗</a></li>`).join('')}</ul><div>Vérifie le métier et le diplôme demandés dans chaque offre.</div></details>`:''}</div>`;
 }
-const lbaSec=k=>LBAC[k]?Promise.resolve(LBAC[k]):fetch('data/lba/'+k+'.json?v='+DV).then(r=>r.ok?r.json():{}).catch(()=>({})).then(j=>LBAC[k]=j);
-if(!window.STAGE_NATIONAL) fetch('data/lba/meta.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>{
- LBA=j; const d=Date.parse(j.updated_at);
- if(lbaAge()<=(j.recruiter_max_age_days||31)*DAY){const f=$('lba-source');f.hidden=false;
-  f.innerHTML='Indications d’alternance : <a href="https://labonnealternance.apprentissage.beta.gouv.fr" target="_blank" rel="noopener">La bonne alternance</a> (service public de l’alternance), données du '+new Date(d).toLocaleDateString('fr-FR')+'. Un recruteur en alternance ne garantit pas un accueil en PFMP.<br>';}
- if(booted&&P.length)render();
-}).catch(()=>{});
-
 // ---------- carte (sur téléphone, la carte se place sous la liste, avant le bas de page)
 if(window.innerWidth<=900) $('panel').insertBefore($('map'),document.querySelector('footer'));
 const map=L.map('map',{preferCanvas:true}).fitBounds([[48.70,2.10],[49.05,2.65]]);
@@ -264,9 +256,9 @@ function pop(p){
 }
 function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]>=9?'grande entreprise (groupe)':(r[5]?IDX.eff[r[5]-1]:''),s:r[7],f:k,rp:r[8]||''};
  p.tri=norm(titreP(p)); p.tri0=/^[a-z]/.test(p.tri)?0:1;
- p.mk=window.STAGE_NATIONAL?null:marqueur(p);return p;}
+ p.mk=null;return p;}
 function marqueur(p){return L.circleMarker([p.la,p.lo],{radius:8,color:'#fff',weight:2,fillColor:COL[p.f],fillOpacity:.95}).bindPopup(()=>pop(p),POPOPT);}
-async function loadSec(k){ if(!CACHE[k]) CACHE[k]=Promise.all([fetch('data/'+k+'.json?v='+DV).then(r=>{if(!r.ok)throw 0;return r.json();}),lbaSec(k)]).then(([rows])=>rows.map(r=>mkP(r,k))); return CACHE[k]; }
+async function loadSec(){throw Error('Catalogue non chargé');}
 
 // ---------- étape 1 : formation ou domaine
 const secName={};
@@ -307,7 +299,7 @@ async function choose(c){
  $('chosenTxt').textContent=title; $('pick').hidden=true; $('chosen').hidden=false; $('tiles').hidden=true; $('nosais').setAttribute('aria-expanded','false'); if(focusDansChoix)$('change').focus();
  $('secs').innerHTML=keys.map(k=>`<button class="chip" data-k="${k}" aria-pressed="true"><span class="dot" style="background:${COL[k]}"></span>${esc(secName[k])}</button>`).join('');
  setHash(); P=[]; $('count').textContent='Chargement…'; render(true);
- if(window.STAGE_NATIONAL)return; // Le module national gère requêtes, reprises et changements de départ.
+ if(window.STAGE_NATIONAL||window.STAGE_IDF)return; // Le module de données gère requêtes, reprises et changements de départ.
  try{ const parts=await Promise.all(keys.map(loadSec)); if(sel!==c) return; const vu=new Set(); P=parts.flat().filter(p=>!vu.has(p.s)&&vu.add(p.s)); }
  catch(e){ $('count').textContent='Chargement impossible : vérifie ta connexion.'; return; }
  render();
@@ -379,7 +371,7 @@ function render(loading){
  let vis=P.filter(p=>on.has(p.f)&&(!o||!dist||p.k<=dist));
  cl.clearLayers();
  if(window.STAGE_NATIONAL){const points=(o?vis.slice().sort((a,b)=>a.k-b.k):vis).slice(0,1500);cl.addLayers(points.map(p=>p.mk||(p.mk=marqueur(p))));}
- else cl.addLayers(vis.map(p=>p.mk));
+ else cl.addLayers(vis.map(p=>p.mk||(p.mk=marqueur(p))));
  if(o) vis.sort((a,b)=>a.k-b.k); else vis.sort((a,b)=>a.tri0-b.tri0||a.tri.localeCompare(b.tri));
  const n=vis.length;
  $('count').textContent=n? `${n.toLocaleString('fr-FR')} entreprise${n>1?'s':''}${o&&dist?` à moins de ${dist} km`:''}` : 'Aucune entreprise';
@@ -419,13 +411,14 @@ function demarrer(j){IDX=j;
  syncFrom();
  const o=origin(); if(o) map.setView([o.la,o.lo],13);
  const f=h.get('f'), d=h.get('d');
- const fx=f&&j.formations.find(x=>x.k===f);
+ const fx=f&&(window.resoudreFormationIDF?window.resoudreFormationIDF(f,j):j.formations.find(x=>x.k===f));
  booted=true;
  if(fx) choose({type:'f',x:fx}); else if(d&&j.domaines[+d]) choose({type:'d',i:+d}); else render();
  if(!window.STAGE_NATIONAL) try{ if(!localStorage.getItem('stages.vu')){ localStorage.setItem('stages.vu','1'); if(!fx) $('dlg').showModal(); } }catch(e){}
 }
-if(!window.STAGE_NATIONAL) fetch('data/index.json?v='+DV).then(r=>r.json()).then(demarrer);
+
 </script>
 <script src="commun/accessibilite.js"></script>
+<script type="module" src="stage/idf.js"></script>
 </body>
 </html>

@@ -144,6 +144,7 @@ def main():
     parser.add_argument('--cache', type=Path,
                         default=Path.home()/('.cache/carte-stages-national-naf-'+fingerprint[:12]))
     parser.add_argument('--sortie', type=Path, required=True)
+    parser.add_argument('--onisep', type=Path, required=True, help='Fichier Onisep 605340ddc19a9.csv pour le complément de lycées')
     parser.add_argument('--academies', nargs='+', default=['toutes'])
     args = parser.parse_args()
     out, cache = args.sortie.resolve(), args.cache.resolve()
@@ -211,6 +212,8 @@ def main():
                 source_lycees=ANN_URL, departements=bilan, lycees_exclus=school_exclusions,
                 tables_sha256={p: hashlib.sha256((ROOT/'source'/p).read_bytes()).hexdigest()
                                for p in ['domaines.py', 'formation_secteurs.json', 'aides.py']}))
+    from stage_lycees import completer
+    completer(out, args.onisep)
     (out/'.nojekyll').touch()
     print(f'{len(deps)} départements ; {sum(b["apres_classement"] for b in bilan)} établissements ; {sum(total.values())} lignes')
 

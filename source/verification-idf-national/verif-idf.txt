@@ -1,0 +1,76 @@
+Référence origin/main : 5d1f8a3015413fc7a9dc80abe7f2d047f8a2c59d
+aide/aide.json : identique à origin/main ; SHA-256 0e7273d055ab81dc8d2ab14fa4dca3fae6ef12283928ae2479aff6ee566625a7
+apres-3e/apres3e.json : identique à origin/main ; SHA-256 eb16cf4f0e77fa2fe076b71ee20fbec77636dcb075a289e894fc6b28c6374d8b
+formation/formations.json : identique à origin/main ; SHA-256 f7a477eff3766dfc24df573358658e067112c6b3f79f05bb9851cd3cee234270
+formation/parcoursup.json : identique à origin/main ; SHA-256 0ad318607fb6555474ae039dcb9414e05286b53e07a3a091e3ed8fa4313b61f0
+Données Trouve ton stage Île-de-France : 175 fichiers ; identiques à l’octet près
+Régénération aide (mode par défaut) : identique à l’octet près
+Régénération Après le collège (mode par défaut) : identique à l’octet près
+Régénération Après le lycée (mode par défaut) : identique à l’octet près
+Régénération Parcoursup (mode par défaut) : identique à l’octet près
+/aide/ : identique, sans erreur
+/aide/#mda : identique, sans erreur
+/apres-3e/ : identique, sans erreur
+/apres-3e/#cuisine : identique, sans erreur
+/formation/ : identique, sans erreur
+/formation/#eeb : identique, sans erreur
+/formation/#iccer : identique, sans erreur
+/henaff/ : identique, sans erreur
+/formation/#mee : identique, sans erreur
+/formation/#tma : identique, sans erreur
+/formation/#era : identique, sans erreur
+/formation/#geometre : identique, sans erreur
+/formation/#mit : identique, sans erreur
+/formation/#sdg : identique, sans erreur
+/formation/#ebeniste : identique, sans erreur
+/formation/#bma-ebeniste : identique, sans erreur
+/formation/#bma-signaletique : identique, sans erreur
+/formation/#d=5601&ly=0932119Y : identique, sans erreur
+/accueil/ : identique, sans erreur
+Carte : 58 parcours à 320/375 px ; 180 clés ; 469 UAI ; frontières et clavier vérifiés ; aucune erreur.
+/tne (0 km) : 16711 → 16727 ; +184 / −168 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 146, 'Autre secteur dans le nouveau classement': 4, 'Fermé lors du contrôle API du 08/10/2026': 18}
+/tne (5 km) : 1484 → 1468 ; +17 / −33 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 29, 'Fermé lors du contrôle API du 08/10/2026': 4}
+/mnb (0 km) : 36329 → 36185 ; +189 / −333 ; {'Autre secteur dans le nouveau classement': 62, 'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 253, 'Fermé lors du contrôle API du 08/10/2026': 16, 'Diffusion restreinte lors du contrôle API': 2}
+/mnb (5 km) : 3763 → 3773 ; +24 / −14 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 13, 'Fermé lors du contrôle API du 08/10/2026': 1}
+/mama (0 km) : 5555 → 5554 ; +13 / −14 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 10, 'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/mama (5 km) : 631 → 628 ; +1 / −4 ; {'Autre secteur dans le nouveau classement': 2, 'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 2}
+/iccer (0 km) : 8554 → 8574 ; +89 / −69 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 59, 'Autre secteur dans le nouveau classement': 3, 'Fermé lors du contrôle API du 08/10/2026': 7}
+/iccer (5 km) : 782 → 777 ; +5 / −10 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 8, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/mee (0 km) : 8554 → 8574 ; +89 / −69 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 59, 'Autre secteur dans le nouveau classement': 3, 'Fermé lors du contrôle API du 08/10/2026': 7}
+/mee (5 km) : 782 → 777 ; +5 / −10 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 8, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/tma (0 km) : 5296 → 5297 ; +6 / −5 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 1, 'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/tma (5 km) : 603 → 601 ; +0 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/era (0 km) : 5296 → 5297 ; +6 / −5 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 1, 'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/era (5 km) : 603 → 601 ; +0 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/eeb (0 km) : 34517 → 34368 ; +171 / −320 ; {'Autre secteur dans le nouveau classement': 62, 'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 241, 'Fermé lors du contrôle API du 08/10/2026': 15, 'Diffusion restreinte lors du contrôle API': 2}
+/eeb (5 km) : 3674 → 3683 ; +22 / −13 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 12, 'Fermé lors du contrôle API du 08/10/2026': 1}
+/geometre (0 km) : 19460 → 19326 ; +182 / −316 ; {'Autre secteur dans le nouveau classement': 60, 'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 249, 'Fermé lors du contrôle API du 08/10/2026': 7}
+/geometre (5 km) : 1382 → 1394 ; +24 / −12 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 12}
+/mit (0 km) : 8189 → 8223 ; +64 / −30 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 20, 'Autre secteur dans le nouveau classement': 3, 'Fermé lors du contrôle API du 08/10/2026': 7}
+/mit (5 km) : 758 → 758 ; +4 / −4 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/sdg (0 km) : 5621 → 5627 ; +16 / −10 ; {'Fermé lors du contrôle API du 08/10/2026': 8, 'Autre secteur dans le nouveau classement': 2}
+/sdg (5 km) : 787 → 786 ; +1 / −2 ; {'Fermé lors du contrôle API du 08/10/2026': 2}
+/ebeniste (0 km) : 5296 → 5297 ; +6 / −5 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 1, 'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/ebeniste (5 km) : 603 → 601 ; +0 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/bma-ebeniste (0 km) : 5555 → 5554 ; +13 / −14 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 10, 'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/bma-ebeniste (5 km) : 631 → 628 ; +1 / −4 ; {'Autre secteur dans le nouveau classement': 2, 'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 2}
+/bma-signaletique (0 km) : 5621 → 5627 ; +16 / −10 ; {'Fermé lors du contrôle API du 08/10/2026': 8, 'Autre secteur dans le nouveau classement': 2}
+/bma-signaletique (5 km) : 787 → 786 ; +1 / −2 ; {'Fermé lors du contrôle API du 08/10/2026': 2}
+/ma (0 km) : 5296 → 5297 ; +6 / −5 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 1, 'Autre secteur dans le nouveau classement': 2, 'Fermé lors du contrôle API du 08/10/2026': 2}
+/ma (5 km) : 603 → 601 ; +0 / −2 ; {'Autre secteur dans le nouveau classement': 2}
+/#f=cap-cuisine (0 km) : 41297 → 41321 ; +349 / −325 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 291, 'Fermé lors du contrôle API du 08/10/2026': 28, 'Autre secteur dans le nouveau classement': 6}
+/#f=cap-cuisine (5 km) : 5237 → 5235 ; +25 / −27 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 24, 'Fermé lors du contrôle API du 08/10/2026': 3}
+/#f=cap-boulanger (0 km) : 12880 → 12854 ; +53 / −79 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 68, 'Autre secteur dans le nouveau classement': 6, 'Fermé lors du contrôle API du 08/10/2026': 5}
+/#f=cap-boulanger (5 km) : 1786 → 1782 ; +4 / −8 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 8}
+/#f=cap-patissier (0 km) : 35632 → 35613 ; +133 / −152 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 122, 'Autre secteur dans le nouveau classement': 9, 'Fermé lors du contrôle API du 08/10/2026': 21}
+/#f=cap-patissier (5 km) : 4593 → 4585 ; +6 / −14 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 13, 'Fermé lors du contrôle API du 08/10/2026': 1}
+/#f=cap-accompagnant-educatif-petite-enfance (0 km) : 20738 → 20714 ; +455 / −479 ; {'Autre secteur dans le nouveau classement': 57, 'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 418, 'Fermé lors du contrôle API du 08/10/2026': 4}
+/#f=cap-accompagnant-educatif-petite-enfance (5 km) : 1858 → 1885 ; +61 / −34 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 33, 'Fermé lors du contrôle API du 08/10/2026': 1}
+/#f=bac-pro-accompagnement-soins-et-services-a-la-personne (0 km) : 10575 → 10730 ; +312 / −157 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 142, 'Fermé lors du contrôle API du 08/10/2026': 2, 'Autre secteur dans le nouveau classement': 13}
+/#f=bac-pro-accompagnement-soins-et-services-a-la-personne (5 km) : 1015 → 1027 ; +27 / −15 ; {'Actif par SIRET, absent du relevé départemental API (cause interne non établie)': 13, 'Autre secteur dans le nouveau classement': 1, 'Fermé lors du contrôle API du 08/10/2026': 1}
+Autres pages Île-de-France identiques et contrat carte vérifié : oui
+Carte volontairement différente : données nationales du 08/10/2026 ; détails des écarts dans carte-comptages.json et source/verification-idf-national/.
+Rapport et captures : source/verification-idf-national/
+
+Contrôle complémentaire des combinaisons f+d et f+d+ly :
+Carte : 62 parcours à 320/375 px ; 180 clés ; 469 UAI ; frontières et clavier vérifiés ; aucune erreur.
