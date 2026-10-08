@@ -1,0 +1,156 @@
+{
+  "source": "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json?where=type_etablissement%3D%22Lyc%C3%A9e%22+and+etat%3D%22OUVERT%22&select=identifiant_de_l_etablissement%2Cnom_etablissement%2Cnom_commune%2Clatitude%2Clongitude%2Ccode_departement",
+  "ecartes_sans_position_ou_hors_catalogue": 77,
+  "academies": [
+    {
+      "slug": "aix-marseille",
+      "academie": "Aix-Marseille",
+      "lycees": 251
+    },
+    {
+      "slug": "amiens",
+      "academie": "Amiens",
+      "lycees": 161
+    },
+    {
+      "slug": "besancon",
+      "academie": "Besançon",
+      "lycees": 112
+    },
+    {
+      "slug": "bordeaux",
+      "academie": "Bordeaux",
+      "lycees": 282
+    },
+    {
+      "slug": "clermont-ferrand",
+      "academie": "Clermont-Ferrand",
+      "lycees": 131
+    },
+    {
+      "slug": "corse",
+      "academie": "Corse",
+      "lycees": 25
+    },
+    {
+      "slug": "creteil",
+      "academie": "Créteil",
+      "lycees": 357
+    },
+    {
+      "slug": "dijon",
+      "academie": "Dijon",
+      "lycees": 117
+    },
+    {
+      "slug": "grenoble",
+      "academie": "Grenoble",
+      "lycees": 229
+    },
+    {
+      "slug": "guadeloupe",
+      "academie": "Guadeloupe",
+      "lycees": 49
+    },
+    {
+      "slug": "guyane",
+      "academie": "Guyane",
+      "lycees": 32
+    },
+    {
+      "slug": "la-reunion",
+      "academie": "La Réunion",
+      "lycees": 82
+    },
+    {
+      "slug": "lille",
+      "academie": "Lille",
+      "lycees": 275
+    },
+    {
+      "slug": "limoges",
+      "academie": "Limoges",
+      "lycees": 76
+    },
+    {
+      "slug": "lyon",
+      "academie": "Lyon",
+      "lycees": 287
+    },
+    {
+      "slug": "martinique",
+      "academie": "Martinique",
+      "lycees": 47
+    },
+    {
+      "slug": "mayotte",
+      "academie": "Mayotte",
+      "lycees": 21
+    },
+    {
+      "slug": "montpellier",
+      "academie": "Montpellier",
+      "lycees": 241
+    },
+    {
+      "slug": "nancy-metz",
+      "academie": "Nancy-Metz",
+      "lycees": 200
+    },
+    {
+      "slug": "nantes",
+      "academie": "Nantes",
+      "lycees": 331
+    },
+    {
+      "slug": "nice",
+      "academie": "Nice",
+      "lycees": 141
+    },
+    {
+      "slug": "normandie",
+      "academie": "Normandie",
+      "lycees": 289
+    },
+    {
+      "slug": "orleans-tours",
+      "academie": "Orléans-Tours",
+      "lycees": 212
+    },
+    {
+      "slug": "paris",
+      "academie": "Paris",
+      "lycees": 239
+    },
+    {
+      "slug": "poitiers",
+      "academie": "Poitiers",
+      "lycees": 138
+    },
+    {
+      "slug": "reims",
+      "academie": "Reims",
+      "lycees": 115
+    },
+    {
+      "slug": "rennes",
+      "academie": "Rennes",
+      "lycees": 278
+    },
+    {
+      "slug": "strasbourg",
+      "academie": "Strasbourg",
+      "lycees": 147
+    },
+    {
+      "slug": "toulouse",
+      "academie": "Toulouse",
+      "lycees": 313
+    },
+    {
+      "slug": "versailles",
+      "academie": "Versailles",
+      "lycees": 388
+    }
+  ]
+}

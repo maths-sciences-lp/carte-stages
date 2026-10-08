@@ -31,6 +31,8 @@ jobs:
         run: python3 apres-3e/tests/voisins.py
       - name: Qui peut m'aider ?
         run: python3 aide/tests/donnees.py
+      - name: Qui peut m'aider ?, départ « Mon lycée »
+        run: python3 aide/tests/lycees.py
       - name: Après le lycée, toute la France
         run: python3 formation/tests/france.py
   navigateur:
