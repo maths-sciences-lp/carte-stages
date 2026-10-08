@@ -3,7 +3,10 @@
 DOMAINES = {
  "Bâtiment et travaux publics": {
   "Construction, maçonnerie, gros œuvre": ["41.20A", "41.20B", "43.99C", "43.91A", "43.91B", "43.99A", "23.70Z"],
-  "Travaux publics, routes, réseaux": ["42.11Z", "42.13A", "42.21Z", "42.22Z", "42.99Z", "43.12A", "43.12B"],
+  "Travaux publics, routes, réseaux": ["42.11Z", "42.13A", "42.21Z", "42.99Z", "43.12A", "43.12B"],
+  # 42.22Z séparé des travaux publics (filière énergie, 8/10/2026) : seule partie utile
+  # aux électriciens et à la 2de TNE ; les formations des travaux publics gardent les deux.
+  "Réseaux électriques et télécoms": ["42.22Z"],
   "Peinture, plâtre, carrelage, sols, isolation": ["43.31Z", "43.33Z", "43.34Z", "43.39Z", "43.29A"],
   "Menuiserie, agencement, serrurerie": ["43.32A", "43.32B", "43.32C", "16.23Z", "25.12Z"],
   "Géomètres-experts, topographie": ["71.12A"],
@@ -15,7 +18,12 @@ DOMAINES = {
  "Énergie, électricité, chauffage": {
   "Électricité du bâtiment": ["43.21A", "43.21B"],
   "Plomberie, chauffage, climatisation, froid": ["43.22A", "43.22B", "35.30Z"],
-  "Maintenance d'équipements, ascenseurs": ["33.12Z", "33.13Z", "33.14Z", "33.20B", "33.20C", "33.20D", "43.29B"],
+  # Découpée le 8/10/2026 (filière énergie, 10 entreprises vérifiées par code) : restent ici
+  # ascensoristes et portes automatiques (43.29B), réparation de moteurs et matériel électrique
+  # (33.14Z) et installation d'équipements électriques (33.20D), utiles aux électriciens.
+  "Maintenance d'équipements, ascenseurs": ["33.14Z", "33.20D", "43.29B"],
+  # 33.20B : surtout des frigoristes (froid industriel, groupes de camions), aussi des machines.
+  "Froid industriel, installation de machines": ["33.20B"],
   "Production et distribution d'énergie": ["35.11Z", "35.13Z", "35.14Z", "35.22Z"],
  },
  "Automobile, moto, poids lourds, aéronautique": {
@@ -29,6 +37,9 @@ DOMAINES = {
   "Usinage, mécanique, outillage": ["25.62A", "25.62B", "25.73A", "25.73B", "28.41Z", "28.99B", "33.11Z"],
   "Chaudronnerie, soudure, structures métalliques": ["25.11Z", "25.29Z", "25.99B"],
   "Électronique, matériel électrique": ["26.11Z", "26.12Z", "27.11Z", "27.12Z", "27.40Z", "27.90Z"],
+  # Sorti de « Maintenance d'équipements, ascenseurs » (8/10/2026) : machines agricoles, engins,
+  # hydraulique (33.12Z), électronique et optique (33.13Z), contrôle industriel (33.20C).
+  "Réparation de machines et d'électronique": ["33.12Z", "33.13Z", "33.20C"],
   "Plastique, verre, matériaux": ["22.21Z", "22.22Z", "22.29A", "22.29B", "23.12Z", "23.19Z"],
   "Chimie, pharmacie, cosmétiques, papier": ["20.11Z", "20.13B", "20.14Z", "20.16Z", "20.30Z", "20.41Z", "20.42Z", "20.59Z", "21.10Z", "21.20Z", "17.12Z", "17.21A", "17.21B", "17.29Z"],
   "Laboratoires d'analyses et d'essais": ["71.20B"],
@@ -151,7 +162,9 @@ DOMAINES = {
  },
  "Informatique, numérique, télécoms": {
   "Réparation d'ordinateurs et de téléphones": ["95.11Z", "95.12Z"],
-  "Services informatiques, réseaux": ["62.01Z", "62.02A", "62.03Z", "62.09Z"],
+  # 62.02A (conseil en systèmes et logiciels) retiré le 8/10/2026 : 10 entreprises vérifiées,
+  # 8 consultants (souvent seuls) ou sociétés d'ingénieurs, aucun technicien (voir CODES_RETIRES).
+  "Services informatiques, réseaux": ["62.01Z", "62.03Z", "62.09Z"],
   "Télécommunications": ["61.10Z", "61.20Z", "61.90Z"],
  },
  "Mode, textile, cuir": {
@@ -209,3 +222,29 @@ ECOLES_EXCLUES = (
     'cap-interventions-en-maintenance-technique-des-batiments',
     '2nde-etudes-et-modelisation-numerique-du-batiment-emnb',
 )
+
+# Lieux sans personnel (filière énergie, 8/10/2026) : l'activité est la bonne, mais ce sont
+# des comptes de collectivités (lotissements, zones d'activité, remembrement en 42.99Z ;
+# panneaux solaires communaux en 35.11Z) ou des fermes qui vendent leur électricité solaire.
+# Retirés quand l'activité propre est dans la liste et que le propriétaire est une personne
+# publique (catégorie juridique 7…) ou une exploitation agricole (activité 01 à 03).
+SANS_PERSONNEL = {
+    "Travaux publics, routes, réseaux": {"42.99Z": ("public",)},
+    "Production et distribution d'énergie": {"35.11Z": ("public", "agricole")},
+}
+
+
+# Catégories issues du découpage d'une catégorie plus ancienne : sert aux contrôles qui
+# comparent avec les tables historiques (rien n'est retiré aux formations d'origine).
+DECOUPAGES = {
+    "Écoles maternelles et élémentaires": "Mairies, administrations",
+    "Réseaux électriques et télécoms": "Travaux publics, routes, réseaux",
+    "Froid industriel, installation de machines": "Maintenance d'équipements, ascenseurs",
+    "Réparation de machines et d'électronique": "Maintenance d'équipements, ascenseurs",
+}
+
+# Codes retirés d'une catégorie après vérification : les établissements publiés qui n'y
+# étaient que par ce code en sortent (stage_reclasser_naf.py).
+CODES_RETIRES = {
+    "Services informatiques, réseaux": ["62.02A"],
+}

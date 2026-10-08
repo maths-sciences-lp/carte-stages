@@ -138,6 +138,7 @@
 "Géomètres-experts, topographie",
 "Bureaux d'études, économistes de la construction",
 "Travaux publics, routes, réseaux",
+"Réseaux électriques et télécoms",
 "Mairies, administrations"
 ],
 "bac pro hygiène, propreté, stérilisation": [
@@ -148,7 +149,7 @@
 ],
 "bac pro installateur en chauffage, climatisation et énergies renouvelables": [
 "Plomberie, chauffage, climatisation, froid",
-"Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
 "Production et distribution d'énergie"
 ],
 "bac pro interventions sur le patrimoine bâti option A maçonnerie": [
@@ -170,7 +171,8 @@
 "bac pro maintenance des matériels option B matériels de construction et de manutention": [
 "Matériels agricoles, engins de chantier",
 "Poids lourds, utilitaires",
-"Travaux publics, routes, réseaux"
+"Travaux publics, routes, réseaux",
+"Réseaux électriques et télécoms"
 ],
 "bac pro maintenance des matériels option C matériels d'espaces verts": [
 "Matériels agricoles, engins de chantier",
@@ -179,6 +181,8 @@
 ],
 "bac pro maintenance des systèmes de production connectés": [
 "Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
+"Réparation de machines et d'électronique",
 "Usinage, mécanique, outillage",
 "Électronique, matériel électrique",
 "Industrie agroalimentaire",
@@ -201,7 +205,7 @@
 ],
 "bac pro maintenance et efficacité énergétique": [
 "Plomberie, chauffage, climatisation, froid",
-"Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
 "Production et distribution d'énergie"
 ],
 "bac pro maintenance nautique": [
@@ -239,7 +243,7 @@
 "Maintenance d'équipements, ascenseurs",
 "Télécommunications",
 "Production et distribution d'énergie",
-"Travaux publics, routes, réseaux"
+"Réseaux électriques et télécoms"
 ],
 "bac pro métiers de la coiffure": [
 "Coiffure"
@@ -280,7 +284,7 @@
 ],
 "bac pro métiers du froid et des énergies renouvelables": [
 "Plomberie, chauffage, climatisation, froid",
-"Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
 "Production et distribution d'énergie"
 ],
 "bac pro optique lunetterie": [
@@ -292,7 +296,8 @@
 ],
 "bac pro organisation et réalisation du gros oeuvre": [
 "Construction, maçonnerie, gros œuvre",
-"Travaux publics, routes, réseaux"
+"Travaux publics, routes, réseaux",
+"Réseaux électriques et télécoms"
 ],
 "bac pro ouvrages du bâtiment : métallerie": [
 "Menuiserie, agencement, serrurerie",
@@ -404,6 +409,7 @@
 ],
 "bac pro travaux publics": [
 "Travaux publics, routes, réseaux",
+"Réseaux électriques et télécoms",
 "Construction, maçonnerie, gros œuvre"
 ],
 "bac pro étude et réalisation d'agencement": [
@@ -502,6 +508,7 @@
 ],
 "CAP conducteur d'engins de travaux publics et carrières": [
 "Travaux publics, routes, réseaux",
+"Réseaux électriques et télécoms",
 "Construction, maçonnerie, gros œuvre"
 ],
 "CAP conducteur d'installations de production": [
@@ -523,10 +530,12 @@
 ],
 "CAP constructeur de routes et d'aménagements urbains": [
 "Travaux publics, routes, réseaux",
+"Réseaux électriques et télécoms",
 "Paysagistes, espaces verts"
 ],
 "CAP constructeur de réseaux de canalisations de travaux publics": [
 "Travaux publics, routes, réseaux",
+"Réseaux électriques et télécoms",
 "Déchets, recyclage, assainissement"
 ],
 "CAP cordonnerie multiservice": [
@@ -578,10 +587,12 @@
 ],
 "CAP installateur en froid et conditionnement d'air": [
 "Plomberie, chauffage, climatisation, froid",
-"Maintenance d'équipements, ascenseurs"
+"Froid industriel, installation de machines"
 ],
 "CAP interventions en maintenance technique des bâtiments": [
 "Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
+"Réparation de machines et d'électronique",
 "Électricité du bâtiment",
 "Plomberie, chauffage, climatisation, froid",
 "Agences immobilières, gestion de logements",
@@ -596,7 +607,8 @@
 "CAP maintenance des matériels option B matériels de construction et de manutention": [
 "Matériels agricoles, engins de chantier",
 "Poids lourds, utilitaires",
-"Travaux publics, routes, réseaux"
+"Travaux publics, routes, réseaux",
+"Réseaux électriques et télécoms"
 ],
 "CAP maintenance des matériels option C matériels d'espaces verts": [
 "Matériels agricoles, engins de chantier",
@@ -649,8 +661,7 @@
 "Plomberie, chauffage, climatisation, froid"
 ],
 "CAP monteur en installations thermiques": [
-"Plomberie, chauffage, climatisation, froid",
-"Maintenance d'équipements, ascenseurs"
+"Plomberie, chauffage, climatisation, froid"
 ],
 "CAP métallier": [
 "Menuiserie, agencement, serrurerie",
@@ -897,6 +908,8 @@
 "bac pro optique photonique : technologies de la lumière": [
 "Optique, photonique, instruments de mesure",
 "Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
+"Réparation de machines et d'électronique",
 "Laboratoires d'analyses et d'essais",
 "Laboratoires de recherche scientifique"
 ],
@@ -944,7 +957,9 @@
 "Production et distribution d'énergie",
 "Déchets, recyclage, assainissement",
 "Traitement des déchets dangereux",
-"Maintenance d'équipements, ascenseurs"
+"Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
+"Réparation de machines et d'électronique"
 ],
 "bac pro transport fluvial": [
 "Navigation fluviale"
@@ -952,7 +967,9 @@
 "bac pro transports par câbles et remontées mécaniques": [
 "Remontées mécaniques, téléphériques",
 "Transport de voyageurs",
-"Maintenance d'équipements, ascenseurs"
+"Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
+"Réparation de machines et d'électronique"
 ],
 "bac pro électromécanicien marine": [
 "Navigation maritime, plaisance professionnelle",
@@ -976,7 +993,9 @@
 "Transport de voyageurs"
 ],
 "CAP agent vérificateur d'appareils extincteurs": [
-"Maintenance d'équipements, ascenseurs"
+"Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
+"Réparation de machines et d'électronique"
 ],
 "CAPa agricultures des régions chaudes": [
 "Horticulture, maraîchage, agriculture",
@@ -1077,6 +1096,7 @@
 "CAP constructeur d'ouvrages en béton armé": [
 "Construction, maçonnerie, gros œuvre",
 "Travaux publics, routes, réseaux",
+"Réseaux électriques et télécoms",
 "Éléments préfabriqués en béton"
 ],
 "CAP cordonnier bottier": [
@@ -1191,7 +1211,9 @@
 ],
 "CAP transports par câbles et remontées mécaniques": [
 "Remontées mécaniques, téléphériques",
-"Maintenance d'équipements, ascenseurs"
+"Maintenance d'équipements, ascenseurs",
+"Froid industriel, installation de machines",
+"Réparation de machines et d'électronique"
 ],
 "CAP vannerie": [
 "Objets en bois, liège, vannerie"

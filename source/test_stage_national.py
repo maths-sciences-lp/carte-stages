@@ -66,6 +66,51 @@ class NationalTest(unittest.TestCase):
         self.assertFalse(any(groups.values()))
         self.assertEqual(excluded, {'sans_nom': 1})
 
+    def test_lieux_sans_personnel_retires_les_autres_gardes(self):
+        def lieu(siret, c, q, nj):
+            return dict(s=siret, n='LIEU ' + siret, e='', c=c, q=q, ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t='11', nj=nj, du='O', de='O', r=False)
+        rows = [lieu('1', '42.99Z', '84.11Z', '7210'),   # lotissement communal
+                lieu('2', '42.99Z', '42.99Z', '5710'),   # entreprise de génie civil
+                lieu('3', '35.11Z', '01.41Z', '6533'),   # ferme avec panneaux solaires
+                lieu('4', '35.11Z', '84.11Z', '7210'),   # panneaux solaires communaux
+                lieu('5', '35.13Z', '84.11Z', '7210'),   # régie municipale d'électricité
+                lieu('6', '42.22Z', '42.22Z', '5710')]   # réseaux électriques
+        groups, excluded = preparer(rows)
+        gardes = {r[7]: k for k, v in groups.items() for r in v}
+        self.assertEqual(gardes, {'2': 'travaux-publics-routes-reseaux', '5': 'production-et-distribution-d-energie',
+                                  '6': 'reseaux-electriques-et-telecoms'})
+        self.assertEqual(excluded, {'sans_personnel': 3})
+
+    def test_filiere_energie_tne_avec_ciel_et_electriciens_sans_routes(self):
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        tne = forms['2nde-transitions-numerique-et-energetique-tne']
+        for k in forms['bac-pro-cybersecurite-informatique-et-reseaux-electronique']:
+            self.assertIn(k, tne)
+        for k in ('2nde-transitions-numerique-et-energetique-tne', 'bac-pro-metiers-de-l-electricite-et-de-ses-environnements-co'):
+            self.assertNotIn('travaux-publics-routes-reseaux', forms[k])
+            self.assertIn('reseaux-electriques-et-telecoms', forms[k])
+        # Ascenseurs découpés : électriciens / froid et climatisation / aucune réparation de machines.
+        asc, froid, rep = 'maintenance-d-equipements-ascenseurs', 'froid-industriel-installation-de-machines', 'reparation-de-machines-et-d-electronique'
+        for k in ('bac-pro-metiers-de-l-electricite-et-de-ses-environnements-co', 'cap-electricien'):
+            self.assertEqual([x in forms[k] for x in (asc, froid, rep)], [True, False, False], k)
+        for k in ('bac-pro-installateur-en-chauffage-climatisation-et-energies-', 'bac-pro-maintenance-et-efficacite-energetique',
+                  'bac-pro-metiers-du-froid-et-des-energies-renouvelables', 'cap-installateur-en-froid-et-conditionnement-d-air'):
+            self.assertEqual([x in forms[k] for x in (asc, froid, rep)], [False, True, False], k)
+        self.assertFalse({asc, froid, rep} & set(forms['cap-monteur-en-installations-thermiques']))
+        self.assertEqual([x in tne for x in (asc, froid, rep)], [True, True, False])
+        # Hors de la filière, rien n'est perdu : les trois parties restent ensemble.
+        for k in ('bac-pro-maintenance-des-systemes-de-production-connectes', 'cap-interventions-en-maintenance-technique-des-batiments'):
+            self.assertTrue({asc, froid, rep} <= set(forms[k]), k)
+        # Conseil en systèmes et logiciels (62.02A) retiré ; programmation et dépannage restent.
+        from domaines import DOMAINES
+        info = DOMAINES['Informatique, numérique, télécoms']['Services informatiques, réseaux']
+        self.assertEqual(info, ['62.01Z', '62.03Z', '62.09Z'])
+        # Les formations des travaux publics gardent tout : routes et réseaux.
+        for k, s in forms.items():
+            if 'travaux-publics-routes-reseaux' in s:
+                self.assertIn('reseaux-electriques-et-telecoms', s, k)
+
     def test_export_incomplet_refuse(self):
         for raw in ['[{"workplace": {}}', '[{},', '[] contenu inattendu']:
             with self.subTest(raw=raw), self.assertRaises(ValueError):
