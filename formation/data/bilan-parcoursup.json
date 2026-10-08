@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-07",
+  "date": "2026-10-08",
   "session": "2025",
   "source": "https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets/fr-esr-parcoursup/exports/json?where=fili%3D%22BTS%22&select=session%2Cdep%2Cregion_etab_aff%2Cacad_mies%2Ccod_uai%2Cg_ea_lib_vx%2Cville_etab%2Cfil_lib_voe_acc%2Cg_olocalisation_des_formations%2Ccapa_fin%2Cvoe_tot%2Cacc_tot%2Cacc_bp%2Clien_form_psup",
   "sha256": "df4b07d75f352dfebc40ab6449581ebf90ad1a7292673eed2555ada140b5ddb9",
@@ -147,10 +147,9 @@
       "region": "Île-de-France",
       "total": 885,
       "sans_correspondance": 213,
-      "relies": 663,
+      "relies": 671,
       "ambigus": 1,
-      "noms_non_confirmes": 8,
-      "taux": 74.9
+      "taux": 75.8
     }
   ],
   "fichiers": [
@@ -192,9 +191,9 @@
     },
     {
       "slug": "creteil",
-      "relies": 660,
-      "octets": 36791,
-      "gzip_octets": 8570
+      "relies": 668,
+      "octets": 37245,
+      "gzip_octets": 8660
     },
     {
       "slug": "dijon",
@@ -294,9 +293,9 @@
     },
     {
       "slug": "paris",
-      "relies": 658,
-      "octets": 36682,
-      "gzip_octets": 8524
+      "relies": 666,
+      "octets": 37136,
+      "gzip_octets": 8615
     },
     {
       "slug": "poitiers",
@@ -330,9 +329,9 @@
     },
     {
       "slug": "versailles",
-      "relies": 639,
-      "octets": 35622,
-      "gzip_octets": 8294
+      "relies": 647,
+      "octets": 36076,
+      "gzip_octets": 8385
     }
   ],
   "rapprochements": [
@@ -38148,7 +38147,7 @@
       "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23305",
       "nom": "Campus Saint-Aspais",
       "formation": "BTS comptabilité et gestion",
-      "statut": "nom_a_verifier",
+      "statut": "confirme",
       "parcoursup": 9830,
       "nom_parcoursup": "Institution Saint Aspais",
       "formation_parcoursup": "Comptabilité et gestion",
@@ -38232,7 +38231,7 @@
       "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.10004",
       "nom": "Lycée professionnel privé ORT Daniel Mayer",
       "formation": "BTS comptabilité et gestion",
-      "statut": "nom_a_verifier",
+      "statut": "confirme",
       "parcoursup": 17849,
       "nom_parcoursup": "Lycée ORT DANIEL MAYER",
       "formation_parcoursup": "Comptabilité et gestion",
@@ -40038,7 +40037,7 @@
       "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.23305",
       "nom": "Campus Saint-Aspais",
       "formation": "BTS services informatiques aux organisations option A solutions d'infrastructure, systèmes et réseaux",
-      "statut": "nom_a_verifier",
+      "statut": "confirme",
       "parcoursup": 9831,
       "nom_parcoursup": "Institution Saint Aspais",
       "formation_parcoursup": "Services informatiques aux organisations",
@@ -40122,7 +40121,7 @@
       "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17581",
       "nom": "Lycée général et technologique de l'ensemble Saint-Marie (pôle STS)",
       "formation": "BTS services informatiques aux organisations option A solutions d'infrastructure, systèmes et réseaux",
-      "statut": "nom_a_verifier",
+      "statut": "confirme",
       "parcoursup": 14624,
       "nom_parcoursup": "LGT SAINTE MARIE",
       "formation_parcoursup": "Services informatiques aux organisations",
@@ -41284,7 +41283,7 @@
       "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17581",
       "nom": "Lycée général et technologique de l'ensemble Saint-Marie (pôle STS)",
       "formation": "BTS management commercial opérationnel",
-      "statut": "nom_a_verifier",
+      "statut": "confirme",
       "parcoursup": 11533,
       "nom_parcoursup": "LGT SAINTE MARIE",
       "formation_parcoursup": "Management Commercial Opérationnel",
@@ -42012,7 +42011,7 @@
       "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17581",
       "nom": "Lycée général et technologique de l'ensemble Saint-Marie (pôle STS)",
       "formation": "BTS négociation et digitalisation de la relation client",
-      "statut": "nom_a_verifier",
+      "statut": "confirme",
       "parcoursup": 11534,
       "nom_parcoursup": "LGT SAINTE MARIE",
       "formation_parcoursup": "Négociation et digitalisation de la Relation Client",
@@ -42250,7 +42249,7 @@
       "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.17581",
       "nom": "Lycée général et technologique de l'ensemble Saint-Marie (pôle STS)",
       "formation": "BTS commerce international",
-      "statut": "nom_a_verifier",
+      "statut": "confirme",
       "parcoursup": 11532,
       "nom_parcoursup": "LGT SAINTE MARIE",
       "formation_parcoursup": "Commerce International",
@@ -42376,7 +42375,7 @@
       "onisep": "https://www.onisep.fr/http/redirection/etablissement/slug/ENS.21635",
       "nom": "Lycée technologique privé CE3P",
       "formation": "BTS photographie",
-      "statut": "nom_a_verifier",
+      "statut": "confirme",
       "parcoursup": 11524,
       "nom_parcoursup": "Lycée professionnel CE3P",
       "formation_parcoursup": "Photographie",

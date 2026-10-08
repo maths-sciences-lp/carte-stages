@@ -32,7 +32,7 @@ const cases=[
   await c.addInitScript(()=>localStorage.setItem('stages.academie','paris'));
   await p.goto(BASE+'/aide/'+slug+'/');await loaded(p,slug);
   assert.equal(await p.evaluate(()=>localStorage.getItem('stages.academie')),slug);
-  assert(!requests.some(u=>u.includes('/aide/aide.json')),'pas de téléchargement IDF en national');
+  assert(!requests.some(u=>/\/aide\/(aide\.json|data\/(creteil|paris|versailles)\.json)/.test(u)),'pas de téléchargement IDF en national');
   assert(!requests.some(u=>u.includes('departements.json')),'pas de contours avant clic');
   assert(!requests.some(u=>u.includes('api-adresse')),'pas de BAN avant saisie');
   await p.locator('[data-k="tout"]').click();
@@ -86,10 +86,10 @@ const cases=[
   await p.reload();await loaded(p,'lille');
   requests.length=0;await p.goto(BASE+'/aide/#mda');await p.waitForFunction(()=>typeof D!=='undefined'&&D!==null);
   assert.equal(await p.locator('.ac-picker').count(),0);assert.equal(await p.locator('#fdep .chip').count(),3);
-  assert(!requests.some(u=>u.includes('/commun/')));assert(await p.locator('.lead').innerText().then(s=>s.includes('Île-de-France')));
+  assert(!requests.some(u=>u.includes('/commun/')&&!/\/commun\/accessibilite\.(css|js)$/.test(u)));assert(await p.locator('.lead').innerText().then(s=>s.includes('Île-de-France')));
   await p.screenshot({path:path.join(OUTPUT,'idf-mda.png')});
   await p.goto(BASE+'/aide/');await p.waitForFunction(()=>typeof D!=='undefined'&&D!==null);await p.screenshot({path:path.join(OUTPUT,'idf.png')});
-  await c.close();report.push('Mémoire commune, entrée France, Île-de-France et #mda : OK, aucun commun/ chargé sur /aide/');
+  await c.close();report.push('Mémoire commune, entrée France, Île-de-France et #mda : OK, aucun module commun/ (hors accessibilité) chargé sur /aide/');
  }
  assert.deepEqual(allErrors,[],'console sans erreur');
  await browser.close();fs.writeFileSync(path.join(OUTPUT,'resultat.txt'),report.join('\n')+'\nConsole : aucune erreur.\n');console.log(report.join('\n'));console.log('Console : aucune erreur.');

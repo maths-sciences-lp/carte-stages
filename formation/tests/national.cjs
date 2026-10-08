@@ -24,7 +24,7 @@ const cases=[['lyon','Lyon',45.764,4.8357],['lille','Lille',50.6292,3.0573],['ai
  }
  {
   const {c,p,requests}=await context();await p.goto(BASE+'/formation/france/');await p.waitForFunction(()=>document.querySelectorAll('.ac-options button').length===30);await p.screenshot({path:path.join(OUTPUT,'question.png')});await p.evaluate(()=>localStorage.setItem('stages.academie','lille'));await p.reload();await loaded(p,'lille');
-  requests.length=0;await p.goto(BASE+'/formation/');await p.waitForFunction(()=>D&&PS);assert.equal(await p.locator('.ac-picker').count(),0);assert(!requests.some(u=>u.includes('/commun/')));assert(await p.locator('.hen').isVisible());await p.screenshot({path:path.join(OUTPUT,'idf.png')});
+  requests.length=0;await p.goto(BASE+'/formation/');await p.waitForFunction(()=>D&&PS);assert.equal(await p.locator('.ac-picker').count(),0);assert(!requests.some(u=>u.includes('/commun/')&&!/\/commun\/accessibilite\.(css|js)$/.test(u)));assert(await p.locator('.hen').isVisible());await p.screenshot({path:path.join(OUTPUT,'idf.png')});
   for(const k of ['eeb','iccer','mee','tma','era','geometre','mit','sdg','ebeniste','bma-ebeniste','bma-signaletique']){await p.goto(BASE+'/formation/#'+k);await p.waitForFunction(k=>D&&PS&&cur?.k===k,k);assert(await p.locator('#res').isVisible());assert((await p.locator('main section').first().innerText()).includes('Hénaff'));if(k==='eeb'){await p.screenshot({path:path.join(OUTPUT,'idf-eeb.png')});await p.locator('#s3').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(OUTPUT,'idf-eeb-poursuites.png')});}}
   await c.close();report.push('Entrée France et mémoire commune ; /formation/ sans sélecteur ; 11 liens Hénaff : OK');
  }

@@ -1,5 +1,75 @@
 [
  {
+  "n": "Maison des adolescents CASITA",
+  "a": "Hôpital Avicenne, 125 rue de Stalingrad",
+  "cp": "93000",
+  "v": "Bobigny",
+  "lat": 48.91274,
+  "lon": 2.43578,
+  "tel": "01 48 95 73 01",
+  "src": "https://anmda.fr/fr/maison-des-adolescents-de-bobigny-casita"
+ },
+ {
+  "n": "Maison des adolescents CASADO",
+  "a": "2 bis rue Gibault",
+  "cp": "93200",
+  "v": "Saint-Denis",
+  "lat": 48.93511,
+  "lon": 2.3553,
+  "tel": "01 48 13 16 43",
+  "src": "https://anmda.fr/fr/maison-des-adolescents-casado-saint-denis"
+ },
+ {
+  "n": "Maison des adolescents AMICA",
+  "a": "4 allée Albert Camus",
+  "cp": "93390",
+  "v": "Clichy-sous-Bois",
+  "lat": 48.90616,
+  "lon": 2.5576,
+  "tel": "01 43 88 23 64",
+  "w": "http://www.mda93amica.fr/",
+  "h": [
+   "Du lundi au vendredi de 9 h 30 à 18 h"
+  ],
+  "pub": "12 à 21 ans et leurs parents",
+  "src": "https://anmda.fr/fr/maison-des-adolescents-de-clichy-sous-bois-amica"
+ },
+ {
+  "n": "Maison de l’adolescent du Val-de-Marne",
+  "a": "8 rue du Général Lacharrière",
+  "cp": "94000",
+  "v": "Créteil",
+  "lat": 48.7877,
+  "lon": 2.46421,
+  "tel": "01 57 02 23 90",
+  "pub": "11 à 25 ans et leurs proches",
+  "src": "https://anmda.fr/fr/maison-de-ladolescent"
+ },
+ {
+  "n": "Maison des adolescents Adobase (nord Seine-et-Marne)",
+  "a": "7 rue du Docteur Nicole Mangin",
+  "cp": "77400",
+  "v": "Lagny-sur-Marne",
+  "lat": 48.87321,
+  "lon": 2.69809,
+  "tel": "01 60 54 30 73",
+  "src": "https://anmda.fr/fr/maison-des-adolescents-adobase-nord-seine-et-marne"
+ },
+ {
+  "n": "Maison des adolescents ADO Sud 77",
+  "a": "Maison des associations, 6 rue du Mont Ussy",
+  "cp": "77300",
+  "v": "Fontainebleau",
+  "lat": 48.41463,
+  "lon": 2.70203,
+  "tel": "06 71 81 87 41",
+  "h": [
+   "Sur rendez-vous, secrétariat tous les jours de 9 h à 17 h",
+   "Autre permanence : Maison pour tous, 4 rue Jules Ferry, Montereau-Fault-Yonne"
+  ],
+  "src": "https://anmda.fr/fr/maison-des-adolescents-ado-sud-77-seine-et-marne"
+ },
+ {
   "n": "Maison des adolescents Robert-Debré",
   "a": "8 avenue de la Porte du Pre-Saint-Gervais",
   "cp": "75019",

@@ -66,7 +66,7 @@ function sourceText(ac){
 }
 sourceText(null);typographie(main);footer.style.visibility='visible';
 await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSelect:async(ac,{signal})=>{
- const r=await fetch(new URL('data/'+ac.slug+'.json?v=2026-10-07',document.baseURI),{signal});
+ const r=await fetch(new URL('data/'+ac.slug+'.json?v=2026-10-08',document.baseURI),{signal});
  if(!r.ok)throw new Error('Données indisponibles');
  const data=await r.json();if(signal.aborted)return;
  for(const f of data.formations)for(const e of f.e)e.n=e.n.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff'); // nom officiel accentué

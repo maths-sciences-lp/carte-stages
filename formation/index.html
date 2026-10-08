@@ -114,7 +114,7 @@ function choisirClasse(k,user){const c=D.classes.find(c=>c.k===k);if(!c||!D.dip[
  if(user){history.replaceState(null,'',location.pathname+location.search+'#'+k);stat('classe/'+k,c.n);}montrer(user);}
 function choisirDip(id,ly,user){const d=D.dip[id];if(!d)return;cur={k:null,d:id,ly:ly&&d.ly.includes(ly)?ly:(d.ly.length===1?d.ly[0]:null)};
  $('q').value=d.lib;$('qsug').hidden=true;$('qmsg').textContent='';remplirLycees();if(user){majHash();stat('diplome/'+id,d.lib);}montrer(user);}
-function remplirLycees(){const d=D.dip[cur.d];const L=d.ly.filter(u=>D.lycees[u]).sort((a,b)=>D.lycees[a].n.localeCompare(D.lycees[b].n,'fr'));
+function remplirLycees(){const d=D.dip[cur.d];const L=d.ly.filter(u=>D.lycees[u]).sort((a,b)=>D.lycees[a].n.localeCompare(D.lycees[b].n,'fr')||D.lycees[a].v.localeCompare(D.lycees[b].v,'fr'));
  $('ly').innerHTML=`<option value="">— Choisis ton lycée (${L.length}) —</option>`+L.map(u=>`<option value="${u}"${u===cur.ly?' selected':''}>${esc(D.lycees[u].n)} (${esc(D.lycees[u].v)})</option>`).join('');$('lyc').hidden=false;}
 function majHash(){history.replaceState(null,'',location.pathname+location.search+'#d='+cur.d+(cur.ly?'&ly='+cur.ly:''));}
 $('ly').onchange=()=>{if(!cur)return;cur.ly=$('ly').value||null;majHash();draw();};
@@ -164,8 +164,10 @@ $('adr').addEventListener('keydown',async e=>{if(e.key!=='Enter')return;e.preven
 $('geo').onclick=()=>{if(!navigator.geolocation){$('amsg').textContent='Ton téléphone ne permet pas la localisation.';return;}$('amsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setMaison(p.coords.latitude,p.coords.longitude,'Ta position');},()=>$('amsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
 function lireHash(){const h=location.hash.slice(1);if(!h)return;if(h.startsWith('d=')){const p=new URLSearchParams(h);if(!cur||cur.d!==p.get('d')||cur.ly!==p.get('ly'))choisirDip(p.get('d'),p.get('ly'),false);}else if(!cur||cur.k!==h)choisirClasse(h,false);}
-if(!window.FORMATION_NATIONAL)fetch('formations.json?v=2026-10-08').then(r=>r.json()).then(d=>{D=d;IDX=Object.entries(D.dip).map(([id,x])=>({id,lib:x.lib,n:x.ly.length,t:norm(x.lib+' '+x.al)}));drawClasses();lireHash();});
-if(!window.FORMATION_NATIONAL)fetch('parcoursup.json?v=2026-10-07').then(r=>r.json()).then(d=>{PS=d;draw();}).catch(()=>{});
+// Île-de-France : fichier réuni par source/formation_national.py à partir des trois fichiers d'académie.
+const charger=n=>fetch('data/'+n+'.json?v=2026-10-08').then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();});
+if(!window.FORMATION_NATIONAL)charger('ile-de-france').then(d=>{D=d;IDX=Object.entries(D.dip).map(([id,x])=>({id,lib:x.lib,n:x.ly.length,t:norm(x.lib+' '+x.al)}));drawClasses();lireHash();});
+if(!window.FORMATION_NATIONAL)charger('ile-de-france-parcoursup').then(d=>{PS=d;draw();}).catch(()=>{});
 window.addEventListener('hashchange',()=>{if(D)lireHash();});
 </script>
 <script src="../commun/accessibilite.js"></script>
