@@ -5,6 +5,7 @@ Avec --academies : sorties nationales, sans écrire aide/aide.json. Voir README.
 import argparse
 import collections
 import datetime
+import hashlib
 import html
 import json
 import math
@@ -262,6 +263,56 @@ def route_html(ac):
             '<script src="../ouvrir.js"></script></body></html>\n')
 
 
+def verifier_position(r, d, cache, corrections, tolerance_km=3):
+    """Le lieu doit être dans son département (contour officiel, à 3 km près).
+    Sinon : erreurs de saisie typiques (signe de la longitude, latitude et longitude
+    inversées), puis géocodage de l'adresse par la Base Adresse Nationale ; si rien
+    ne convient, le lieu est écarté. Chaque correction est consignée (bilan.json)."""
+    from apres3e_voisins import dedans, distance_km, segments
+    def ok(lat, lon, dd=d):
+        return dedans(lat, lon, dd) or distance_km(lat, lon, segments([dd])) <= tolerance_km
+    lat, lon = r['lat'], r['lon']
+    if not (ROOT / 'commun' / 'contours' / f'{d}.json').exists() or ok(lat, lon):
+        return r, d
+    # La fiche peut annoncer un autre département que son code postal (communes homonymes) :
+    # si la position est dans le département du code postal, c'est lui qui fait foi.
+    cp = str(r.get('cp', ''))
+    candidats = ['2A', '2B'] if cp.startswith('20') else [dep_code(cp)] if cp else []
+    for dcp in candidats:
+        if dcp != d and dcp in ACAD and (ROOT / 'commun' / 'contours' / f'{dcp}.json').exists() and ok(lat, lon, dcp):
+            corrections.append(dict(n=r['n'], cp=cp, avant=[lat, lon], apres=[lat, lon], motif=f'département {d} → {dcp} (code postal et position concordent)'))
+            return r, dcp
+    essais = [('longitude de signe inversé', lat, -lon), ('latitude et longitude inversées', lon, lat),
+              ('latitude de signe inversé', -lat, lon)]
+    for motif, a, b in essais:
+        if -90 <= a <= 90 and -180 <= b <= 180 and ok(a, b):
+            corrections.append(dict(n=r['n'], cp=r.get('cp', ''), avant=[lat, lon], apres=[round(a, 5), round(b, 5)], motif=motif))
+            return {**r, 'lat': round(a, 5), 'lon': round(b, 5)}, d
+    fichier = cache / 'geocodage.json'
+    memo = json.loads(fichier.read_text()) if fichier.exists() else {}
+    def geocoder(q, **params):
+        cle = q + '|' + json.dumps(params, sort_keys=True)
+        if cle not in memo:
+            url = 'https://api-adresse.data.gouv.fr/search/?' + urllib.parse.urlencode(dict(q=q, limit=1, **params))
+            try:
+                memo[cle] = json.loads(download(url, cache / 'geocodage' / (hashlib.sha256(cle.encode()).hexdigest()[:20] + '.json'), delay=0.1))
+            except Exception:
+                memo[cle] = {}
+            write_json(fichier, memo)
+        f = (memo[cle].get('features') or [None])[0]
+        return f if f and f['properties'].get('score', 0) >= 0.5 else None
+    adresse = ' '.join(x for x in (r.get('a', ''), r.get('cp', ''), r.get('v', '')) if x)
+    for motif, f in (('adresse géocodée (Base Adresse Nationale)', geocoder(adresse, **({'postcode': cp} if cp else {}))),
+                     ('centre de la commune (Base Adresse Nationale), adresse introuvable', geocoder(' '.join(x for x in (cp, r.get('v', '')) if x), type='municipality'))):
+        if f:
+            b, a = f['geometry']['coordinates']
+            if ok(a, b):
+                corrections.append(dict(n=r['n'], cp=cp, avant=[lat, lon], apres=[round(a, 5), round(b, 5)], motif=motif))
+                return {**r, 'lat': round(a, 5), 'lon': round(b, 5)}, d
+    corrections.append(dict(n=r['n'], cp=cp, avant=[lat, lon], apres=None, motif='position hors du département, non corrigée : lieu écarté'))
+    return None, d
+
+
 def build(args):
     cache = args.cache.expanduser()
     selected = list(SLUGS) if args.academies == ['toutes'] else (args.academies or [])
@@ -286,6 +337,7 @@ def build(args):
     write_json(ROOT / 'commun' / 'departements.json', bounds)
     places = []
     excluded = []
+    corrections = []
     def add(r, d):
         email = r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}'
         had_email = bool(re.search(email, r.get('a', '')))
@@ -297,6 +349,9 @@ def build(args):
             return
         if d not in ACAD:
             excluded.append(dict(n=r['n'], src=r.get('src', r.get('sp','')), motif='Hors des 30 académies ou département absent', code=d))
+            return
+        r, d = verifier_position(r, d, cache, corrections)
+        if r is None:
             return
         r.update(dep=names[d], ac=ACAD[d])
         places.append(r)
@@ -386,7 +441,7 @@ def build(args):
         route.parent.mkdir(parents=True, exist_ok=True)
         route.write_text(route_html(ac), encoding='utf-8')
         summary.append(dict(academie=ac,slug=s,types=dict(collections.Counter(r['t'] for r in ls)),colleges=len(cs),octets=path.stat().st_size))
-    write_json(OUT / 'bilan.json', dict(date=today, academies=summary, exclusions=excluded, colleges_hors_perimetre=dict(hors_deps),
+    write_json(OUT / 'bilan.json', dict(date=today, academies=summary, exclusions=excluded, positions_corrigees=corrections, colleges_hors_perimetre=dict(hors_deps),
                sources=dict(service_public=sp_url,bibliotheques=BIB,colleges=edu_url,mda=ANMDA,academies=ACADEMIES_SOURCE,contours=CONTOURS)))
     for row in summary:
         print(row)

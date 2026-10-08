@@ -1,6 +1,15 @@
 {
   "source": "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json?where=type_etablissement%3D%22Lyc%C3%A9e%22+and+etat%3D%22OUVERT%22&select=identifiant_de_l_etablissement%2Cnom_etablissement%2Cnom_commune%2Clatitude%2Clongitude%2Ccode_departement",
   "ecartes_sans_position_ou_hors_catalogue": 77,
+  "coordonnees_hors_academie": [
+    {
+      "n": "Ecole technique privée ITCC - PEYREFITTE ESTHETIQUE",
+      "v": "La Motte-Servolex",
+      "u": "0731527N",
+      "lat": 49.22859,
+      "lon": 1.34136
+    }
+  ],
   "academies": [
     {
       "slug": "aix-marseille",
@@ -45,7 +54,7 @@
     {
       "slug": "grenoble",
       "academie": "Grenoble",
-      "lycees": 229
+      "lycees": 228
     },
     {
       "slug": "guadeloupe",
