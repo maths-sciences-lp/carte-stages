@@ -1,0 +1,92 @@
+name: Tests
+# À chaque PR vers main : données d'abord (rapide), puis les pages dans un vrai navigateur.
+# La comparaison avec la version en ligne (verif_idf.py) est informative : une nouveauté
+# voulue change forcément quelque chose ; son rapport est joint au lancement.
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  donnees:
+    name: Données et contrats
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # les tests comparent aux fichiers de origin/main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Trouve ton stage (contrats hors réseau)
+        run: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s source -p 'test_stage_*.py'
+      - name: Après le collège
+        run: python3 apres-3e/tests/donnees.py
+      - name: Après le collège, académies voisines
+        run: python3 apres-3e/tests/voisins.py
+      - name: Qui peut m'aider ?
+        run: python3 aide/tests/donnees.py
+      - name: Après le lycée, toute la France
+        run: python3 formation/tests/france.py
+  navigateur:
+    name: Pages dans le navigateur (30 académies, 375 px)
+    needs: donnees
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Installer Playwright (Chromium)
+        run: |
+          npm install --no-save --prefix "$RUNNER_TEMP/pw" playwright@1
+          "$RUNNER_TEMP/pw/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Servir le site
+        run: |
+          python3 -m http.server 8766 --bind 127.0.0.1 > /dev/null 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8766/ > /dev/null && break; sleep 1; done
+      - name: Après le collège
+        env: {BASE_URL: 'http://127.0.0.1:8766', NODE_PATH: '${{ runner.temp }}/pw/node_modules', PLAYWRIGHT_MODULE: '${{ runner.temp }}/pw/node_modules/playwright', TEST_OUTPUT: '${{ runner.temp }}/apres3e'}
+        run: node apres-3e/tests/national.cjs
+      - name: Qui peut m'aider ?
+        env: {BASE_URL: 'http://127.0.0.1:8766', NODE_PATH: '${{ runner.temp }}/pw/node_modules', PLAYWRIGHT_MODULE: '${{ runner.temp }}/pw/node_modules/playwright', TEST_OUTPUT: '${{ runner.temp }}/aide'}
+        run: node aide/tests/national.cjs
+      - name: Après le lycée
+        env: {BASE_URL: 'http://127.0.0.1:8766', NODE_PATH: '${{ runner.temp }}/pw/node_modules', PLAYWRIGHT_MODULE: '${{ runner.temp }}/pw/node_modules/playwright', TEST_OUTPUT: '${{ runner.temp }}/formation'}
+        run: node formation/tests/national.cjs
+      - name: Comparaison avec la version en ligne (informative)
+        continue-on-error: true
+        env: {NODE_PATH: '${{ runner.temp }}/pw/node_modules', PLAYWRIGHT_MODULE: '${{ runner.temp }}/pw/node_modules/playwright'}
+        run: |
+          python3 source/verif_idf.py --rapport "$RUNNER_TEMP/verif-idf" | tee "$RUNNER_TEMP/verif-idf.txt"
+      - name: Résumé de la comparaison
+        if: always()
+        run: |
+          {
+            echo '### Comparaison avec la version en ligne (informative)'
+            grep -E ' : (identique|DIFFÉRENCE)|Île-de-France identique' "$RUNNER_TEMP/verif-idf.txt" || echo 'Rapport absent.'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Joindre le rapport et les captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapports
+          path: |
+            ${{ runner.temp }}/verif-idf
+            ${{ runner.temp }}/verif-idf.txt
+            ${{ runner.temp }}/apres3e
+            ${{ runner.temp }}/aide
+            ${{ runner.temp }}/formation
+          if-no-files-found: ignore
+          retention-days: 14
