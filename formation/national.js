@@ -36,7 +36,9 @@ $('q').addEventListener('input',()=>{
 searchAdr=async v=>{
  const r=await fetch('https://api-adresse.data.gouv.fr/search/?autocomplete=1&limit=15&q='+encodeURIComponent(v));
  if(!r.ok)throw Error('Recherche indisponible');
- return((await r.json()).features||[]).filter(f=>academieDepuisAdresse(f)?.slug===active?.slug).slice(0,5);
+ // Toute la France : un élève peut habiter hors de l'académie de son lycée ; adresses de l'académie d'abord.
+ const rows=(await r.json()).features||[],ici=f=>academieDepuisAdresse(f)?.slug===active?.slug;
+ return[...rows.filter(ici),...rows.filter(f=>!ici(f))].slice(0,5);
 };
 const address=$('adr').cloneNode(true);$('adr').replaceWith(address);
 async function addressSearch(){
