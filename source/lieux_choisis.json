@@ -1,0 +1,21 @@
+{
+ "_note": "Lieux ajoutés un par un après vérification en ligne (9/10/2026) : atelier attesté avec au moins un salarié encadrant, SIRET actif à l'adresse de l'atelier. Placés par stage_lieux_choisis.py.",
+ "Ateliers de décors et de musées": [
+  {"siret": "78439607900054", "nom": "Opéra national de Paris – ateliers de décors", "preuve": "Six ateliers de décors à l'Opéra Bastille (menuiserie, peinture, sculpture, serrurerie, composites, tapisserie)", "source": "https://www.operadeparis.fr/apropos/theatres-et-ateliers/ateliers-decors"},
+  {"siret": "30297714500036", "nom": "Comédie-Française – ateliers de décors", "preuve": "Ateliers de construction, peinture, sculpture et tapisserie des décors à Sarcelles", "source": "https://www.maitredata.com/app/accords-entreprise/comedie-francaise/346478"},
+  {"siret": "20003277900197", "nom": "Paris Musées – Ateliers des musées", "preuve": "Menuiserie-ébénisterie des expositions ; apprentis menuisiers-ébénistes (2024)", "source": "https://www.parismusees.paris.fr/sites/default/files/2024-04/FDP_Menuisier-Eb%C3%A9niste_apprentissage_2024.pdf"},
+  {"siret": "18004623700012", "nom": "Musée du Louvre – ateliers d'art", "preuve": "Treize ateliers d'art dont menuiserie-ébénisterie et encadrement-dorure", "source": "https://www.louvre.fr/decouvrir/vie-du-musee/a-la-decouverte-des-ateliers-d-art-du-musee-du-louvre"},
+  {"siret": "93910627400011", "nom": "Mobilier national – ateliers de restauration", "preuve": "Ateliers de restauration dont ébénisterie et menuiserie en sièges ; CFA interne ouvert en 2025", "source": "https://www.mobiliernational.culture.gouv.fr/sites/default/files/2024-05/Rapport%20d%27activite%CC%81%202023.pdf"},
+  {"siret": "18004626000014", "adresse": "Place d'Armes, 78000 Versailles", "nom": "Château de Versailles – ateliers muséographiques", "preuve": "Ateliers de restauration-ébénisterie et de dorure (apprentis en dorure)", "source": "https://www.culture.gouv.fr/Nous-connaitre/Emploi-et-formation/Les-agents-temoignent/Celine-Blondel-restauratrice-et-responsable-de-l-atelier-dorure-au-chateau-de-Versailles"},
+  {"siret": "18009005200010", "adresse": "Aéroport de Paris-Le Bourget, 93350 Le Bourget", "nom": "Musée de l'Air et de l'Espace – ateliers", "preuve": "Menuisier-ébéniste des socles et dispositifs de présentation (2024, 2025)", "source": "https://www.museeairespace.fr/wp-content/uploads/sites/2/2025/07/VP-2025-15-Menuisier-ebeniste.pdf"},
+  {"siret": "20003277900098", "nom": "Petit Palais – atelier d'encadrement", "preuve": "Encadreur adjoint technique (2022)", "source": "https://www.parismusees.paris.fr/sites/default/files/2022-09/FDP%20-%20Adjoint%28e%29%20technique%20encadreur%20au%20Petit%20Palais%202022.pdf"},
+  {"siret": "85364611500016", "nom": "L'Usine à 5 pattes – construction de décors", "preuve": "Atelier de menuiserie de décors (télévision, parcs, salons)", "source": "https://www.aab-fr.com/wp-content/uploads/2023/01/Offre-emploi-CONSTRUCTEUR.pdf"}
+ ],
+ "Ateliers associatifs du bois": [
+  {"siret": "87839758700030", "nom": "Atelier R-ARE (Emmaüs)", "preuve": "Chantier d'insertion, mobilier en bois de démolition, trois menuisiers encadrants", "source": "https://candidat.francetravail.fr/offres/recherche/detail/191VBVX"},
+  {"siret": "84923187300035", "nom": "Pimp Your Waste", "preuve": "Mobilier sur mesure en bois de réemploi, atelier de 6 personnes, apprentie et stagiaires", "source": "https://www.carenews.com/carenews-info/news/pimp-your-waste-du-bois-recycle-pour-le-village-des-athletes-des-jop"},
+  {"siret": "50205627800034", "nom": "Extramuros", "preuve": "Menuiserie solidaire de réemploi ; le responsable d'atelier encadre salariés et stagiaires", "source": "https://jobs.makesense.org/fr/jobs/extramuros-lassociation-responsable-datelier-k54MJG8NluRKKAepGHFN"},
+  {"siret": "80928121500032", "nom": "À Travers Fil", "preuve": "Menuiserie associative, quatre menuisiers salariés", "source": "https://www.paris.fr/pages/a-travers-fil-une-menuiserie-ouverte-a-tou-te-s-7327"},
+  {"siret": "11000002300017", "nom": "Sénat – atelier d'ébénisterie du Palais du Luxembourg", "preuve": "Division du mobilier : ateliers d'ébénisterie et de tapisserie", "source": "https://www.senat.fr/fileadmin/cru-1750816532/Travailler_au_Senat/Apprentissage/2025/Offre_d_apprentissage-DAPJ_mobilier.pdf"}
+ ]
+}

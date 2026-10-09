@@ -88,6 +88,10 @@ DOMAINES = {
   "Scieries, préparation du bois": ["16.10A", "16.10B"],
   "Objets en bois, liège, vannerie": ["16.29Z"],
   "Fabrication de monnaies, médailles": ["32.11Z"],
+  # Sans code (9/10/2026) : lieux choisis un par un (lieux_choisis.json, stage_lieux_choisis.py),
+  # atelier bois ou décor attesté avec un salarié encadrant.
+  "Ateliers de décors et de musées": [],
+  "Ateliers associatifs du bois": [],
  },
  "Communication visuelle, impression, audiovisuel": {
   "Imprimerie, prépresse, reliure": ["18.11Z", "18.12Z", "18.13Z", "18.14Z"],
