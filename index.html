@@ -311,7 +311,7 @@ $('change').onclick=()=>{sel=null;$('chosen').hidden=true;$('pick').hidden=false
 
 // Conseil propre à une formation (9/10/2026), affiché sous les types d'entreprises.
 const CONSEIL_FORMATION={
- 'bac-pro-metiers-de-la-securite':'Police, gendarmerie, pompiers : ils n’accueillent que par l’intermédiaire de ton lycée, avec une convention. Demande au professeur référent du bac pro de contacter le commissariat (à Paris, la Préfecture de police), le groupement de gendarmerie du département, la Brigade des sapeurs-pompiers de Paris (Paris et petite couronne) ou le service départemental d’incendie et de secours ailleurs. Les entreprises de sécurité de la carte, elles, se contactent directement.'
+ 'bac-pro-metiers-de-la-securite':'Police, gendarmerie, pompiers : l’accueil passe en général par une convention entre ton lycée et le service, et ces services reçoivent beaucoup de demandes. Demande d’abord à ton professeur si ton lycée en a une. Sinon, avec son accord, renseigne-toi auprès du commissariat, de la brigade de gendarmerie ou du centre de secours proche. Comme pour toute PFMP, la convention est signée par ton lycée. Les entreprises de sécurité de la carte se contactent directement.'
 };
 async function choose(c){
  const focusDansChoix=$('pick').contains(document.activeElement);
