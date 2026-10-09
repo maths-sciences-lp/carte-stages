@@ -47,7 +47,9 @@
    const card=a.closest('.li,.it,.card,.fo,.pop'),name=card?.querySelector('h3,.nm,b')?.textContent.trim();
    a.setAttribute('aria-label',label+(name?' — '+name:'')+' (nouvel onglet)');
    a.title='S’ouvre dans un nouvel onglet';
-   const hint=document.createElement('span');hint.className='new-window';hint.setAttribute('aria-hidden','true');hint.textContent=' ↗';a.append(hint);
+   const hint=document.createElement('span');hint.className='new-window';hint.setAttribute('aria-hidden','true');hint.textContent=' ↗';
+   // Pas de seconde flèche si le texte du lien en a déjà une (ex. « Voir sur La bonne alternance ↗ »).
+   if(!/↗\s*$/.test(a.textContent))a.append(hint);
   }
   for(const el of all('.dom .e,.em'))el.setAttribute('aria-hidden','true');
   for(const img of all('.leaflet-marker-icon[alt="Marker"]')){img.setAttribute('alt','Lieu sur la carte — détails dans la liste');}
