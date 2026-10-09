@@ -15,6 +15,8 @@ DOMAINES = {
   "Réseaux électriques et télécoms": ["42.22Z"],
   # Sans code propre (9/10/2026) : services routiers de l'État tirés de « Mairies,
   # administrations » par leur SIREN (voir ROUTES_ETAT_SIREN) ; postes de trafic exclus.
+  # Retirés le 9/10/2026 des formations sans lien avec les routes (petite enfance, animation,
+  # accueil, hygiène, sécurité, médiation, services aux personnes), qui les tenaient des mairies.
   "Routes de l'État : études et districts": [],
   "Routes de l'État : centres d'entretien": [],
   "Peinture, plâtre, carrelage, sols, isolation": ["43.31Z", "43.33Z", "43.34Z", "43.39Z", "43.29A"],
@@ -121,10 +123,12 @@ DOMAINES = {
   "Audiovisuel, cinéma, son": ["59.11A", "59.11B", "59.11C", "59.12Z", "59.20Z", "60.20A"],
  },
  "Commerce et vente": {
-  "Supermarchés, grandes surfaces": ["47.11B", "47.11C", "47.11D", "47.11F"],
+  # 47.19A (grands magasins, 5/10), 47.51Z (textiles, 7/10), 47.63Z (disques et vidéo, 5/10) et 52.10A
+  # (entrepôts frigorifiques, 3/10 et 7 en partie) ajoutés le 9/10/2026, vérification Codex.
+  "Supermarchés, grandes surfaces": ["47.11B", "47.11C", "47.11D", "47.11F", "47.19A"],
   "Supérettes, alimentation générale": ["47.11A", "47.11E", "47.29Z"],
   "Vêtements, chaussures, accessoires": ["47.71Z", "47.72A", "47.72B", "47.77Z"],
-  "Magasins spécialisés (bricolage, maison, sport, high-tech…)": ["47.41Z", "47.42Z", "47.43Z", "47.52A", "47.52B", "47.54Z", "47.59A", "47.59B", "47.61Z", "47.62Z", "47.64Z", "47.65Z", "47.78C"],
+  "Magasins spécialisés (bricolage, maison, sport, high-tech…)": ["47.41Z", "47.42Z", "47.43Z", "47.52A", "47.52B", "47.54Z", "47.59A", "47.59B", "47.61Z", "47.62Z", "47.64Z", "47.65Z", "47.78C", "47.51Z", "47.63Z"],
   "Commerce de gros (entre entreprises)": ["46.39B", "46.43Z", "46.49Z", "46.51Z", "46.69B", "46.73A", "46.74B", "46.90Z"],
   # ajout France — sources et limites : formation_secteurs_france.json
   "Grossistes en viandes": ["46.32A", "46.32B"],
@@ -164,7 +168,7 @@ DOMAINES = {
  },
  "Transport, logistique": {
   "Transport de marchandises, livraison": ["49.41A", "49.41B", "49.41C", "53.20Z"],
-  "Entrepôts, logistique": ["52.10B", "52.24B", "52.29A", "52.29B"],
+  "Entrepôts, logistique": ["52.10B", "52.24B", "52.29A", "52.29B", "52.10A"],
   "Transport de voyageurs": ["49.31Z", "49.32Z", "49.39A", "49.39B"],
   # ajout France — sources et limites : formation_secteurs_france.json
   "Navigation maritime, plaisance professionnelle": ["50.10Z", "50.20Z"],

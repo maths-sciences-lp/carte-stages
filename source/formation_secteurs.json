@@ -28,8 +28,6 @@
 "Personnes âgées (EHPAD, résidences)",
 "Crèches, petite enfance",
 "Mairies, administrations",
-"Routes de l'État : études et districts",
-"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Associations (animation, solidarité)"
 ],
@@ -65,7 +63,6 @@
 "Comptabilité, conseil, gestion",
 "Mairies, administrations",
 "Routes de l'État : études et districts",
-"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Secrétariat, accueil, centres d'appels",
 "Banques, assurances",
@@ -170,8 +167,6 @@
 "Hôpitaux, cliniques, laboratoires",
 "Personnes âgées (EHPAD, résidences)",
 "Mairies, administrations",
-"Routes de l'État : études et districts",
-"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "bac pro installateur en chauffage, climatisation et énergies renouvelables": [
@@ -272,8 +267,6 @@
 "Secrétariat, accueil, centres d'appels",
 "Hôtels",
 "Mairies, administrations",
-"Routes de l'État : études et districts",
-"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Spectacle, musées, bibliothèques",
 "Supermarchés, grandes surfaces",
@@ -312,8 +305,6 @@
 "bac pro métiers de la sécurité": [
 "Sécurité privée, surveillance",
 "Mairies, administrations",
-"Routes de l'État : études et districts",
-"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "bac pro métiers du commerce et de la vente option A animation et gestion de l'espace commercial": [
@@ -498,8 +489,6 @@
 "Crèches, petite enfance",
 "Loisirs, animation",
 "Mairies, administrations",
-"Routes de l'État : études et districts",
-"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Aide à domicile"
 ],
@@ -1065,8 +1054,6 @@
 "Personnes âgées (EHPAD, résidences)",
 "Loisirs, animation",
 "Mairies, administrations",
-"Routes de l'État : études et districts",
-"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Associations (animation, solidarité)"
 ],
@@ -1120,8 +1107,6 @@
 ],
 "CAP agent de prévention et de médiation": [
 "Mairies, administrations",
-"Routes de l'État : études et districts",
-"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Associations (animation, solidarité)",
 "Agences immobilières, gestion de logements",
