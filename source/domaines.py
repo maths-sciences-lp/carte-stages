@@ -66,7 +66,10 @@ DOMAINES = {
   "Transformation de poissons, crustacés, mollusques": ["10.20Z"],
  },
  "Bois, ameublement, métiers d'art": {
-  "Ébénisterie, meubles, restauration de meubles": ["31.01Z", "31.02Z", "31.09A", "31.09B", "95.24Z"],
+  "Ébénisterie, meubles, restauration de meubles": ["31.01Z", "31.02Z", "31.09B"],
+  # 31.09A et 95.24Z séparés le 9/10/2026 (bac pro ERA) : 10 entreprises vérifiées, surtout
+  # des tapissiers, des rempailleurs et des restaurateurs de sièges, aucun agenceur.
+  "Sièges, réparation de meubles": ["31.09A", "95.24Z"],
   "Tapisserie, décoration textile": ["13.92Z", "47.53Z"],
   "Bijouterie, horlogerie": ["32.12Z", "32.13Z", "95.25Z"],
   "Céramique, verre d'art, instruments de musique": ["23.41Z", "23.13Z", "32.20Z"],
@@ -218,6 +221,15 @@ MOTS_CLES = {
  "Plomberie, chauffage, climatisation, froid": r"\b(CHAUFFAGE|CLIMATISATION|CLIMATIQUE|THERMIQUE|PLOMBERIE|PLOMBIER|FRIGORIFIQUE|POMPES? A CHALEUR)\b",
  "Géomètres-experts, topographie": r"\b(GEOMETRES?|TOPOGRAPH\w*)\b",
 }
+# Sources plus étroites pour certaines règles de nom (9/10/2026, bac pro ERA) : sur 20
+# « agencement » ou « menuiserie » venus d'autres catégories (gros œuvre, peinture, électricité,
+# bureaux d'études…), 2 seulement agençaient vraiment. Restent les métiers du bois et du design,
+# et les menuisiers classés en menuiserie métallique (souvent bois et PVC à la fois).
+MOTS_CLES_SOURCES = {
+ "Menuiserie bois, agencement": ["Ébénisterie, meubles, restauration de meubles", "Sièges, réparation de meubles",
+                                 "Design d'intérieur et d'objet", "Scieries, préparation du bois",
+                                 "Objets en bois, liège, vannerie", "Menuiserie métallique, serrurerie"],
+}
 
 # Types où seuls les noms qui correspondent sont gardés : le code 71.20B mêle les
 # laboratoires et les bureaux de contrôle ou de diagnostic immobilier.
@@ -268,6 +280,7 @@ DECOUPAGES = {
     "Menuiserie bois, agencement": "Menuiserie, agencement, serrurerie",
     "Menuiserie métallique, serrurerie": "Menuiserie, agencement, serrurerie",
     "Design d'intérieur et d'objet": "Publicité, design graphique",
+    "Sièges, réparation de meubles": "Ébénisterie, meubles, restauration de meubles",
 }
 
 # Communes et intercommunalités : activité propre et catégorie juridique du propriétaire

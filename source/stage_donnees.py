@@ -19,7 +19,7 @@ from adresses import nettoie
 from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
 from domaines import (COMMUNES_CJ, COMMUNES_NAF, DOMAINES, ECOLES_EXCLUES, ECOLES_NAF, FILTRES, MOTS_CLES,
                       ROUTES_DRIEAT, ROUTES_ENTRETIEN, ROUTES_ETAT_SIREN, ROUTES_ETUDES, ROUTES_TRAFIC,
-                      SANS_PERSONNEL, SOURCES_MOTS_CLES)
+                      MOTS_CLES_SOURCES, SANS_PERSONNEL, SOURCES_MOTS_CLES)
 from stage_collecte import atomic_json, ROOT, EFFECTIFS, CODES
 
 EDU = 'https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json?'
@@ -146,8 +146,9 @@ def preparer(rows):
     sources = {slug(s) for d, secs in DOMAINES.items() if d in SOURCES_MOTS_CLES for s in secs}
     for secteur, rx in MOTS_CLES.items():
         k, regex = slug(secteur), re.compile(rx)
+        permises = {slug(s) for s in MOTS_CLES_SOURCES.get(secteur, [])} or sources
         for sec, entries in list(by.items()):
-            if sec == k or sec not in sources:
+            if sec == k or sec not in sources or sec not in permises:
                 continue
             for sir, row in entries.items():
                 text = (row[0] + ' ' + row[1]).upper()

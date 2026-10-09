@@ -4,7 +4,7 @@ if '--national' in sys.argv:
     from stage_donnees import main
     main()
     sys.exit(0)
-from domaines import DOMAINES, MOTS_CLES, SOURCES_MOTS_CLES, FILTRES
+from domaines import DOMAINES, MOTS_CLES, MOTS_CLES_SOURCES, SOURCES_MOTS_CLES, FILTRES
 from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
 from adresses import nettoie
 OUT=sys.argv[1] if len(sys.argv)>1 else 'www2'
@@ -44,8 +44,9 @@ src={slug(x) for d,secs in DOMAINES.items() if d in SOURCES_MOTS_CLES for x in s
 ajouts={}
 for nomsec,rx in MOTS_CLES.items():
     k=slug(nomsec); rxc=re.compile(rx); n0=len(by.get(k,{}))
+    ok={slug(x) for x in MOTS_CLES_SOURCES.get(nomsec,[])} or src
     for sec,rows in list(by.items()):
-        if sec==k or sec not in src: continue
+        if sec==k or sec not in src or sec not in ok: continue
         for sir,row in rows.items():
             t=(row[0]+' '+row[1]).upper()
             if rxc.search(t) and 'ENSEIGNEMENT' not in t: by[k][sir]=row

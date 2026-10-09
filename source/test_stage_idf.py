@@ -14,8 +14,10 @@ class MigrationTest(unittest.TestCase):
             seen.add(f['k']);n=next(n for n in new['formations'] if n['k']==aliases.get(f['k'],f['k']))
             # Catégories découpées depuis 2026-10 (écoles, réseaux…) : ramenées à leur origine ;
             # routes de l'État (9/10/2026) : ajoutées au géomètre et aux travaux publics, ignorées ici.
-            # Ajouts voulus : la 2de TNE reçoit aussi les entreprises du bac pro CIEL (8/10/2026).
-            ajouts=['services-informatiques-reseaux','reparation-d-ordinateurs-et-de-telephones','electronique-materiel-electrique'] if 'tne' in n['k'] else []
+            # Ajouts voulus : la 2de TNE reçoit aussi les entreprises du bac pro CIEL (8/10/2026) ;
+            # l'ERA, les architectes et le design d'intérieur (bureau d'études, 9/10/2026).
+            ajouts=['services-informatiques-reseaux','reparation-d-ordinateurs-et-de-telephones','electronique-materiel-electrique'] if 'tne' in n['k'] else \
+                   ['architectes','publicite-design-graphique'] if n['k']=="bac-pro-etude-et-realisation-d-agencement" else []
             # Retraits voulus : réparateurs de machines (CAP monteur), ingénierie 71.12B (géomètre).
             retraits={'cap-monteur-en-installations-thermiques':['maintenance-d-equipements-ascenseurs'],
                       'bac-pro-geometre':['bureaux-d-etudes-economistes-de-la-construction']}.get(n['k'],[])

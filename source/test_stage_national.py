@@ -143,9 +143,9 @@ class NationalTest(unittest.TestCase):
         bois, metal = 'menuiserie-bois-agencement', 'menuiserie-metallique-serrurerie'
         self.assertFalse(any('menuiserie-agencement-serrurerie' in s for s in forms.values()))
         for k in ('cap-ebeniste', 'bma-ebeniste', 'cap-charpentier-bois', 'cap-menuisier-fabricant',
-                  'bac-pro-technicien-constructeur-bois'):
+                  'bac-pro-technicien-constructeur-bois', 'bac-pro-etude-et-realisation-d-agencement'):
             self.assertEqual([bois in forms[k], metal in forms[k]], [True, False], k)
-        for k in ('bac-pro-technicien-menuisier-agenceur', 'bac-pro-etude-et-realisation-d-agencement',
+        for k in ('bac-pro-technicien-menuisier-agenceur',
                   'cap-menuisier-installateur', '2nde-agencement-menuiserie-et-ameublement-mama'):
             self.assertEqual([bois in forms[k], metal in forms[k]], [True, True], k)
         for k in ('cap-metallier', 'bac-pro-ouvrages-du-batiment-metallerie', 'cap-ferronnier-d-art'):
@@ -162,6 +162,30 @@ class NationalTest(unittest.TestCase):
         dans = {k: sorted(r[7] for r in v) for k, v in groups.items()}
         self.assertEqual(dans[bois], ['1', '3'])
         self.assertEqual(dans[metal], ['2', '3'])
+
+    def test_era_bureau_d_etudes_sans_serrurerie_ni_tapissiers(self):
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        era = forms['bac-pro-etude-et-realisation-d-agencement']
+        self.assertEqual(era, ['menuiserie-bois-agencement', 'ebenisterie-meubles-restauration-de-meubles',
+                               'architectes', 'design-d-interieur-et-d-objet'])
+        sieges = 'sieges-reparation-de-meubles'
+        for k, s in forms.items():
+            if k != 'bac-pro-etude-et-realisation-d-agencement':
+                self.assertEqual('ebenisterie-meubles-restauration-de-meubles' in s, sieges in s, k)
+        def lieu(siret, c, nom):
+            return dict(s=siret, n=nom, e='', c=c, q=c, ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t='11', nj='5710', du='O', de='O', r=False)
+        groups, _ = preparer([lieu('1', '31.09B', 'PRETOLANI AGENCEMENTS'),     # ébéniste : gardé
+                              lieu('2', '74.10Z', 'STUDIO AGENCEMENT'),          # design : gardé
+                              lieu('3', '43.34Z', 'JHS AGENCEMENT'),             # peinture : non
+                              lieu('4', '41.20A', 'LB AGENCEMENT'),              # gros œuvre : non
+                              lieu('5', '71.12B', 'PROGEA AGENCEMENT'),          # bureau d'études : non
+                              lieu('6', '95.24Z', 'A SIEGE OUVERT'),
+                              lieu('7', '31.09A', 'TAPISSIER SEIGNEUR')])
+        dans = {k: sorted(r[7] for r in v) for k, v in groups.items()}
+        self.assertEqual(dans['menuiserie-bois-agencement'], ['1', '2'])
+        self.assertEqual(dans['ebenisterie-meubles-restauration-de-meubles'], ['1'])
+        self.assertEqual(dans[sieges], ['6', '7'])
 
     def test_filiere_graphisme_sans_design_ni_signalisation_routiere(self):
         forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
