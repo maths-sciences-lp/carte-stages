@@ -3,6 +3,7 @@
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s source -p test_stage_national.py
 """
 from collections import Counter
+import csv
 from datetime import datetime, timezone
 import io
 import hashlib
@@ -200,6 +201,26 @@ class NationalTest(unittest.TestCase):
         self.assertEqual(dans, {'13000171200491': etudes, '13000171200500': entretien, '13000171200600': 'mairies-administrations',
                                 '13002932500334': entretien, '13002932500037': 'mairies-administrations',
                                 '13000000000001': 'mairies-administrations'})
+
+    def test_bodacc_seule_la_liquidation_retire(self):
+        from stage_bodacc import liquidees
+        def j(nature, date):
+            return json.dumps(dict(nature=nature, date=date), ensure_ascii=False)
+        lignes = [('1', '111111111', '2026-01-10', 'annonce', j("Jugement d'ouverture de liquidation judiciaire", '2026-01-05')),
+                  ('2', '222222222', '2025-03-01', 'annonce', j("Jugement d'ouverture d'une procédure de redressement judiciaire", '2025-02-20')),
+                  ('3', '333333333', '2025-03-01', 'annonce', j("Jugement d'ouverture d'une procédure de redressement judiciaire", '2025-02-20')),
+                  ('4', '333333333', '2026-02-01', 'annonce', j('Jugement de conversion en liquidation judiciaire', '2026-01-25')),
+                  ('5', '444444444', '2025-05-01', 'annonce', j("Jugement d'ouverture de liquidation judiciaire", '2025-04-20')),
+                  ('6', '444444444', '2025-09-01', 'annonce', j("Arrêt de la cour d'appel infirmant une décision soumise à publicité", '2025-08-20')),
+                  ('7', '555555555', '2026-01-10', 'rectificatif', j("Jugement d'ouverture de liquidation judiciaire", '2026-01-05'))]
+        with tempfile.TemporaryDirectory() as t:
+            path = Path(t)/'c.csv'
+            with path.open('w', newline='', encoding='utf-8') as f:
+                w = csv.writer(f, delimiter=';')
+                w.writerow(['id', 'registre', 'dateparution', 'typeavis', 'jugement'])
+                for i, siren, d, ty, ju in lignes:
+                    w.writerow([i, siren + ',' + siren[:3] + ' ' + siren[3:6] + ' ' + siren[6:], d, ty, ju])
+            self.assertEqual(sorted(liquidees(path)), ['111111111', '333333333'])
 
     def test_export_incomplet_refuse(self):
         for raw in ['[{"workplace": {}}', '[{},', '[] contenu inattendu']:
