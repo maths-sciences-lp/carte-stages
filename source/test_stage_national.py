@@ -162,6 +162,26 @@ class NationalTest(unittest.TestCase):
         self.assertEqual(dans[bois], ['1', '3'])
         self.assertEqual(dans[metal], ['2', '3'])
 
+    def test_filiere_graphisme_sans_design_ni_signalisation_routiere(self):
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        design = 'design-d-interieur-et-d-objet'
+        for k in ('cap-signaletique-et-decors-graphiques', 'bma-arts-graphiques-option-signaletique',
+                  'cap-metiers-de-l-enseigne-et-de-la-signaletique', 'cap-serigraphie-industrielle'):
+            self.assertNotIn(design, forms[k], k)
+            self.assertIn('publicite-design-graphique', forms[k], k)
+        for k, s in forms.items():
+            if 'publicite-design-graphique' in s and design not in s:
+                self.assertIn(k, ('cap-signaletique-et-decors-graphiques', 'bma-arts-graphiques-option-signaletique',
+                                  'cap-metiers-de-l-enseigne-et-de-la-signaletique', 'cap-serigraphie-industrielle'))
+        def lieu(siret, c, nom):
+            return dict(s=siret, n=nom, e='', c=c, q=c, ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t='11', nj='5710', du='O', de='O', r=False)
+        groups, _ = preparer([lieu('1', '73.11Z', 'ENSEIGNES DUPONT'),
+                              lieu('2', '42.11Z', 'MSR MARQUAGE SIGNALISATION ROUTIERE'),
+                              lieu('3', '42.11Z', 'LDV SIGNALISATION'),
+                              lieu('4', '18.13Z', 'SOUARD MARQUAGE VEHICULES')])
+        self.assertEqual(sorted(r[7] for r in groups['enseignes-signaletique-marquage']), ['1', '4'])
+
     def test_export_incomplet_refuse(self):
         for raw in ['[{"workplace": {}}', '[{},', '[] contenu inattendu']:
             with self.subTest(raw=raw), self.assertRaises(ValueError):
