@@ -73,6 +73,11 @@ DOMAINES = {
   # hydraulique (33.12Z), électronique et optique (33.13Z), contrôle industriel (33.20C).
   "Réparation de machines et d'électronique": ["33.12Z", "33.13Z", "33.20C"],
   # 23.51Z et 23.52Z ajoutés le 9/10/2026 (ciment 3/10, chaux et plâtre 7/10 usines ; vérification Codex).
+  # Ajoutés le 9/10/2026 d'après la vérification Codex du lot chimie (10 établissements par code) :
+  # briques et tuiles (4/10 usines), sanitaires (Geberit Limoges), céramiques techniques (3/10) ;
+  # verre plat (4/10). Écartés : carreaux (23.31Z, aucune usine confirmée), isolateurs (23.43Z).
+  "Céramique industrielle": ["23.32Z", "23.42Z", "23.44Z"],
+  "Verre plat (fabrication)": ["23.11Z"],
   "Plastique, verre, matériaux": ["22.21Z", "22.22Z", "22.29A", "22.29B", "23.12Z", "23.19Z", "23.51Z", "23.52Z"],
   # 20.12Z, 20.17Z, 20.52Z et 17.11Z ajoutés le 9/10/2026 (colorants 8/10, caoutchouc 5/10, colles 6/10,
   # pâte à papier 3/8 usines ; vérification Codex). Écartés : 19.20Z, 20.20Z, 23.14Z (surtout des sièges).
