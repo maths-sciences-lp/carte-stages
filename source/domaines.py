@@ -157,6 +157,12 @@ DOMAINES = {
   # Sans code propre : écoles publiques rangées ici depuis « Mairies, administrations »
   # quand leur activité est 85.10Z ou 85.20Z (voir ECOLES_NAF) ; pas de collecte en plus.
   "Écoles maternelles et élémentaires": [],
+  # Sans code (9/10/2026) : lycées et collèges publics de l'annuaire de l'Éducation nationale
+  # (stage_etablissements_scolaires.py). Leurs agents de maintenance (Région pour les lycées,
+  # Département ou Ville de Paris pour les collèges) font la maintenance de premier niveau
+  # tous corps d'état : 12 publics sur 12 vérifiés ; rien d'attesté pour les 8 privés.
+  "Lycées publics (maintenance)": [],
+  "Collèges publics (maintenance)": [],
   # Sans code propre (8/10/2026) : établissements de « Mairies, administrations » dont le
   # propriétaire est une collectivité ou une intercommunalité et l'activité propre 84.11Z,
   # 84.13Z ou 81.10Z (mairies, services, centres techniques). Voir COMMUNES_NAF.

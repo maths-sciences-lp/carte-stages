@@ -81,7 +81,6 @@ def phase_ecrire(args):
     cibles = lire(args.cache/'cibles.json')['cibles']
     liquidees = {j['siret'][:9] for j in lire(root/'liquidations-bodacc.json')['details']} \
         if (root/'liquidations-bodacc.json').exists() else set()
-    catalog = lire(root/'catalogue.json')
     ajouts, bilan, exclus = {}, Counter(), Counter()
     for dep, sirets in sorted(cibles.items()):
         rows = []
@@ -103,7 +102,15 @@ def phase_ecrire(args):
                      ensure_ascii=False, indent=1))
     if not args.write:
         return
-    for (dep, k), rows in ajouts.items():
+    publier(root, ajouts, args.rapport, dict(date=time.strftime('%Y-%m-%d'), codes=lire(args.cache/'cibles.json')['codes'],
+                                             stock=lire(args.cache/'cibles.json')['stock'],
+                                             ajouts=dict(bilan.most_common()), exclus=dict(exclus)))
+
+
+def publier(root, fichiers, rapport, journal):
+    """Écrit les fichiers {(département, type): lignes} et recalcule catalogues, bilans et tailles."""
+    catalog = lire(root/'catalogue.json')
+    for (dep, k), rows in fichiers.items():
         catalog['departements'][dep]['secteurs'][k] = fichier(root/'sirene'/dep/(k+'.json'), rows)
     code = catalogue_formations()
     catalog['domaines'] = [dict(d, s=[dict(s, c=sum(x['secteurs'][s['k']]['n'] for x in catalog['departements'].values()
@@ -112,7 +119,7 @@ def phase_ecrire(args):
     catalog['version'] = hashlib.sha256(json.dumps(catalog['departements'], sort_keys=True).encode()).hexdigest()[:16]
     atomic_json(root/'catalogue.json', catalog)
     ecrire_catalogues(root)
-    deps = {dep for dep, _ in ajouts}
+    deps = {dep for dep, _ in fichiers}
     b = lire(root/'bilan.json')
     for e in b['departements']:
         if e['dep'] in deps:
@@ -123,16 +130,14 @@ def phase_ecrire(args):
     sizepath = root/'tailles-fichiers.csv'
     with sizepath.open(newline='') as f:
         tailles = {r['fichier']: r for r in csv.DictReader(f)}
-    for dep, k in ajouts:
+    for dep, k in fichiers:
         name = f'sirene/{dep}/{k}.json'
-        tailles[name] = dict(fichier=name, octets=(root/name).stat().st_size, lignes=len(ajouts[(dep, k)]))
+        tailles[name] = dict(fichier=name, octets=(root/name).stat().st_size, lignes=len(fichiers[(dep, k)]))
     with sizepath.open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=['fichier', 'octets', 'lignes'], lineterminator='\n')
         w.writeheader()
         w.writerows(sorted(tailles.values(), key=lambda r: r['fichier']))
-    atomic_json(root/args.rapport, dict(date=time.strftime('%Y-%m-%d'), codes=lire(args.cache/'cibles.json')['codes'],
-                                         stock=lire(args.cache/'cibles.json')['stock'],
-                                         ajouts=dict(bilan.most_common()), exclus=dict(exclus)))
+    atomic_json(root/rapport, journal)
 
 
 def main():
