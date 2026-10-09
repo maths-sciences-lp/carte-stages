@@ -1,4 +1,6 @@
-"""Liens courts et page du lycée Eugène Hénaff : python3 raccourcis.py <dossier du site>"""
+"""Liens courts et page du lycée Eugène Hénaff : python3 raccourcis.py <dossier du site>
+
+Chaque lien court compte sa propre visite (GoatCounter, chemin /era/, /tne/…) avant de renvoyer vers la carte."""
 import json,sys,os,html
 OUT=sys.argv[1]; UAI='0932119Y'
 R=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'raccourcis_henaff.json')))
@@ -10,7 +12,7 @@ for code in R:
     u=cible(code)
     open(os.path.join(d,'index.html'),'w').write(f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Trouve ton stage</title><meta http-equiv="refresh" content="0;url={u}"><meta name="robots" content="noindex">
-<script>location.replace("{u}")</script></head><body><p><a href="{u}">Ouvrir la carte des stages</a></p></body></html>
+<script>if(!/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname)&&navigator.sendBeacon)navigator.sendBeacon("https://maths-sciences.goatcounter.com/count?p="+encodeURIComponent(location.pathname)+"&t="+encodeURIComponent("Lien de classe")+"&r="+encodeURIComponent(document.referrer)+"&rnd="+Math.random().toString(36).slice(2));location.replace("{u}")</script></head><body><p><a href="{u}">Ouvrir la carte des stages</a></p></body></html>
 ''')
 GROUPES=[("Seconde",["tne","mnb","mama"],{"tne":"2nde TNE","mnb":"2nde MNB","mama":"2nde MAMA"}),
  ("Bac pro (1re et terminale)",["iccer","mee","tma","era","eeb","geometre"],{"iccer":"ICCER","mee":"MEE","tma":"TMA (menuisier agenceur)","era":"ERA (agencement)","eeb":"EEB (études du bâtiment)","geometre":"Géomètre"}),
