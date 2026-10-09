@@ -252,6 +252,22 @@ class NationalTest(unittest.TestCase):
         self.assertEqual(dans['menuiserie-bois-agencement'], ['7'])
         self.assertEqual(excl['sous_le_seuil'], 3)
 
+    def test_lot_batiment_travaux_publics(self):
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        ce = forms['cap-conducteur-d-engins-de-travaux-publics-et-carrieres']
+        self.assertIn('carrieres', ce)
+        self.assertIn('demolition', ce)
+        self.assertNotIn('demolition', forms['bac-pro-geometre'])
+        def lieu(siret, c, nom, t='11'):
+            return dict(s=siret, n=nom, e='', c=c, q=c, ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t=t, nj='5710', du='O', de='O', r=False)
+        groups, _ = preparer([lieu('1', '08.12Z', 'CEMEX GRANULATS', '32'), lieu('2', '42.12Z', 'ETF', '42'),
+                              lieu('3', '43.11Z', 'PREMYS', '41'), lieu('4', '43.11Z', 'AURUS', '01')])
+        dans = {k: sorted(r[7] for r in v) for k, v in groups.items()}
+        self.assertEqual(dans['carrieres'], ['1'])
+        self.assertEqual(dans['travaux-publics-routes-reseaux'], ['2'])
+        self.assertEqual(dans['demolition'], ['3'])
+
     def test_routes_de_l_etat(self):
         forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
         etudes, entretien = 'routes-de-l-etat-etudes-et-districts', 'routes-de-l-etat-centres-d-entretien'

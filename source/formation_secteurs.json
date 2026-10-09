@@ -197,7 +197,8 @@
 "Matériels agricoles, engins de chantier",
 "Poids lourds, utilitaires",
 "Travaux publics, routes, réseaux",
-"Réseaux électriques et télécoms"
+"Réseaux électriques et télécoms",
+"Carrières"
 ],
 "bac pro maintenance des matériels option C matériels d'espaces verts": [
 "Matériels agricoles, engins de chantier",
@@ -338,7 +339,8 @@
 "bac pro organisation et réalisation du gros oeuvre": [
 "Construction, maçonnerie, gros œuvre",
 "Travaux publics, routes, réseaux",
-"Réseaux électriques et télécoms"
+"Réseaux électriques et télécoms",
+"Démolition"
 ],
 "bac pro ouvrages du bâtiment : métallerie": [
 "Menuiserie métallique, serrurerie",
@@ -460,7 +462,8 @@
 "Réseaux électriques et télécoms",
 "Routes de l'État : études et districts",
 "Routes de l'État : centres d'entretien",
-"Construction, maçonnerie, gros œuvre"
+"Construction, maçonnerie, gros œuvre",
+"Démolition"
 ],
 "bac pro étude et réalisation d'agencement": [
 "Menuiserie bois, agencement",
@@ -565,7 +568,9 @@
 "CAP conducteur d'engins de travaux publics et carrières": [
 "Travaux publics, routes, réseaux",
 "Réseaux électriques et télécoms",
-"Construction, maçonnerie, gros œuvre"
+"Construction, maçonnerie, gros œuvre",
+"Carrières",
+"Démolition"
 ],
 "CAP conducteur d'installations de production": [
 "Usinage, mécanique, outillage",
@@ -668,7 +673,8 @@
 "Matériels agricoles, engins de chantier",
 "Poids lourds, utilitaires",
 "Travaux publics, routes, réseaux",
-"Réseaux électriques et télécoms"
+"Réseaux électriques et télécoms",
+"Carrières"
 ],
 "CAP maintenance des matériels option C matériels d'espaces verts": [
 "Matériels agricoles, engins de chantier",
