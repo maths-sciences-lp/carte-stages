@@ -46,7 +46,8 @@ DOMAINES = {
   "Maintenance d'équipements, ascenseurs": ["33.14Z", "33.20D", "43.29B"],
   # 33.20B : surtout des frigoristes (froid industriel, groupes de camions), aussi des machines.
   "Froid industriel, installation de machines": ["33.20B"],
-  "Production et distribution d'énergie": ["35.11Z", "35.13Z", "35.14Z", "35.22Z"],
+  # 35.12Z (transport d'électricité, 5/10 postes et centres de maintenance) ajouté le 9/10/2026.
+  "Production et distribution d'énergie": ["35.11Z", "35.13Z", "35.14Z", "35.22Z", "35.12Z"],
  },
  "Automobile, moto, poids lourds, aéronautique": {
   "Garages, carrosseries (voitures)": ["45.20A"],
@@ -67,8 +68,9 @@ DOMAINES = {
   "Traitement et revêtement des métaux": ["25.61Z"],
   "Carrosseries et remorques (fabrication)": ["29.20Z"],
   "Laminoirs et tréfileries": ["24.32Z", "24.34Z"],
-  # 26.40Z ajouté le 9/10/2026, entreprises d'au moins 10 salariés (voir SEUILS).
-  "Électronique, matériel électrique": ["26.11Z", "26.12Z", "27.11Z", "27.12Z", "27.40Z", "27.90Z", "26.40Z"],
+  # 26.40Z ajouté le 9/10/2026, entreprises d'au moins 10 salariés (voir SEUILS) ; 26.51A (aide à la
+  # navigation, 5/10 sites de fabrication ou d'essais) le même jour.
+  "Électronique, matériel électrique": ["26.11Z", "26.12Z", "27.11Z", "27.12Z", "27.40Z", "27.90Z", "26.40Z", "26.51A"],
   # Sorti de « Maintenance d'équipements, ascenseurs » (8/10/2026) : machines agricoles, engins,
   # hydraulique (33.12Z), électronique et optique (33.13Z), contrôle industriel (33.20C).
   "Réparation de machines et d'électronique": ["33.12Z", "33.13Z", "33.20C"],
@@ -210,7 +212,8 @@ DOMAINES = {
  },
  "Propreté, environnement": {
   "Nettoyage, propreté": ["81.21Z", "81.22Z", "81.29A", "81.29B"],
-  "Déchets, recyclage, assainissement": ["38.11Z", "38.12Z", "38.21Z", "38.32Z", "37.00Z", "39.00Z"],
+  # 38.31Z (démantèlement d'épaves, 4/10 centres VHU agréés) ajouté le 9/10/2026.
+  "Déchets, recyclage, assainissement": ["38.11Z", "38.12Z", "38.21Z", "38.32Z", "37.00Z", "39.00Z", "38.31Z"],
   "Eau potable (captage, traitement, distribution)": ["36.00Z"],
   # ajout France — sources et limites : formation_secteurs_france.json
   "Traitement des déchets dangereux": ["38.22Z"],
@@ -241,7 +244,8 @@ DOMAINES = {
   "Télécommunications": ["61.10Z", "61.20Z", "61.90Z"],
  },
  "Mode, textile, cuir": {
-  "Couture, confection": ["14.13Z", "14.14Z", "14.19Z", "13.30Z"],
+  # 14.12Z (vêtements de travail, 4/10 ateliers) ajouté le 9/10/2026.
+  "Couture, confection": ["14.13Z", "14.14Z", "14.19Z", "13.30Z", "14.12Z"],
   "Cuir, maroquinerie, cordonnerie": ["15.12Z", "15.20Z", "95.23Z"],
   "Pressing, blanchisserie, retouches": ["96.01A", "96.01B", "95.29Z"],
   # ajout France — sources et limites : formation_secteurs_france.json
