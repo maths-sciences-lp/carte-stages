@@ -34,7 +34,8 @@ def ecrire_catalogues(root):
         idf['academies'] = [a for a in idf['academies'] if set(a['deps']) <= set(IDF)]
         for domain in idf['domaines']:
             for sector in domain['s']:
-                sector['c'] = sum(full['departements'][dep]['secteurs'][sector['k']]['n'] for dep in IDF)
+                # Une catégorie peut manquer dans un département (ex. routes de l'État hors de quelques sites).
+                sector['c'] = sum(full['departements'][dep]['secteurs'].get(sector['k'], {}).get('n', 0) for dep in IDF)
         atomic_json(root/'catalogues/ile-de-france.json', idf)
         names.append('catalogues/ile-de-france.json')
     else:

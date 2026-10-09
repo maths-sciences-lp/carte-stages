@@ -118,8 +118,9 @@ def main():
                     continue
                 cible = sec_of.get(i['naf']) or sec_of.get(i['naf_u'])
                 # Catégories sans code propre (communes) : même règle qu'à la collecte.
-                if affiner(k, i['naf'], i['cj']) in enfants:
-                    cible = affiner(k, i['naf'], i['cj'])
+                fin = affiner(k, i['naf'], i['cj'], r[7], r[0] + ' ' + (r[1] or ''))
+                if fin in enfants:
+                    cible = fin
                 if cible is None and any(slug(n) == k and i['naf'] in c for n, c in CODES_RETIRES.items()):
                     cle = f"{k} {i['naf']} code retiré"
                     bilan['retires'][cle] = bilan['retires'].get(cle, 0) + 1

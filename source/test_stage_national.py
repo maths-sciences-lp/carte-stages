@@ -182,6 +182,25 @@ class NationalTest(unittest.TestCase):
                               lieu('4', '18.13Z', 'SOUARD MARQUAGE VEHICULES')])
         self.assertEqual(sorted(r[7] for r in groups['enseignes-signaletique-marquage']), ['1', '4'])
 
+    def test_routes_de_l_etat(self):
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        etudes, entretien = 'routes-de-l-etat-etudes-et-districts', 'routes-de-l-etat-centres-d-entretien'
+        self.assertEqual([etudes in forms['bac-pro-geometre'], entretien in forms['bac-pro-geometre']], [True, False])
+        self.assertTrue({etudes, entretien} <= set(forms['bac-pro-travaux-publics']))
+        def lieu(siret, nom, ens):
+            return dict(s=siret, n=nom, e=ens, c='84.13Z', q='84.13Z', ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t='11', nj='7172', du='O', de='O', r=False)
+        groups, _ = preparer([lieu('13000171200491', 'DIRECTION INTERDEPARTEMENTALE DES ROUTES ATLANTIQUE', 'SIR DE BORDEAUX'),
+                              lieu('13000171200500', 'DIRECTION INTERDEPARTEMENTALE DES ROUTES ATLANTIQUE', 'CEI DE SAINTES'),
+                              lieu('13000171200600', 'DIRECTION INTERDEPARTEMENTALE DES ROUTES ATLANTIQUE', 'CIGT DE BORDEAUX'),
+                              lieu('13002932500334', 'DRIEAT', 'AGER-NORD/CEI ROSNY SOUS BOIS'),
+                              lieu('13002932500037', 'DRIEAT', 'DRIEAT/UD93'),
+                              lieu('13000000000001', 'FRANCE TRAVAIL', 'AGENCE DE LAON')])
+        dans = {r[7]: k for k, v in groups.items() for r in v}
+        self.assertEqual(dans, {'13000171200491': etudes, '13000171200500': entretien, '13000171200600': 'mairies-administrations',
+                                '13002932500334': entretien, '13002932500037': 'mairies-administrations',
+                                '13000000000001': 'mairies-administrations'})
+
     def test_export_incomplet_refuse(self):
         for raw in ['[{"workplace": {}}', '[{},', '[] contenu inattendu']:
             with self.subTest(raw=raw), self.assertRaises(ValueError):
