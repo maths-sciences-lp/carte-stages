@@ -231,6 +231,27 @@ class NationalTest(unittest.TestCase):
         self.assertEqual(dans['bailleurs-sociaux'], ['5', '8'])
         self.assertEqual(dans['agences-immobilieres-gestion-de-logements'], ['5', '6', '7', '8'])
 
+    def test_nouveaux_codes_et_seuils(self):
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        self.assertIn('promotion-immobiliere', forms['bac-pro-technicien-d-etudes-du-batiment-option-a-etudes-et-e'])
+        self.assertNotIn('promotion-immobiliere', forms['bac-pro-geometre'])
+        def lieu(siret, c, nom, t='11', nj='5710'):
+            return dict(s=siret, n=nom, e='', c=c, q=c, ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t=t, nj=nj, du='O', de='O', r=False)
+        groups, excl = preparer([lieu('1', '41.10A', 'BOUYGUES IMMOBILIER', '41'),
+                                 lieu('2', '41.10A', 'SCI DU PATIO', '11', '6540'),
+                                 lieu('3', '41.10C', 'IDEEA DEVELOPPEMENT', '01'),
+                                 lieu('4', '26.40Z', 'TRINNOV AUDIO', '21'),
+                                 lieu('5', '26.40Z', 'LIPSTECH', '01'),
+                                 lieu('6', '95.21Z', 'MONDIAL TELE', '01'),
+                                 lieu('7', '16.22Z', 'PARQUETS PEDUSSAUT', '01')])
+        dans = {k: sorted(r[7] for r in v) for k, v in groups.items()}
+        self.assertEqual(dans['promotion-immobiliere'], ['1'])
+        self.assertEqual(dans['electronique-materiel-electrique'], ['4'])
+        self.assertEqual(dans['reparation-d-ordinateurs-et-de-telephones'], ['6'])
+        self.assertEqual(dans['menuiserie-bois-agencement'], ['7'])
+        self.assertEqual(excl['sous_le_seuil'], 3)
+
     def test_routes_de_l_etat(self):
         forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
         etudes, entretien = 'routes-de-l-etat-etudes-et-districts', 'routes-de-l-etat-centres-d-entretien'
