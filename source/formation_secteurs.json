@@ -101,7 +101,8 @@
 "bac pro carrossier peintre automobile": [
 "Garages, carrosseries (voitures)",
 "Poids lourds, utilitaires",
-"Concessionnaires, vente de véhicules et pièces"
+"Concessionnaires, vente de véhicules et pièces",
+"Carrosseries et remorques (fabrication)"
 ],
 "bac pro commercialisation et services en restauration": [
 "Restaurants",
@@ -127,7 +128,8 @@
 "bac pro construction et aménagement de véhicules": [
 "Poids lourds, utilitaires",
 "Chaudronnerie, soudure, structures métalliques",
-"Garages, carrosseries (voitures)"
+"Garages, carrosseries (voitures)",
+"Carrosseries et remorques (fabrication)"
 ],
 "bac pro cuisine": [
 "Restaurants",
@@ -370,7 +372,8 @@
 "Industrie agroalimentaire",
 "Chimie, pharmacie, cosmétiques, papier",
 "Plastique, verre, matériaux",
-"Électronique, matériel électrique"
+"Électronique, matériel électrique",
+"Laminoirs et tréfileries"
 ],
 "bac pro procédés de la chimie, de l'eau et des papiers-cartons": [
 "Chimie, pharmacie, cosmétiques, papier",
@@ -467,7 +470,8 @@
 "Usinage, mécanique, outillage",
 "Plastique, verre, matériaux",
 "Aéronautique",
-"Bijouterie, horlogerie"
+"Bijouterie, horlogerie",
+"Traitement et revêtement des métaux"
 ],
 "bac pro travaux publics": [
 "Travaux publics, routes, réseaux",
@@ -559,7 +563,8 @@
 "CAP carrossier automobile": [
 "Garages, carrosseries (voitures)",
 "Poids lourds, utilitaires",
-"Concessionnaires, vente de véhicules et pièces"
+"Concessionnaires, vente de véhicules et pièces",
+"Carrosseries et remorques (fabrication)"
 ],
 "CAP charpentier bois": [
 "Menuiserie bois, agencement",
@@ -591,7 +596,8 @@
 "Chimie, pharmacie, cosmétiques, papier",
 "Industrie agroalimentaire",
 "Plastique, verre, matériaux",
-"Électronique, matériel électrique"
+"Électronique, matériel électrique",
+"Laminoirs et tréfileries"
 ],
 "CAP conducteur routier de marchandises option livraisons de proximité": [
 "Transport de marchandises, livraison",

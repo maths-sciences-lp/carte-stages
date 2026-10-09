@@ -54,8 +54,17 @@ DOMAINES = {
   "Aéronautique": ["30.30Z", "33.16Z"],
  },
  "Industrie, mécanique, métallerie": {
-  "Usinage, mécanique, outillage": ["25.62A", "25.62B", "25.73A", "25.73B", "28.41Z", "28.99B", "33.11Z"],
-  "Chaudronnerie, soudure, structures métalliques": ["25.11Z", "25.29Z", "25.99B"],
+  # 28.15Z ajouté le 9/10/2026 (engrenages, roulements : 3 usines sur 10, le reste surtout des bureaux de groupes).
+  "Usinage, mécanique, outillage": ["25.62A", "25.62B", "25.73A", "25.73B", "28.41Z", "28.99B", "33.11Z", "28.15Z"],
+  # 33.20A, 25.50B et 25.91Z ajoutés le 9/10/2026 (tuyauterie et montage 4/10, découpage-emboutissage
+  # 2 usines et 8 petits ateliers sur 10, fûts métalliques 4/10).
+  "Chaudronnerie, soudure, structures métalliques": ["25.11Z", "25.29Z", "25.99B", "33.20A", "25.50B", "25.91Z"],
+  # Ajoutés le 9/10/2026 (10 établissements vérifiés par code) : traitements de surface et thermiques
+  # (4 ateliers sur 10), carrosseries et remorques (4 sur 10, 4 en partie), laminoirs et tréfileries
+  # (13 usines sur 20, aucune en Île-de-France).
+  "Traitement et revêtement des métaux": ["25.61Z"],
+  "Carrosseries et remorques (fabrication)": ["29.20Z"],
+  "Laminoirs et tréfileries": ["24.32Z", "24.34Z"],
   # 26.40Z ajouté le 9/10/2026, entreprises d'au moins 10 salariés (voir SEUILS).
   "Électronique, matériel électrique": ["26.11Z", "26.12Z", "27.11Z", "27.12Z", "27.40Z", "27.90Z", "26.40Z"],
   # Sorti de « Maintenance d'équipements, ascenseurs » (8/10/2026) : machines agricoles, engins,
