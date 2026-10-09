@@ -74,7 +74,10 @@ DOMAINES = {
  "Communication visuelle, impression, audiovisuel": {
   "Imprimerie, prépresse, reliure": ["18.11Z", "18.12Z", "18.13Z", "18.14Z"],
   "Enseignes, signalétique, marquage": [],
-  "Publicité, design graphique": ["73.11Z", "73.12Z", "74.10Z"],
+  # 74.10Z séparé le 9/10/2026 (filière arts graphiques) : 20 entreprises vérifiées, surtout
+  # des architectes d'intérieur, aucun fabricant d'enseignes.
+  "Publicité, design graphique": ["73.11Z", "73.12Z"],
+  "Design d'intérieur et d'objet": ["74.10Z"],
   "Photographie": ["74.20Z"],
   "Audiovisuel, cinéma, son": ["59.11A", "59.11B", "59.11C", "59.12Z", "59.20Z", "60.20A"],
  },
@@ -203,7 +206,9 @@ DOMAINES = {
 SOURCES_MOTS_CLES = ["Bâtiment et travaux publics", "Énergie, électricité, chauffage", "Industrie, mécanique, métallerie",
  "Bois, ameublement, métiers d'art", "Communication visuelle, impression, audiovisuel"]
 MOTS_CLES = {
- "Enseignes, signalétique, marquage": r"\b(ENSEIGNES?|SIGNALETIQUES?|SIGNALISATION|MARQUAGES?|COVERING|ADHESIFS?|LETTRAGES?|SERIGRAPH\w*|STICKERS?|PLV|GRAVURES?)\b",
+ # Sans « signalisation » ni marquage routier, au sol ou de parking (9/10/2026) : ce sont
+ # des entreprises de travaux publics, pas de signalétique graphique.
+ "Enseignes, signalétique, marquage": r"^(?!.*\b(?:ROUTI\w*|SOLS?|PARKINGS?|CHAUSSEES?|VOIRIES?)\b).*\b(ENSEIGNES?|SIGNALETIQUES?|MARQUAGES?|COVERING|ADHESIFS?|LETTRAGES?|SERIGRAPH\w*|STICKERS?|PLV|GRAVURES?)\b",
  # Noms en aluminium, métal ou serrurerie exclus : ils relèvent de la menuiserie métallique.
  "Menuiserie bois, agencement": r"^(?!.*\b(?:ALU\w*|METALL\w*|SERRUR\w*|FERRONN\w*|ACIER)\b).*\b(AGENCEMENTS?|AGENCEUR|MENUISERIES?|MENUISIER|EBENISTERIE|EBENISTE)\b",
  "Plomberie, chauffage, climatisation, froid": r"\b(CHAUFFAGE|CLIMATISATION|CLIMATIQUE|THERMIQUE|PLOMBERIE|PLOMBIER|FRIGORIFIQUE|POMPES? A CHALEUR)\b",
@@ -256,6 +261,7 @@ DECOUPAGES = {
     "Économistes de la construction": "Bureaux d'études, économistes de la construction",
     "Menuiserie bois, agencement": "Menuiserie, agencement, serrurerie",
     "Menuiserie métallique, serrurerie": "Menuiserie, agencement, serrurerie",
+    "Design d'intérieur et d'objet": "Publicité, design graphique",
 }
 
 # Communes et intercommunalités : activité propre et catégorie juridique du propriétaire

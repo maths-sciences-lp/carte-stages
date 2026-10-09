@@ -28,6 +28,7 @@
 ],
 "bac pro artisanat et métiers d'art option communication visuelle plurimédia": [
 "Publicité, design graphique",
+"Design d'intérieur et d'objet",
 "Imprimerie, prépresse, reliure",
 "Photographie",
 "Enseignes, signalétique, marquage"
@@ -36,7 +37,8 @@
 "Vêtements, chaussures, accessoires",
 "Magasins spécialisés (bricolage, maison, sport, high-tech…)",
 "Supermarchés, grandes surfaces",
-"Publicité, design graphique"
+"Publicité, design graphique",
+"Design d'intérieur et d'objet"
 ],
 "bac pro artisanat et métiers d'art option métiers de l'enseigne et de la signalétique": [
 "Enseignes, signalétique, marquage",
@@ -321,6 +323,7 @@
 "bac pro photographie": [
 "Photographie",
 "Publicité, design graphique",
+"Design d'intérieur et d'objet",
 "Audiovisuel, cinéma, son"
 ],
 "bac pro pilote de ligne de production": [
@@ -344,6 +347,7 @@
 "bac pro réalisation de produits imprimés et plurimédia option A productions graphiques": [
 "Imprimerie, prépresse, reliure",
 "Publicité, design graphique",
+"Design d'intérieur et d'objet",
 "Enseignes, signalétique, marquage"
 ],
 "bac pro réalisation de produits imprimés et plurimédia option B productions imprimées": [

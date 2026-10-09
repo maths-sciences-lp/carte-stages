@@ -9,6 +9,7 @@ Mêmes règles que stage_donnees.preparer, sans refaire la collecte :
   retirés de la catégorie ;
 - catégorie remplacée (absente de DOMAINES, présente dans DECOUPAGES) : ses établissements vont
   dans les nouvelles catégories par leur code ou leur nom (MOTS_CLES), puis ses fichiers disparaissent ;
+- catégories remplies par le nom seul (ex. enseignes) : la règle de nom actuelle est réappliquée ;
 - codes retirés (domaines.CODES_RETIRES) : un établissement qui n'était dans la catégorie que par
   ce code en sort (62.02A, conseil en systèmes et logiciels).
 Les badges La bonne alternance suivent l'établissement. Les formations viennent du code
@@ -72,6 +73,9 @@ def main():
     actuelles = {slug(s) for ss in DOMAINES.values() for s in ss}
     remplacees = {o for o in enfants.values() if o not in actuelles}
     mots = {slug(n): re.compile(rx) for n, rx in MOTS_CLES.items()}
+    # Catégories remplies seulement par le nom (aucun code) : on réapplique leur règle de nom.
+    mots_seuls = {slug(n) for d in DOMAINES.values() for n, c in d.items() if not c and slug(n) in mots}
+    origines |= mots_seuls
     for dep in sorted(catalog['departements']):
         secteurs = catalog['departements'][dep]['secteurs']
         for k in sorted(remplacees & set(secteurs)):
@@ -92,6 +96,15 @@ def main():
             rows = lire(root/'sirene'/dep/(k+'.json'))
             reste = []
             for r in rows:
+                if k in mots_seuls:
+                    texte = (r[0] + ' ' + (r[1] or '')).upper()
+                    if mots[k].search(texte) and 'ENSEIGNEMENT' not in texte:
+                        reste.append(r)
+                    else:
+                        cle = f'{k} : nom hors de la règle'
+                        bilan['retires'][cle] = bilan['retires'].get(cle, 0) + 1
+                        journal.append(dict(dep=dep, siret=r[7], nom=r[0], enseigne=r[1], de=k, vers=None))
+                    continue
                 i = insee.get(r[7])
                 if not i or not i['naf']:
                     bilan['sans_code_insee'] += 1
