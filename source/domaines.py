@@ -14,13 +14,17 @@ DOMAINES = {
   "Peinture, plâtre, carrelage, sols, isolation": ["43.31Z", "43.33Z", "43.34Z", "43.39Z", "43.29A"],
   # Ancienne « Menuiserie, agencement, serrurerie » séparée le 9/10/2026 (filière bois,
   # 10 entreprises vérifiées par code) : 43.32B et 25.12Z sont du métal 10 fois sur 10.
-  "Menuiserie bois, agencement": ["43.32A", "43.32C", "16.23Z"],
+  # 16.22Z ajouté le 9/10/2026 (parquets : 6 ateliers ou usines bois sur 10 vérifiés).
+  "Menuiserie bois, agencement": ["43.32A", "43.32C", "16.23Z", "16.22Z"],
   "Menuiserie métallique, serrurerie": ["43.32B", "25.12Z"],
   "Géomètres-experts, topographie": ["71.12A"],
   "Architectes": ["71.11Z"],
   # 74.90A séparé le 8/10/2026 (10 entreprises vérifiées, toutes du bâtiment) ; 71.12B reste
   # seul ici : 20 vérifiées, la moitié seulement dans le bâtiment (le reste industrie, conseil).
   "Bureaux d'études, économistes de la construction": ["71.12B"],
+  # Ajouté le 9/10/2026 pour le TEB études et économie : promoteurs d'au moins 10 salariés,
+  # hors SCI (voir SEUILS) ; 7 sur 20 vérifiés suivent des opérations. 41.10B écarté (0 sur 10).
+  "Promotion immobilière": ["41.10A", "41.10C"],
   "Économistes de la construction": ["74.90A"],
   # ajout France — sources et limites : formation_secteurs_france.json
   "Éléments préfabriqués en béton": ["23.61Z"],
@@ -46,7 +50,8 @@ DOMAINES = {
  "Industrie, mécanique, métallerie": {
   "Usinage, mécanique, outillage": ["25.62A", "25.62B", "25.73A", "25.73B", "28.41Z", "28.99B", "33.11Z"],
   "Chaudronnerie, soudure, structures métalliques": ["25.11Z", "25.29Z", "25.99B"],
-  "Électronique, matériel électrique": ["26.11Z", "26.12Z", "27.11Z", "27.12Z", "27.40Z", "27.90Z"],
+  # 26.40Z ajouté le 9/10/2026, entreprises d'au moins 10 salariés (voir SEUILS).
+  "Électronique, matériel électrique": ["26.11Z", "26.12Z", "27.11Z", "27.12Z", "27.40Z", "27.90Z", "26.40Z"],
   # Sorti de « Maintenance d'équipements, ascenseurs » (8/10/2026) : machines agricoles, engins,
   # hydraulique (33.12Z), électronique et optique (33.13Z), contrôle industriel (33.20C).
   "Réparation de machines et d'électronique": ["33.12Z", "33.13Z", "33.20C"],
@@ -185,7 +190,8 @@ DOMAINES = {
   "Pêche professionnelle": ["03.11Z", "03.12Z"],
  },
  "Informatique, numérique, télécoms": {
-  "Réparation d'ordinateurs et de téléphones": ["95.11Z", "95.12Z"],
+  # 95.21Z ajouté le 9/10/2026 (télés, hi-fi : 4 ateliers sur 10, 3 boutiques qui réparent).
+  "Réparation d'ordinateurs et de téléphones": ["95.11Z", "95.12Z", "95.21Z"],
   # 62.02A (conseil en systèmes et logiciels) retiré le 8/10/2026 : 10 entreprises vérifiées,
   # 8 consultants (souvent seuls) ou sociétés d'ingénieurs, aucun technicien (voir CODES_RETIRES).
   "Services informatiques, réseaux": ["62.01Z", "62.03Z", "62.09Z"],
@@ -337,4 +343,13 @@ COPIES = {
     "Bailleurs sociaux": dict(
         source="Agences immobilières, gestion de logements", codes=("68.20A", "68.20B", "68.32A"),
         cj=("5546", "5547", "4140"), cj_nom=("5515", "5599"), nom=r"\b(HLM|HABITAT|OPH|OPAC|3F)\b"),
+}
+
+# Seuils par code d'activité (9/10/2026) : effectif minimal de l'entreprise (tranche Insee) et
+# catégories juridiques exclues (début du code). Sous ces seuils, les échantillons vérifiés
+# étaient surtout des sociétés sans activité réelle (SCI, coquilles, sièges commerciaux).
+SEUILS = {
+    "41.10A": dict(tranche_min="11", cj_exclues=("65",)),
+    "41.10C": dict(tranche_min="11", cj_exclues=("65",)),
+    "26.40Z": dict(tranche_min="11"),
 }

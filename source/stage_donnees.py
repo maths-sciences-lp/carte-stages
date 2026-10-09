@@ -19,7 +19,7 @@ from adresses import nettoie
 from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
 from domaines import (COMMUNES_CJ, COMMUNES_NAF, DOMAINES, ECOLES_EXCLUES, ECOLES_NAF, FILTRES, MOTS_CLES,
                       ROUTES_DRIEAT, ROUTES_ENTRETIEN, ROUTES_ETAT_SIREN, ROUTES_ETUDES, ROUTES_TRAFIC,
-                      MOTS_CLES_SOURCES, SANS_PERSONNEL, SOURCES_MOTS_CLES, COPIES)
+                      MOTS_CLES_SOURCES, SANS_PERSONNEL, SOURCES_MOTS_CLES, COPIES, SEUILS)
 from stage_collecte import atomic_json, ROOT, EFFECTIFS, CODES
 
 EDU = 'https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json?'
@@ -97,6 +97,13 @@ def affiner(secteur, c, nj, siret='', nom=''):
     return secteur
 
 
+def seuil(regle, tranche, nj):
+    """Vrai si l'entreprise atteint l'effectif et n'a pas une catégorie juridique exclue (domaines.SEUILS)."""
+    if tranche not in EFFECTIFS or EFFECTIFS.index(tranche) < EFFECTIFS.index(regle['tranche_min']):
+        return False
+    return not any(str(nj or '').startswith(p) for p in regle.get('cj_exclues', ()))
+
+
 def copie(regle, c, nj, nom, enseigne=''):
     """Vrai si l'établissement (code c, catégorie juridique nj du propriétaire, nom et enseigne)
     entre dans un type copié (domaines.COPIES)."""
@@ -141,6 +148,10 @@ def preparer(rows):
                 continue
         if not k:
             excluded['activite_non_resolue'] += 1
+            continue
+        code = r['c'] if r['c'] in sec_of else r['q']
+        if code in SEUILS and not seuil(SEUILS[code], r['t'], r['nj']):
+            excluded['sous_le_seuil'] += 1
             continue
         k = affiner(k, r['c'], r['nj'], r['s'], r['n'] + ' ' + (r['e'] or ''))
         if sans_personnel(k, r['c'], r['nj'], r['q']):
