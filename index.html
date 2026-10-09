@@ -133,6 +133,7 @@ dialog li{margin:6px 0}
     <div class="choice"><span>✅</span><b id="chosenTxt"></b><button class="btn light small" id="change">Changer</button></div>
     <div class="msg">Les types d’entreprises à contacter :</div>
     <div class="chips" id="secs"></div>
+    <div class="msg" id="conseilF" hidden></div>
    </div>
   </section>
 
@@ -308,6 +309,10 @@ document.addEventListener('click',e=>{if(!e.target.closest('.field')){$('fsug').
 $('nosais').onclick=()=>{$('tiles').hidden=!$('tiles').hidden;$('nosais').setAttribute('aria-expanded',String(!$('tiles').hidden));};
 $('change').onclick=()=>{sel=null;$('chosen').hidden=true;$('pick').hidden=false;$('f').value='';P=[];cl.clearLayers();setHash();render();$('f').focus();};
 
+// Conseil propre à une formation (9/10/2026), affiché sous les types d'entreprises.
+const CONSEIL_FORMATION={
+ 'bac-pro-metiers-de-la-securite':'Police, gendarmerie, pompiers : ils n’accueillent que par l’intermédiaire de ton lycée, avec une convention. Demande au professeur référent du bac pro de contacter le commissariat (à Paris, la Préfecture de police), le groupement de gendarmerie du département, la Brigade des sapeurs-pompiers de Paris (Paris et petite couronne) ou le service départemental d’incendie et de secours ailleurs. Les entreprises de sécurité de la carte, elles, se contactent directement.'
+};
 async function choose(c){
  const focusDansChoix=$('pick').contains(document.activeElement);
  sel=c; let keys, title;
@@ -316,7 +321,10 @@ async function choose(c){
  else {const d=IDX.domaines[c.i]; keys=d.s.map(s=>s.k); title=`${d.i} ${d.d}`;}
  keys.forEach((k,j)=>{COL[k]=PAL[j%PAL.length];LBL[k]=secName[k];});
  on=new Set(keys);
- $('chosenTxt').textContent=title; $('pick').hidden=true; $('chosen').hidden=false; $('tiles').hidden=true; $('nosais').setAttribute('aria-expanded','false'); if(focusDansChoix)$('change').focus();
+ $('chosenTxt').textContent=title;
+ const conseilF=c.type==='f'&&CONSEIL_FORMATION[c.x.k];
+ $('conseilF').textContent=conseilF?'💡 '+conseilF:'';
+ $('conseilF').hidden=!conseilF; $('pick').hidden=true; $('chosen').hidden=false; $('tiles').hidden=true; $('nosais').setAttribute('aria-expanded','false'); if(focusDansChoix)$('change').focus();
  $('secs').innerHTML=keys.map(k=>`<button class="chip" data-k="${k}" aria-pressed="true"><span class="dot" style="background:${COL[k]}"></span>${esc(secName[k])}</button>`).join('');
  setHash(); P=[]; $('count').textContent='Chargement…'; render(true);
  if(window.STAGE_NATIONAL||window.STAGE_IDF)return; // Le module de données gère requêtes, reprises et changements de départ.
