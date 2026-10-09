@@ -70,8 +70,11 @@ DOMAINES = {
   # Sorti de « Maintenance d'équipements, ascenseurs » (8/10/2026) : machines agricoles, engins,
   # hydraulique (33.12Z), électronique et optique (33.13Z), contrôle industriel (33.20C).
   "Réparation de machines et d'électronique": ["33.12Z", "33.13Z", "33.20C"],
-  "Plastique, verre, matériaux": ["22.21Z", "22.22Z", "22.29A", "22.29B", "23.12Z", "23.19Z"],
-  "Chimie, pharmacie, cosmétiques, papier": ["20.11Z", "20.13B", "20.14Z", "20.16Z", "20.30Z", "20.41Z", "20.42Z", "20.59Z", "21.10Z", "21.20Z", "17.12Z", "17.21A", "17.21B", "17.29Z"],
+  # 23.51Z et 23.52Z ajoutés le 9/10/2026 (ciment 3/10, chaux et plâtre 7/10 usines ; vérification Codex).
+  "Plastique, verre, matériaux": ["22.21Z", "22.22Z", "22.29A", "22.29B", "23.12Z", "23.19Z", "23.51Z", "23.52Z"],
+  # 20.12Z, 20.17Z, 20.52Z et 17.11Z ajoutés le 9/10/2026 (colorants 8/10, caoutchouc 5/10, colles 6/10,
+  # pâte à papier 3/8 usines ; vérification Codex). Écartés : 19.20Z, 20.20Z, 23.14Z (surtout des sièges).
+  "Chimie, pharmacie, cosmétiques, papier": ["20.11Z", "20.13B", "20.14Z", "20.16Z", "20.30Z", "20.41Z", "20.42Z", "20.59Z", "21.10Z", "21.20Z", "17.12Z", "17.21A", "17.21B", "17.29Z", "20.12Z", "20.17Z", "20.52Z", "17.11Z"],
   "Laboratoires d'analyses et d'essais": ["71.20B"],
   "Industrie agroalimentaire": ["10.13A", "10.39B", "10.51C", "10.72Z", "10.73Z", "10.85Z", "10.89Z", "11.07A", "11.07B"],
   "Bateaux, nautisme": ["30.12Z", "33.15Z"],
