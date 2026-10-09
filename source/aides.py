@@ -103,11 +103,11 @@ FAMILLES = {
 
 # Autres diplômes du lycée (hors CAP / bac pro) : brevets des métiers d'art
 AUTRES = {
- "Ébéniste": ("BMA", "BMA ébéniste ébénisterie", ["Ébénisterie, meubles, restauration de meubles", "Sièges, réparation de meubles", "Menuiserie bois, agencement", "Tapisserie, décoration textile"]),
- "Arts graphiques option signalétique": ("BMA", "BMA signalétique enseigne graphisme", ["Enseignes, signalétique, marquage", "Imprimerie, prépresse, reliure", "Publicité, design graphique"]),
+ "Ébéniste": ("BMA", "BMA ébéniste ébénisterie", ["Ébénisterie, meubles, restauration de meubles", "Sièges, réparation de meubles", "Menuiserie bois, agencement", "Tapisserie, décoration textile", "Ateliers de décors et de musées", "Ateliers associatifs du bois"]),
+ "Arts graphiques option signalétique": ("BMA", "BMA signalétique enseigne graphisme", ["Enseignes, signalétique, marquage", "Imprimerie, prépresse, reliure", "Publicité, design graphique", "Ateliers de décors et de musées"]),
 }
 
 # Secteurs imposés pour une famille de 2nde (au lieu de la réunion des secteurs de ses bacs pro)
 FAMILLES_SECTEURS = {
- "Agencement, menuiserie et ameublement (MAMA)": ["Menuiserie bois, agencement", "Menuiserie métallique, serrurerie", "Ébénisterie, meubles, restauration de meubles", "Sièges, réparation de meubles", "Tapisserie, décoration textile"],
+ "Agencement, menuiserie et ameublement (MAMA)": ["Menuiserie bois, agencement", "Menuiserie métallique, serrurerie", "Ébénisterie, meubles, restauration de meubles", "Sièges, réparation de meubles", "Tapisserie, décoration textile", "Ateliers de décors et de musées", "Ateliers associatifs du bois"],
 }

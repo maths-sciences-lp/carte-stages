@@ -167,7 +167,8 @@ class NationalTest(unittest.TestCase):
         forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
         era = forms['bac-pro-etude-et-realisation-d-agencement']
         self.assertEqual(era, ['menuiserie-bois-agencement', 'ebenisterie-meubles-restauration-de-meubles',
-                               'architectes', 'design-d-interieur-et-d-objet'])
+                               'architectes', 'design-d-interieur-et-d-objet',
+                               'ateliers-de-decors-et-de-musees', 'ateliers-associatifs-du-bois'])
         sieges = 'sieges-reparation-de-meubles'
         for k, s in forms.items():
             if k != 'bac-pro-etude-et-realisation-d-agencement':

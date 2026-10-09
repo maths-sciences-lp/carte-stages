@@ -425,7 +425,9 @@
 "bac pro technicien de fabrication bois et matériaux associés": [
 "Menuiserie bois, agencement",
 "Ébénisterie, meubles, restauration de meubles",
-"Sièges, réparation de meubles"
+"Sièges, réparation de meubles",
+"Ateliers de décors et de musées",
+"Ateliers associatifs du bois"
 ],
 "bac pro technicien en appareillage orthopédique": [
 "Pharmacie, optique, prothèses",
@@ -452,7 +454,9 @@
 "Menuiserie bois, agencement",
 "Menuiserie métallique, serrurerie",
 "Ébénisterie, meubles, restauration de meubles",
-"Sièges, réparation de meubles"
+"Sièges, réparation de meubles",
+"Ateliers de décors et de musées",
+"Ateliers associatifs du bois"
 ],
 "bac pro technicien modeleur": [
 "Usinage, mécanique, outillage",
@@ -477,7 +481,9 @@
 "Menuiserie bois, agencement",
 "Ébénisterie, meubles, restauration de meubles",
 "Architectes",
-"Design d'intérieur et d'objet"
+"Design d'intérieur et d'objet",
+"Ateliers de décors et de musées",
+"Ateliers associatifs du bois"
 ],
 "CAP accessoiriste réalisateur": [
 "Spectacle, musées, bibliothèques",
@@ -724,13 +730,17 @@
 "CAP menuisier fabricant": [
 "Menuiserie bois, agencement",
 "Ébénisterie, meubles, restauration de meubles",
-"Sièges, réparation de meubles"
+"Sièges, réparation de meubles",
+"Ateliers de décors et de musées",
+"Ateliers associatifs du bois"
 ],
 "CAP menuisier installateur": [
 "Menuiserie bois, agencement",
 "Menuiserie métallique, serrurerie",
 "Ébénisterie, meubles, restauration de meubles",
-"Sièges, réparation de meubles"
+"Sièges, réparation de meubles",
+"Ateliers de décors et de musées",
+"Ateliers associatifs du bois"
 ],
 "CAP modèles et moules céramiques": [
 "Céramique, verre d'art, instruments de musique",
@@ -839,7 +849,8 @@
 "CAP signalétique et décors graphiques": [
 "Enseignes, signalétique, marquage",
 "Imprimerie, prépresse, reliure",
-"Publicité, design graphique"
+"Publicité, design graphique",
+"Ateliers de décors et de musées"
 ],
 "CAP souffleur de verre option verrerie scientifique": [
 "Céramique, verre d'art, instruments de musique",
@@ -876,7 +887,9 @@
 "CAP ébéniste": [
 "Ébénisterie, meubles, restauration de meubles",
 "Sièges, réparation de meubles",
-"Menuiserie bois, agencement"
+"Menuiserie bois, agencement",
+"Ateliers de décors et de musées",
+"Ateliers associatifs du bois"
 ],
 "CAP électricien": [
 "Électricité du bâtiment",
