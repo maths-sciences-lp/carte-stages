@@ -13,7 +13,9 @@ Mêmes règles que stage_donnees.preparer, sans refaire la collecte :
 - codes retirés (domaines.CODES_RETIRES) : un établissement qui n'était dans la catégorie que par
   ce code en sort (62.02A, conseil en systèmes et logiciels) ;
 - sources des règles de nom resserrées (domaines.MOTS_CLES_SOURCES) : un établissement venu par
-  son nom d'une catégorie qui n'est plus permise en sort.
+  son nom d'une catégorie qui n'est plus permise en sort ;
+- types copiés (domaines.COPIES) : refaits depuis leur type d'origine (hôpitaux avec service
+  technique, bailleurs sociaux).
 Les badges La bonne alternance suivent l'établissement. Les formations viennent du code
 (stage_donnees.catalogue_formations), qui relie déjà les nouvelles catégories.
 
@@ -35,9 +37,9 @@ import re
 import subprocess
 import time
 
-from domaines import CODES_RETIRES, DECOUPAGES, DOMAINES, MOTS_CLES, MOTS_CLES_SOURCES, SANS_PERSONNEL
+from domaines import CODES_RETIRES, COPIES, DECOUPAGES, DOMAINES, MOTS_CLES, MOTS_CLES_SOURCES, SANS_PERSONNEL
 from stage_collecte import atomic_json
-from stage_donnees import affiner, catalogue_formations, fichier, sans_personnel, slug
+from stage_donnees import affiner, catalogue_formations, copie, fichier, sans_personnel, slug
 from stage_catalogues import ecrire_catalogues
 
 
@@ -147,6 +149,20 @@ def main():
                     continue
                 reste.append(r)
             rangs[(dep, k)] = reste
+    # Types copiés (domaines.COPIES) : recalculés en entier depuis leur type d'origine.
+    copies = {}
+    for dep in sorted(catalog['departements']):
+        secteurs = catalog['departements'][dep]['secteurs']
+        for cible, regle in COPIES.items():
+            src, k = slug(regle['source']), slug(cible)
+            if src not in secteurs and (dep, src) not in rangs:
+                continue
+            gardes = [r for r in rangs.get((dep, src)) or lire(root/'sirene'/dep/(src+'.json'))
+                      if (i := insee.get(r[7])) and copie(regle, i['naf'], i['cj'], r[0], r[1])]
+            if gardes or k in secteurs:
+                rangs[(dep, k)] = gardes
+                copies[(dep, k)] = (src, {r[7] for r in gardes})
+                bilan.setdefault('copies', {})[k] = bilan.get('copies', {}).get(k, 0) + len(gardes)
     print(json.dumps(bilan, ensure_ascii=False, indent=1))
     if not args.write:
         return
@@ -184,6 +200,13 @@ def main():
                 atomic_json(dst, {**(lire(dst) if dst.exists() else {}), **entrees})
                 if cible not in meta['files'].get(dep, []):
                     meta['files'][dep] = sorted(meta['files'].get(dep, []) + [cible])
+    for (dep, k), (src, sirets) in copies.items():
+        source = root/'lba'/dep/(src+'.json')
+        entrees = {s: e for s, e in lire(source).items() if s in sirets} if source.exists() else {}
+        if entrees or (root/'lba'/dep/(k+'.json')).exists():
+            atomic_json(root/'lba'/dep/(k+'.json'), entrees)
+            if k not in meta['files'].get(dep, []):
+                meta['files'][dep] = sorted(meta['files'].get(dep, []) + [k])
     atomic_json(root/'lba/meta.json', meta)
     code = catalogue_formations()
     catalog['domaines'] = [dict(d, s=[dict(s, c=sum(x['secteurs'][s['k']]['n'] for x in catalog['departements'].values()

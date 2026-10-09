@@ -10,7 +10,8 @@
 "Peinture, plâtre, carrelage, sols, isolation",
 "Menuiserie bois, agencement",
 "Menuiserie métallique, serrurerie",
-"Construction, maçonnerie, gros œuvre"
+"Construction, maçonnerie, gros œuvre",
+"Bailleurs sociaux"
 ],
 "bac pro aménagements paysagers": [
 "Paysagistes, espaces verts",
@@ -172,7 +173,9 @@
 "bac pro installateur en chauffage, climatisation et énergies renouvelables": [
 "Plomberie, chauffage, climatisation, froid",
 "Froid industriel, installation de machines",
-"Production et distribution d'énergie"
+"Production et distribution d'énergie",
+"Hôpitaux (services techniques)",
+"Bailleurs sociaux"
 ],
 "bac pro interventions sur le patrimoine bâti option A maçonnerie": [
 "Construction, maçonnerie, gros œuvre",
@@ -231,7 +234,9 @@
 "bac pro maintenance et efficacité énergétique": [
 "Plomberie, chauffage, climatisation, froid",
 "Froid industriel, installation de machines",
-"Production et distribution d'énergie"
+"Production et distribution d'énergie",
+"Hôpitaux (services techniques)",
+"Bailleurs sociaux"
 ],
 "bac pro maintenance nautique": [
 "Bateaux, nautisme"
@@ -273,7 +278,9 @@
 "Maintenance d'équipements, ascenseurs",
 "Télécommunications",
 "Production et distribution d'énergie",
-"Réseaux électriques et télécoms"
+"Réseaux électriques et télécoms",
+"Hôpitaux (services techniques)",
+"Bailleurs sociaux"
 ],
 "bac pro métiers de la coiffure": [
 "Coiffure"
@@ -318,7 +325,8 @@
 "bac pro métiers du froid et des énergies renouvelables": [
 "Plomberie, chauffage, climatisation, froid",
 "Froid industriel, installation de machines",
-"Production et distribution d'énergie"
+"Production et distribution d'énergie",
+"Hôpitaux (services techniques)"
 ],
 "bac pro optique lunetterie": [
 "Pharmacie, optique, prothèses"
@@ -636,7 +644,8 @@
 ],
 "CAP installateur en froid et conditionnement d'air": [
 "Plomberie, chauffage, climatisation, froid",
-"Froid industriel, installation de machines"
+"Froid industriel, installation de machines",
+"Hôpitaux (services techniques)"
 ],
 "CAP interventions en maintenance technique des bâtiments": [
 "Maintenance d'équipements, ascenseurs",
@@ -647,7 +656,9 @@
 "Communes et intercommunalités",
 "Nettoyage, propreté",
 "Peinture, plâtre, carrelage, sols, isolation",
-"Personnes âgées (EHPAD, résidences)"
+"Personnes âgées (EHPAD, résidences)",
+"Hôpitaux (services techniques)",
+"Bailleurs sociaux"
 ],
 "CAP maintenance des matériels option A matériels agricoles": [
 "Matériels agricoles, engins de chantier"
@@ -709,10 +720,14 @@
 "Plastique, verre, matériaux"
 ],
 "CAP monteur en installations sanitaires": [
-"Plomberie, chauffage, climatisation, froid"
+"Plomberie, chauffage, climatisation, froid",
+"Hôpitaux (services techniques)",
+"Bailleurs sociaux"
 ],
 "CAP monteur en installations thermiques": [
-"Plomberie, chauffage, climatisation, froid"
+"Plomberie, chauffage, climatisation, froid",
+"Hôpitaux (services techniques)",
+"Bailleurs sociaux"
 ],
 "CAP métallier": [
 "Menuiserie métallique, serrurerie",
@@ -765,7 +780,8 @@
 "Commerce de gros (entre entreprises)"
 ],
 "CAP peintre applicateur de revêtements": [
-"Peinture, plâtre, carrelage, sols, isolation"
+"Peinture, plâtre, carrelage, sols, isolation",
+"Bailleurs sociaux"
 ],
 "CAP peintre automobile": [
 "Garages, carrosseries (voitures)",
@@ -842,7 +858,9 @@
 "CAP électricien": [
 "Électricité du bâtiment",
 "Maintenance d'équipements, ascenseurs",
-"Production et distribution d'énergie"
+"Production et distribution d'énergie",
+"Hôpitaux (services techniques)",
+"Bailleurs sociaux"
 ],
 "CAP équipier polyvalent du commerce": [
 "Supermarchés, grandes surfaces",

@@ -119,6 +119,8 @@ DOMAINES = {
   "Handicap (foyers, ESAT, IME)": ["87.10B", "87.10C", "87.20A", "87.30B", "88.10C", "88.91B"],
   "Aide à domicile": ["88.10A", "88.10B"],
   "Hôpitaux, cliniques, laboratoires": ["86.10Z", "86.90B"],
+  # Sans code propre (9/10/2026) : copie des hôpitaux qui ont un service technique (voir COPIES).
+  "Hôpitaux (services techniques)": [],
   "Ambulances": ["86.90A"],
   "Pharmacie, optique, prothèses": ["47.73Z", "47.74Z", "47.78A", "32.50A", "32.50B"],
  },
@@ -150,6 +152,8 @@ DOMAINES = {
   "Communes et intercommunalités": [],
   "Banques, assurances": ["64.19Z", "65.12Z", "66.22Z"],
   "Agences immobilières, gestion de logements": ["68.31Z", "68.32A", "68.20A"],
+  # Sans code propre (9/10/2026) : copie des offices et sociétés HLM (voir COPIES).
+  "Bailleurs sociaux": [],
   "Secrétariat, accueil, centres d'appels": ["82.11Z", "82.19Z", "82.20Z", "82.30Z"],
   "Intérim, recrutement": ["78.10Z", "78.20Z", "78.30Z"],
  },
@@ -306,3 +310,31 @@ ROUTES_DRIEAT = ('130029325', r'\b(AGER|CEI|UER|SGPR|DIRIF)\b')
 ROUTES_ENTRETIEN = r'\bPA\b|PO[IN]NT D.?APPUI|POINT APPUI|LOGISTIQUE|\bCEI\w*|\bCES\b|\bUER\b|\bAGER\b|\bENTR\w*|INTERV|TRAVAUX|EQUIPES'
 ROUTES_ETUDES = r'DISTRICT|\bSIR\b'
 ROUTES_TRAFIC = r'\bPC\b|CIGT|TRAFIC|CRICR'
+
+# Types copiés d'un autre type (9/10/2026, CAP IMTB et métiers du bâtiment) : l'établissement
+# reste dans son type d'origine et apparaît aussi dans la copie s'il a l'un des codes indiqués et :
+# - si « site » est donné : le nom du site (enseigne, sinon nom) correspond à « site » sans
+#   correspondre à « exclure » ;
+# - sinon : une catégorie juridique du propriétaire commençant par « cj », ou une catégorie de
+#   « cj_nom » avec un nom qui correspond à « nom ».
+# Hôpitaux (11 sites vérifiés en ligne) : service technique attesté sur les grands sites
+# d'hospitalisation (Tenon, Robert-Debré, Saint-Denis, Saint-Maurice) ; non pour les sites de
+# consultation (CMP, CATTP, hôpitaux de jour), les sièges et les soins à domicile. L'effectif publié
+# est celui de l'entreprise entière (AP-HP), d'où le tri par le nom du site. Les laboratoires
+# (86.90B) n'ont pas de service technique.
+# Bailleurs sociaux : offices publics de l'habitat (4140), SA et coopératives d'HLM (5546, 5547),
+# SEM au nom d'organisme HLM ; SCI, indivisions et syndics exclus (aucune équipe de maintenance
+# sur 20 vérifiés en 68.32A et 68.20A). Sur 8 bailleurs vérifiés : 3 régies ou centres techniques
+# (Est Ensemble Habitat, Plaine Commune Habitat, HLM IRP), 2 avec gardiens seulement.
+COPIES = {
+    "Hôpitaux (services techniques)": dict(
+        source="Hôpitaux, cliniques, laboratoires", codes=("86.10Z",),
+        site=r"\bH[OÔ]PITA(L|UX)\b|HOSPITALI|\b(POLY)?CLINIQUE\b",
+        exclure=r"\b(CMPP?|CATTP|CATP|CONSULTATIONS?|MEDICO|ECOLES?|IFSI|DENTAIRES?|POST ?CURE|CRISE|ATELIERS?|"
+                r"DE JOUR|HDJ|ACCUEIL|CIAPA|PERFECTIONNEMENT|SIEGE|DIRECTION|ADMINISTRATI\w*|DOMICILE|HAD|"
+                r"DIALYSE|AUTODIALYSE|REIN|UNITES?|EQUIPE|RELAIS|ANTENNE|SSIAD|TOXICOMANIE|MAISON)\b|I\.F\.S\.I|"
+                r"^ASSISTANCE PUBLIQUE"),
+    "Bailleurs sociaux": dict(
+        source="Agences immobilières, gestion de logements", codes=("68.20A", "68.20B", "68.32A"),
+        cj=("5546", "5547", "4140"), cj_nom=("5515", "5599"), nom=r"\b(HLM|HABITAT|OPH|OPAC|3F)\b"),
+}
