@@ -18,9 +18,11 @@ class MigrationTest(unittest.TestCase):
             # l'ERA, les architectes et le design d'intérieur (bureau d'études, 9/10/2026).
             ajouts=['services-informatiques-reseaux','reparation-d-ordinateurs-et-de-telephones','electronique-materiel-electrique'] if 'tne' in n['k'] else \
                    ['architectes','publicite-design-graphique'] if n['k']=="bac-pro-etude-et-realisation-d-agencement" else []
-            # Retraits voulus : réparateurs de machines (CAP monteur), ingénierie 71.12B (géomètre).
+            # Retraits voulus : réparateurs de machines (CAP monteur), ingénierie 71.12B (géomètre),
+            # syndics et bailleurs sans équipe technique (CAP IMTB, 9/10/2026).
             retraits={'cap-monteur-en-installations-thermiques':['maintenance-d-equipements-ascenseurs'],
-                      'bac-pro-geometre':['bureaux-d-etudes-economistes-de-la-construction']}.get(n['k'],[])
+                      'bac-pro-geometre':['bureaux-d-etudes-economistes-de-la-construction'],
+                      'cap-interventions-en-maintenance-technique-des-batiments':['agences-immobilieres-gestion-de-logements']}.get(n['k'],[])
             self.assertEqual((n['n'],list(dict.fromkeys(origine.get(x,x) for x in n['s'] if not x.startswith('routes-de-l-etat')))),(f['n'],[x for x in f['s'] if x not in retraits]+ajouts))
         self.assertEqual(len(seen),180);self.assertEqual(len(aliases),4)
     def test_manifeste_differe_et_departements_limitrophes(self):
