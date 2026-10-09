@@ -76,7 +76,12 @@ DOMAINES = {
   # pâte à papier 3/8 usines ; vérification Codex). Écartés : 19.20Z, 20.20Z, 23.14Z (surtout des sièges).
   "Chimie, pharmacie, cosmétiques, papier": ["20.11Z", "20.13B", "20.14Z", "20.16Z", "20.30Z", "20.41Z", "20.42Z", "20.59Z", "21.10Z", "21.20Z", "17.12Z", "17.21A", "17.21B", "17.29Z", "20.12Z", "20.17Z", "20.52Z", "17.11Z"],
   "Laboratoires d'analyses et d'essais": ["71.20B"],
-  "Industrie agroalimentaire": ["10.13A", "10.39B", "10.51C", "10.72Z", "10.73Z", "10.85Z", "10.89Z", "11.07A", "11.07B"],
+  # 15 codes ajoutés le 9/10/2026 (vérification Codex, 10 établissements par code) : laiterie, beurre,
+  # meunerie, grains, malt, sucre, pommes de terre, jus, légumes, margarine, condiments, cidre,
+  # bière, boissons fermentées. Écartés : 10.83Z (boutiques), 10.86Z, 11.01Z (marques sans usine).
+  "Industrie agroalimentaire": ["10.13A", "10.39B", "10.51C", "10.72Z", "10.73Z", "10.85Z", "10.89Z", "11.07A", "11.07B",
+                                "10.31Z", "10.32Z", "10.39A", "10.42Z", "10.51A", "10.51B", "10.51D", "10.61A", "10.61B",
+                                "10.81Z", "10.84Z", "11.03Z", "11.04Z", "11.05Z", "11.06Z"],
   "Bateaux, nautisme": ["30.12Z", "33.15Z"],
   "Matériels agricoles, engins de chantier": ["28.30Z", "28.92Z", "46.61Z", "46.63Z", "77.31Z", "77.32Z"],
   # ajout France — sources et limites : formation_secteurs_france.json
@@ -127,7 +132,8 @@ DOMAINES = {
   "Grossistes en fruits et légumes": ["46.31Z"],
  },
  "Alimentation, métiers de bouche": {
-  "Boulangerie, pâtisserie": ["10.71C", "10.71D", "47.24Z"],
+  # 10.71A ajouté le 9/10/2026 (boulangerie industrielle : 3 usines sur 10, 7 laboratoires en partie).
+  "Boulangerie, pâtisserie": ["10.71C", "10.71D", "47.24Z", "10.71A"],
   "Boucherie, charcuterie, poissonnerie": ["47.22Z", "10.13B", "47.23Z"],
   "Traiteurs": ["56.21Z"],
   "Chocolaterie, confiserie, glaces": ["10.82Z", "10.52Z"],

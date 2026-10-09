@@ -1361,5 +1361,15 @@
 ],
 "CAP vannerie": [
 "Objets en bois, liège, vannerie"
+],
+"CAPa opérateur en industries agroalimentaires option transformation de produits alimentaires": [
+"Industrie agroalimentaire",
+"Transformation de viandes",
+"Transformation de poissons, crustacés, mollusques"
+],
+"CAPa opérateur en industries agroalimentaires option conduite de machines": [
+"Industrie agroalimentaire",
+"Transformation de viandes",
+"Transformation de poissons, crustacés, mollusques"
 ]
 }
