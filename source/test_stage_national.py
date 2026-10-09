@@ -268,6 +268,23 @@ class NationalTest(unittest.TestCase):
         self.assertEqual(dans['travaux-publics-routes-reseaux'], ['2'])
         self.assertEqual(dans['demolition'], ['3'])
 
+    def test_lycees_et_colleges_publics(self):
+        from stage_etablissements_scolaires import lignes
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        self.assertIn('lycees-publics-maintenance', forms['cap-interventions-en-maintenance-technique-des-batiments'])
+        self.assertNotIn('colleges-publics-maintenance', forms['bac-pro-geometre'])
+        def e(uai, nom, t, siret, la=48.87):
+            return dict(identifiant_de_l_etablissement=uai, nom_etablissement=nom, type_etablissement=t,
+                        adresse_1='55 avenue Raspail', code_postal='93170', nom_commune='Bagnolet',
+                        latitude=la, longitude=2.43, siren_siret=siret, code_departement='093')
+        f, ecartes = lignes([e('1', 'Lycée polyvalent Eugène Henaff', 'Lycée', '19932119100017'),
+                             e('2', "Section d'enseignement professionnel du Lycée Eugène Henaff", 'Lycée', '19932119100025'),
+                             e('3', 'Collège Travail Langevin', 'Collège', '19930001000011', 48.86),
+                             e('4', 'Collège sans SIRET', 'Collège', None, 48.85)], {'93'})
+        self.assertEqual([r[0] for r in f[('93', 'lycees-publics-maintenance')]], ['Lycée polyvalent Eugène Henaff'])
+        self.assertEqual([r[0] for r in f[('93', 'colleges-publics-maintenance')]], ['Collège Travail Langevin'])
+        self.assertEqual(ecartes, {'section_interne': 1, 'sans_siret_ou_position': 1})
+
     def test_routes_de_l_etat(self):
         forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
         etudes, entretien = 'routes-de-l-etat-etudes-et-districts', 'routes-de-l-etat-centres-d-entretien'

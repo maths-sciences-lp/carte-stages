@@ -11,7 +11,9 @@
 "Menuiserie bois, agencement",
 "Menuiserie métallique, serrurerie",
 "Construction, maçonnerie, gros œuvre",
-"Bailleurs sociaux"
+"Bailleurs sociaux",
+"Lycées publics (maintenance)",
+"Collèges publics (maintenance)"
 ],
 "bac pro aménagements paysagers": [
 "Paysagistes, espaces verts",
@@ -175,7 +177,9 @@
 "Froid industriel, installation de machines",
 "Production et distribution d'énergie",
 "Hôpitaux (services techniques)",
-"Bailleurs sociaux"
+"Bailleurs sociaux",
+"Lycées publics (maintenance)",
+"Collèges publics (maintenance)"
 ],
 "bac pro interventions sur le patrimoine bâti option A maçonnerie": [
 "Construction, maçonnerie, gros œuvre",
@@ -237,7 +241,9 @@
 "Froid industriel, installation de machines",
 "Production et distribution d'énergie",
 "Hôpitaux (services techniques)",
-"Bailleurs sociaux"
+"Bailleurs sociaux",
+"Lycées publics (maintenance)",
+"Collèges publics (maintenance)"
 ],
 "bac pro maintenance nautique": [
 "Bateaux, nautisme"
@@ -281,7 +287,9 @@
 "Production et distribution d'énergie",
 "Réseaux électriques et télécoms",
 "Hôpitaux (services techniques)",
-"Bailleurs sociaux"
+"Bailleurs sociaux",
+"Lycées publics (maintenance)",
+"Collèges publics (maintenance)"
 ],
 "bac pro métiers de la coiffure": [
 "Coiffure"
@@ -664,7 +672,9 @@
 "Peinture, plâtre, carrelage, sols, isolation",
 "Personnes âgées (EHPAD, résidences)",
 "Hôpitaux (services techniques)",
-"Bailleurs sociaux"
+"Bailleurs sociaux",
+"Lycées publics (maintenance)",
+"Collèges publics (maintenance)"
 ],
 "CAP maintenance des matériels option A matériels agricoles": [
 "Matériels agricoles, engins de chantier"
@@ -729,12 +739,16 @@
 "CAP monteur en installations sanitaires": [
 "Plomberie, chauffage, climatisation, froid",
 "Hôpitaux (services techniques)",
-"Bailleurs sociaux"
+"Bailleurs sociaux",
+"Lycées publics (maintenance)",
+"Collèges publics (maintenance)"
 ],
 "CAP monteur en installations thermiques": [
 "Plomberie, chauffage, climatisation, froid",
 "Hôpitaux (services techniques)",
-"Bailleurs sociaux"
+"Bailleurs sociaux",
+"Lycées publics (maintenance)",
+"Collèges publics (maintenance)"
 ],
 "CAP métallier": [
 "Menuiserie métallique, serrurerie",
@@ -788,7 +802,9 @@
 ],
 "CAP peintre applicateur de revêtements": [
 "Peinture, plâtre, carrelage, sols, isolation",
-"Bailleurs sociaux"
+"Bailleurs sociaux",
+"Lycées publics (maintenance)",
+"Collèges publics (maintenance)"
 ],
 "CAP peintre automobile": [
 "Garages, carrosseries (voitures)",
@@ -867,7 +883,9 @@
 "Maintenance d'équipements, ascenseurs",
 "Production et distribution d'énergie",
 "Hôpitaux (services techniques)",
-"Bailleurs sociaux"
+"Bailleurs sociaux",
+"Lycées publics (maintenance)",
+"Collèges publics (maintenance)"
 ],
 "CAP équipier polyvalent du commerce": [
 "Supermarchés, grandes surfaces",
