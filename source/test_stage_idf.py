@@ -15,7 +15,8 @@ class MigrationTest(unittest.TestCase):
             # Catégories découpées depuis 2026-10 (écoles, réseaux…) : ramenées à leur origine ;
             # routes de l'État (9/10/2026) : ajoutées au géomètre et aux travaux publics, ignorées ici,
             # comme les types copiés (hôpitaux avec service technique, bailleurs sociaux) et la promotion
-            # immobilière, nouveau type du TEB études et économie et de sa 2de EMNB.
+            # immobilière, nouveau type du TEB études et économie et de sa 2de EMNB, carrières et démolition
+            # (conducteur d'engins, travaux publics, gros œuvre, maintenance des matériels de construction).
             # Ajouts voulus : la 2de TNE reçoit aussi les entreprises du bac pro CIEL (8/10/2026) ;
             # l'ERA, les architectes et le design d'intérieur (bureau d'études, 9/10/2026).
             ajouts=['services-informatiques-reseaux','reparation-d-ordinateurs-et-de-telephones','electronique-materiel-electrique'] if 'tne' in n['k'] else \
@@ -25,7 +26,7 @@ class MigrationTest(unittest.TestCase):
             retraits={'cap-monteur-en-installations-thermiques':['maintenance-d-equipements-ascenseurs'],
                       'bac-pro-geometre':['bureaux-d-etudes-economistes-de-la-construction'],
                       'cap-interventions-en-maintenance-technique-des-batiments':['agences-immobilieres-gestion-de-logements']}.get(n['k'],[])
-            self.assertEqual((n['n'],list(dict.fromkeys(origine.get(x,x) for x in n['s'] if not x.startswith('routes-de-l-etat') and x not in ('hopitaux-services-techniques', 'bailleurs-sociaux', 'promotion-immobiliere')))),(f['n'],[x for x in f['s'] if x not in retraits]+ajouts))
+            self.assertEqual((n['n'],list(dict.fromkeys(origine.get(x,x) for x in n['s'] if not x.startswith('routes-de-l-etat') and x not in ('hopitaux-services-techniques', 'bailleurs-sociaux', 'promotion-immobiliere', 'carrieres', 'demolition')))),(f['n'],[x for x in f['s'] if x not in retraits]+ajouts))
         self.assertEqual(len(seen),180);self.assertEqual(len(aliases),4)
     def test_manifeste_differe_et_departements_limitrophes(self):
         with tempfile.TemporaryDirectory() as t:

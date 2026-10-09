@@ -3,7 +3,13 @@
 DOMAINES = {
  "Bâtiment et travaux publics": {
   "Construction, maçonnerie, gros œuvre": ["41.20A", "41.20B", "43.99C", "43.91A", "43.91B", "43.99A", "23.70Z"],
-  "Travaux publics, routes, réseaux": ["42.11Z", "42.13A", "42.21Z", "42.99Z", "43.12A", "43.12B"],
+  # 42.12Z et 42.13B ajoutés le 9/10/2026 (voies ferrées 4/10, tunnels 4/10 agences ou chantiers).
+  "Travaux publics, routes, réseaux": ["42.11Z", "42.13A", "42.21Z", "42.99Z", "43.12A", "43.12B", "42.12Z", "42.13B"],
+  # Ajoutés le 9/10/2026 pour le CAP conducteur d'engins : carrières de gypse, calcaire, sable et
+  # gravier (7 carrières en exploitation sur 20 vérifiées, le reste surtout dépôts et sièges) ;
+  # démolition d'au moins 10 salariés (voir SEUILS ; les plus petites démolissent à la main).
+  "Carrières": ["08.11Z", "08.12Z"],
+  "Démolition": ["43.11Z"],
   # 42.22Z séparé des travaux publics (filière énergie, 8/10/2026) : seule partie utile
   # aux électriciens et à la 2de TNE ; les formations des travaux publics gardent les deux.
   "Réseaux électriques et télécoms": ["42.22Z"],
@@ -352,4 +358,5 @@ SEUILS = {
     "41.10A": dict(tranche_min="11", cj_exclues=("65",)),
     "41.10C": dict(tranche_min="11", cj_exclues=("65",)),
     "26.40Z": dict(tranche_min="11"),
+    "43.11Z": dict(tranche_min="11"),
 }
