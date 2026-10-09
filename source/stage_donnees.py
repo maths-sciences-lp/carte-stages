@@ -19,7 +19,7 @@ from adresses import nettoie
 from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
 from domaines import (COMMUNES_CJ, COMMUNES_NAF, DOMAINES, ECOLES_EXCLUES, ECOLES_NAF, FILTRES, MOTS_CLES,
                       ROUTES_DRIEAT, ROUTES_ENTRETIEN, ROUTES_ETAT_SIREN, ROUTES_ETUDES, ROUTES_TRAFIC,
-                      MOTS_CLES_SOURCES, SANS_PERSONNEL, SOURCES_MOTS_CLES)
+                      MOTS_CLES_SOURCES, SANS_PERSONNEL, SOURCES_MOTS_CLES, COPIES)
 from stage_collecte import atomic_json, ROOT, EFFECTIFS, CODES
 
 EDU = 'https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json?'
@@ -97,6 +97,20 @@ def affiner(secteur, c, nj, siret='', nom=''):
     return secteur
 
 
+def copie(regle, c, nj, nom, enseigne=''):
+    """Vrai si l'établissement (code c, catégorie juridique nj du propriétaire, nom et enseigne)
+    entre dans un type copié (domaines.COPIES)."""
+    if c not in regle['codes']:
+        return False
+    if 'site' in regle:
+        site = (enseigne or nom).upper()
+        return bool(re.search(regle['site'], site)) and not re.search(regle['exclure'], site)
+    nj = str(nj or '')
+    if any(nj.startswith(p) for p in regle.get('cj', ())):
+        return True
+    return nj in regle.get('cj_nom', ()) and bool(re.search(regle['nom'], (nom + ' ' + (enseigne or '')).upper()))
+
+
 def sans_personnel(secteur, c, nj, q):
     """Compte de collectivité ou ferme solaire (domaines.SANS_PERSONNEL) : secteur en adresse."""
     proprios = next((v.get(c, ()) for n, v in SANS_PERSONNEL.items() if slug(n) == secteur), ())
@@ -112,7 +126,7 @@ def preparer(rows):
             for c in codes:
                 sec_of.setdefault(c, slug(s))
     filtres = {slug(k): re.compile(v) for k, v in FILTRES.items()}
-    by, excluded = defaultdict(dict), Counter()
+    by, excluded, infos = defaultdict(dict), Counter(), {}
     for r in rows:
         if r['nj'] == '1000' or r['du'] != 'O' or r['de'] != 'O' or not r['la']:
             raise ValueError('Le cache contient un établissement interdit')
@@ -140,6 +154,7 @@ def preparer(rows):
         adr, rep = nettoie(r['ad'] or '')
         if adr:
             adr = adr[0].upper() + adr[1:]
+        infos[r['s']] = (r['c'], r['nj'])
         by[k][r['s']] = [nom, ens, adr, round(float(r['la']), 5), round(float(r['lo']), 5),
                          EFFECTIFS.index(r['t']) + 1 if r['t'] in EFFECTIFS else 0,
                          1 if r['r'] else 0, r['s'], rep]
@@ -154,6 +169,11 @@ def preparer(rows):
                 text = (row[0] + ' ' + row[1]).upper()
                 if regex.search(text) and 'ENSEIGNEMENT' not in text:
                     by[k][sir] = row
+    for cible, regle in COPIES.items():
+        for sir, row in list(by.get(slug(regle['source']), {}).items()):
+            c, nj = infos[sir]
+            if copie(regle, c, nj, row[0], row[1]):
+                by[slug(cible)][sir] = row
     return {k: sorted(v.values()) for k, v in by.items()}, dict(excluded)
 
 

@@ -207,6 +207,30 @@ class NationalTest(unittest.TestCase):
                               lieu('4', '18.13Z', 'SOUARD MARQUAGE VEHICULES')])
         self.assertEqual(sorted(r[7] for r in groups['enseignes-signaletique-marquage']), ['1', '4'])
 
+    def test_services_techniques_hopitaux_et_bailleurs_sociaux(self):
+        forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
+        imtb = forms['cap-interventions-en-maintenance-technique-des-batiments']
+        self.assertNotIn('agences-immobilieres-gestion-de-logements', imtb)
+        self.assertIn('hopitaux-services-techniques', imtb)
+        self.assertIn('bailleurs-sociaux', imtb)
+        self.assertNotIn('hopitaux-services-techniques', forms['bac-pro-accompagnement-soins-et-services-a-la-personne'])
+        def lieu(siret, c, nom, e='', nj='5710'):
+            return dict(s=siret, n=nom, e=e, c=c, q=c, ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t='53', nj=nj, du='O', de='O', r=False)
+        groups, _ = preparer([lieu('1', '86.10Z', 'ASSISTANCE PUBLIQUE HOPITAUX DE PARIS', 'HOPITAL TENON', '7364'),
+                              lieu('2', '86.10Z', 'GROUPE HOSPITALIER UNIVERSITAIRE PARIS', 'CMP LA CHAPELLE', '7364'),
+                              lieu('3', '86.10Z', 'CLINIQUE DES PLATANES'),
+                              lieu('4', '86.90B', 'LABORATOIRE CERBALLIANCE'),
+                              lieu('5', '68.20A', 'OPH EST ENSEMBLE HABITAT', nj='4140'),
+                              lieu('6', '68.20A', 'SCI PARIS LIBERTE', nj='6540'),
+                              lieu('7', '68.32A', 'CABINET DE SYNDIC'),
+                              lieu('8', '68.20A', 'SAEM NOISY-LE-SEC HABITAT', nj='5515')])
+        dans = {k: sorted(r[7] for r in v) for k, v in groups.items()}
+        self.assertEqual(dans['hopitaux-services-techniques'], ['1', '3'])
+        self.assertEqual(dans['hopitaux-cliniques-laboratoires'], ['1', '2', '3', '4'])
+        self.assertEqual(dans['bailleurs-sociaux'], ['5', '8'])
+        self.assertEqual(dans['agences-immobilieres-gestion-de-logements'], ['5', '6', '7', '8'])
+
     def test_routes_de_l_etat(self):
         forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
         etudes, entretien = 'routes-de-l-etat-etudes-et-districts', 'routes-de-l-etat-centres-d-entretien'

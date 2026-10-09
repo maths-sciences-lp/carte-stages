@@ -252,6 +252,13 @@ let rz=null; window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeou
 const ring=L.circle([0,0],{radius:0,color:'#15314f',weight:2,fill:false,dashArray:'6 6'});
 const origin=()=>pts[from];
 function dk(p,o){const r=Math.PI/180,a=Math.sin((p.la-o.la)*r/2)**2+Math.cos(p.la*r)*Math.cos(o.la*r)*Math.sin((p.lo-o.lo)*r/2)**2;return 12742*Math.asin(Math.sqrt(a));}
+// Conseil affiché sur la fiche des grandes structures (9/10/2026) : à qui s'adresser.
+const CONSEIL={
+ 'hopitaux-services-techniques':'Conseil : appelle le standard et demande le service technique (les ateliers). C’est lui qui peut accepter un stagiaire.',
+ 'bailleurs-sociaux':'Conseil : appelle et demande la régie ou le centre technique. Sinon, le gardien de la résidence peut te donner le nom des entreprises qui y travaillent.',
+ 'communes-et-intercommunalites':'Conseil : appelle le standard et demande le service qui correspond à ta formation (par exemple les services techniques). Regarde aussi la page « stages » ou « emploi » du site de la ville.',
+ 'mairies-administrations':'Conseil : appelle le standard et demande le service qui correspond à ta formation. Regarde aussi la page « stages » ou « emploi » de son site.'
+};
 function links(p){
  const o=origin();
  const tel=`https://www.google.com/search?q=${encodeURIComponent(titreP(p)+' '+(p.ad||'')+' téléphone')}`;
@@ -260,7 +267,7 @@ function links(p){
 }
 function pop(p){
  const {tel,go}=links(p), o=origin();
- return `<div class="pop"><b>${esc(titreP(p))}</b>${p.e?`<div class="msg" style="margin:0">${esc(p.n)}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${p.rp?`<div class="msg" style="margin:0">${esc(p.rp)}</div>`:''}${o?`<div><b>${dtxt(p.k)}</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}${lbaHtml(p)}
+ return `<div class="pop"><b>${esc(titreP(p))}</b>${p.e?`<div class="msg" style="margin:0">${esc(p.n)}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${p.rp?`<div class="msg" style="margin:0">${esc(p.rp)}</div>`:''}${CONSEIL[p.f]?`<div class="msg" style="margin:0">${CONSEIL[p.f]}</div>`:''}${o?`<div><b>${dtxt(p.k)}</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}${lbaHtml(p)}
  <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><a class="btn light" target="_blank" rel="noopener" href="https://annuaire-entreprises.data.gouv.fr/etablissement/${esc(p.s)}">${em('ℹ️','Fiche officielle')}</a></div></div>`;
 }
 function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]>=9?'grande entreprise (groupe)':(r[5]?IDX.eff[r[5]-1]:''),s:r[7],f:k,rp:r[8]||''};
