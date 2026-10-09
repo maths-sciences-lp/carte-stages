@@ -7,6 +7,10 @@ DOMAINES = {
   # 42.22Z séparé des travaux publics (filière énergie, 8/10/2026) : seule partie utile
   # aux électriciens et à la 2de TNE ; les formations des travaux publics gardent les deux.
   "Réseaux électriques et télécoms": ["42.22Z"],
+  # Sans code propre (9/10/2026) : services routiers de l'État tirés de « Mairies,
+  # administrations » par leur SIREN (voir ROUTES_ETAT_SIREN) ; postes de trafic exclus.
+  "Routes de l'État : études et districts": [],
+  "Routes de l'État : centres d'entretien": [],
   "Peinture, plâtre, carrelage, sols, isolation": ["43.31Z", "43.33Z", "43.34Z", "43.39Z", "43.29A"],
   # Ancienne « Menuiserie, agencement, serrurerie » séparée le 9/10/2026 (filière bois,
   # 10 entreprises vérifiées par code) : 43.32B et 25.12Z sont du métal 10 fois sur 10.
@@ -258,6 +262,8 @@ DECOUPAGES = {
     "Froid industriel, installation de machines": "Maintenance d'équipements, ascenseurs",
     "Réparation de machines et d'électronique": "Maintenance d'équipements, ascenseurs",
     "Communes et intercommunalités": "Mairies, administrations",
+    "Routes de l'État : études et districts": "Mairies, administrations",
+    "Routes de l'État : centres d'entretien": "Mairies, administrations",
     "Économistes de la construction": "Bureaux d'études, économistes de la construction",
     "Menuiserie bois, agencement": "Menuiserie, agencement, serrurerie",
     "Menuiserie métallique, serrurerie": "Menuiserie, agencement, serrurerie",
@@ -274,3 +280,16 @@ COMMUNES_CJ = ('72', '734', '735')
 CODES_RETIRES = {
     "Services informatiques, réseaux": ["62.02A"],
 }
+
+# Services routiers de l'État (9/10/2026, d'après la vérification de Codex, note 84.13Z) :
+# les 10 directions interdépartementales des routes, et en Île-de-France la partie routière
+# de la DRIEAT (sites AGER, CEI, UER, SGPR, DIRIF). Le code 84.13Z seul ne suffit pas : il
+# couvre aussi France Travail, le tourisme, les agences de l'eau. Selon le nom du site :
+# centres d'entretien et d'intervention ; postes de trafic (restent dans les mairies) ;
+# sinon études, ingénierie, districts et sièges.
+ROUTES_ETAT_SIREN = ('130001712', '130001738', '130001688', '130001530', '130001563',
+                     '130001761', '130001571', '130001696', '130001704', '130001670')
+ROUTES_DRIEAT = ('130029325', r'\b(AGER|CEI|UER|SGPR|DIRIF)\b')
+ROUTES_ENTRETIEN = r'\bPA\b|PO[IN]NT D.?APPUI|POINT APPUI|LOGISTIQUE|\bCEI\w*|\bCES\b|\bUER\b|\bAGER\b|\bENTR\w*|INTERV|TRAVAUX|EQUIPES'
+ROUTES_ETUDES = r'DISTRICT|\bSIR\b'
+ROUTES_TRAFIC = r'\bPC\b|CIGT|TRAFIC|CRICR'

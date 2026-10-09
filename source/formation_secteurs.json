@@ -15,6 +15,8 @@
 "bac pro aménagements paysagers": [
 "Paysagistes, espaces verts",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Horticulture, maraîchage, agriculture"
 ],
@@ -23,6 +25,8 @@
 "Personnes âgées (EHPAD, résidences)",
 "Crèches, petite enfance",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Associations (animation, solidarité)"
 ],
@@ -56,6 +60,8 @@
 "bac pro assistance à la gestion des organisations et de leurs activités": [
 "Comptabilité, conseil, gestion",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Secrétariat, accueil, centres d'appels",
 "Banques, assurances",
@@ -110,6 +116,8 @@
 "Fleuristes, jardineries",
 "Paysagistes, espaces verts",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "bac pro construction et aménagement de véhicules": [
@@ -140,12 +148,15 @@
 "Déchets, recyclage, assainissement",
 "Nettoyage, propreté",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "bac pro géomètre": [
 "Géomètres-experts, topographie",
 "Travaux publics, routes, réseaux",
 "Réseaux électriques et télécoms",
+"Routes de l'État : études et districts",
 "Communes et intercommunalités"
 ],
 "bac pro hygiène, propreté, stérilisation": [
@@ -153,6 +164,8 @@
 "Hôpitaux, cliniques, laboratoires",
 "Personnes âgées (EHPAD, résidences)",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "bac pro installateur en chauffage, climatisation et énergies renouvelables": [
@@ -186,6 +199,8 @@
 "Matériels agricoles, engins de chantier",
 "Paysagistes, espaces verts",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "bac pro maintenance des systèmes de production connectés": [
@@ -241,6 +256,8 @@
 "Secrétariat, accueil, centres d'appels",
 "Hôtels",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Spectacle, musées, bibliothèques",
 "Supermarchés, grandes surfaces",
@@ -275,6 +292,8 @@
 "bac pro métiers de la sécurité": [
 "Sécurité privée, surveillance",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "bac pro métiers du commerce et de la vente option A animation et gestion de l'espace commercial": [
@@ -426,6 +445,8 @@
 "bac pro travaux publics": [
 "Travaux publics, routes, réseaux",
 "Réseaux électriques et télécoms",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Construction, maçonnerie, gros œuvre"
 ],
 "bac pro étude et réalisation d'agencement": [
@@ -442,6 +463,8 @@
 "Crèches, petite enfance",
 "Loisirs, animation",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Aide à domicile"
 ],
@@ -549,6 +572,8 @@
 "CAP constructeur de routes et d'aménagements urbains": [
 "Travaux publics, routes, réseaux",
 "Réseaux électriques et télécoms",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Paysagistes, espaces verts"
 ],
 "CAP constructeur de réseaux de canalisations de travaux publics": [
@@ -794,6 +819,8 @@
 "Déchets, recyclage, assainissement",
 "Nettoyage, propreté",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "CAP vêtement de peau": [
@@ -819,6 +846,8 @@
 "CAPa jardinier-paysagiste": [
 "Paysagistes, espaces verts",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "CAPa métiers de l'agriculture": [
@@ -835,6 +864,8 @@
 "Matériels agricoles, engins de chantier",
 "Forêts, travaux forestiers",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "bac pro boucher charcutier traiteur": [
@@ -894,6 +925,8 @@
 "Forêts, travaux forestiers",
 "Paysagistes, espaces verts",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Associations (animation, solidarité)"
 ],
@@ -905,6 +938,8 @@
 "Nettoyage, propreté",
 "Déchets, recyclage, assainissement",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités"
 ],
 "bac pro métiers de l'entretien des textiles option A blanchisserie": [
@@ -960,6 +995,8 @@
 "Personnes âgées (EHPAD, résidences)",
 "Loisirs, animation",
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Associations (animation, solidarité)"
 ],
@@ -1013,6 +1050,8 @@
 ],
 "CAP agent de prévention et de médiation": [
 "Mairies, administrations",
+"Routes de l'État : études et districts",
+"Routes de l'État : centres d'entretien",
 "Communes et intercommunalités",
 "Associations (animation, solidarité)",
 "Agences immobilières, gestion de logements",

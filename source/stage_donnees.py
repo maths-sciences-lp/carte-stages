@@ -17,7 +17,9 @@ import urllib.parse
 
 from adresses import nettoie
 from aides import ALIAS, ICON, FAMILLES, AUTRES, FAMILLES_SECTEURS
-from domaines import COMMUNES_CJ, COMMUNES_NAF, DOMAINES, ECOLES_EXCLUES, ECOLES_NAF, FILTRES, MOTS_CLES, SANS_PERSONNEL, SOURCES_MOTS_CLES
+from domaines import (COMMUNES_CJ, COMMUNES_NAF, DOMAINES, ECOLES_EXCLUES, ECOLES_NAF, FILTRES, MOTS_CLES,
+                      ROUTES_DRIEAT, ROUTES_ENTRETIEN, ROUTES_ETAT_SIREN, ROUTES_ETUDES, ROUTES_TRAFIC,
+                      SANS_PERSONNEL, SOURCES_MOTS_CLES)
 from stage_collecte import atomic_json, ROOT, EFFECTIFS, CODES
 
 EDU = 'https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json?'
@@ -77,12 +79,19 @@ def verifier_cache(cache):
         raise ValueError('Le cache ne correspond pas aux codes NAF des tables actuelles')
 
 
-def affiner(secteur, c, nj):
-    """Catégories sans code propre, tirées de « Mairies, administrations » : écoles, communes."""
+def affiner(secteur, c, nj, siret='', nom=''):
+    """Catégories sans code propre, tirées de « Mairies, administrations » : écoles, routes de l'État, communes."""
     if secteur != 'mairies-administrations':
         return secteur
     if c in ECOLES_NAF:
         return 'ecoles-maternelles-et-elementaires'
+    nom = str(nom or '').upper()
+    if str(siret)[:9] in ROUTES_ETAT_SIREN or (str(siret)[:9] == ROUTES_DRIEAT[0] and re.search(ROUTES_DRIEAT[1], nom)):
+        if re.search(ROUTES_ENTRETIEN, nom):
+            return 'routes-de-l-etat-centres-d-entretien'
+        if re.search(ROUTES_TRAFIC, nom) and not re.search(ROUTES_ETUDES, nom):
+            return secteur
+        return 'routes-de-l-etat-etudes-et-districts'
     if c in COMMUNES_NAF and str(nj or '').startswith(COMMUNES_CJ):
         return 'communes-et-intercommunalites'
     return secteur
@@ -119,7 +128,7 @@ def preparer(rows):
         if not k:
             excluded['activite_non_resolue'] += 1
             continue
-        k = affiner(k, r['c'], r['nj'])
+        k = affiner(k, r['c'], r['nj'], r['s'], r['n'] + ' ' + (r['e'] or ''))
         if sans_personnel(k, r['c'], r['nj'], r['q']):
             excluded['sans_personnel'] += 1
             continue
