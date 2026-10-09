@@ -11,7 +11,9 @@ Mêmes règles que stage_donnees.preparer, sans refaire la collecte :
   dans les nouvelles catégories par leur code ou leur nom (MOTS_CLES), puis ses fichiers disparaissent ;
 - catégories remplies par le nom seul (ex. enseignes) : la règle de nom actuelle est réappliquée ;
 - codes retirés (domaines.CODES_RETIRES) : un établissement qui n'était dans la catégorie que par
-  ce code en sort (62.02A, conseil en systèmes et logiciels).
+  ce code en sort (62.02A, conseil en systèmes et logiciels) ;
+- sources des règles de nom resserrées (domaines.MOTS_CLES_SOURCES) : un établissement venu par
+  son nom d'une catégorie qui n'est plus permise en sort.
 Les badges La bonne alternance suivent l'établissement. Les formations viennent du code
 (stage_donnees.catalogue_formations), qui relie déjà les nouvelles catégories.
 
@@ -33,7 +35,7 @@ import re
 import subprocess
 import time
 
-from domaines import CODES_RETIRES, DECOUPAGES, DOMAINES, MOTS_CLES, SANS_PERSONNEL
+from domaines import CODES_RETIRES, DECOUPAGES, DOMAINES, MOTS_CLES, MOTS_CLES_SOURCES, SANS_PERSONNEL
 from stage_collecte import atomic_json
 from stage_donnees import affiner, catalogue_formations, fichier, sans_personnel, slug
 from stage_catalogues import ecrire_catalogues
@@ -76,6 +78,10 @@ def main():
     # Catégories remplies seulement par le nom (aucun code) : on réapplique leur règle de nom.
     mots_seuls = {slug(n) for d in DOMAINES.values() for n, c in d.items() if not c and slug(n) in mots}
     origines |= mots_seuls
+    # Règles de nom aux sources resserrées : un établissement entré seulement par son nom depuis
+    # une catégorie qui n'est plus permise en sort (son code le range ailleurs).
+    permises = {slug(n): {slug(s) for s in ss} for n, ss in MOTS_CLES_SOURCES.items()}
+    origines |= set(permises)
     for dep in sorted(catalog['departements']):
         secteurs = catalog['departements'][dep]['secteurs']
         for k in sorted(remplacees & set(secteurs)):
@@ -121,6 +127,12 @@ def main():
                 fin = affiner(k, i['naf'], i['cj'], r[7], r[0] + ' ' + (r[1] or ''))
                 if fin in enfants:
                     cible = fin
+                if k in permises and cible not in (None, k) and cible not in permises[k] and cible not in enfants:
+                    cle = f'{k} : nom venu de {cible}'
+                    bilan['retires'][cle] = bilan['retires'].get(cle, 0) + 1
+                    journal.append(dict(dep=dep, siret=r[7], nom=r[0], enseigne=r[1], de=k, vers=None,
+                                        naf=i['naf'], naf_unite_legale=i['naf_u'], categorie_juridique=i['cj']))
+                    continue
                 if cible is None and any(slug(n) == k and i['naf'] in c for n, c in CODES_RETIRES.items()):
                     cle = f"{k} {i['naf']} code retiré"
                     bilan['retires'][cle] = bilan['retires'].get(cle, 0) + 1

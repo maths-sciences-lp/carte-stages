@@ -51,7 +51,8 @@
 ],
 "bac pro artisanat et métiers d'art option tapissier d'ameublement": [
 "Tapisserie, décoration textile",
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "bac pro artisanat et métiers d'art option verrerie scientifique et technique": [
 "Céramique, verre d'art, instruments de musique",
@@ -250,7 +251,8 @@
 "Économistes de la construction",
 "Plastique, verre, matériaux",
 "Aéronautique",
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "bac pro métiers de l'accueil": [
 "Secrétariat, accueil, centres d'appels",
@@ -403,7 +405,8 @@
 ],
 "bac pro technicien de fabrication bois et matériaux associés": [
 "Menuiserie bois, agencement",
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "bac pro technicien en appareillage orthopédique": [
 "Pharmacie, optique, prothèses",
@@ -429,7 +432,8 @@
 "bac pro technicien menuisier agenceur": [
 "Menuiserie bois, agencement",
 "Menuiserie métallique, serrurerie",
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "bac pro technicien modeleur": [
 "Usinage, mécanique, outillage",
@@ -451,7 +455,6 @@
 ],
 "bac pro étude et réalisation d'agencement": [
 "Menuiserie bois, agencement",
-"Menuiserie métallique, serrurerie",
 "Ébénisterie, meubles, restauration de meubles",
 "Architectes",
 "Design d'intérieur et d'objet"
@@ -520,7 +523,8 @@
 "CAP bronzier option A monteur en bronze": [
 "Chaudronnerie, soudure, structures métalliques",
 "Céramique, verre d'art, instruments de musique",
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "CAP carreleur mosaïste": [
 "Peinture, plâtre, carrelage, sols, isolation",
@@ -692,12 +696,14 @@
 ],
 "CAP menuisier fabricant": [
 "Menuiserie bois, agencement",
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "CAP menuisier installateur": [
 "Menuiserie bois, agencement",
 "Menuiserie métallique, serrurerie",
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "CAP modèles et moules céramiques": [
 "Céramique, verre d'art, instruments de musique",
@@ -831,6 +837,7 @@
 ],
 "CAP ébéniste": [
 "Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles",
 "Menuiserie bois, agencement"
 ],
 "CAP électricien": [
@@ -1096,15 +1103,18 @@
 ],
 "CAP arts du bois option marqueteur": [
 "Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles",
 "Objets en bois, liège, vannerie"
 ],
 "CAP arts du bois option sculpteur ornemaniste": [
 "Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles",
 "Objets en bois, liège, vannerie"
 ],
 "CAP arts du bois option tourneur": [
 "Objets en bois, liège, vannerie",
 "Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles",
 "Céramique, verre d'art, instruments de musique"
 ],
 "CAP arts du verre et du cristal": [
@@ -1128,11 +1138,13 @@
 "CAP bronzier option B ciseleur en bronze": [
 "Chaudronnerie, soudure, structures métalliques",
 "Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles",
 "Électronique, matériel électrique",
 "Fonderies"
 ],
 "CAP cannage paillage en ameublement": [
 "Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles",
 "Objets en bois, liège, vannerie"
 ],
 "CAP certificat polynésien d'aptitude professionnelle option petite et moyenne hôtellerie": [
@@ -1206,7 +1218,8 @@
 "Aquaculture, pisciculture, conchyliculture"
 ],
 "CAP menuisier en sièges": [
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "CAP mouleur noyauteur : cuivre et bronze": [
 "Fonderies"
@@ -1250,7 +1263,8 @@
 "CAP sellerie générale": [
 "Cuir, maroquinerie, cordonnerie",
 "Tapisserie, décoration textile",
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "CAP sellier harnacheur": [
 "Cuir, maroquinerie, cordonnerie",
@@ -1267,10 +1281,12 @@
 ],
 "CAP tapissier-tapissière d'ameublement en décor": [
 "Tapisserie, décoration textile",
-"Ébénisterie, meubles, restauration de meubles"
+"Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles"
 ],
 "CAP tapissier-tapissière d'ameublement en siège": [
 "Ébénisterie, meubles, restauration de meubles",
+"Sièges, réparation de meubles",
 "Tapisserie, décoration textile"
 ],
 "CAP transport fluvial": [
