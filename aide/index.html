@@ -78,6 +78,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
   <div id="list"></div>
   <div class="row" style="margin-top:6px"><button class="btn light" id="plus" hidden>Voir plus de lieux</button></div>
  </div>
+ <p class="msg" id="sc-bloc" style="margin-top:12px">🌱 <b>Service civique</b> (16-25 ans, indemnisé) : <a id="sc" href="https://www.service-civique.gouv.fr/trouver-ma-mission" target="_blank" rel="noopener">voir les missions de service civique près de chez toi ↗</a></p>
  <div class="note">💡 <b>Bon à savoir.</b> Ces lieux sont gratuits. Tu peux appeler avant d’y aller : certains reçoivent sur rendez-vous. Au lycée ou au collège, tu peux aussi parler au professeur principal, au CPE, à l’infirmière ou au Psy-EN.</div>
 </section>
 
@@ -132,7 +133,11 @@ function lieuHTML({l,d}){const o=dep?`&origin=${dep.lat},${dep.lon}`:'';
  ${l.t==='bib'&&(l.pl||l.po||l.wifi||l.dim)?`<div class="m">${[l.pl?'🪑 '+l.pl+' places':'',l.po?'💻 '+l.po+' ordinateur'+(l.po>1?'s':''):'',l.wifi?'📶 wifi':'',l.dim?'ouvert le dimanche':''].filter(Boolean).join(' · ')} <span style="font-size:13px">(enquête 2023)</span></div>`:''}
  ${l.h&&l.h.length?`<details><summary>🕘 Horaires</summary>${l.h.map(esc).join('<br>')}</details>`:''}
  <div class="row">${l.tel?`<a class="btn" href="tel:${esc(l.tel.replace(/\s/g,''))}" data-s="appel">📞 ${esc(l.tel)}</a>`:''}<a class="btn light" href="${go}" target="_blank" rel="noopener" data-s="trajet">🚌 Y aller</a>${l.w?`<a class="btn light" href="${esc(/^http/.test(l.w)?l.w:'https://'+l.w)}" target="_blank" rel="noopener" data-s="site">🌐 Site</a>`:''}${fiche?`<a class="btn light" href="${esc(fiche)}" target="_blank" rel="noopener" data-s="fiche">ℹ️ Fiche</a>`:''}</div></div>`;}
-function show(scroll){if(!D||!sit)return;$('aide').hidden=true;$('res').hidden=false;chips();
+// Service civique : recherche officielle centrée sur le point de départ choisi (aucune ville fixe).
+function lienServiceCivique(){const a=$('sc');if(!a)return;
+ a.href=dep?'https://www.service-civique.gouv.fr/trouver-ma-mission?'+new URLSearchParams({location:'Près de chez toi',lat:Number(dep.lat).toFixed(4),lon:Number(dep.lon).toFixed(4),distance:'10km'}):'https://www.service-civique.gouv.fr/trouver-ma-mission';}
+function show(scroll){if(!D||!sit)return;
+ lienServiceCivique();$('aide').hidden=true;$('res').hidden=false;chips();
  const L=lieux();
  $('count').textContent=L.length?`${L.length} lieu${L.length>1?'x':''}`+(dep?' · les plus proches en premier':' · indique d’où tu pars pour voir les distances'):'Aucun lieu avec ces choix.';
  $('list').innerHTML=L.slice(0,nmax).map(lieuHTML).join('');
@@ -148,6 +153,7 @@ function drawMap(L){if(layer)layer.remove();layer=L_.layerGroup().addTo(map);con
 const L_=window.L;
 function vue(c){$('vL').setAttribute('aria-pressed',!c);$('vC').setAttribute('aria-pressed',c);$('map').hidden=!c;$('list').hidden=c;
  if(c){if(!map){map=L_.map('map');L_.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);}setTimeout(()=>{map.invalidateSize();show(false);},50);}else show(false);}
+$('sc').addEventListener('click',()=>stat('clic/service-civique','Clic : service civique'));
 $('vL').onclick=()=>vue(false);$('vC').onclick=()=>vue(true);
 function mode(m){$('dCol').setAttribute('aria-pressed',m==='col');$('dLyc').setAttribute('aria-pressed',m==='lyc');$('dMai').setAttribute('aria-pressed',m==='mai');$('pCol').hidden=m!=='col';$('pLyc').hidden=m!=='lyc';$('pMai').hidden=m!=='mai';modeDep=m;rafraichirDep();}
 $('dCol').onclick=()=>{mode('col');$('col').focus();};
