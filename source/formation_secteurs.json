@@ -247,7 +247,8 @@
 ],
 "bac pro menuiserie aluminium-verre": [
 "Menuiserie métallique, serrurerie",
-"Plastique, verre, matériaux"
+"Plastique, verre, matériaux",
+"Verre plat (fabrication)"
 ],
 "bac pro microtechniques": [
 "Électronique, matériel électrique",
@@ -364,7 +365,9 @@
 "Chimie, pharmacie, cosmétiques, papier",
 "Plastique, verre, matériaux",
 "Électronique, matériel électrique",
-"Laminoirs et tréfileries"
+"Laminoirs et tréfileries",
+"Céramique industrielle",
+"Verre plat (fabrication)"
 ],
 "bac pro procédés de la chimie, de l'eau et des papiers-cartons": [
 "Chimie, pharmacie, cosmétiques, papier",
@@ -586,7 +589,9 @@
 "Industrie agroalimentaire",
 "Plastique, verre, matériaux",
 "Électronique, matériel électrique",
-"Laminoirs et tréfileries"
+"Laminoirs et tréfileries",
+"Céramique industrielle",
+"Verre plat (fabrication)"
 ],
 "CAP conducteur routier de marchandises option livraisons de proximité": [
 "Transport de marchandises, livraison",
@@ -631,7 +636,8 @@
 ],
 "CAP décoration en céramique": [
 "Céramique, verre d'art, instruments de musique",
-"Plastique, verre, matériaux"
+"Plastique, verre, matériaux",
+"Céramique industrielle"
 ],
 "CAP esthétique cosmétique parfumerie": [
 "Esthétique, soins de beauté",
@@ -720,7 +726,8 @@
 ],
 "CAP menuisier aluminium-verre": [
 "Menuiserie métallique, serrurerie",
-"Plastique, verre, matériaux"
+"Plastique, verre, matériaux",
+"Verre plat (fabrication)"
 ],
 "CAP menuisier fabricant": [
 "Menuiserie bois, agencement",
@@ -739,7 +746,8 @@
 ],
 "CAP modèles et moules céramiques": [
 "Céramique, verre d'art, instruments de musique",
-"Plastique, verre, matériaux"
+"Plastique, verre, matériaux",
+"Céramique industrielle"
 ],
 "CAP monteur en installations sanitaires": [
 "Plomberie, chauffage, climatisation, froid",

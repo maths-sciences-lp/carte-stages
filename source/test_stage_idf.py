@@ -29,7 +29,8 @@ class MigrationTest(unittest.TestCase):
             self.assertEqual((n['n'],list(dict.fromkeys(origine.get(x,x) for x in n['s'] if not x.startswith('routes-de-l-etat') and x not in ('hopitaux-services-techniques', 'bailleurs-sociaux', 'promotion-immobiliere', 'carrieres', 'demolition',
                    'lycees-publics-maintenance', 'colleges-publics-maintenance',
                    'ateliers-de-decors-et-de-musees', 'ateliers-associatifs-du-bois',
-                   'traitement-et-revetement-des-metaux', 'carrosseries-et-remorques-fabrication', 'laminoirs-et-trefileries')))),(f['n'],[x for x in f['s'] if x not in retraits]+ajouts))
+                   'traitement-et-revetement-des-metaux', 'carrosseries-et-remorques-fabrication', 'laminoirs-et-trefileries',
+                   'ceramique-industrielle', 'verre-plat-fabrication')))),(f['n'],[x for x in f['s'] if x not in retraits]+ajouts))
         self.assertEqual(len(seen),180);self.assertEqual(len(aliases),4)
     def test_manifeste_differe_et_departements_limitrophes(self):
         with tempfile.TemporaryDirectory() as t:
