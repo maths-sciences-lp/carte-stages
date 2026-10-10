@@ -32,6 +32,10 @@ input[type=text]{flex:1;min-width:200px;padding:11px 12px;border:2px solid var(-
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
 .chip{padding:7px 12px;border-radius:999px;border:2px solid var(--line);background:var(--card);font:inherit;font-size:15px;cursor:pointer;color:var(--ink)}
 .chip[aria-pressed=true]{border-color:var(--acc);background:var(--soft);font-weight:600}
+/* Poursuites d’études : une vraie liste, une formation par ligne, texte aligné à gauche. */
+#chips{flex-direction:column;align-items:stretch;gap:6px}
+#chips .chip{text-align:left;border-radius:12px;padding:10px 14px;min-height:44px;line-height:1.3}
+#chips .chip[aria-pressed=false]{color:var(--mute);background:var(--card)}
 .it{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:10px 0}
 .it h3{margin:0 0 4px;font-size:18px}.it .f{color:var(--ok);font-weight:600;font-size:15px}
 .it .d{font-weight:700;margin:6px 0 2px}.it .m{color:var(--mute);font-size:15px}
@@ -82,6 +86,7 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
 <section class="step" id="s3"><h2><span class="n">3</span>Les formations</h2>
  <div class="msg" id="aide">Choisis d’abord ta classe ou ton diplôme.</div>
  <div id="res" hidden>
+  <p class="msg" id="chipsmsg" style="margin:4px 0 6px">Les formations possibles. Touche une ligne pour la retirer de la liste, ou pour la remettre.</p>
   <div class="chips" id="chips"></div>
   <div class="row" id="frrow"><button class="btn light" id="fr" aria-pressed="false">🗺️ Chercher dans toute la France</button></div>
   <p class="note" id="frmsg" hidden>📮 Avec <b>Parcoursup</b>, tu peux candidater partout en France. Une formation loin de chez toi propose parfois un <b>internat</b>. Parles-en à ton professeur principal ou au Psy-EN (psychologue de l’Éducation nationale).</p>
@@ -138,7 +143,7 @@ function majHash(){history.replaceState(null,'',location.pathname+location.searc
 $('ly').onchange=()=>{if(!cur)return;cur.ly=$('ly').value||null;majHash();draw();};
 function montrer(user){drawClasses();const d=D.dip[cur.d];off=new Set();$('aide').hidden=true;$('res').hidden=false;
  fr=false;nmax=20;$('fr').setAttribute('aria-pressed','false');$('frmsg').hidden=true;FRA=[];$('frrow').hidden=!d.s.length&&!d.a.length;
- $('chips').innerHTML=d.s.map((k,i)=>`<button class="chip" data-i="${i}" aria-pressed="true">${esc(D.suites[k].n.replace(/ option /,' – '))}</button>`).join('');
+ $('chips').innerHTML=d.s.map((k,i)=>`<button class="chip" data-i="${i}" aria-pressed="true">${esc(D.suites[k].n.replace(/ option /,' – '))}</button>`).join('');$('chipsmsg').hidden=d.s.length<2;
  $('chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;off.has(i)?off.delete(i):off.add(i);b.setAttribute('aria-pressed',!off.has(i));draw();});
  $('bts').hidden=!/^Bac pro/.test(d.lib);
  let a='';if(d.a.length)a=`🧭 <b>Aussi possibles</b>, mais pas proposées en lycée en Île-de-France (souvent seulement en apprentissage) : ${d.a.map(esc).join(' · ')}.`;
