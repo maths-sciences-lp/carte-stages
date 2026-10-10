@@ -19,11 +19,12 @@ async function actualiser(){
  for(const el of document.querySelectorAll('[data-henaff]'))el.hidden=!henaff;
  const accueil=document.querySelector('[data-mon-lycee]'),u=lireLycee();
  if(accueil){
-  accueil.href='/lycee/';accueil.textContent='Ton lycée a sa page';
+  const texte=accueil.querySelector('[data-lycee-texte]');texte?.dataset.defaut||(texte&&(texte.dataset.defaut=texte.textContent));
+  accueil.href='/lycee/';if(texte)texte.textContent=texte.dataset.defaut;else accueil.textContent='Ton lycée a sa page';
   if(u)try{
    nomPromise ||= fetch('/lycee/data/index.json').then(r=>{if(!r.ok)throw Error();return r.json();}).catch(e=>{nomPromise=null;throw e;});
    const row=(await nomPromise).find(r=>r[0]===u);
-   if(row&&lireLycee()===u){accueil.href='/lycee/#'+u;accueil.textContent='Ouvrir la page du lycée '+row[1].replace(/^Lycée\s+/i,'').replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');}
+   if(row&&lireLycee()===u){accueil.href='/lycee/#'+u;const nom=row[1].replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');if(texte)texte.textContent=nom+'\u00a0: ses formations, la carte des stages et la suite après le diplôme.';else accueil.textContent='Ouvrir la page du lycée '+nom.replace(/^Lycée\s+/i,'');}
   }catch(e){/* Le lien de recherche reste utilisable hors connexion. */}
  }
 }
