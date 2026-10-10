@@ -46,7 +46,7 @@ h2{{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10p
 .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}}
 .cl{{display:flex;flex-direction:column;gap:3px;padding:14px 16px;background:var(--card);border:2px solid var(--line);border-radius:16px;color:var(--ink);min-height:76px}}
 .bts{{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}}
-.bt{{display:inline-block;padding:8px 12px;border:2px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;font-size:15px;font-weight:600}}
+.bt{{display:inline-flex;align-items:center;gap:4px;min-height:44px;box-sizing:border-box;padding:8px 12px;border:2px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;font-size:15px;font-weight:600}}
 .bt:hover,.bt:focus-visible{{border-color:var(--acc)}}
 .cl b{{font-size:19px}}.cl>span{{font-size:14px;color:var(--mute);line-height:1.3}}
 .autre{{display:inline-block;margin-top:26px;color:var(--acc)}}
