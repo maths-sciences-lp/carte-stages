@@ -2,9 +2,10 @@
    BASE_URL pointe sur python3 -m http.server. Audit du 8/10/2026, points 2 et 5. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const assert=require('node:assert/strict');
+const ban=require('../../tests/ban-fixture.cjs');
 const BASE=(process.env.BASE_URL||'http://127.0.0.1:8766').replace(/\/$/,'');
 (async()=>{const b=await chromium.launch();const err=[];
- async function page(u){const p=await (await b.newContext({viewport:{width:390,height:844}})).newPage();p.on('pageerror',e=>err.push(e.message));
+ async function page(u){const c=await b.newContext({viewport:{width:390,height:844}});await ban.brancher(c);const p=await c.newPage();p.on('pageerror',e=>err.push(e.message));
   await p.route(/goatcounter|gc\.zgo\.at/,r=>r.fulfill({status:204,body:''}));
   await p.goto(BASE+u,{waitUntil:'networkidle'});await p.waitForFunction(()=>typeof D!=='undefined'&&D);return p;}
  // Après le collège : domicile → collège → domicile
@@ -31,5 +32,5 @@ const BASE=(process.env.BASE_URL||'http://127.0.0.1:8766').replace(/\/$/,'');
  await p.evaluate(()=>$('dMai').click());assert.equal(await d(),m2,'aide : retour chez moi');
  await p.evaluate(()=>$('dCol').click());assert.equal(await d(),'null','aide : collège jamais choisi');
  await p.context().close();await b.close();
- assert.deepEqual(err,[]);console.log('Départs (collège, lycée, chez moi) et suggestions d’adresse : OK');
+ assert.deepEqual(err,[]);ban.verifier();console.log('Départs (collège, lycée, chez moi) et suggestions d’adresse : OK');
 })().catch(e=>{console.error(e);process.exit(1);});

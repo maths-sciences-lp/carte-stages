@@ -3,6 +3,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
+const ban=require('../../tests/ban-fixture.cjs');
 const BASE=(process.env.BASE_URL||'http://127.0.0.1:8766').replace(/\/$/,'');
 const OUTPUT=process.env.TEST_OUTPUT||'/tmp/apres3e-national';fs.mkdirSync(OUTPUT,{recursive:true});
 const cases=[
@@ -13,7 +14,7 @@ const cases=[
 (async()=>{
  const browser=await chromium.launch();const allErrors=[];const report=[];
  async function context(options={}) {
-  const c=await browser.newContext({viewport:{width:375,height:812},...options});
+  const c=await browser.newContext({viewport:{width:375,height:812},...options});await ban.brancher(c);
   const p=await c.newPage();const requests=[];
   p.on('pageerror',e=>allErrors.push(e.message));
   p.on('console',m=>{if(m.type()==='error'&&!options.expectedFailure)allErrors.push(m.text());});
@@ -74,7 +75,7 @@ const cases=[
   if(slug==='lyon'){if(await p.locator('#doms .changer').count())await p.locator('#doms .changer').click();await p.locator('[data-k=\"cuisine\"]').click();await p.locator('#list button[data-i]').first().click();await p.locator('#s3').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(OUTPUT,'formations-lyon.png')});await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:path.join(OUTPUT,'academie-lyon.png')});}
   const domains=[...new Set(requests.map(u=>new URL(u).hostname))];
   assert(domains.every(d=>['127.0.0.1','localhost','cdnjs.cloudflare.com','api-adresse.data.gouv.fr'].includes(d)||/^[abc]\.tile\.openstreetmap\.org$/.test(d)),domains.join(','));
-  report.push(slug+' : lien direct, mémoire remplacée, localisation simulée, ville BAN réelle, changer, collège, URL/hash et réseau OK');
+  report.push(slug+' : lien direct, mémoire remplacée, localisation simulée, ville BAN (réponse enregistrée), changer, collège, URL/hash et réseau OK');
   await c.close();
  }
  // Refus GPS, stockage indisponible, choix conservé en mémoire jusqu'au rechargement.
@@ -130,6 +131,6 @@ const cases=[
   await p.locator('summary').filter({hasText:'Je connais mon académie'}).click();await p.locator('.ac-options button').filter({hasText:'Lyon'}).click();await loaded(p,'lyon');
   await c.close();report.push('Données indisponibles : message et nouvelle tentative OK');
  }
- assert.deepEqual(allErrors,[],'console sans erreur');
+ assert.deepEqual(allErrors,[],'console sans erreur');ban.verifier();
  await browser.close();fs.writeFileSync(path.join(OUTPUT,'resultat.txt'),report.join('\n')+'\nConsole : aucune erreur.\n');console.log(report.join('\n'));console.log('Console : aucune erreur.');
 })().catch(e=>{console.error(e);process.exit(1);});
