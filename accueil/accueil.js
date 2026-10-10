@@ -11,9 +11,10 @@ function regler(ac){
 let lance=false;
 async function demarrer(question){
  if(lance)return;lance=true;lieu.hidden=true;
- await initAcademie({mount,contenu:document.querySelector('.choix'),baseOutil:base,onSelect:async ac=>regler(ac)});
+ await initAcademie({mount,contenu:document.querySelector('.choix'),baseOutil:base,onSelect:async ac=>regler(ac),
+  annuler:()=>{mount.replaceChildren();lieu.hidden=false;lance=false;history.replaceState(null,'',base.pathname);document.getElementById('changer-lieu').focus();}});
  if(question)document.getElementById('ac-title')?.focus();
 }
 const chemin=location.pathname.slice(base.pathname.length).split('/')[0];
 if(chemin||lireAcademie())demarrer(false); // /accueil/<académie>/, /accueil/france/ ou choix déjà fait
-else document.getElementById('changer-lieu').onclick=()=>demarrer(true);
+document.getElementById('changer-lieu').onclick=()=>demarrer(true);

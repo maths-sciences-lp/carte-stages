@@ -45,7 +45,7 @@ export function departementDepuisPosition(lat,lon,data) {
  });
  return matches.length===1?matches[0].properties.code:null;
 }
-export async function initAcademie({mount,contenu,onSelect,baseOutil}) {
+export async function initAcademie({mount,contenu,onSelect,baseOutil,annuler}) {
  const base=new URL(baseOutil,location.href);
  const style=document.createElement('style');
  style.textContent=`.ac-picker{background:#fff;border:1px solid #e4e9ee;border-radius:18px;padding:16px;margin:14px 0;color:#15314f}.ac-picker h2{font-size:24px}.ac-picker button,.ac-picker input{font:inherit;min-height:48px;border-radius:12px;width:100%;padding:11px 12px;box-sizing:border-box}.ac-picker button{cursor:pointer}.ac-geo{border:0;background:#15314f;color:white;font-weight:600;margin:8px 0 14px}.ac-picker input{border:2px solid #e4e9ee;margin-top:6px}.ac-picker summary{padding:14px 0;cursor:pointer}.ac-options,.ac-suggestions{display:grid;gap:6px}.ac-options button,.ac-suggestions button{border:1px solid #e4e9ee;background:#f5f7f9;color:#15314f;text-align:left}.ac-msg{font-size:15px;color:#667085}.ac-bar{font-size:15px;margin:12px 0}.ac-bar button{font:inherit;background:none;border:0;padding:10px;color:#2a4f7c;text-decoration:underline;cursor:pointer}.ac-picker [hidden],.ac-bar[hidden]{display:none!important}`;
@@ -53,6 +53,7 @@ export async function initAcademie({mount,contenu,onSelect,baseOutil}) {
  mount.innerHTML=`<div class="ac-bar" hidden><span></span> · <button type="button">changer</button></div>
  <section class="ac-picker" aria-labelledby="ac-title" hidden>
   <h2 id="ac-title" tabindex="-1">Tu habites où ?</h2>
+  <button type="button" class="ac-annuler" hidden>Annuler, garder mon choix</button>
   <button type="button" class="ac-geo">📍 Me localiser</button>
   <label for="ac-ville">Tape ta ville</label>
   <input id="ac-ville" type="text" placeholder="Par exemple : Lyon" autocomplete="address-level2" aria-controls="ac-suggestions">
@@ -64,13 +65,13 @@ export async function initAcademie({mount,contenu,onSelect,baseOutil}) {
   </details>
  </section>`;
  const el=s=>mount.querySelector(s),picker=el('.ac-picker'),bar=el('.ac-bar'),status=el('.ac-status'),input=el('input'),geo=el('.ac-geo'),suggestions=el('.ac-suggestions');
- let sequence=0,search=0,timer,controller;
+ let sequence=0,search=0,timer,controller,actuel=null;
  function message(s){status.textContent=s;}
  function urlPour(slug){return new URL(slug+'/',base).pathname+location.hash;}
  function question(focus=true) {
   ++sequence;++search;controller?.abort();geo.disabled=false;
   contenu.hidden=true;bar.hidden=true;picker.hidden=false;
-  input.value='';suggestions.hidden=true;message('');
+  input.value='';suggestions.hidden=true;message('');el('.ac-annuler').hidden=!(actuel||annuler);
   // Le choix précédent reste mémorisé, mais cette URL demande explicitement de choisir.
   history.replaceState(null,'',urlPour('france'));
   if(focus){el('h2').focus();picker.scrollIntoView({block:'start'});}
@@ -81,7 +82,7 @@ export async function initAcademie({mount,contenu,onSelect,baseOutil}) {
   try {
    await onSelect(ac,{signal:controller.signal});
    if(seq!==sequence)return;
-   retenirAcademie(ac.slug);history.replaceState(null,'',urlPour(ac.slug));
+   actuel=ac;retenirAcademie(ac.slug);history.replaceState(null,'',urlPour(ac.slug));
    el('.ac-bar span').textContent='📍 '+ac.nom;bar.hidden=false;picker.hidden=true;contenu.hidden=false;message('');
    if(choixUtilisateur){const titre=contenu.querySelector('h2')||contenu;titre.tabIndex=-1;titre.focus();}
   } catch(e) {
@@ -92,6 +93,11 @@ export async function initAcademie({mount,contenu,onSelect,baseOutil}) {
  }
  function fallback(seq,text) {if(seq!==sequence)return;geo.disabled=false;message(text);input.focus();}
  el('.ac-bar button').onclick=()=>question();
+ el('.ac-annuler').onclick=()=>{
+  ++sequence;++search;controller?.abort();picker.hidden=true;contenu.hidden=false;
+  if(actuel){bar.hidden=false;history.replaceState(null,'',urlPour(actuel.slug));el('.ac-bar button').focus();}
+  else annuler?.();
+ };
  input.addEventListener('input',()=>{
   clearTimeout(timer);const request=++search,q=input.value.trim();suggestions.hidden=true;
   if(q.length<3)return;

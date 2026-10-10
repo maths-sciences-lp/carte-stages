@@ -44,3 +44,9 @@ header.entete .nom b{font-family:'Bricolage Grotesque',system-ui,sans-serif;font
 header.entete .nom small{font-size:13px;color:var(--mute,#667085)}
 header.entete a.r{flex:none;display:flex;align-items:center;min-height:44px;font-size:14px;color:var(--mute,#667085);text-decoration:none;white-space:nowrap}
 header.entete a.r:hover,header.entete .site:hover b{text-decoration:underline}
+header.entete{max-width:none;margin:0;padding:0 16px 0 0}
+/* Cibles tactiles d'au moins 44 px sur téléphone (relecture du 10/10/2026). */
+@media (max-width:600px){.chip,.btn,.ac-bar button,.lieu button{min-height:44px}.autre{display:inline-flex;align-items:center;min-height:44px}}
+.leaflet-popup-close-button{width:44px!important;height:44px!important;font-size:28px!important;line-height:44px!important}
+.pop .btn{min-height:44px}
+.ac-picker .ac-annuler{background:#fff;border:2px solid #15314f;color:#15314f;font-weight:600;cursor:pointer}
