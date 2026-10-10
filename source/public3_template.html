@@ -69,6 +69,9 @@ body.stage-question #map-area{display:none}
 .card .km{color:var(--fg);font-weight:700}
 .card .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .card .btns .btn{flex:1 1 auto;font-size:15px;min-height:44px;padding:8px 12px}
+.btn.contour{background:var(--card);color:var(--fg);border:2px solid var(--btn)}
+.card .btns .btn.lien,.btn.lien{flex:0 0 auto;background:none;border:0;color:var(--acc);text-decoration:none;font-weight:600}.btn.lien span:last-child{text-decoration:underline;text-underline-offset:3px}
+.card{margin-top:14px}
 .lba-box{margin-top:10px;padding:10px;border-radius:10px;background:var(--okbg);font-size:14px}
 .lba-box .badge{background:var(--okbg);color:var(--ok);padding:0;white-space:normal}
 .lba-box a{display:inline-block;padding:6px 0;overflow-wrap:anywhere}
@@ -87,7 +90,7 @@ dialog li{margin:6px 0}
 .pop b{font-size:16px}
 .pop .btns{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .pop .btn{min-height:40px;font-size:14px;color:var(--btnfg)}
-.pop .btn.light{color:var(--fg)}
+.pop .btn.light,.pop .btn.contour{color:var(--fg)}
 .leaflet-popup-content{margin:12px 14px}
 .em{font-size:1.05em;line-height:1}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg)}
@@ -105,16 +108,18 @@ dialog li{margin:6px 0}
 }
 </style>
 <link rel="stylesheet" href="commun/accessibilite.css">
+<link rel="stylesheet" href="/commun/navigation.css">
+<link rel="icon" href="/commun/logo.svg" type="image/svg+xml">
 </head>
 <body>
 <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
 <div id="app">
  <div id="panel">
-  <header><a class="site" href="https://maths-sciences-pro.fr/"><span class="badge-logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute);margin:0 1px">·</span>Sciences</b><span class="back">← Retour au site</span></a></header>
+  <header class="entete"><a class="site" href="/accueil/"><span class="lg"><svg width="34" height="34" viewBox="0 0 112 112" aria-hidden="true" focusable="false"><rect width="112" height="112" rx="28" fill="#15314f"/><path d="M56 92s-26-22-26-44a26 26 0 0 1 52 0c0 22-26 44-26 44z" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><circle cx="56" cy="47" r="11" fill="#E8590C"/></svg></span><span class="nom"><b>Stages et orientation</b><small>Maths·Sciences</small></span></a><a class="r" href="/accueil/">← Tous les outils</a></header>
   <main id="contenu-principal" tabindex="-1">
   <div class="top">
-   <h1>🎯 Trouve ton stage</h1>
-   <button class="btn light small" id="aide">Aide ?</button>
+   <h1><svg class="ico" width="1.2em" height="1.2em" aria-hidden="true" focusable="false"><use href="/commun/icones.svg#stage"/></svg> Trouve ton stage</h1>
+   <button class="btn light small" id="aide">Comment ça marche ?</button>
   </div>
   <p class="lead">Trouve des entreprises près de chez toi, en Île-de-France.</p>
   <p id="vers-france" style="padding:0 16px 10px;margin:-4px 0 0;font-size:15px"><a href="stage/france/">Tu habites ailleurs en France ? Indique ta ville</a></p><script>if(window.STAGE_NATIONAL)document.getElementById('vers-france').remove();</script>
@@ -133,6 +138,7 @@ dialog li{margin:6px 0}
     <div class="choice"><span>✅</span><b id="chosenTxt"></b><button class="btn light small" id="change">Changer</button></div>
     <div class="msg">Les types d’entreprises à contacter :</div>
     <div class="chips" id="secs"></div>
+    <div class="msg" id="conseilF" hidden></div>
    </div>
   </section>
 
@@ -172,11 +178,12 @@ dialog li{margin:6px 0}
   <div id="list"></div>
   </main>
   <footer>
+<div data-pied-commun></div>
    Une entreprise de la liste ne prend pas forcément de stagiaires : appelle-la ou va la voir avec ta convention.<br>
    <span id="lba-source" hidden></span>
-   Données : répertoire Sirene de l’Insee (<a href="https://recherche-entreprises.api.gouv.fr" target="_blank" rel="noopener">API Recherche d’entreprises</a>), 7 et 8 octobre 2026, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" target="_blank" rel="noopener">Licence Ouverte 2.0</a> · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap.<br>
+   <details class="sources"><summary>Sources des données</summary>Données : répertoire Sirene de l’Insee (<a href="https://recherche-entreprises.api.gouv.fr" target="_blank" rel="noopener">API Recherche d’entreprises</a>), 7 et 8 octobre 2026, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" target="_blank" rel="noopener">Licence Ouverte 2.0</a> · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap.</details>
    Statistiques de visite anonymes, sans cookie.<br>
-   <a href="accueil/">Tous les outils</a> · <a href="apres-3e/">🧭 Après le collège</a> · <a href="formation/">🎓 Après le lycée</a> · <a href="faq/">Questions fréquentes</a> · <a href="faq/#vie-privee">Vie privée</a> · <a href="accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a> · Une erreur, ou une entreprise qui veut être retirée : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
+   Une erreur, ou une entreprise qui veut être retirée : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
    © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
   </footer>
  </div>
@@ -212,8 +219,23 @@ const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(
 const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
 const dtxt=k=>k<0.05?'juste à côté':fmt(k)+' km';
 const POPOPT={maxWidth:Math.min(260,window.innerWidth-90),autoPanPaddingTopLeft:[56,16],autoPanPaddingBottomRight:[16,16]};
+// Noms du répertoire Sirene, souvent en MAJUSCULES : affichés en minuscules avec une capitale ; sigles courts et formes juridiques gardés.
+const PETITS=new Set(['de','du','des','la','le','les','et','en','au','aux','sur','par','pour','a','d','l']);
+const SIGLES=new Set(['sas','sasu','sarl','eurl','sa','snc','sci','scop','gie','sem','spl','cfa','btp','ehpad','ratp','sncf','edf','grdf','enedis','ufr']);
+const MOTS=new Set('sud est fer van nat art bar eau mer sol lux net pro bio vie air feu gaz bus ile cap cle duo eco fil jeu lin lit lot mur pin pot rue sac sel sec son top val vin zen bon mon ton roi pre gym pub web new one the and sun sky ami max mix bel cie fils ets'.split(' '));
+const joli=s=>!s||/[a-zà-ÿ]/.test(s)?s:s.toLowerCase().replace(/[a-zà-ÿ0-9]+/g,(m,i,t)=>{
+ const o=t.lastIndexOf('(',i),f=t.indexOf(')',i),groupe=o>=0&&o>t.lastIndexOf(')',i)&&f>0?t.slice(o+1,f):null;
+ if(SIGLES.has(m)||groupe&&!/\s/.test(groupe.trim()))return m.toUpperCase();
+ if(m.length===1)return t[i+1]==="'"?(i>0&&/[dl]/.test(m)?m:m.toUpperCase()):(PETITS.has(m)&&i>0?m:m.toUpperCase());
+ if(!/[aeiouy]/.test(m)&&!/^\d+$/.test(m))return m.toUpperCase();
+ if(m.length<=3&&!PETITS.has(m)&&!MOTS.has(m))return m.toUpperCase();
+ if(m.length===4&&/[^aeiouy0-9]{3}/.test(m))return m.toUpperCase();
+ if(PETITS.has(m)&&i>0)return m;
+ return m[0].toUpperCase()+m.slice(1);});
 const em=(i,t)=>`<span class="em" aria-hidden="true">${i}</span><span>${t}</span>`;
-const titreP=p=>p.e||p.n;
+// Mentions du registre à ne pas afficher : « (suppression du nom commercial) », « (néant) »…
+const MENTION=/\s*\((?:[^()]|\([^()]*\))*\b(?:SUPPRESSION|NEANT)\b(?:[^()]|\([^()]*\))*\)/gi;
+const titreP=p=>(p.e||p.n).replace(MENTION,'').replace(/\s*\(\s*\)/g,'').trim()||p.n;
 const PAL=['#d35400','#1f6fb2','#8e44ad','#16a085','#c0392b','#7d5a2b','#b7950b','#2e7d32','#5d6d7e','#e84393','#00838f','#6d4c41','#3949ab'];
 let booted=false, IDX=null, P=[], sel=null, on=new Set(), COL={}, LBL={}, dist=5, shown=40;
 const CACHE={}, pts={maison:null,lycee:null}, mks={}; let from='maison';
@@ -252,6 +274,17 @@ let rz=null; window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeou
 const ring=L.circle([0,0],{radius:0,color:'#15314f',weight:2,fill:false,dashArray:'6 6'});
 const origin=()=>pts[from];
 function dk(p,o){const r=Math.PI/180,a=Math.sin((p.la-o.la)*r/2)**2+Math.cos(p.la*r)*Math.cos(o.la*r)*Math.sin((p.lo-o.lo)*r/2)**2;return 12742*Math.asin(Math.sqrt(a));}
+// Conseil affiché sur la fiche des grandes structures (9/10/2026) : à qui s'adresser.
+const CONSEIL={
+ 'hopitaux-services-techniques':'Conseil : appelle le standard et demande le service technique (les ateliers). C’est lui qui peut accepter un stagiaire.',
+ 'bailleurs-sociaux':'Conseil : appelle et demande la régie ou le centre technique. Sinon, le gardien de la résidence peut te donner le nom des entreprises qui y travaillent.',
+ 'communes-et-intercommunalites':'Conseil : appelle le standard et demande le service qui correspond à ta formation (par exemple les services techniques). Regarde aussi la page « stages » ou « emploi » du site de la ville.',
+ 'lycees-publics-maintenance':'Conseil : présente-toi au secrétariat et demande le ou la gestionnaire, puis le responsable entretien et maintenance. Ses agents sont employés par la Région : ton professeur peut l’aider à faire la demande.',
+ 'colleges-publics-maintenance':'Conseil : demande le ou la gestionnaire du collège et l’agent de maintenance. Ils sont employés par le Département (ou la Ville de Paris), qui a souvent une équipe mobile de maintenance.',
+ 'ateliers-de-decors-et-de-musees':'Conseil : grand atelier qui ne publie pas d’offre de stage. Envoie une candidature spontanée au chef d’atelier (menuiserie, décors), avec une lettre de ton professeur.',
+ 'ateliers-associatifs-du-bois':'Conseil : atelier associatif. Présente-toi ou écris au responsable d’atelier, avec une lettre de ton professeur : ces lieux accueillent déjà des apprentis ou des personnes en insertion.',
+ 'mairies-administrations':'Conseil : appelle le standard et demande le service qui correspond à ta formation. Regarde aussi la page « stages » ou « emploi » de son site.'
+};
 function links(p){
  const o=origin();
  const tel=`https://www.google.com/search?q=${encodeURIComponent(titreP(p)+' '+(p.ad||'')+' téléphone')}`;
@@ -260,8 +293,8 @@ function links(p){
 }
 function pop(p){
  const {tel,go}=links(p), o=origin();
- return `<div class="pop"><b>${esc(titreP(p))}</b>${p.e?`<div class="msg" style="margin:0">${esc(p.n)}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${p.rp?`<div class="msg" style="margin:0">${esc(p.rp)}</div>`:''}${o?`<div><b>${dtxt(p.k)}</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}${lbaHtml(p)}
- <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><a class="btn light" target="_blank" rel="noopener" href="https://annuaire-entreprises.data.gouv.fr/etablissement/${esc(p.s)}">${em('ℹ️','Fiche officielle')}</a></div></div>`;
+ return `<div class="pop"><b>${esc(joli(titreP(p)))}</b>${p.e?`<div class="msg" style="margin:0">${esc(joli(p.n))}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${p.rp?`<div class="msg" style="margin:0">${esc(p.rp)}</div>`:''}${CONSEIL[p.f]?`<div class="msg" style="margin:0">${CONSEIL[p.f]}</div>`:''}${o?`<div><b>${dtxt(p.k)}</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}${lbaHtml(p)}
+ <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn contour" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><a class="btn light" target="_blank" rel="noopener" href="https://annuaire-entreprises.data.gouv.fr/etablissement/${esc(p.s)}">${em('ℹ️','Fiche officielle')}</a></div></div>`;
 }
 function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]>=9?'grande entreprise (groupe)':(r[5]?IDX.eff[r[5]-1]:''),s:r[7],f:k,rp:r[8]||''};
  p.tri=norm(titreP(p)); p.tri0=/^[a-z]/.test(p.tri)?0:1;
@@ -297,6 +330,10 @@ document.addEventListener('click',e=>{if(!e.target.closest('.field')){$('fsug').
 $('nosais').onclick=()=>{$('tiles').hidden=!$('tiles').hidden;$('nosais').setAttribute('aria-expanded',String(!$('tiles').hidden));};
 $('change').onclick=()=>{sel=null;$('chosen').hidden=true;$('pick').hidden=false;$('f').value='';P=[];cl.clearLayers();setHash();render();$('f').focus();};
 
+// Conseil propre à une formation (9/10/2026), affiché sous les types d'entreprises.
+const CONSEIL_FORMATION={
+ 'bac-pro-metiers-de-la-securite':'Police, gendarmerie, pompiers : l’accueil passe en général par une convention entre ton lycée et le service, et ces services reçoivent beaucoup de demandes. Demande d’abord à ton professeur si ton lycée en a une. Sinon, avec son accord, renseigne-toi auprès du commissariat, de la brigade de gendarmerie ou du centre de secours proche. Comme pour toute PFMP, la convention est signée par ton lycée. Les entreprises de sécurité de la carte se contactent directement.'
+};
 async function choose(c){
  const focusDansChoix=$('pick').contains(document.activeElement);
  sel=c; let keys, title;
@@ -305,7 +342,10 @@ async function choose(c){
  else {const d=IDX.domaines[c.i]; keys=d.s.map(s=>s.k); title=`${d.i} ${d.d}`;}
  keys.forEach((k,j)=>{COL[k]=PAL[j%PAL.length];LBL[k]=secName[k];});
  on=new Set(keys);
- $('chosenTxt').textContent=title; $('pick').hidden=true; $('chosen').hidden=false; $('tiles').hidden=true; $('nosais').setAttribute('aria-expanded','false'); if(focusDansChoix)$('change').focus();
+ $('chosenTxt').textContent=title;
+ const conseilF=c.type==='f'&&CONSEIL_FORMATION[c.x.k];
+ $('conseilF').textContent=conseilF?'💡 '+conseilF:'';
+ $('conseilF').hidden=!conseilF; $('pick').hidden=true; $('chosen').hidden=false; $('tiles').hidden=true; $('nosais').setAttribute('aria-expanded','false'); if(focusDansChoix)$('change').focus();
  $('secs').innerHTML=keys.map(k=>`<button class="chip" data-k="${k}" aria-pressed="true"><span class="dot" style="background:${COL[k]}"></span>${esc(secName[k])}</button>`).join('');
  setHash(); P=[]; $('count').textContent='Chargement…'; render(true);
  if(window.STAGE_NATIONAL||window.STAGE_IDF)return; // Le module de données gère requêtes, reprises et changements de départ.
@@ -352,6 +392,7 @@ $('lyc').addEventListener('keydown',e=>{if(e.key==='Enter'&&!$('lsug').hidden){c
 function setLycee(l,user){if(user)stat('depart/lycee/'+l.u,'Départ : '+l.n);pts.lycee={la:l.la,lo:l.lo,label:l.n,u:l.u};placeMk('lycee');from='lycee';syncFrom();
  $('lyc').value=l.n; $('lmsg').textContent='✅ '+l.n+' ('+l.c+')';
  try{localStorage.setItem('stages.lycee',l.u);}catch(e){}
+ window.dispatchEvent(new Event('stages:lycee'));
  setHash(); shown=40; render(); map.setView([l.la,l.lo],13);
  if(user&&window.innerWidth<=900&&sel) $('s3').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
 function initLycee(){const h=new URLSearchParams(location.hash.slice(1)); let u=h.get('ly');
@@ -377,7 +418,8 @@ function render(loading){
  if(!sel){$('list').innerHTML='';return;}
  if(loading){$('list').innerHTML='';return;}
  if(o){ring.setLatLng([o.la,o.lo]).addTo(map);ring.setRadius(dist?dist*1000:0);P.forEach(p=>p.k=dk(p,o));} else ring.remove();
- let vis=P.filter(p=>on.has(p.f)&&(!o||!dist||p.k<=dist));
+ // Le lycée de départ lui-même n'est pas un lieu de stage à proposer (10/10/2026).
+ let vis=P.filter(p=>on.has(p.f)&&(!o||!dist||p.k<=dist)&&!(o&&from==='lycee'&&p.k<0.08&&/LYC[EÉ]E/i.test(p.n+' '+(p.e||''))));
  cl.clearLayers();
  if(window.STAGE_NATIONAL){const points=(o?vis.slice().sort((a,b)=>a.k-b.k):vis).slice(0,1500);cl.addLayers(points.map(p=>p.mk||(p.mk=marqueur(p))));}
  else cl.addLayers(vis.map(p=>p.mk||(p.mk=marqueur(p))));
@@ -388,11 +430,11 @@ function render(loading){
  if(!o) h+=`<div class="empty">👉 ${from==='lycee'?'Choisis ton lycée':'Indique ton adresse'} (étape 2) pour voir les entreprises <b>les plus proches</b>.</div>`;
  if(!n&&o&&dist) h+=`<div class="empty">Aucune entreprise à moins de ${dist} km. Choisis une distance plus grande.</div>`;
  h+=vis.slice(0,shown).map(p=>{const {tel,go}=links(p);return `<div class="card">
-  <h3 class="nm">${esc(titreP(p))}</h3>${p.e?`<div class="msg" style="margin-top:0">${esc(p.n)}</div>`:''}
+  <h3 class="nm">${esc(joli(titreP(p)))}</h3>${p.e?`<div class="msg" style="margin-top:0">${esc(joli(p.n))}</div>`:''}
   <div class="meta"><span><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</span>${o?`<span class="km">📍 ${dtxt(p.k)}</span>`:''}</div>
   <div class="meta">${esc(p.ad)}</div>${p.rp?`<div class="meta">${esc(p.rp)}</div>`:''}${p.t?`<div class="meta">Taille : ${esc(p.t)}</div>`:''}
   ${lbaHtml(p)}
-  <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><button class="btn light" data-s="${p.s}">${em('🗺️','Sur la carte')}</button></div></div>`;}).join('');
+  <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn contour" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><button class="btn lien" data-s="${p.s}">${em('🗺️','Sur la carte')}</button></div></div>`;}).join('');
  if(n>shown) h+=`<button class="btn light more" id="more">Voir ${Math.min(40,n-shown)} entreprises de plus</button>`;
  $('list').innerHTML=h;
  const m=$('more'); if(m) m.onclick=()=>{const debut=shown;shown+=40;render();const titre=$('list').querySelectorAll('.nm')[debut];if(titre){titre.tabIndex=-1;titre.focus();}};
@@ -429,5 +471,6 @@ function demarrer(j){IDX=j;
 </script>
 <script src="commun/accessibilite.js"></script>
 <script type="module" src="stage/idf.js"></script>
+<script type="module" src="/commun/pied.js"></script>
 </body>
 </html>
