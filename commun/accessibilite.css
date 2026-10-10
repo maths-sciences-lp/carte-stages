@@ -34,3 +34,12 @@ a{text-underline-offset:3px}
 .doms .changer{align-self:flex-start;font:inherit;font-weight:600;padding:10px 20px;min-height:44px;border:2px solid var(--ink,#15314f);border-radius:12px;background:var(--card,#fff);color:var(--ink,#15314f);cursor:pointer}
 .chip[aria-pressed=true]{border-color:var(--ink,#15314f)}
 .chip[aria-pressed=true]::before{content:"✓ ";font-weight:700}
+/* En-tête commun : le logo ramène toujours à l’accueil des outils ; à droite, un lien séparé. */
+header.entete{display:flex;align-items:center;gap:10px;background:var(--card,#fff);border-bottom:1px solid var(--line,#e4e9ee);padding-right:16px}
+header.entete .site{flex:1 1 auto;display:flex;align-items:center;gap:10px;padding:8px 0 8px 16px;min-height:44px;border:0;background:none;text-decoration:none;color:var(--ink,#15314f)}
+header.entete .site .lg{width:34px;height:34px;background:none;border-radius:0;flex:none;display:block}
+header.entete .nom{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+header.entete .nom b{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:17px;white-space:nowrap}
+header.entete .nom small{font-size:13px;color:var(--mute,#667085)}
+header.entete a.r{flex:none;display:flex;align-items:center;min-height:44px;font-size:14px;color:var(--mute,#667085);text-decoration:none;white-space:nowrap}
+header.entete a.r:hover,header.entete .site:hover b{text-decoration:underline}
