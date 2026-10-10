@@ -14,6 +14,11 @@ python3 source/stage_nouveaux_codes.py --cache CACHE --codes 41.10A 41.10C --pha
   --url-etablissements URL --url-unites URL
 python3 source/stage_nouveaux_codes.py --cache CACHE --phase api
 python3 source/stage_nouveaux_codes.py --cache CACHE --phase ecrire --root /copie/carte-stages-donnees [--write]
+
+Ateliers sans salarié (10/10/2026, essai sur l'académie de Créteil) : --sans-salarie remplace l'unité
+employeuse par « aucun salarié déclaré » (tranches NN, 00 ou vide), --deps limite les départements,
+--nom CODE=REGEX ne garde, pour ce code, que les noms ou enseignes qui correspondent, et --types (phase
+ecrire) n'ajoute que les types nommés. Les entrepreneurs individuels restent exclus.
 """
 import argparse
 from collections import Counter, defaultdict
@@ -23,11 +28,13 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import re
 import time
 
+import stage_rattrapage
 from stage_collecte import CODES, EFFECTIFS, ROOT, atomic_json, configurer_cache
 from stage_rattrapage import Rattrapage
-from stage_donnees import catalogue_formations, fichier, preparer
+from stage_donnees import catalogue_formations, fichier, preparer, slug
 from stage_catalogues import ecrire_catalogues
 
 
@@ -42,29 +49,47 @@ def phase_stock(args):
         raise SystemExit('Codes absents de domaines.py : ' + ' '.join(sorted(set(codes) - set(CODES))))
     depuis = "AND e.dateCreationEtablissement >= CAST(? AS DATE)" if args.depuis else ""
     allowed = {d for a in lire(ROOT/'commun/academies.json') for d in a['deps']}
+    if args.deps:
+        allowed &= set(args.deps)
+    noms = {}
+    for regle in args.nom or []:
+        code, motif = regle.split('=', 1)
+        noms[code] = re.compile(motif)
+    effectif = ("(u.trancheEffectifsUniteLegale IS NULL OR u.trancheEffectifsUniteLegale IN ('NN', '00'))" if args.sans_salarie
+                else f"u.trancheEffectifsUniteLegale IN ({','.join('?' * len(EFFECTIFS))})")
     con = duckdb.connect()
     con.execute('INSTALL httpfs; LOAD httpfs;')
     rows = con.execute(f"""
-        SELECT e.siret, e.codeCommuneEtablissement FROM read_parquet(?) e JOIN read_parquet(?) u ON u.siren = e.siren
+        SELECT e.siret, e.codeCommuneEtablissement, u.activitePrincipaleUniteLegale,
+               upper(concat_ws(' ', u.denominationUniteLegale, e.enseigne1Etablissement, e.denominationUsuelleEtablissement))
+        FROM read_parquet(?) e JOIN read_parquet(?) u ON u.siren = e.siren
         WHERE u.activitePrincipaleUniteLegale IN ({','.join('?' * len(codes))}) {depuis}
           AND e.etatAdministratifEtablissement = 'A' AND u.etatAdministratifUniteLegale = 'A'
           AND u.categorieJuridiqueUniteLegale <> '1000'
           AND e.statutDiffusionEtablissement = 'O' AND u.statutDiffusionUniteLegale = 'O'
-          AND u.trancheEffectifsUniteLegale IN ({','.join('?' * len(EFFECTIFS))})""",
-        [args.url_etablissements, args.url_unites, *codes, *([args.depuis] if args.depuis else []), *EFFECTIFS]).fetchall()
+          AND {effectif}""",
+        [args.url_etablissements, args.url_unites, *codes, *([args.depuis] if args.depuis else []),
+         *([] if args.sans_salarie else EFFECTIFS)]).fetchall()
     cibles = defaultdict(list)
-    for siret, commune in rows:
+    for siret, commune, code, nom in rows:
         dep = (commune or '')[:3] if (commune or '').startswith('97') else (commune or '')[:2]
+        if code in noms and not noms[code].search(nom or ''):
+            continue
         if dep in allowed:
             cibles[dep].append(siret)
     atomic_json(args.cache/'cibles.json', dict(codes=args.codes or 'tous', depuis=args.depuis, stock=[args.url_etablissements, args.url_unites],
+                                                sans_salarie=args.sans_salarie, noms=args.nom or [],
                                                 date=time.strftime('%Y-%m-%d'),
                                                 cibles={d: sorted(s) for d, s in sorted(cibles.items())}))
     print(json.dumps(dict(siret=sum(len(s) for s in cibles.values()), departements=len(cibles))))
 
 
 def phase_api(args):
-    cibles = lire(args.cache/'cibles.json')['cibles']
+    infos = lire(args.cache/'cibles.json')
+    cibles = infos['cibles']
+    if infos.get('sans_salarie'):
+        # La revérification garde alors les unités sans salarié déclaré, et seulement elles.
+        stage_rattrapage.EFFECTIFS = ['NN', '00', None]
     collector = Rattrapage(args.cache, args.rate)
     items = [(d, s) for d, ss in cibles.items() for s in ss]
     bilan = Counter()
@@ -93,6 +118,10 @@ def phase_ecrire(args):
                 rows += [r for r in lire(path)['rows'] if r['s'][:9] not in liquidees]
         groups, ex = preparer(rows)
         exclus.update(ex)
+        if args.types:
+            types = {slug(t) for t in args.types}
+            exclus['type_hors_liste'] += sum(len(v) for k, v in groups.items() if k not in types)
+            groups = {k: v for k, v in groups.items() if k in types}
         for k, lignes in groups.items():
             path = root/'sirene'/dep/(k+'.json')
             existants = lire(path) if path.exists() else []
@@ -155,6 +184,10 @@ def main():
     p.add_argument('--root', type=Path)
     p.add_argument('--rapport', default='nouveaux-codes.json')
     p.add_argument('--write', action='store_true')
+    p.add_argument('--sans-salarie', action='store_true', help='unités sans salarié déclaré au lieu des unités employeuses')
+    p.add_argument('--deps', nargs='+', help='départements à garder (phase stock)')
+    p.add_argument('--nom', nargs='+', help='CODE=REGEX : pour ce code, seulement les noms ou enseignes qui correspondent')
+    p.add_argument('--types', nargs='+', help='phase ecrire : seulement ces types (noms de domaines.py)')
     args = p.parse_args()
     configurer_cache(args.cache)
     if args.phase == 'stock':
