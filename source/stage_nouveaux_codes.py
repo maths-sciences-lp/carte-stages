@@ -1,4 +1,5 @@
-"""Ajoute aux données publiées les établissements des codes NAF nouvellement entrés dans domaines.py.
+"""Ajoute aux données publiées les établissements des codes NAF nouvellement entrés dans domaines.py,
+ou (--depuis) les établissements créés depuis une date, tous codes confondus (mise à jour trimestrielle).
 
 Sans refaire la collecte nationale, en trois phases demandées explicitement :
 1. stock : SIRET du stock Sirene (millésime donné) dont l'unité légale a l'un des codes demandés,
@@ -36,25 +37,27 @@ def lire(path):
 
 def phase_stock(args):
     import duckdb
-    if set(args.codes) - set(CODES):
-        raise SystemExit('Codes absents de domaines.py : ' + ' '.join(sorted(set(args.codes) - set(CODES))))
+    codes = args.codes or CODES
+    if set(codes) - set(CODES):
+        raise SystemExit('Codes absents de domaines.py : ' + ' '.join(sorted(set(codes) - set(CODES))))
+    depuis = "AND e.dateCreationEtablissement >= CAST(? AS DATE)" if args.depuis else ""
     allowed = {d for a in lire(ROOT/'commun/academies.json') for d in a['deps']}
     con = duckdb.connect()
     con.execute('INSTALL httpfs; LOAD httpfs;')
     rows = con.execute(f"""
         SELECT e.siret, e.codeCommuneEtablissement FROM read_parquet(?) e JOIN read_parquet(?) u ON u.siren = e.siren
-        WHERE u.activitePrincipaleUniteLegale IN ({','.join('?' * len(args.codes))})
+        WHERE u.activitePrincipaleUniteLegale IN ({','.join('?' * len(codes))}) {depuis}
           AND e.etatAdministratifEtablissement = 'A' AND u.etatAdministratifUniteLegale = 'A'
           AND u.categorieJuridiqueUniteLegale <> '1000'
           AND e.statutDiffusionEtablissement = 'O' AND u.statutDiffusionUniteLegale = 'O'
           AND u.trancheEffectifsUniteLegale IN ({','.join('?' * len(EFFECTIFS))})""",
-        [args.url_etablissements, args.url_unites, *args.codes, *EFFECTIFS]).fetchall()
+        [args.url_etablissements, args.url_unites, *codes, *([args.depuis] if args.depuis else []), *EFFECTIFS]).fetchall()
     cibles = defaultdict(list)
     for siret, commune in rows:
         dep = (commune or '')[:3] if (commune or '').startswith('97') else (commune or '')[:2]
         if dep in allowed:
             cibles[dep].append(siret)
-    atomic_json(args.cache/'cibles.json', dict(codes=args.codes, stock=[args.url_etablissements, args.url_unites],
+    atomic_json(args.cache/'cibles.json', dict(codes=args.codes or 'tous', depuis=args.depuis, stock=[args.url_etablissements, args.url_unites],
                                                 date=time.strftime('%Y-%m-%d'),
                                                 cibles={d: sorted(s) for d, s in sorted(cibles.items())}))
     print(json.dumps(dict(siret=sum(len(s) for s in cibles.values()), departements=len(cibles))))
@@ -145,6 +148,7 @@ def main():
     p.add_argument('--cache', type=Path, required=True)
     p.add_argument('--phase', choices=['stock', 'api', 'ecrire'], required=True)
     p.add_argument('--codes', nargs='+')
+    p.add_argument('--depuis', help='AAAA-MM-JJ : seulement les établissements créés depuis cette date (tous les codes si --codes est absent)')
     p.add_argument('--url-etablissements')
     p.add_argument('--url-unites')
     p.add_argument('--rate', type=float, default=5)
@@ -154,8 +158,8 @@ def main():
     args = p.parse_args()
     configurer_cache(args.cache)
     if args.phase == 'stock':
-        if not (args.codes and args.url_etablissements and args.url_unites):
-            p.error('--codes, --url-etablissements et --url-unites sont obligatoires')
+        if not ((args.codes or args.depuis) and args.url_etablissements and args.url_unites):
+            p.error('--codes ou --depuis, et --url-etablissements, --url-unites sont obligatoires')
         phase_stock(args)
     elif args.phase == 'api':
         phase_api(args)
