@@ -69,6 +69,9 @@ body.stage-question #map-area{display:none}
 .card .km{color:var(--fg);font-weight:700}
 .card .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .card .btns .btn{flex:1 1 auto;font-size:15px;min-height:44px;padding:8px 12px}
+.btn.contour{background:var(--card);color:var(--fg);border:2px solid var(--btn)}
+.card .btns .btn.lien,.btn.lien{flex:0 0 auto;background:none;border:0;color:var(--acc);text-decoration:none;font-weight:600}.btn.lien span:last-child{text-decoration:underline;text-underline-offset:3px}
+.card{margin-top:14px}
 .lba-box{margin-top:10px;padding:10px;border-radius:10px;background:var(--okbg);font-size:14px}
 .lba-box .badge{background:var(--okbg);color:var(--ok);padding:0;white-space:normal}
 .lba-box a{display:inline-block;padding:6px 0;overflow-wrap:anywhere}
@@ -87,7 +90,7 @@ dialog li{margin:6px 0}
 .pop b{font-size:16px}
 .pop .btns{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .pop .btn{min-height:40px;font-size:14px;color:var(--btnfg)}
-.pop .btn.light{color:var(--fg)}
+.pop .btn.light,.pop .btn.contour{color:var(--fg)}
 .leaflet-popup-content{margin:12px 14px}
 .em{font-size:1.05em;line-height:1}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg)}
@@ -216,6 +219,19 @@ const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(
 const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
 const dtxt=k=>k<0.05?'juste à côté':fmt(k)+' km';
 const POPOPT={maxWidth:Math.min(260,window.innerWidth-90),autoPanPaddingTopLeft:[56,16],autoPanPaddingBottomRight:[16,16]};
+// Noms du répertoire Sirene, souvent en MAJUSCULES : affichés en minuscules avec une capitale ; sigles courts et formes juridiques gardés.
+const PETITS=new Set(['de','du','des','la','le','les','et','en','au','aux','sur','par','pour','a','d','l']);
+const SIGLES=new Set(['sas','sasu','sarl','eurl','sa','snc','sci','scop','gie','sem','spl','cfa','btp','ehpad','ratp','sncf','edf','grdf','enedis','ufr']);
+const MOTS=new Set('sud est fer van nat art bar eau mer sol lux net pro bio vie air feu gaz bus ile cap cle duo eco fil jeu lin lit lot mur pin pot rue sac sel sec son top val vin zen bon mon ton roi pre gym pub web new one the and sun sky ami max mix bel cie fils ets'.split(' '));
+const joli=s=>!s||/[a-zà-ÿ]/.test(s)?s:s.toLowerCase().replace(/[a-zà-ÿ0-9]+/g,(m,i,t)=>{
+ const o=t.lastIndexOf('(',i),f=t.indexOf(')',i),groupe=o>=0&&o>t.lastIndexOf(')',i)&&f>0?t.slice(o+1,f):null;
+ if(SIGLES.has(m)||groupe&&!/\s/.test(groupe.trim()))return m.toUpperCase();
+ if(m.length===1)return t[i+1]==="'"?(i>0&&/[dl]/.test(m)?m:m.toUpperCase()):(PETITS.has(m)&&i>0?m:m.toUpperCase());
+ if(!/[aeiouy]/.test(m)&&!/^\d+$/.test(m))return m.toUpperCase();
+ if(m.length<=3&&!PETITS.has(m)&&!MOTS.has(m))return m.toUpperCase();
+ if(m.length===4&&/[^aeiouy0-9]{3}/.test(m))return m.toUpperCase();
+ if(PETITS.has(m)&&i>0)return m;
+ return m[0].toUpperCase()+m.slice(1);});
 const em=(i,t)=>`<span class="em" aria-hidden="true">${i}</span><span>${t}</span>`;
 const titreP=p=>p.e||p.n;
 const PAL=['#d35400','#1f6fb2','#8e44ad','#16a085','#c0392b','#7d5a2b','#b7950b','#2e7d32','#5d6d7e','#e84393','#00838f','#6d4c41','#3949ab'];
@@ -275,8 +291,8 @@ function links(p){
 }
 function pop(p){
  const {tel,go}=links(p), o=origin();
- return `<div class="pop"><b>${esc(titreP(p))}</b>${p.e?`<div class="msg" style="margin:0">${esc(p.n)}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${p.rp?`<div class="msg" style="margin:0">${esc(p.rp)}</div>`:''}${CONSEIL[p.f]?`<div class="msg" style="margin:0">${CONSEIL[p.f]}</div>`:''}${o?`<div><b>${dtxt(p.k)}</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}${lbaHtml(p)}
- <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><a class="btn light" target="_blank" rel="noopener" href="https://annuaire-entreprises.data.gouv.fr/etablissement/${esc(p.s)}">${em('ℹ️','Fiche officielle')}</a></div></div>`;
+ return `<div class="pop"><b>${esc(joli(titreP(p)))}</b>${p.e?`<div class="msg" style="margin:0">${esc(joli(p.n))}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${p.rp?`<div class="msg" style="margin:0">${esc(p.rp)}</div>`:''}${CONSEIL[p.f]?`<div class="msg" style="margin:0">${CONSEIL[p.f]}</div>`:''}${o?`<div><b>${dtxt(p.k)}</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}${lbaHtml(p)}
+ <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn contour" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><a class="btn light" target="_blank" rel="noopener" href="https://annuaire-entreprises.data.gouv.fr/etablissement/${esc(p.s)}">${em('ℹ️','Fiche officielle')}</a></div></div>`;
 }
 function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]>=9?'grande entreprise (groupe)':(r[5]?IDX.eff[r[5]-1]:''),s:r[7],f:k,rp:r[8]||''};
  p.tri=norm(titreP(p)); p.tri0=/^[a-z]/.test(p.tri)?0:1;
@@ -412,11 +428,11 @@ function render(loading){
  if(!o) h+=`<div class="empty">👉 ${from==='lycee'?'Choisis ton lycée':'Indique ton adresse'} (étape 2) pour voir les entreprises <b>les plus proches</b>.</div>`;
  if(!n&&o&&dist) h+=`<div class="empty">Aucune entreprise à moins de ${dist} km. Choisis une distance plus grande.</div>`;
  h+=vis.slice(0,shown).map(p=>{const {tel,go}=links(p);return `<div class="card">
-  <h3 class="nm">${esc(titreP(p))}</h3>${p.e?`<div class="msg" style="margin-top:0">${esc(p.n)}</div>`:''}
+  <h3 class="nm">${esc(joli(titreP(p)))}</h3>${p.e?`<div class="msg" style="margin-top:0">${esc(joli(p.n))}</div>`:''}
   <div class="meta"><span><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</span>${o?`<span class="km">📍 ${dtxt(p.k)}</span>`:''}</div>
   <div class="meta">${esc(p.ad)}</div>${p.rp?`<div class="meta">${esc(p.rp)}</div>`:''}${p.t?`<div class="meta">Taille : ${esc(p.t)}</div>`:''}
   ${lbaHtml(p)}
-  <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><button class="btn light" data-s="${p.s}">${em('🗺️','Sur la carte')}</button></div></div>`;}).join('');
+  <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn contour" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><button class="btn lien" data-s="${p.s}">${em('🗺️','Sur la carte')}</button></div></div>`;}).join('');
  if(n>shown) h+=`<button class="btn light more" id="more">Voir ${Math.min(40,n-shown)} entreprises de plus</button>`;
  $('list').innerHTML=h;
  const m=$('more'); if(m) m.onclick=()=>{const debut=shown;shown+=40;render();const titre=$('list').querySelectorAll('.nm')[debut];if(titre){titre.tabIndex=-1;titre.focus();}};
