@@ -74,7 +74,7 @@ const cases=[
   await p.locator('.ac-options button').filter({hasText:slug==='la-reunion'?'La Réunion':slug==='aix-marseille'?'Aix-Marseille':city}).click();await loaded(p,slug);
   if(slug==='lyon'){if(await p.locator('#doms .changer').count())await p.locator('#doms .changer').click();await p.locator('[data-k=\"cuisine\"]').click();await p.locator('#list button[data-i]').first().click();await p.locator('#s3').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(OUTPUT,'formations-lyon.png')});await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:path.join(OUTPUT,'academie-lyon.png')});}
   const domains=[...new Set(requests.map(u=>new URL(u).hostname))];
-  assert(domains.every(d=>['127.0.0.1','localhost','cdnjs.cloudflare.com','api-adresse.data.gouv.fr'].includes(d)||/^[abc]\.tile\.openstreetmap\.org$/.test(d)),domains.join(','));
+  assert(domains.every(d=>['127.0.0.1','localhost','api-adresse.data.gouv.fr'].includes(d)||/^[abc]\.tile\.openstreetmap\.org$/.test(d)),domains.join(','));
   report.push(slug+' : lien direct, mémoire remplacée, localisation simulée, ville BAN (réponse enregistrée), changer, collège, URL/hash et réseau OK');
   await c.close();
  }
@@ -102,7 +102,7 @@ const cases=[
   await p.reload();await loaded(p,'lille');
   requests.length=0;await p.goto(BASE+'/apres-3e/#cuisine');await p.waitForFunction(()=>typeof D!=='undefined'&&D!==null);
   assert.equal(await p.locator('.ac-picker').count(),0);assert.equal(await p.locator('#fdep .chip').count(),3);
-  assert(!requests.some(u=>u.includes('/commun/')&&!/\/commun\/(accessibilite\.(css|js)|navigation\.(css|js)|pied\.js|academie\.js|icones\.svg|logo\.svg)$/.test(u)));assert(await p.locator('.lead').innerText().then(s=>s.includes('Île-de-France')));
+  assert(!requests.some(u=>u.includes('/commun/')&&!/\/commun\/(accessibilite\.(css|js)|navigation\.(css|js)|pied\.js|academie\.js|icones\.svg|logo\.svg|leaflet\/[^/]+(\/[^/]+)?)$/.test(u)));assert(await p.locator('.lead').innerText().then(s=>s.includes('Île-de-France')));
   await p.screenshot({path:path.join(OUTPUT,'idf-cuisine.png')});
   await p.goto(BASE+'/apres-3e/');await p.waitForFunction(()=>typeof D!=='undefined'&&D!==null);await p.screenshot({path:path.join(OUTPUT,'idf.png')});
   await c.close();report.push('Mémoire commune, entrée France, Île-de-France et #cuisine : OK, aucun module commun/ (hors accessibilité) chargé sur /apres-3e/');

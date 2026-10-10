@@ -72,7 +72,7 @@ for name in ['aide/aide.json','apres-3e/apres3e.json','formation/formations.json
 # Le module commun (choix de l'académie, contours) ne doit pas changer ; les fichiers d'accessibilité, de navigation
 # (pied de page, liens entre outils) et les icônes, partagés par toutes les pages, peuvent évoluer.
 assert not subprocess.check_output(['git','diff','origin/main','--','commun',':!commun/accessibilite.js',':!commun/accessibilite.css',
-    ':!commun/navigation.js',':!commun/navigation.css',':!commun/pied.js',':!commun/academie.js',':!commun/icones.svg',':!commun/logo.svg',':!commun/logo-*.png',':!commun/partage.png',':!commun/site.webmanifest'],cwd=ROOT)
+    ':!commun/navigation.js',':!commun/navigation.css',':!commun/pied.js',':!commun/academie.js',':!commun/icones.svg',':!commun/logo.svg',':!commun/logo-*.png',':!commun/partage.png',':!commun/site.webmanifest',':!commun/leaflet'],cwd=ROOT)
 print('30 académies : données, domaines, coordonnées, internats, pression Créteil seule, tailles et absence de courriels OK')
 if source:print('Chaque offre : formation, établissement, adresse, hébergement et domaines conformes au CSV Onisep')
 print('Module commun et trois JSON historiques : inchangés')
