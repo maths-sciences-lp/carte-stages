@@ -23,7 +23,7 @@ export function academieDepuisAdresse(resultat) {
  return academieDepuisDepartement(/^(97|98)/.test(code)?code.slice(0,3):code.slice(0,2));
 }
 export function lireAcademie() {try{return localStorage.getItem(KEY);}catch(e){return null;}}
-export function retenirAcademie(slug) {try{localStorage.setItem(KEY,slug);}catch(e){}}
+export function retenirAcademie(slug) {try{localStorage.setItem(KEY,slug);}catch(e){}window.dispatchEvent(new Event('stages:academie'));}
 export function academieDepuisURL(baseOutil) {
  const base=new URL(baseOutil,location.href).pathname.replace(/\/?$/,'/');
  if(!location.pathname.startsWith(base))return null;

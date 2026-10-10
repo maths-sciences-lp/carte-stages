@@ -51,6 +51,7 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
 </style>
 <script>if(!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}</script>
 <link rel="stylesheet" href="../commun/accessibilite.css">
+<link rel="stylesheet" href="/commun/navigation.css">
 </head><body>
 <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
 <header><a class="site" href="/accueil/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Tous les outils</span></a></header>
@@ -60,9 +61,9 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
 <p id="vers-france" style="margin:-2px 0 10px;font-size:15px"><a href="france/">Tu habites ailleurs en France ? Indique ta ville</a></p><script>if(window.FORMATION_NATIONAL)document.getElementById('vers-france').remove();</script>
 
 <section class="step"><h2><span class="n">1</span>Ta formation</h2>
- <div class="hen"><h3 class="t">🏫 Lycée Eugène Hénaff</h3><div class="msg" style="margin:0 0 4px">Ta classe en un clic.</div><div id="classes"></div></div>
- <div class="ou">ou</div>
- <h3 class="t">Un autre lycée d’Île-de-France</h3>
+ <div class="hen" data-henaff hidden><h3 class="t">🏫 Lycée Eugène Hénaff</h3><div class="msg" style="margin:0 0 4px">Ta classe en un clic.</div><div id="classes"></div></div>
+ <div class="ou" data-henaff hidden>ou</div>
+ <h3 class="t">Ton diplôme et ton lycée</h3>
  <div class="msg" style="margin:0 0 8px">Académies de Créteil, Paris et Versailles.</div>
  <div class="row"><label class="field-label" for="q">Ton diplôme</label><input type="text" id="q" placeholder="Ton diplôme : MELEC, AGORA, CAP cuisine…" autocomplete="off" aria-label="Ton diplôme"></div>
  <div class="sug" id="qsug" hidden></div><div class="msg" id="qmsg"></div>
@@ -94,8 +95,9 @@ select{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:1
 </section>
 
 <footer>
+<div data-pied-commun></div>
  Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, octobre 2026), poursuites d’études d’après les fiches diplômes de l’Onisep · devenir des élèves : <a href="https://data.education.gouv.fr/explore/dataset/fr-en-inserjeunes-lycee_pro-formation-fine/" target="_blank" rel="noopener">InserJeunes</a> (ministère de l’Éducation nationale ; chiffre masqué quand il y a trop peu d’élèves) · places, candidats et admis des BTS : <a href="https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcoursup/" target="_blank" rel="noopener">Parcoursup 2025</a> (ministère de l’Enseignement supérieur) · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Les formations en apprentissage seront ajoutées plus tard.<br>
- Statistiques de visite anonymes, sans cookie. · <a href="../accueil/">Tous les outils</a> · <a href="../">Trouve ton stage</a> · <a href="../apres-3e/">Après le collège</a> · <a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="../accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>
+ Statistiques de visite anonymes, sans cookie. · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>
  Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
  © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
 </footer>
@@ -122,7 +124,10 @@ const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(
 const GROUPES=[['Bac pro',c=>c.n.startsWith('Bac pro')],['CAP',c=>c.n.startsWith('CAP')],['BMA',c=>c.n.startsWith('BMA')]];
 function drawClasses(){let h='';for(const[g,fn] of GROUPES){h+=`<div class="sub">${g}</div><div class="grid">`;for(const c of D.classes.filter(fn))h+=`<button class="cl" data-k="${c.k}" aria-pressed="${!!(cur&&cur.k===c.k)}">${esc(c.n)}</button>`;h+='</div>';}
  $('classes').innerHTML=h;$('classes').querySelectorAll('.cl').forEach(b=>b.onclick=()=>choisirClasse(b.dataset.k,true));}
-function choisirClasse(k,user){const c=D.classes.find(c=>c.k===k);if(!c||!D.dip[c.d])return;cur={k,d:c.d,ly:D.henaff};$('q').value='';$('qsug').hidden=true;$('lyc').hidden=true;$('qmsg').textContent='';
+function choisirClasse(k,user){const c=D.classes.find(c=>c.k===k);if(!c||!D.dip[c.d])return;cur={k,d:c.d,ly:D.henaff};
+ try{localStorage.setItem('stages.lycee',D.henaff);localStorage.setItem('stages.academie','creteil');}catch(e){}
+ window.dispatchEvent(new Event('stages:lycee'));window.dispatchEvent(new Event('stages:academie'));
+ $('q').value='';$('qsug').hidden=true;$('lyc').hidden=true;$('qmsg').textContent='';
  if(user){history.replaceState(null,'',location.pathname+location.search+'#'+k);stat('classe/'+k,c.n);}montrer(user);}
 function choisirDip(id,ly,user){const d=D.dip[id];if(!d)return;cur={k:null,d:id,ly:ly&&d.ly.includes(ly)?ly:(d.ly.length===1?d.ly[0]:null)};
  $('q').value=d.lib;$('qsug').hidden=true;$('qmsg').textContent='';remplirLycees();if(user){majHash();stat('diplome/'+id,d.lib);}montrer(user);}
@@ -205,4 +210,5 @@ if(!window.FORMATION_NATIONAL)charger('ile-de-france-parcoursup').then(d=>{PS=d;
 window.addEventListener('hashchange',()=>{if(D)lireHash();});
 </script>
 <script src="../commun/accessibilite.js"></script>
+<script type="module" src="/commun/pied.js"></script>
 </body></html>

@@ -1,16 +1,12 @@
 /* Accueil : académie réglée par l'adresse (/accueil/<académie>/), choisie par l'élève
  * (mémorisée dans le téléphone) ou Île-de-France par défaut. Aucune donnée envoyée. */
 import {initAcademie,lireAcademie} from '../commun/academie.js';
-const IDF=new Set(['creteil','paris','versailles']); // les pages Île-de-France couvrent ces trois académies
+import {cheminOutil} from '../commun/navigation.js';
 const base=new URL('./',document.baseURI),racine=new URL('../',base);
 const cartes=[...document.querySelectorAll('a.c[data-outil]')];
 const lieu=document.getElementById('lieu'),mount=document.getElementById('choix-lieu');
 function regler(ac){
- const idf=!ac||IDF.has(ac.slug);
- for(const a of cartes){
-  const o=a.dataset.outil,dossier=o==='stage'?(idf?'':'stage/'):o+'/';
-  a.href=new URL(dossier+(idf?'':ac.slug+'/'),racine).pathname;
- }
+ for(const a of cartes)a.href=cheminOutil(a.dataset.outil,ac?.slug);
 }
 let lance=false;
 async function demarrer(question){

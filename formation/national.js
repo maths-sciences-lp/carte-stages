@@ -1,4 +1,5 @@
 /* Une application ; le choix d'académie vient exclusivement de commun/. */
+import {contexteHenaff} from '../commun/navigation.js';
 import {initAcademie,academieDepuisAdresse} from '../commun/academie.js';
 const main=document.querySelector('main'),mount=document.createElement('div');
 main.querySelector('h1').after(mount);
@@ -61,7 +62,7 @@ await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSel
  for(const id of ['qsug','asug','lyc','res'])$(id).hidden=true;
  $('list').replaceChildren();$('chips').replaceChildren();$('qmsg').textContent='';$('amsg').textContent='';$('aide').hidden=false;
  vue(false);depart(false);
- const hasHenaff=D.classes.length>0;hen.hidden=!hasHenaff;ou.hidden=!hasHenaff;
+ const hasHenaff=D.classes.length>0&&contexteHenaff();hen.hidden=!hasHenaff;ou.hidden=!hasHenaff;
  heading.textContent=hasHenaff?'Un autre lycée de ton académie':'Ton diplôme et ton lycée';academyHint.textContent=ac.nom;
  lead.textContent='Après ton CAP (certificat d’aptitude professionnelle), ton bac professionnel ou ton BMA (brevet des métiers d’art), découvre des poursuites d’études en '+D.region+'.';
  $('aide').textContent=hasHenaff?'Choisis d’abord ta classe ou ton diplôme.':'Choisis d’abord ton diplôme.';

@@ -101,7 +101,7 @@ const cases=[
   await p.reload();await loaded(p,'lille');
   requests.length=0;await p.goto(BASE+'/apres-3e/#cuisine');await p.waitForFunction(()=>typeof D!=='undefined'&&D!==null);
   assert.equal(await p.locator('.ac-picker').count(),0);assert.equal(await p.locator('#fdep .chip').count(),3);
-  assert(!requests.some(u=>u.includes('/commun/')&&!/\/commun\/accessibilite\.(css|js)$/.test(u)));assert(await p.locator('.lead').innerText().then(s=>s.includes('Île-de-France')));
+  assert(!requests.some(u=>u.includes('/commun/')&&!/\/commun\/(accessibilite\.(css|js)|navigation\.(css|js)|pied\.js|academie\.js)$/.test(u)));assert(await p.locator('.lead').innerText().then(s=>s.includes('Île-de-France')));
   await p.screenshot({path:path.join(OUTPUT,'idf-cuisine.png')});
   await p.goto(BASE+'/apres-3e/');await p.waitForFunction(()=>typeof D!=='undefined'&&D!==null);await p.screenshot({path:path.join(OUTPUT,'idf.png')});
   await c.close();report.push('Mémoire commune, entrée France, Île-de-France et #cuisine : OK, aucun module commun/ (hors accessibilité) chargé sur /apres-3e/');

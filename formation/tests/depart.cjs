@@ -28,12 +28,12 @@ function app(){
   navigator:{},history:{replaceState(){}},URL,URLSearchParams,NodeFilter:{SHOW_TEXT:4},
   setTimeout(){return 1;},clearTimeout(){},
   fetch:async url=>({ok:true,json:async()=>String(url).includes('-parcoursup')?{f:{}}:structuredClone(fixture)}),
-  initAcademie:async options=>{academySelection=options.onSelect;},academieDepuisAdresse:()=>({slug:'test'})
+  initAcademie:async options=>{academySelection=options.onSelect;},academieDepuisAdresse:()=>({slug:'test'}),contexteHenaff:()=>false
  });
  const run=code=>vm.runInContext(code,context);
  run(application);run(`D=${JSON.stringify(fixture)};cur={d:'d',ly:'lycee'};draw();`);
  return {run,element,context,national:async()=>{
-  const source=fs.readFileSync(path.join(root,'national.js'),'utf8').replace(/^import .*;$/m,'');
+  const source=fs.readFileSync(path.join(root,'national.js'),'utf8').replace(/^import .*;$/gm,'');
   await run('(async()=>{'+source+'})()');
   await academySelection({slug:'test',nom:'Académie test'},{signal:{aborted:false}});
   run("cur={d:'d',ly:'lycee'};draw();");

@@ -9,7 +9,7 @@ async function check(selector,action){assert(await p.evaluate(s=>document.active
 await p.goto(base+'/');await p.waitForFunction(()=>booted);await p.keyboard.press('Escape');await tabTo('#f');await p.keyboard.type('cuisine');await p.keyboard.press('ArrowDown');await p.keyboard.press('Enter');await p.waitForTimeout(200);await check('#change','Stage : sélectionner une formation');
 await enter('[data-from="lycee"]');await tabTo('#lyc');await p.keyboard.type('Paris');await p.keyboard.press('ArrowDown');await p.keyboard.press('Enter');await p.waitForTimeout(200);await check('#lyc','Stage : sélectionner un lycée');await enter('#tc');await enter('#tl');rows.push({action:'Stage : Liste → Carte → Liste'});
 for(const tool of ['apres-3e','formation','aide']){
- await p.goto(base+'/'+tool+'/');await p.waitForFunction(()=>D);const choice=tool==='formation'?'#classes button':'#doms button';await enter(choice);await check(choice,tool+': choix principal');
+ await p.goto(base+'/'+tool+'/'+(tool==='formation'?'#era':''));await p.waitForFunction(()=>D);const choice=tool==='formation'?'#classes button':'#doms button';await enter(choice);await check(choice,tool+': choix principal');
  if(tool==='apres-3e'){await enter('#list button[data-i]');await check('#list button[data-i]',tool+': ouvrir les lycées');assert.equal(await p.locator('#list button[data-i]').first().getAttribute('aria-expanded'),'true');}
  if(tool!=='formation'){if(tool==='aide')await enter('#dCol');await tabTo('#col');await p.keyboard.type('Paris');await p.keyboard.press('ArrowDown');await p.keyboard.press('Enter');await p.waitForTimeout(80);await check('#col',tool+': collège');}
  await enter('#vC');await enter('#vL');rows.push({action:tool+': Liste → Carte → Liste'});
