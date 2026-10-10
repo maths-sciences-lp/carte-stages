@@ -20,3 +20,6 @@ a,button,summary,p,.msg{overflow-wrap:anywhere}
 
 /* Logo sur une ligne, même sur les petits téléphones (10/10/2026). */
 .site b{white-space:nowrap}
+/* Icônes des cinq outils (commun/icones.svg) : trait de la couleur du texte, point orange. */
+.ico{width:1.2em;height:1.2em;vertical-align:-.24em;flex:none;overflow:visible}
+.c .e .ico{width:44px;height:44px;vertical-align:middle}
