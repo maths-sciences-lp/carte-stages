@@ -160,6 +160,8 @@ def preparer(rows):
         nom = re.sub(r'\s+', ' ', r['n']).strip()
         nom = re.sub(r'(\([^()]*\))(\s*\1)+', r'\1', nom)
         nom = re.sub(r'^(.+?) \(\1\)$', r'\1', nom)
+        # Mentions du registre (« suppression du nom commercial », « néant ») retirées du nom affiché.
+        nom = re.sub(r'\s*\(\s*\)', '', re.sub(r'\s*\((?:[^()]|\([^()]*\))*\b(?:SUPPRESSION|NEANT)\b(?:[^()]|\([^()]*\))*\)', '', nom, flags=re.I)).strip() or nom
         ens = r['e'] if r['e'] and r['e'].upper() not in nom.upper() else ''
         ens = ens.split(', ')[0] if ens else ''
         adr, rep = nettoie(r['ad'] or '')

@@ -37,7 +37,7 @@ import re
 import subprocess
 import time
 
-from domaines import CODES_RETIRES, COPIES, DECOUPAGES, DOMAINES, MOTS_CLES, MOTS_CLES_SOURCES, SANS_PERSONNEL
+from domaines import CODES_RETIRES, COPIES, DECOUPAGES, DOMAINES, FILTRES, MOTS_CLES, MOTS_CLES_SOURCES, SANS_PERSONNEL
 from stage_collecte import atomic_json
 from stage_donnees import affiner, catalogue_formations, copie, fichier, sans_personnel, slug
 from stage_catalogues import ecrire_catalogues
@@ -52,6 +52,7 @@ def main():
     p.add_argument('--root', type=Path, required=True)
     p.add_argument('--naf', type=Path, required=True, help='CSV siret,naf,naf_u,cj')
     p.add_argument('--rapport', default='reclassement-naf.json', help='Journal écrit à la racine des données (un par lot)')
+    p.add_argument('--filtres', nargs='*', help='types dont le filtre de nom (domaines.FILTRES) est réappliqué')
     p.add_argument('--write', action='store_true')
     args = p.parse_args()
     root = args.root.resolve()
@@ -84,6 +85,10 @@ def main():
     # une catégorie qui n'est plus permise en sort (son code le range ailleurs).
     permises = {slug(n): {slug(s) for s in ss} for n, ss in MOTS_CLES_SOURCES.items()}
     origines |= set(permises)
+    # Filtres de nom (domaines.FILTRES) réappliqués aux données publiées, seulement pour les types
+    # nommés par --filtres : un établissement dont le nom ne passe plus le filtre de son type en sort.
+    filtres = {slug(n): re.compile(rx) for n, rx in FILTRES.items() if n in (args.filtres or [])}
+    origines |= set(filtres)
     for dep in sorted(catalog['departements']):
         secteurs = catalog['departements'][dep]['secteurs']
         for k in sorted(remplacees & set(secteurs)):
@@ -112,6 +117,11 @@ def main():
                         cle = f'{k} : nom hors de la règle'
                         bilan['retires'][cle] = bilan['retires'].get(cle, 0) + 1
                         journal.append(dict(dep=dep, siret=r[7], nom=r[0], enseigne=r[1], de=k, vers=None))
+                    continue
+                if k in filtres and not filtres[k].search((r[0] + ' ' + (r[1] or '')).upper()):
+                    cle = f'{k} : nom hors du filtre'
+                    bilan['retires'][cle] = bilan['retires'].get(cle, 0) + 1
+                    journal.append(dict(dep=dep, siret=r[7], nom=r[0], enseigne=r[1], de=k, vers=None))
                     continue
                 i = insee.get(r[7])
                 if not i or not i['naf']:

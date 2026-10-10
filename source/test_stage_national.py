@@ -286,6 +286,18 @@ class NationalTest(unittest.TestCase):
         self.assertEqual([r[0] for r in f[('93', 'colleges-publics-maintenance')]], ['Collège Travail Langevin'])
         self.assertEqual(ecartes, {'section_interne': 1, 'sans_siret_ou_position': 1})
 
+    def test_noms_filtres_design_architectes_et_mentions(self):
+        def lieu(siret, c, nom):
+            return dict(s=siret, n=nom, e='', c=c, q=c, ad='1 rue X 01000 Y', la=46.0, lo=5.0,
+                        t='11', nj='5710', du='O', de='O', r=False)
+        groups, _ = preparer([lieu('1', '74.10Z', 'WOM DESIGN'), lieu('2', '74.10Z', 'ELITE RENOV'),
+                              lieu('3', '71.11Z', 'ATELIER PAF ARCHITECTES'), lieu('4', '71.11Z', 'HOLDING POLO'),
+                              lieu('5', '71.11Z', 'SEML RESILIENCE ((SUPPRESSION))')])
+        dans = {k: sorted(r[7] for r in v) for k, v in groups.items()}
+        self.assertEqual(dans['design-d-interieur-et-d-objet'], ['1'])
+        self.assertEqual(dans['architectes'], ['3', '5'])
+        self.assertEqual([r[0] for r in groups['architectes'] if r[7] == '5'], ['SEML RESILIENCE'])
+
     def test_routes_de_l_etat(self):
         forms = {f['k']: f['s'] for f in catalogue_formations()['formations']}
         etudes, entretien = 'routes-de-l-etat-etudes-et-districts', 'routes-de-l-etat-centres-d-entretien'
