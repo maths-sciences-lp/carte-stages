@@ -110,11 +110,11 @@ dialog li{margin:6px 0}
 <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
 <div id="app">
  <div id="panel">
-  <header><a class="site" href="https://maths-sciences-pro.fr/"><span class="badge-logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute);margin:0 1px">·</span>Sciences</b><span class="back">← Retour au site</span></a></header>
+  <header><a class="site" href="/accueil/"><span class="badge-logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute);margin:0 1px">·</span>Sciences</b><span class="back">← Tous les outils</span></a></header>
   <main id="contenu-principal" tabindex="-1">
   <div class="top">
    <h1>🎯 Trouve ton stage</h1>
-   <button class="btn light small" id="aide">Aide ?</button>
+   <button class="btn light small" id="aide">Comment ça marche ?</button>
   </div>
   <p class="lead">Trouve des entreprises près de chez toi, en Île-de-France.</p>
   <p id="vers-france" style="padding:0 16px 10px;margin:-4px 0 0;font-size:15px"><a href="stage/france/">Tu habites ailleurs en France ? Indique ta ville</a></p><script>if(window.STAGE_NATIONAL)document.getElementById('vers-france').remove();</script>
@@ -396,7 +396,8 @@ function render(loading){
  if(!sel){$('list').innerHTML='';return;}
  if(loading){$('list').innerHTML='';return;}
  if(o){ring.setLatLng([o.la,o.lo]).addTo(map);ring.setRadius(dist?dist*1000:0);P.forEach(p=>p.k=dk(p,o));} else ring.remove();
- let vis=P.filter(p=>on.has(p.f)&&(!o||!dist||p.k<=dist));
+ // Le lycée de départ lui-même n'est pas un lieu de stage à proposer (10/10/2026).
+ let vis=P.filter(p=>on.has(p.f)&&(!o||!dist||p.k<=dist)&&!(o&&from==='lycee'&&p.k<0.08&&/LYC[EÉ]E/i.test(p.n+' '+(p.e||''))));
  cl.clearLayers();
  if(window.STAGE_NATIONAL){const points=(o?vis.slice().sort((a,b)=>a.k-b.k):vis).slice(0,1500);cl.addLayers(points.map(p=>p.mk||(p.mk=marqueur(p))));}
  else cl.addLayers(vis.map(p=>p.mk||(p.mk=marqueur(p))));
