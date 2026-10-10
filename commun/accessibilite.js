@@ -31,9 +31,25 @@
   });
  },true);
  const decorated=new WeakSet();
+ // Émojis remplacés par les icônes au trait de commun/icones.svg (même dessin sur tous les téléphones).
+ const ICONES={'👩\u200d🏫':'tableau','🏠':'maison','🏫':'batiment','📍':'epingle','📋':'liste','🗺':'carte','📞':'telephone','🚌':'bus','✅':'coche','💡':'ampoule','ℹ':'info','🌐':'globe','📊':'barres','📈':'courbe','🎯':'courbe','💶':'euro','🛏':'lit','🧭':'boussole','📮':'enveloppe','✉':'enveloppe','👉':'fleche','📄':'document','🌱':'pousse','📚':'livre','💬':'bulle','👥':'personnes','🪑':'chaise','💻':'ecran','📶':'wifi','🕘':'horloge','🤝':'coeur','🧱':'briques','🪚':'arbre','⚡':'eclair','🔧':'cle','🏭':'usine','🎨':'palette','🛍':'sac','🗂':'dossier','🍳':'toque','🥖':'pain','💇':'ciseaux','🚚':'camion','🌿':'feuille','♻':'goutte','👕':'teeshirt','🛡':'bouclier','🧪':'eprouvette','🎒':'cartable','🏢':'immeuble','🔒':'cadenas','🎓':'toque-diplome','⚙':'engrenage','⚽':'ballon','💼':'mallette','🖨':'imprimante','🚗':'voiture','🛒':'chariot','🍽':'couverts','🧵':'bobine','🩺':'croix'};
+ const EMOJI=new RegExp('('+Object.keys(ICONES).sort((a,b)=>b.length-a.length).join('|')+')\uFE0F?','gu'),SVG='http://www.w3.org/2000/svg';
+ function icone(id){const s=document.createElementNS(SVG,'svg');for(const[k,v]of[['class','ico'],['width','1.2em'],['height','1.2em'],['aria-hidden','true'],['focusable','false']])s.setAttribute(k,v);
+  const u=document.createElementNS(SVG,'use');u.setAttribute('href','/commun/icones.svg#'+id);s.append(u);return s;}
+ function iconiser(node){
+  const t=node.textContent;EMOJI.lastIndex=0;if(!EMOJI.test(t))return;
+  const p=node.parentElement;if(!p||p.closest('script,style,option,textarea,title,svg'))return;
+  const frag=document.createDocumentFragment();let i=0;EMOJI.lastIndex=0;
+  for(const m of t.matchAll(EMOJI)){if(m.index>i)frag.append(t.slice(i,m.index));frag.append(icone(ICONES[m[1]]));i=m.index+m[0].length;}
+  if(i<t.length)frag.append(t.slice(i));node.replaceWith(frag);
+ }
  function enhance(root){
+  if(root.nodeType===3){iconiser(root);return;}
   if(root.nodeType!==1)return;
   const all=selector=>[...(root.matches(selector)?[root]:[]),...root.querySelectorAll(selector)];
+  const icw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),txt=[];
+  while(icw.nextNode())txt.push(icw.currentNode);
+  for(const n of txt)iconiser(n);
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];
   while(walker.nextNode())nodes.push(walker.currentNode);
   for(const node of nodes){
@@ -56,8 +72,8 @@
  }
  enhance(document.body);
  const observer=new MutationObserver(records=>{
-  for(const r of records)for(const n of r.addedNodes)enhance(n);
- });observer.observe(document.body,{childList:true,subtree:true});
+  for(const r of records){if(r.type==='characterData')iconiser(r.target);else for(const n of r.addedNodes)enhance(n);}
+ });observer.observe(document.body,{childList:true,subtree:true,characterData:true});
  for(const [id,inputId] of Object.entries(associations)){
   // Le sélecteur d’académie est monté après ce script ; son statut est géré dans academie.js.
   const box=$(id),input=$(inputId);if(!box||!input)continue;
