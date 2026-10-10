@@ -17,3 +17,6 @@ a,button,summary,p,.msg{overflow-wrap:anywhere}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 @media(forced-colors:active){:focus-visible{outline:3px solid Highlight!important}button[aria-pressed=true]{border:3px solid ButtonText!important}}
 .leaflet-control-attribution a{text-decoration:underline!important}
+
+/* Logo sur une ligne, même sur les petits téléphones (10/10/2026). */
+.site b{white-space:nowrap}
