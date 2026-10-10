@@ -60,10 +60,10 @@ const note=$('s3').querySelector('.note');
 const conseil=`💡 <b>Bon à savoir.</b> Une <b>2de pro « famille de métiers »</b> est une seconde commune à plusieurs bacs professionnels. Tu choisis ton bac pro à la fin de l’année. Un <b>CAP (certificat d’aptitude professionnelle)</b> dure 2 ans, un <b>bac pro</b> 3 ans. L’affectation au lycée se fait par <b>Affelnet, dans ton académie</b>. Les places sont limitées. Parles-en à ton professeur principal ou au Psy-EN (psychologue de l’Éducation nationale). Pour un lycée dans une autre académie, demande au collège les démarches à suivre. Les formations en apprentissage ne sont pas encore affichées.`;
 const pression=` La ligne 📈 indique les <b>premiers vœux et les places en 2025</b>. Quand les vœux dépassent beaucoup les places, ajoute d’autres vœux. Ces chiffres concernent seulement l’académie de Créteil et changent chaque année.`;
 const footer=main.querySelector('footer');
-// Seul le premier paragraphe de sources dépend du périmètre ; liens conservés.
-const end=footer.querySelector('br');
-while(footer.firstChild!==end)footer.firstChild.remove();
-const sources=document.createElement('span');footer.prepend(sources);
+// Seul le volet des sources dépend du périmètre ; le pied commun et les autres lignes sont conservés.
+const volet=document.createElement('details');volet.className='sources';volet.innerHTML='<summary>Sources des données</summary>';
+const sources=document.createElement('span');volet.append(sources);
+const ancien=footer.querySelector('details.sources');if(ancien)ancien.replaceWith(volet);else footer.querySelector('[data-pied-commun]')?.after(volet);
 function sourceText(ac){
  sources.innerHTML=`Données : <a href="https://opendata.onisep.fr" target="_blank" rel="noopener">Onisep</a> (formations et établissements, voie scolaire, octobre 2026) · collèges et internats : <a href="https://data.education.gouv.fr/explore/dataset/fr-en-annuaire-education/" target="_blank" rel="noopener">annuaire de l’Éducation nationale</a>, internats croisés avec les fiches Onisep (« à vérifier auprès du lycée » quand les sources ne concordent pas) · devenir des élèves : <a href="https://data.education.gouv.fr/explore/dataset/fr-en-inserjeunes-lycee_pro-formation-fine/" target="_blank" rel="noopener">InserJeunes</a> (sortants 2023-2024, chiffres masqués si trop peu d’élèves).${ac?.slug==='creteil'?' Premiers vœux et places : <a href="https://orientation.ac-creteil.fr/bilans-de-laffectation-de-lorientation/" target="_blank" rel="noopener">bilan de l’affectation 2025, Draio Créteil</a> (© www.ac-creteil.fr - académie de Créteil).':''} Domaines regroupés à partir de l’indexation Onisep. Adresses : Base Adresse Nationale · carte © OpenStreetMap · localisation de l’académie : contours Etalab/IGN, Licence Ouverte.`;
 }
