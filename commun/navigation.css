@@ -1,0 +1,7 @@
+[data-pied-commun]{margin:14px 0;font-size:15px;line-height:1.6}
+[data-pied-commun] a{display:inline-block;padding:6px 2px;color:var(--acc,#2a4f7c)}
+[data-henaff][hidden]{display:none!important}
+.partage-recherche{margin:8px 0 14px}
+.partage-recherche button{font:inherit;padding:10px 14px;min-height:44px;border:1px solid var(--line,#e4e9ee);border-radius:12px;background:var(--card,#fff);color:var(--ink,#15314f);cursor:pointer}
+.partage-recherche p{font-size:15px;margin:4px 0;color:var(--mute,#667085)}
+#changer-lycee{color:var(--acc,#2a4f7c);font-weight:600}

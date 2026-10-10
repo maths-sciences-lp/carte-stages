@@ -33,6 +33,7 @@ h2{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10px
 </style>
 <script>if(!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)){var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}</script>
 <link rel="stylesheet" href="../commun/accessibilite.css">
+<link rel="stylesheet" href="/commun/navigation.css">
 </head><body>
 <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
 <header><a class="site" href="/accueil/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Tous les outils</span></a></header>
@@ -40,6 +41,7 @@ h2{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10px
 <h1>🏫 Mon lycée</h1>
 <p class="lead">Tape le nom de ton lycée ou ta ville. Pour chaque formation : <b>🎯 Mon stage</b> ouvre la carte des entreprises de ton métier, au départ du lycée ; <b>🎓 Après mon diplôme</b> montre les poursuites d’études possibles.</p>
 <div class="recherche"><label for="lyq">Ton lycée ou ta ville</label><input type="search" id="lyq" placeholder="Ex. : lycée Jean Moulin, Bobigny…" autocomplete="off" aria-controls="lysug"><div class="sug" id="lysug" hidden></div><p class="msg" id="lymsg" role="status" aria-live="polite"></p></div>
+<p><a href="/lycee/#changer" id="changer-lycee" hidden>Changer de lycée</a></p>
 <section id="fiche" hidden aria-live="polite"></section>
 <p class="msg" style="margin-top:22px">Lycées professionnels de France préparant un CAP, un bac pro, un BMA ou une 2de pro (Onisep, octobre 2026). Ton lycée n’y est pas ? Utilise la <a href="../">carte des stages</a> et <a href="../formation/france/">Après le lycée</a>.</p>
 <script>
@@ -49,10 +51,10 @@ const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLo
 const accent=s=>s.replace(/Eug[eè]ne Henaff/g,'Eugène Hénaff');
 const IDF=new Set(['creteil','paris','versailles']),HENAFF=new Set(['0932119Y','0931234L']);
 const GROUPES=[['2de pro','Seconde (famille de métiers)'],['Bac pro','Bac pro'],['CAP','CAP'],['CAP agricole','CAP agricole'],['BMA','BMA (brevet des métiers d’art)']];
-const V='?v=2026-10-08';let INDEX=null,ACS=null;const DATA={};
+const V='?v=2026-10-08';let INDEX=null,ACS=null,choixSequence=0;const DATA={};
 const charger=u=>fetch(u+V).then(r=>{if(!r.ok)throw Error('Données indisponibles');return r.json();});
 const pret=Promise.all([charger('data/index.json'),charger('../commun/academies.json')]).then(([i,a])=>{INDEX=i.map(r=>({u:r[0],n:accent(r[1]),v:r[2],ac:r[3],t:norm(accent(r[1])+' '+r[2])}));ACS=Object.fromEntries(a.map(x=>[x.slug,x.nom]));});
-const chemin=(outil,ac)=>IDF.has(ac)?(outil==='stage'?'../':'../'+outil+'/'):(outil==='stage'?'../stage/'+ac+'/':'../'+outil+'/'+ac+'/');
+const chemin=(outil,ac)=>IDF.has(ac)?(outil==='stage'?'/':'/'+outil+'/'):'/'+outil+'/'+ac+'/';
 $('lyq').addEventListener('input',async()=>{const v=norm($('lyq').value);if(v.length<2){$('lysug').hidden=true;$('lymsg').textContent='';return;}
  try{await pret;}catch(e){$('lymsg').textContent='La liste des lycées ne répond pas. Réessaie dans un instant.';return;}
  if(v!==norm($('lyq').value))return;
@@ -60,11 +62,16 @@ $('lyq').addEventListener('input',async()=>{const v=norm($('lyq').value);if(v.le
  $('lysug').innerHTML=L.map((x,i)=>`<button type="button" data-i="${i}">${esc(x.n)} — ${esc(x.v)}</button>`).join('');$('lysug').hidden=!L.length;
  $('lymsg').textContent=L.length?'':'Lycée pas trouvé. Essaie le nom de ta ville.';
  $('lysug').onclick=e=>{const b=e.target.closest('button');if(b)choisir(L[+b.dataset.i].u,true);};});
-async function choisir(u,user){await pret;const x=INDEX.find(r=>r.u===u);if(!x){$('lymsg').textContent='Ce lien ne correspond à aucun lycée de la liste.';return;}
+async function choisir(u,user){const sequence=++choixSequence;await pret;if(sequence!==choixSequence)return;const x=INDEX.find(r=>r.u===u);if(!x){$('lymsg').textContent='Ce lien ne correspond à aucun lycée de la liste.';return;}
  $('lysug').hidden=true;$('lyq').value=x.n+' — '+x.v;$('lymsg').textContent='Chargement…';
  try{DATA[x.ac]=DATA[x.ac]||await charger('data/'+x.ac+'.json');}catch(e){$('lymsg').textContent='Les formations ne répondent pas. Réessaie dans un instant.';return;}
- $('lymsg').textContent='';const ly=DATA[x.ac][u];
- if(user)history.replaceState(null,'',location.pathname+location.search+'#'+u);
+ if(sequence!==choixSequence)return;
+ const ly=DATA[x.ac][u];if(!ly){$('lymsg').textContent='Les formations de ce lycée sont indisponibles.';return;}
+ $('lymsg').textContent='';
+ history.replaceState(null,'',location.pathname+location.search+'#'+u);
+ try{localStorage.setItem('stages.lycee',u);localStorage.setItem('stages.academie',x.ac);}catch(e){}
+ window.dispatchEvent(new Event('stages:academie'));window.dispatchEvent(new Event('stages:lycee'));
+ document.querySelector('.recherche').hidden=true;$('changer-lycee').hidden=false;
  document.title=x.n+' – Mon lycée';
  const carte=f=>{const titre=f[1].replace(/^(Bac pro|CAP agricole|CAP|BMA|2de pro) /,'');const b=[];
   if(f[3])b.push(`<a class="bt" href="${chemin('stage',x.ac)}#f=${f[3]}&ly=${u}">🎯 Mon stage</a>`);
@@ -79,12 +86,17 @@ async function choisir(u,user){await pret;const x=INDEX.find(r=>r.u===u);if(!x){
   `<button type="button" class="copier" id="copier">📋 Copier le lien de cette page</button><p class="msg" id="copiemsg" role="status"></p>`;
  $('fiche').hidden=false;
  $('copier').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('copiemsg').textContent='Lien copié : tu peux le mettre dans Pronote, sur l’ENT ou en QR code.';}catch(e){$('copiemsg').textContent='Copie impossible : sélectionne l’adresse en haut de la page.';}};
- if(user)$('fiche').querySelector('h2').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
-const h=location.hash.slice(1);if(/^[0-9]{7}[A-Z]$/.test(h))choisir(h,false);
-window.addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(/^[0-9]{7}[A-Z]$/.test(k))choisir(k,false);});
+ if(user){const titre=$('fiche').querySelector('h2');titre.tabIndex=-1;titre.focus();titre.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}}
+function ouvrir(u){choisir(u,false).catch(()=>{$('lymsg').textContent='La liste des lycées ne répond pas. Réessaie dans un instant.';});}
+function changer(){++choixSequence;document.title='Mon lycée – Stages et orientation';document.querySelector('.recherche').hidden=false;$('fiche').hidden=true;$('changer-lycee').hidden=true;$('lyq').value='';$('lysug').hidden=true;$('lymsg').textContent='';$('lyq').focus();}
+const h=location.hash.slice(1);let saved;try{saved=localStorage.getItem('stages.lycee');}catch(e){}
+if(h==='changer')changer();else if(/^[0-9]{7}[A-Z]$/.test(h||saved||''))ouvrir(h||saved);
+window.addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(k==='changer')changer();else if(/^[0-9]{7}[A-Z]$/.test(k))ouvrir(k);});
 </script>
-<footer><p class="credit"><a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="../accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
+<footer>
+<div data-pied-commun></div><p class="credit"><a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
 </footer>
 </main><script src="../commun/accessibilite.js"></script>
+<script type="module" src="/commun/pied.js"></script>
 </body></html>
 

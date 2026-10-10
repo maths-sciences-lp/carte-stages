@@ -105,6 +105,7 @@ dialog li{margin:6px 0}
 }
 </style>
 <link rel="stylesheet" href="commun/accessibilite.css">
+<link rel="stylesheet" href="/commun/navigation.css">
 </head>
 <body>
 <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
@@ -173,11 +174,12 @@ dialog li{margin:6px 0}
   <div id="list"></div>
   </main>
   <footer>
+<div data-pied-commun></div>
    Une entreprise de la liste ne prend pas forcément de stagiaires : appelle-la ou va la voir avec ta convention.<br>
    <span id="lba-source" hidden></span>
    Données : répertoire Sirene de l’Insee (<a href="https://recherche-entreprises.api.gouv.fr" target="_blank" rel="noopener">API Recherche d’entreprises</a>), 7 et 8 octobre 2026, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" target="_blank" rel="noopener">Licence Ouverte 2.0</a> · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap.<br>
    Statistiques de visite anonymes, sans cookie.<br>
-   <a href="accueil/">Tous les outils</a> · <a href="apres-3e/">🧭 Après le collège</a> · <a href="formation/">🎓 Après le lycée</a> · <a href="faq/">Questions fréquentes</a> · <a href="faq/#vie-privee">Vie privée</a> · <a href="accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a> · Une erreur, ou une entreprise qui veut être retirée : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
+   <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a> · Une erreur, ou une entreprise qui veut être retirée : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
    © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
   </footer>
  </div>
@@ -371,6 +373,7 @@ $('lyc').addEventListener('keydown',e=>{if(e.key==='Enter'&&!$('lsug').hidden){c
 function setLycee(l,user){if(user)stat('depart/lycee/'+l.u,'Départ : '+l.n);pts.lycee={la:l.la,lo:l.lo,label:l.n,u:l.u};placeMk('lycee');from='lycee';syncFrom();
  $('lyc').value=l.n; $('lmsg').textContent='✅ '+l.n+' ('+l.c+')';
  try{localStorage.setItem('stages.lycee',l.u);}catch(e){}
+ window.dispatchEvent(new Event('stages:lycee'));
  setHash(); shown=40; render(); map.setView([l.la,l.lo],13);
  if(user&&window.innerWidth<=900&&sel) $('s3').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
 function initLycee(){const h=new URLSearchParams(location.hash.slice(1)); let u=h.get('ly');
@@ -449,5 +452,6 @@ function demarrer(j){IDX=j;
 </script>
 <script src="commun/accessibilite.js"></script>
 <script type="module" src="stage/idf.js"></script>
+<script type="module" src="/commun/pied.js"></script>
 </body>
 </html>
