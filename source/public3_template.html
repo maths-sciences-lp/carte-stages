@@ -29,8 +29,8 @@ a{color:var(--acc)}
 #map-area{flex:1;min-width:0;min-height:0;display:flex;flex-direction:column}
 #map{flex:1;min-height:0}
 body.stage-question #map-area{display:none}
-.top{display:flex;align-items:center;gap:10px;padding:14px 16px 6px}
-.top h1{font-size:22px;margin:0;flex:1}
+.top{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;padding:14px 16px 6px}
+.top h1{font-size:22px;margin:0;flex:1 0 auto;white-space:nowrap}
 .top p{margin:0}
 .lead{padding:0 16px 8px;color:var(--mute);font-size:16px}
 .step{margin:10px 12px;padding:14px 14px 16px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
@@ -94,7 +94,8 @@ dialog li{margin:6px 0}
 .leaflet-popup-content{margin:12px 14px}
 .em{font-size:1.05em;line-height:1}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg)}
-.start{background:#15314f;color:#fff;font-weight:700;border-radius:8px;padding:3px 8px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4);font-size:14px}
+.start{display:inline-block;background:#15314f;color:#fff;font-weight:700;border-radius:8px;padding:3px 8px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4);font-size:14px;border:2px solid #fff}
+.start::after{content:'';display:inline-block;width:8px;height:8px;margin-left:6px;border-radius:50%;background:#E8590C;vertical-align:1px}
 @media (max-width:900px){
  #app{display:block;height:auto}
  #panel{width:100%;border-right:0;overflow:visible}
@@ -266,6 +267,7 @@ function placerCarte(){
 }
 placerCarte();
 const map=L.map('map',{preferCanvas:true}).fitBounds([[48.70,2.10],[49.05,2.65]]);
+map.createPane('depart').style.zIndex=650; // le point de départ reste au-dessus des groupes d’entreprises
 mobileMap.addEventListener('change',()=>{placerCarte();map.invalidateSize();});
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
 const cl=L.markerClusterGroup({disableClusteringAtZoom:15,maxClusterRadius:45,spiderfyOnMaxZoom:false,showCoverageOnHover:false,chunkedLoading:true});
@@ -373,7 +375,7 @@ $('geo').onclick=()=>{if(!navigator.geolocation){$('amsg').textContent='Ton tél
  $('amsg').textContent='Je te cherche…';
  navigator.geolocation.getCurrentPosition(p=>{$('adr').value='';setMaison(p.coords.latitude,p.coords.longitude,'Ta position');},()=>$('amsg').textContent='Localisation refusée : tape ton adresse.',{timeout:10000});};
 function placeMk(k){const p=pts[k]; if(mks[k]) mks[k].remove(); if(!p) return;
- mks[k]=L.marker([p.la,p.lo],{zIndexOffset:1000,icon:L.divIcon({className:'',html:`<div class="start">${k==='lycee'?'🏫 Mon lycée':'🏠 Chez moi'}</div>`,iconAnchor:[30,12]})}).addTo(map);}
+ mks[k]=L.marker([p.la,p.lo],{pane:'depart',zIndexOffset:1000,icon:L.divIcon({className:'',iconSize:null,html:`<div class="start">${k==='lycee'?'🏫 Mon lycée':'🏠 Chez moi'}</div>`,iconAnchor:[30,14]})}).addTo(map);}
 function setMaison(la,lo,label){stat('depart/maison','Départ : maison');pts.maison={la,lo,label};placeMk('maison');from='maison';syncFrom();
  try{localStorage.setItem('stages.maison',JSON.stringify(pts.maison));}catch(e){}
  $('amsg').textContent='✅ '+label; shown=40; render(); map.setView([la,lo],13);
