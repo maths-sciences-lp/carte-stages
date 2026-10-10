@@ -26,3 +26,11 @@ a,button,summary,p,.msg{overflow-wrap:anywhere}
 /* Liens : une seule couleur, même déjà visités (jamais le bleu du navigateur). */
 a,a:visited{color:var(--acc,#2a4f7c)}
 a{text-underline-offset:3px}
+/* Choix fait : bien visible (fond bleu marine, coche), puis liste repliée avec « Changer ». */
+.dom[aria-pressed=true]{background:var(--ink,#15314f);border-color:var(--ink,#15314f)}
+.dom[aria-pressed=true] b,.dom[aria-pressed=true] span{color:#fff}
+.dom[aria-pressed=true] b::before{content:"✓ "}
+.doms.choix-fait{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.doms .changer{align-self:flex-start;font:inherit;font-weight:600;padding:10px 20px;min-height:44px;border:2px solid var(--ink,#15314f);border-radius:12px;background:var(--card,#fff);color:var(--ink,#15314f);cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--ink,#15314f)}
+.chip[aria-pressed=true]::before{content:"✓ ";font-weight:700}

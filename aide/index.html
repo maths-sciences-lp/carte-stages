@@ -121,10 +121,15 @@ const SIT=[
 ];
 const TY=Object.fromEntries(SIT.map(s=>[s.k,s.t]));
 const ACS=[['Créteil','Académie de Créteil (77, 93, 94)'],['Paris','Académie de Paris (75)'],['Versailles','Académie de Versailles (78, 91, 92, 95)']];
+let deplie=false; // liste des situations dépliée par « Changer »
 let D=null, sit=null, dep=null, offD=new Set(), nmax=8, map=null, layer=null;
-function drawSit(){$('doms').innerHTML=SIT.map(d=>`<button class="dom" data-k="${d.k}" aria-pressed="${sit===d.k}"><span class="e">${d.i}</span><span><b>${esc(d.n)}</b><span>${esc(d.s)}</span></span></button>`).join('')+
- `<button class="dom" data-k="tout" aria-pressed="${sit==='tout'}"><span class="e">📋</span><span><b>Je veux voir tous les lieux</b><span>CIO, missions locales, Info Jeunes, bibliothèques et maisons des adolescents</span></span></button>`;
- $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{sit=b.dataset.k;nmax=8;drawSit();history.replaceState(null,'',location.pathname+location.search+'#'+sit);stat('situation/'+sit,b.querySelector('b').textContent);show(true);});}
+function drawSit(){const tous=[...SIT,{k:'tout',i:'📋',n:'Je veux voir tous les lieux',s:'CIO, missions locales, Info Jeunes, bibliothèques et maisons des adolescents'}];
+ const tuile=d=>`<button class="dom" data-k="${d.k}" aria-pressed="${sit===d.k}"><span class="e">${d.i}</span><span><b>${esc(d.n)}</b><span>${esc(d.s)}</span></span></button>`;
+ const choisi=!deplie&&tous.find(d=>d.k===sit);
+ $('doms').classList.toggle('choix-fait',!!choisi);
+ $('doms').innerHTML=choisi?tuile(choisi)+'<button type="button" class="changer">Changer</button>':tous.map(tuile).join('');
+ const ch=$('doms').querySelector('.changer');if(ch)ch.onclick=()=>{deplie=true;drawSit();$('doms').querySelector('[aria-pressed=true]')?.focus();};
+ $('doms').querySelectorAll('.dom').forEach(b=>b.onclick=()=>{sit=b.dataset.k;deplie=false;nmax=8;drawSit();$('doms').querySelector('.dom')?.focus();history.replaceState(null,'',location.pathname+location.search+'#'+sit);stat('situation/'+sit,b.querySelector('b').textContent);show(true);});}
 function lieux(){return D.lieux.filter(l=>(sit==='tout'||l.t===sit)&&!offD.has(l.ac)).map(l=>({l,d:dep?km(dep.lat,dep.lon,l.lat,l.lon):null})).sort((a,b)=>a.d!==null?a.d-b.d:a.l.v.localeCompare(b.l.v));}
 function chips(){$('fdep').innerHTML=ACS.map(([k,l])=>`<button class="chip" data-d="${k}" aria-pressed="${!offD.has(k)}">${l}</button>`).join('');
  $('fdep').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.d;offD.has(k)?offD.delete(k):offD.add(k);show(false);});}
