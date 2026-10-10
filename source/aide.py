@@ -256,7 +256,7 @@ def departement_point(lat, lon, features):
 def route_html(ac):
     return ('<!doctype html>\n<html lang="fr"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            f'<title>Qui peut m’aider ? – {html.escape(ac)}</title><link rel="icon" href="/commun/logo.svg" type="image/svg+xml"></head>'
+            f'<title>Qui peut m’aider ? – {html.escape(ac)}</title><link rel="icon" href="/commun/logo.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/commun/logo-180.png"><link rel="manifest" href="/commun/site.webmanifest"><meta name="theme-color" content="#15314f"></head>'
             '<body><p id="loading" role="status">Chargement…</p>'
             '<noscript>Active JavaScript pour chercher un lieu. Pour parler à quelqu’un : '
             '<a href="tel:0800235236">Fil Santé Jeunes, 0 800 235 236</a>.</noscript>'
