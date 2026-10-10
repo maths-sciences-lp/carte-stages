@@ -71,7 +71,7 @@ const cases=[
   await p.locator('.ac-bar button').click();assert(await p.locator('.ac-picker').isVisible());
   await p.locator('summary').filter({hasText:'Je connais mon académie'}).click();
   await p.locator('.ac-options button').filter({hasText:slug==='la-reunion'?'La Réunion':slug==='aix-marseille'?'Aix-Marseille':city}).click();await loaded(p,slug);
-  if(slug==='lyon'){await p.locator('[data-k=\"cuisine\"]').click();await p.locator('#list button[data-i]').first().click();await p.locator('#s3').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(OUTPUT,'formations-lyon.png')});await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:path.join(OUTPUT,'academie-lyon.png')});}
+  if(slug==='lyon'){if(await p.locator('#doms .changer').count())await p.locator('#doms .changer').click();await p.locator('[data-k=\"cuisine\"]').click();await p.locator('#list button[data-i]').first().click();await p.locator('#s3').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(OUTPUT,'formations-lyon.png')});await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:path.join(OUTPUT,'academie-lyon.png')});}
   const domains=[...new Set(requests.map(u=>new URL(u).hostname))];
   assert(domains.every(d=>['127.0.0.1','localhost','cdnjs.cloudflare.com','api-adresse.data.gouv.fr'].includes(d)||/^[abc]\.tile\.openstreetmap\.org$/.test(d)),domains.join(','));
   report.push(slug+' : lien direct, mémoire remplacée, localisation simulée, ville BAN réelle, changer, collège, URL/hash et réseau OK');
