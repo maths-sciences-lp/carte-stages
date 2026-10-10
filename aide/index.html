@@ -190,7 +190,8 @@ function oublierDeparts(){for(const k in DEPS)delete DEPS[k];dep=null;}
 function setDep(lat,lon,n,src){const k=CLE_DEP[src]||'mai';DEPS[k]={lat,lon,n,msg:'C’est noté : départ '+n+'.'};if(k!==modeDep)return;dep=DEPS[k];$('csug').hidden=true;$('lsug').hidden=true;$('asug').hidden=true;$('dmsg').textContent='C’est noté : départ '+n+'.';stat('depart/'+src,'Départ : '+src);show(false);}
 function sugList(box,list,label,pick){box.innerHTML='';list.forEach(x=>{const b=document.createElement('button');b.textContent=label(x);b.onclick=()=>pick(x);box.appendChild(b);});box.hidden=!list.length;}
 $('col').addEventListener('input',()=>{const v=norm($('col').value.trim());if(v.length<2||!D){$('csug').hidden=true;return;}
- const r=D.colleges.filter(c=>norm(c.n+' '+c.v).includes(v)).slice(0,8);
+ const mots=v.split(' ').filter(Boolean),r=D.colleges.filter(c=>{const t=norm(c.n+' '+c.v);return mots.every(m=>t.includes(m));}).slice(0,8);
+ $('dmsg').textContent=r.length?'':'Collège pas trouvé. Essaie le nom de ta ville.';
  sugList($('csug'),r,c=>c.n+' — '+c.v,c=>{$('col').value=c.n+' — '+c.v;setDep(c.lat,c.lon,'du '+c.n.replace(/^Coll[èe]ge /i,'collège '),'college');});});
 const IDF=/^(75|77|78|91|92|93|94|95)/;let timer=null;
 async function searchAdr(v){const r=await fetch('https://api-adresse.data.gouv.fr/search/?autocomplete=1&limit=15&lat=48.85&lon=2.6&q='+encodeURIComponent(v)).then(r=>r.json());return(r.features||[]).filter(f=>IDF.test(f.properties.postcode||'')).slice(0,5);}

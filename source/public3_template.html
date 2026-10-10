@@ -393,7 +393,7 @@ $('lyc').addEventListener('input',()=>{const q=norm($('lyc').value).trim();if(q.
 $('lyc').addEventListener('keydown',e=>{if(e.key==='Enter'&&!$('lsug').hidden){const b=$('lsug').querySelector('button');if(b){e.preventDefault();b.click();}}});
 function setLycee(l,user){if(user)stat('depart/lycee/'+l.u,'Départ : '+l.n);pts.lycee={la:l.la,lo:l.lo,label:l.n,u:l.u};placeMk('lycee');from='lycee';syncFrom();
  $('lyc').value=l.n; $('lmsg').textContent='✅ '+l.n+' ('+l.c+')';
- try{localStorage.setItem('stages.lycee',l.u);}catch(e){}
+ try{if(user||!localStorage.getItem('stages.lycee'))localStorage.setItem('stages.lycee',l.u);}catch(e){}
  window.dispatchEvent(new Event('stages:lycee'));
  setHash(); shown=40; render(); map.setView([l.la,l.lo],13);
  if(user&&window.innerWidth<=900&&sel) $('s3').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
