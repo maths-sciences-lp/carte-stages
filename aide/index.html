@@ -42,7 +42,7 @@ input[type=text]{flex:1;min-width:200px;padding:11px 12px;border:2px solid var(-
 .note{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:15px;margin:12px 0}
 .tels{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
 .tel{display:block;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);text-decoration:none}
-.tel b{font-size:20px;display:block}.tel span{font-size:14px;color:var(--mute)}
+.tel b{font-size:20px;display:block}.tel::after{content:"Appeler";display:table;margin-top:8px;padding:8px 16px;min-height:44px;box-sizing:border-box;border-radius:10px;background:var(--ink);color:#fff;font-weight:600}.urgence{margin:4px 0 14px;padding:12px 14px;background:#fff4e6;border-left:4px solid #e8590c;border-radius:8px;font-size:16px}.tel span{font-size:14px;color:var(--mute)}
 footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-top:24px;padding-top:12px}
 [hidden]{display:none!important}
 </style>
@@ -56,6 +56,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
 <main id="contenu-principal" tabindex="-1">
 <h1><svg class="ico" width="1.2em" height="1.2em" aria-hidden="true" focusable="false"><use href="/commun/icones.svg#aide"/></svg> Qui peut m’aider ?</h1>
 <p class="lead">Des lieux <b>gratuits</b> pour les jeunes d’<b>Île-de-France</b> (académies de Créteil, Paris et Versailles), du plus proche au plus éloigné.</p>
+<p class="urgence">Tu ne vas pas bien et tu as besoin de parler <b>tout de suite</b> ? <a href="#urgence">Les numéros gratuits</a> : 3018, 119, 3114, Fil Santé Jeunes.</p>
 <p id="vers-france" style="margin:-2px 0 10px;font-size:15px"><a href="france/">Tu habites ailleurs en France ? Indique ta ville</a></p><script>if(window.AIDE_NATIONAL)document.getElementById('vers-france').remove();</script>
 
 <section class="step"><h2><span class="n">1</span>Ta situation</h2>
@@ -84,7 +85,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
  <div class="note">💡 <b>Bon à savoir.</b> Ces lieux sont gratuits. Tu peux appeler avant d’y aller : certains reçoivent sur rendez-vous. Au lycée ou au collège, tu peux aussi parler au professeur principal, au CPE, à l’infirmière ou au Psy-EN.</div>
 </section>
 
-<section class="step"><h2><span class="n">📞</span>Besoin de parler tout de suite ?</h2>
+<section class="step" id="urgence" tabindex="-1"><h2><span class="n">📞</span>Besoin de parler tout de suite ?</h2>
  <p class="msg" style="margin-top:0">Appels gratuits et anonymes.</p>
  <div class="tels">
   <a class="tel" href="tel:0800235236" data-s="tel-fsj"><b>0 800 235 236</b><span>Fil Santé Jeunes, pour les 12-25 ans : santé, moral, relations. Tous les jours de 9 h à 23 h.</span></a>
@@ -97,8 +98,8 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
 
 <footer>
 <div data-pied-commun></div>
- Données : CIO, missions locales et Info Jeunes : <a href="https://lannuaire.service-public.gouv.fr" target="_blank" rel="noopener">annuaire de l’administration</a> (Service-public.fr, octobre 2026) · bibliothèques municipales et intercommunales : <a href="https://www.data.gouv.fr/datasets/adresses-des-bibliotheques-publiques-2" target="_blank" rel="noopener">ministère de la Culture</a> (enquête 2023 : places, ordinateurs, wifi ; accès libre et gratuit garanti par la loi du 21 décembre 2021) · maisons des adolescents : liste de l’<a href="https://www.iledefrance.ars.sante.fr/les-maisons-des-adolescents-en-ile-de-france-mda" target="_blank" rel="noopener">ARS Île-de-France</a> et fiches de l’<a href="https://anmda.fr/fr/annuaire-mda" target="_blank" rel="noopener">Association nationale des maisons des adolescents</a> · collèges : annuaire de l’Éducation nationale · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Horaires indicatifs : vérifie sur la fiche du lieu ou par téléphone.<br>
- Statistiques de visite anonymes, sans cookie. · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>
+ <details class="sources"><summary>Sources des données</summary>Données : CIO, missions locales et Info Jeunes : <a href="https://lannuaire.service-public.gouv.fr" target="_blank" rel="noopener">annuaire de l’administration</a> (Service-public.fr, octobre 2026) · bibliothèques municipales et intercommunales : <a href="https://www.data.gouv.fr/datasets/adresses-des-bibliotheques-publiques-2" target="_blank" rel="noopener">ministère de la Culture</a> (enquête 2023 : places, ordinateurs, wifi ; accès libre et gratuit garanti par la loi du 21 décembre 2021) · maisons des adolescents : liste de l’<a href="https://www.iledefrance.ars.sante.fr/les-maisons-des-adolescents-en-ile-de-france-mda" target="_blank" rel="noopener">ARS Île-de-France</a> et fiches de l’<a href="https://anmda.fr/fr/annuaire-mda" target="_blank" rel="noopener">Association nationale des maisons des adolescents</a> · collèges : annuaire de l’Éducation nationale · adresses : <a href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">Base Adresse Nationale</a> · fond de carte © OpenStreetMap. Horaires indicatifs : vérifie sur la fiche du lieu ou par téléphone.</details>
+ Statistiques de visite anonymes, sans cookie.<br>
  Une erreur : <a href="mailto:mathssciencespro.contact@gmail.com">mathssciencespro.contact@gmail.com</a><br>
  © 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil
 </footer>

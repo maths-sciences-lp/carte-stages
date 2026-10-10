@@ -5,3 +5,6 @@
 .partage-recherche button{font:inherit;padding:10px 14px;min-height:44px;border:1px solid var(--line,#e4e9ee);border-radius:12px;background:var(--card,#fff);color:var(--ink,#15314f);cursor:pointer}
 .partage-recherche p{font-size:15px;margin:4px 0;color:var(--mute,#667085)}
 #changer-lycee{color:var(--acc,#2a4f7c);font-weight:600}
+/* Téléphone : liens du pied sur deux colonnes, sans points orphelins en fin de ligne. */
+@media (max-width:600px){[data-pied-commun] nav{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}[data-pied-commun] .sep{display:none}[data-pied-commun] a{display:flex;align-items:center;min-height:44px;padding:0 2px}}
+details.sources{margin:6px 0}details.sources summary{cursor:pointer;color:var(--acc,#2a4f7c);font-weight:600;padding:10px 0;min-height:44px;box-sizing:border-box}

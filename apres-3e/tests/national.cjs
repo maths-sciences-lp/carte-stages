@@ -127,7 +127,7 @@ const cases=[
   await p.waitForFunction(()=>document.querySelector('.ac-status')?.textContent.includes('réessayer'));
   assert(await p.locator('#nationalContent').isHidden());
   await c.unroute('**/data/lyon.json*');
-  await p.locator('summary').click();await p.locator('.ac-options button').filter({hasText:'Lyon'}).click();await loaded(p,'lyon');
+  await p.locator('summary').filter({hasText:'Je connais mon académie'}).click();await p.locator('.ac-options button').filter({hasText:'Lyon'}).click();await loaded(p,'lyon');
   await c.close();report.push('Données indisponibles : message et nouvelle tentative OK');
  }
  assert.deepEqual(allErrors,[],'console sans erreur');

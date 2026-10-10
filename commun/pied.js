@@ -2,7 +2,7 @@ import {cheminOutil,lireLycee,contexteHenaff} from './navigation.js';
 const liens=[['accueil','Tous les outils'],['stage','Trouve ton stage'],['apres-3e','Après le collège'],['formation','Après le lycée'],['aide','Qui peut m’aider ?'],['lycee','Mon lycée'],['faq','Questions fréquentes'],['faq/#vie-privee','Vie privée'],['accessibilite','Accessibilité']];
 for(const mount of document.querySelectorAll('[data-pied-commun]')){
  const nav=document.createElement('nav');nav.setAttribute('aria-label','Tous les outils et informations');
- liens.forEach(([outil,label],i)=>{if(i)nav.append(document.createTextNode(' · '));const a=document.createElement('a');a.textContent=label;a.href='/'+outil+(outil.includes('#')?'':'/');if(i<5)a.dataset.outil=outil;nav.append(a);});
+ liens.forEach(([outil,label],i)=>{if(i){const sep=document.createElement('span');sep.className='sep';sep.setAttribute('aria-hidden','true');sep.textContent=' · ';nav.append(sep);}const a=document.createElement('a');a.textContent=label;a.href='/'+outil+(outil.includes('#')?'':'/');if(i<5)a.dataset.outil=outil;nav.append(a);});
  mount.append(nav);
 }
 let nomPromise;
