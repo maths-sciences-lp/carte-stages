@@ -63,7 +63,7 @@ await initAcademie({mount,contenu,baseOutil:new URL('./',document.baseURI),onSel
  $('list').replaceChildren();$('chips').replaceChildren();$('qmsg').textContent='';$('amsg').textContent='';$('aide').hidden=false;
  vue(false);depart(false);
  const hasHenaff=D.classes.length>0&&contexteHenaff();hen.hidden=!hasHenaff;ou.hidden=!hasHenaff;
- heading.textContent=hasHenaff?'Un autre lycée de ton académie':'Ton diplôme et ton lycée';academyHint.textContent=ac.nom;
+ heading.textContent='Un autre lycée de ton académie';heading.hidden=!hasHenaff;academyHint.textContent=ac.nom;
  lead.textContent='Après ton CAP (certificat d’aptitude professionnelle), ton bac professionnel ou ton BMA (brevet des métiers d’art), découvre des poursuites d’études en '+D.region+'.';
  $('aide').textContent=hasHenaff?'Choisis d’abord ta classe ou ton diplôme.':'Choisis d’abord ton diplôme.';
  IDX=Object.entries(D.dip).map(([id,x])=>({id,lib:x.lib,n:x.ly.length,t:norm(x.lib+' '+x.al)}));drawClasses();lireHash();

@@ -16,7 +16,7 @@ h2{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10px
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
 .cl{display:flex;flex-direction:column;gap:3px;padding:14px 16px;background:var(--card);border:2px solid var(--line);border-radius:16px;color:var(--ink);min-height:76px}
 .bts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.bt{display:inline-block;padding:8px 12px;border:2px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;font-size:15px;font-weight:600}
+.bt{display:inline-flex;align-items:center;gap:4px;min-height:44px;box-sizing:border-box;padding:8px 12px;border:2px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;font-size:15px;font-weight:600}
 .bt:hover,.bt:focus-visible{border-color:var(--acc)}
 .cl b{font-size:19px}.cl>span{font-size:14px;color:var(--mute);line-height:1.3}
 .autre{display:inline-block;margin-top:26px;color:var(--acc)}
@@ -77,7 +77,7 @@ async function choisir(u,user){const sequence=++choixSequence;await pret;if(sequ
  const carte=f=>{const titre=f[1].replace(/^(Bac pro|CAP agricole|CAP|BMA|2de pro) /,'');const b=[];
   if(f[3])b.push(`<a class="bt" href="${chemin('stage',x.ac)}#f=${f[3]}&ly=${u}"><svg class="ico" width="1.2em" height="1.2em" aria-hidden="true" focusable="false"><use href="/commun/icones.svg#stage"/></svg> Mon stage</a>`);
   if(f[4])b.push(`<a class="bt" href="${chemin('formation',x.ac)}#d=${f[4]}&ly=${u}"><svg class="ico" width="1.2em" height="1.2em" aria-hidden="true" focusable="false"><use href="/commun/icones.svg#formation"/></svg> Après mon diplôme</a>`);
-  return `<div class="cl"><b>${esc(titre[0].toUpperCase()+titre.slice(1))}</b><span>${esc(f[1])}</span>${b.length?`<div class="bts">${b.join('')}</div>`:'<span>Pas encore de carte des stages pour ce diplôme.</span>'}</div>`;};
+  return `<div class="cl"><b>${esc(titre[0].toUpperCase()+titre.slice(1))}</b>${b.length?`<div class="bts">${b.join('')}</div>`:'<span>Pas encore de carte des stages pour ce diplôme.</span>'}</div>`;};
  $('fiche').innerHTML=`<h2 style="font-size:23px;margin-top:20px">${esc(x.n)}</h2><p class="lead">${esc(x.v)} · ${esc(ACS[x.ac]||'')}</p>`+
   (HENAFF.has(u)?'<p class="note"><svg class="ico" width="1.2em" height="1.2em" aria-hidden="true" focusable="false"><use href="/commun/icones.svg#lycee"/></svg> Élève du lycée Eugène Hénaff ? <a href="../henaff/">Ta page avec tes classes en un clic</a>.</p>':'')+
   GROUPES.map(([t,g])=>{const fs=ly.f.filter(f=>f[0]===t);return fs.length?`<h2>${g}</h2><div class="grid">${fs.map(carte).join('')}</div>`:'';}).join('')+
