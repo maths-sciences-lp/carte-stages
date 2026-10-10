@@ -12,25 +12,26 @@ for code in R:
     u=cible(code)
     open(os.path.join(d,'index.html'),'w').write(f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Trouve ton stage</title><meta http-equiv="refresh" content="0;url={u}"><meta name="robots" content="noindex">
-<script>if(!/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname)&&navigator.sendBeacon)navigator.sendBeacon("https://maths-sciences.goatcounter.com/count?p="+encodeURIComponent(location.pathname)+"&t="+encodeURIComponent("Lien de classe")+"&r="+encodeURIComponent(document.referrer)+"&rnd="+Math.random().toString(36).slice(2));location.replace("{u}")</script></head><body><p><a href="{u}">Ouvrir la carte des stages</a></p></body></html>
+<script>if(!/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname)&&navigator.sendBeacon)navigator.sendBeacon("https://maths-sciences.goatcounter.com/count?p="+encodeURIComponent(location.pathname)+"&t="+encodeURIComponent("Lien de classe")+"&r="+encodeURIComponent(document.referrer)+"&rnd="+Math.random().toString(36).slice(2));location.replace("{u}")</script><link rel="icon" href="/commun/logo.svg" type="image/svg+xml"></head><body><p><a href="{u}">Ouvrir la carte des stages</a></p></body></html>
 ''')
 GROUPES=[("Seconde",["tne","mnb","mama"],{"tne":"2nde TNE","mnb":"2nde MNB","mama":"2nde MAMA"}),
  ("Bac pro (1re et terminale)",["iccer","mee","tma","era","eeb","geometre"],{"iccer":"ICCER","mee":"MEE","tma":"TMA (menuisier agenceur)","era":"ERA (agencement)","eeb":"EEB (études du bâtiment)","geometre":"Géomètre"}),
  ("CAP",["mit","sdg","ebeniste"],{"mit":"CAP MIT","sdg":"CAP Signalétique","ebeniste":"CAP Ébéniste"}),
  ("BMA",["bma-ebeniste","bma-signaletique"],{"bma-ebeniste":"BMA Ébéniste","bma-signaletique":"BMA Signalétique"})]
+def ico(nom): return f'<svg class="ico" width="1.2em" height="1.2em" aria-hidden="true" focusable="false"><use href="/commun/icones.svg#{nom}"/></svg>'
 SECONDES={'tne','mnb','mama'}  # après la 2nde : la 1re au lycée, pas de poursuite d'études
 blocs=''
 for titre,codes,lab in GROUPES:
     def carte(c):
-        apres='' if c in SECONDES else f'<a class="bt" href="../formation/#{c}">🎓 Après mon diplôme</a>'
+        apres='' if c in SECONDES else f'<a class="bt" href="../formation/#{c}">{ico('formation')} Après mon diplôme</a>'
         return (f'<div class="cl"><b>{html.escape(lab[c])}</b><span>{html.escape(F[R[c]]["t"]+" "+F[R[c]]["n"])}</span>'
-                f'<div class="bts"><a class="bt" href="../{c}/">🎯 Mon stage</a>{apres}</div></div>')
+                f'<div class="bts"><a class="bt" href="../{c}/">{ico('stage')} Mon stage</a>{apres}</div></div>')
     btns=''.join(carte(c) for c in codes)
     blocs+=f'<h2>{html.escape(titre)}</h2><div class="grid">{btns}</div>'
 os.makedirs(os.path.join(OUT,'henaff'),exist_ok=True)
 open(os.path.join(OUT,'henaff','index.html'),'w').write(f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lycée Eugène Hénaff – Stage et orientation</title>
+<title>Lycée Eugène Hénaff – Stages et orientation</title>
 <link rel="stylesheet" href="../fonts/fonts.css">
 <style>
 :root{{--ink:#15314f;--bg:#f5f7f9;--line:#e4e9ee;--mute:#667085;--card:#fff;--acc:#2a4f7c}}
@@ -53,19 +54,23 @@ h2{{font-family:'Bricolage Grotesque',system-ui;font-size:19px;margin:22px 0 10p
 </style>
 <script>if(!/^(localhost|127\\.0\\.0\\.1)$/.test(location.hostname)){{var g=document.createElement('script');g.async=true;g.dataset.goatcounter='https://maths-sciences.goatcounter.com/count';g.src='https://gc.zgo.at/count.js';document.head.appendChild(g);}}</script>
 <link rel="stylesheet" href="../commun/accessibilite.css">
+<link rel="stylesheet" href="/commun/navigation.css">
+<link rel="icon" href="/commun/logo.svg" type="image/svg+xml">
 </head><body>
 <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
-<header><a class="site" href="https://maths-sciences-pro.fr/"><span class="lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v15a1 1 0 0 0 1 1h15"/><path d="M5 15c3 0 4.5-8 8-8s3.8 5 7 3"/></svg></span><b>Maths<span style="color:var(--mute)">·</span>Sciences</b><span class="r">← Retour au site</span></a></header>
+<header class="entete"><a class="site" href="/accueil/"><span class="lg"><svg width="34" height="34" viewBox="0 0 112 112" aria-hidden="true" focusable="false"><rect width="112" height="112" rx="28" fill="#15314f"/><path d="M56 92s-26-22-26-44a26 26 0 0 1 52 0c0 22-26 44-26 44z" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><circle cx="56" cy="47" r="11" fill="#E8590C"/></svg></span><span class="nom"><b>Stages et orientation</b><small>Maths·Sciences</small></span></a><a class="r" href="/accueil/">← Tous les outils</a></header>
 <main id="contenu-principal" tabindex="-1">
-<h1>🏫 Lycée Eugène Hénaff</h1>
-<p class="lead"><b>Trouve ta classe</b>, puis choisis : <b>🎯 Mon stage</b> ouvre la carte des entreprises de ton métier, au départ du lycée ; <b>🎓 Après mon diplôme</b> montre les poursuites d’études possibles.</p>
+<h1>{ico('lycee')} Lycée Eugène Hénaff</h1>
+<p class="lead"><b>Trouve ta classe</b>, puis choisis : <b>{ico('stage')} Mon stage</b> ouvre la carte des entreprises de ton métier, au départ du lycée ; <b>{ico('formation')} Après mon diplôme</b> montre les poursuites d’études possibles.</p>
 {blocs}
 <a class="autre" href="../">Une autre formation ? Ouvrir la carte complète →</a>
-<a class="autre" href="../formation/" style="margin-left:0;display:block;margin-top:12px">🎓 Après le lycée : toutes les formations →</a>
-<a class="autre" href="../aide/" style="margin-left:0;display:block;margin-top:12px">🤝 Qui peut m’aider ? Orientation, emploi, un endroit pour travailler, besoin de parler →</a>
-<footer><p class="credit"><a href="../faq/">Questions fréquentes</a> · <a href="../faq/#vie-privee">Vie privée</a> · <a href="../accessibilite/">Accessibilité</a> · <a href="https://maths-sciences-pro.fr/confidentialite">Confidentialité</a><br>© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
+<a class="autre" href="../formation/" style="margin-left:0;display:block;margin-top:12px">{ico('formation')} Après le lycée : toutes les formations →</a>
+<a class="autre" href="../aide/" style="margin-left:0;display:block;margin-top:12px">{ico('aide')} Qui peut m’aider ? Orientation, emploi, un endroit pour travailler, besoin de parler →</a>
+<footer>
+<div data-pied-commun></div><p class="credit">© 2026 Naïm Azzouz · Lycée Eugène Hénaff, Bagnolet (93) · Académie de Créteil</p>
 </footer>
 </main><script src="../commun/accessibilite.js"></script>
+<script type="module" src="/commun/pied.js"></script>
 </body></html>
 ''')
 print(len(R),'liens courts + page henaff')
