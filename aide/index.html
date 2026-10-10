@@ -56,7 +56,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
 <main id="contenu-principal" tabindex="-1">
 <h1><svg class="ico" width="1.2em" height="1.2em" aria-hidden="true" focusable="false"><use href="/commun/icones.svg#aide"/></svg> Qui peut m’aider ?</h1>
 <p class="lead">Des lieux <b>gratuits</b> pour les jeunes d’<b>Île-de-France</b> (académies de Créteil, Paris et Versailles), du plus proche au plus éloigné.</p>
-<p class="urgence">Tu ne vas pas bien et tu as besoin de parler <b>tout de suite</b> ? <a href="#urgence">Les numéros gratuits</a> : 3018, 119, 3114, Fil Santé Jeunes.</p>
+<p class="urgence">Tu ne vas pas bien et tu as besoin de parler <b>tout de suite</b> ? <a href="#urgence">Les numéros gratuits</a> : Fil Santé Jeunes, 3018, 119, 3114.</p>
 <p id="vers-france" style="margin:-2px 0 10px;font-size:15px"><a href="france/">Tu habites ailleurs en France ? Indique ta ville</a></p><script>if(window.AIDE_NATIONAL)document.getElementById('vers-france').remove();</script>
 
 <section class="step"><h2><span class="n">1</span>Ta situation</h2>
@@ -67,7 +67,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
  <div class="row"><button class="btn" id="dCol" aria-pressed="false">🏫 Mon collège</button><button class="btn" id="dLyc" aria-pressed="false">🏫 Mon lycée</button><button class="btn" id="dMai" aria-pressed="true">🏠 Chez moi</button></div>
  <div id="pCol" hidden style="margin-top:10px"><div class="row"><label class="field-label" for="col">Ton collège ou ta ville</label><input type="text" id="col" placeholder="Nom de ton collège ou de ta ville"></div><div class="sug" id="csug" hidden></div></div>
  <div id="pLyc" hidden style="margin-top:10px"><div class="row"><label class="field-label" for="lyc">Ton lycée ou ta ville</label><input type="text" id="lyc" placeholder="Nom de ton lycée ou de ta ville"></div><div class="sug" id="lsug" hidden></div></div>
- <div id="pMai" style="margin-top:10px"><div class="row"><label class="field-label" for="adr">Ton adresse</label><input type="text" id="adr" placeholder="Ton adresse ou ta ville" autocomplete="street-address"><button class="btn light" id="geo">📍 Me localiser</button></div><div class="sug" id="asug" hidden></div></div>
+ <div id="pMai" style="margin-top:10px"><div class="row"><label class="field-label" for="adr">Ton adresse</label><input type="text" id="adr" placeholder="Ex. : Montreuil" autocomplete="street-address"><button class="btn light" id="geo">📍 Me localiser</button></div><div class="sug" id="asug" hidden></div></div>
  <div class="msg" id="dmsg">Indique ta ville ou ton adresse pour voir les lieux les plus proches.</div>
 </section>
 
@@ -93,7 +93,7 @@ footer{font-size:13px;color:var(--mute);border-top:1px solid var(--line);margin-
   <a class="tel" href="tel:119" data-s="tel-119"><b>119</b><span>Enfance en danger : violences, maltraitance. 24 h sur 24, n’apparaît pas sur la facture.</span></a>
   <a class="tel" href="tel:3114" data-s="tel-3114"><b>3114</b><span>Idées suicidaires, pour toi ou pour un proche. 24 h sur 24.</span></a>
  </div>
- <p class="msg">En cas d’urgence vitale : <b>15</b> (Samu) ou <b>112</b>.</p>
+ <p class="msg">En cas d’urgence vitale : <a href="tel:15"><b>15</b></a> (Samu) ou <a href="tel:112"><b>112</b></a>.</p>
 </section>
 
 <footer>
@@ -184,7 +184,7 @@ $('lyc').addEventListener('input',async()=>{const v=norm($('lyc').value.trim());
 const DEPS={};let modeDep=document.querySelector('#dCol[aria-pressed=true]')?'col':'mai',adrSeq=0;
 const CLE_DEP={college:'col',lycee:'lyc',maison:'mai',position:'mai'};
 const INVITE={col:'Tape le nom de ton collège.',lyc:'Tape le nom de ton lycée.',mai:'Tape ton adresse ou utilise « Me localiser ».'};
-function rafraichirDep(){dep=DEPS[modeDep]||null;if(dep)$('dmsg').textContent=dep.msg;else if(/^C’est noté/.test($('dmsg').textContent))$('dmsg').textContent=INVITE[modeDep];show(false);}
+function rafraichirDep(){dep=DEPS[modeDep]||null;if(dep)$('dmsg').textContent=dep.msg;else $('dmsg').textContent=INVITE[modeDep];show(false);}
 function oublierMaison(){delete DEPS.mai;if(modeDep==='mai')rafraichirDep();}
 function oublierDeparts(){for(const k in DEPS)delete DEPS[k];dep=null;}
 function setDep(lat,lon,n,src){const k=CLE_DEP[src]||'mai';DEPS[k]={lat,lon,n,msg:'C’est noté : départ '+n+'.'};if(k!==modeDep)return;dep=DEPS[k];$('csug').hidden=true;$('lsug').hidden=true;$('asug').hidden=true;$('dmsg').textContent='C’est noté : départ '+n+'.';stat('depart/'+src,'Départ : '+src);show(false);}

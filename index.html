@@ -233,11 +233,16 @@ const joli=s=>!s||/[a-zà-ÿ]/.test(s)?s:s.toLowerCase().replace(/[a-zà-ÿ0-9]+
  if(m.length===4&&/[^aeiouy0-9]{3}/.test(m))return m.toUpperCase();
  if(PETITS.has(m)&&i>0)return m;
  return m[0].toUpperCase()+m.slice(1);});
+// Retire les parenthèses qui ne font que répéter le nom (« Chimaira (CHIMAIRA) (CHI) » → « Chimaira »).
+const sansRepetition=s=>{if(!s)return s;const plat=x=>x.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').trim();
+ const hors=plat(s.replace(/\([^()]*\)/g,' ')),mots=hors.split(/\s+/);
+ const vus=new Set();
+ return s.replace(/\s*\(([^()]*)\)/g,(tout,dedans)=>{const d=plat(dedans);if(!d||vus.has(d))return '';vus.add(d);const c=d.replace(/\s+/g,'');return mots.includes(c)||hors.replace(/\s+/g,'')===c||(c.length<=4&&mots[0]?.startsWith(c))?'':tout;}).trim()||s;};
 const em=(i,t)=>`<span class="em" aria-hidden="true">${i}</span><span>${t}</span>`;
 // Mentions du registre à ne pas afficher : « (suppression du nom commercial) », « (néant) »…
 const MENTION=/\s*\((?:[^()]|\([^()]*\))*\b(?:SUPPRESSION|NEANT)\b(?:[^()]|\([^()]*\))*\)/gi;
 const titreP=p=>(p.e||p.n).replace(MENTION,'').replace(/\s*\(\s*\)/g,'').trim()||p.n;
-const PAL=['#d35400','#1f6fb2','#8e44ad','#16a085','#c0392b','#7d5a2b','#b7950b','#2e7d32','#5d6d7e','#e84393','#00838f','#6d4c41','#3949ab'];
+const PAL=['#a0522d','#1f6fb2','#8e44ad','#16a085','#c0392b','#7d5a2b','#b7950b','#2e7d32','#5d6d7e','#e84393','#00838f','#6d4c41','#3949ab'];
 let booted=false, IDX=null, P=[], sel=null, on=new Set(), COL={}, LBL={}, dist=5, shown=40;
 const CACHE={}, pts={maison:null,lycee:null}, mks={}; let from='maison';
 // La bonne alternance : un petit fichier par secteur (data/lba/<secteur>.json), chargé avec le secteur.
@@ -295,7 +300,7 @@ function links(p){
 }
 function pop(p){
  const {tel,go}=links(p), o=origin();
- return `<div class="pop"><b>${esc(joli(titreP(p)))}</b>${p.e?`<div class="msg" style="margin:0">${esc(joli(p.n))}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${p.rp?`<div class="msg" style="margin:0">${esc(p.rp)}</div>`:''}${CONSEIL[p.f]?`<div class="msg" style="margin:0">${CONSEIL[p.f]}</div>`:''}${o?`<div><b>${dtxt(p.k)}</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}${lbaHtml(p)}
+ return `<div class="pop"><b>${esc(joli(sansRepetition(titreP(p))))}</b>${p.e?`<div class="msg" style="margin:0">${esc(joli(p.n))}</div>`:''}<div><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</div><div>${esc(p.ad)}</div>${p.rp?`<div class="msg" style="margin:0">${esc(p.rp)}</div>`:''}${CONSEIL[p.f]?`<div class="msg" style="margin:0">${CONSEIL[p.f]}</div>`:''}${o?`<div><b>${dtxt(p.k)}</b> ${from==='lycee'&&pts.lycee?'du lycée':'de chez toi'}</div>`:''}${lbaHtml(p)}
  <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${tel}">${em('📞','Trouver le numéro')}</a><a class="btn contour" target="_blank" rel="noopener" href="${go}">${em('🚌','Y aller')}</a><a class="btn light" target="_blank" rel="noopener" href="https://annuaire-entreprises.data.gouv.fr/etablissement/${esc(p.s)}">${em('ℹ️','Fiche officielle')}</a></div></div>`;
 }
 function mkP(r,k){const p={n:r[0],e:r[1],ad:r[2],la:r[3],lo:r[4],t:r[5]>=9?'grande entreprise (groupe)':(r[5]?IDX.eff[r[5]-1]:''),s:r[7],f:k,rp:r[8]||''};
@@ -432,7 +437,7 @@ function render(loading){
  if(!o) h+=`<div class="empty">👉 ${from==='lycee'?'Choisis ton lycée':'Indique ton adresse'} (étape 2) pour voir les entreprises <b>les plus proches</b>.</div>`;
  if(!n&&o&&dist) h+=`<div class="empty">Aucune entreprise à moins de ${dist} km. Choisis une distance plus grande.</div>`;
  h+=vis.slice(0,shown).map(p=>{const {tel,go}=links(p);return `<div class="card">
-  <h3 class="nm">${esc(joli(titreP(p)))}</h3>${p.e?`<div class="msg" style="margin-top:0">${esc(joli(p.n))}</div>`:''}
+  <h3 class="nm">${esc(joli(sansRepetition(titreP(p))))}</h3>${p.e?`<div class="msg" style="margin-top:0">${esc(joli(p.n))}</div>`:''}
   <div class="meta"><span><span class="dot" style="background:${COL[p.f]}"></span> ${esc(LBL[p.f])}</span>${o?`<span class="km">📍 ${dtxt(p.k)}</span>`:''}</div>
   <div class="meta">${esc(p.ad)}</div>${p.rp?`<div class="meta">${esc(p.rp)}</div>`:''}${p.t?`<div class="meta">Taille : ${esc(p.t)}</div>`:''}
   ${lbaHtml(p)}
