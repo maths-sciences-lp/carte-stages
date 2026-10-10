@@ -1,0 +1,1 @@
+{"url":"https://api-adresse.data.gouv.fr/search/?autocomplete=1&limit=15&lat=48.85&lon=2.6&q=nouvelle%20adresse","corps":{"type":"FeatureCollection","features":[],"query":"nouvelle adresse"}}
