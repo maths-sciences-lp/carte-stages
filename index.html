@@ -214,7 +214,9 @@ const fmt=k=>k<10?k.toFixed(1).replace('.',','):String(Math.round(k));
 const dtxt=k=>k<0.05?'juste à côté':fmt(k)+' km';
 const POPOPT={maxWidth:Math.min(260,window.innerWidth-90),autoPanPaddingTopLeft:[56,16],autoPanPaddingBottomRight:[16,16]};
 const em=(i,t)=>`<span class="em" aria-hidden="true">${i}</span><span>${t}</span>`;
-const titreP=p=>p.e||p.n;
+// Mentions du registre à ne pas afficher : « (suppression du nom commercial) », « (néant) »…
+const MENTION=/\s*\((?:[^()]|\([^()]*\))*\b(?:SUPPRESSION|NEANT)\b(?:[^()]|\([^()]*\))*\)/gi;
+const titreP=p=>(p.e||p.n).replace(MENTION,'').replace(/\s*\(\s*\)/g,'').trim()||p.n;
 const PAL=['#d35400','#1f6fb2','#8e44ad','#16a085','#c0392b','#7d5a2b','#b7950b','#2e7d32','#5d6d7e','#e84393','#00838f','#6d4c41','#3949ab'];
 let booted=false, IDX=null, P=[], sel=null, on=new Set(), COL={}, LBL={}, dist=5, shown=40;
 const CACHE={}, pts={maison:null,lycee:null}, mks={}; let from='maison';

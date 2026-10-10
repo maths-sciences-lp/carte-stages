@@ -296,6 +296,10 @@ FILTRES = {
  # 96.04Z (entretien corporel) contient aussi les bains-douches municipaux : ni les
  # bains-douches ni les communes ne relèvent de l'esthétique (octobre 2026, audit Codex).
  "Esthétique, soins de beauté": r"^(?!.*BAINS?[ -]DOUCHES)(?!(?:VILLE|COMMUNE) D)",
+ # Contrôle des 14 classes (10/10/2026) : 51 entreprises de rénovation ou de peinture déclarées en
+ # design (74.10Z) et quelques holdings ou SCI en architecture (71.11Z) ; écartées par leur nom.
+ "Design d'intérieur et d'objet": r"^(?!.*\b(RENOV\w*|DECORENOV|PEINTURES?|BATIMENTS?|BTP|TRAVAUX|PLOMB\w*|ELECTRI\w*|MACONN\w*|CARREL\w*)\b)",
+ "Architectes": r"^(?!.*\b(HOLDING|SCI)\b)",
  "Laboratoires d'analyses et d'essais": r"LABO|ANALY|ESSAI|MESUR|METROLOG|EUROFINS|\bSGS\b|VERITAS|INTERTEK|EMITECH|CHIMI|MICROBIO|BACTERIO|HYGIENE ALIMENT|POLLUANT|TOXICO|WESSLING|\bALS\b|CONTROLE QUALITE|\bLNE\b",
 }
 
