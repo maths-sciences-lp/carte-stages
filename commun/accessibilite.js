@@ -73,5 +73,11 @@
   const sync=()=>alt.hidden=!visibles(map);new MutationObserver(sync).observe(map,{attributes:true,attributeFilter:['hidden','class']});new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});sync();
   window.addEventListener('resize',sync);
  }
+ // Petite vibration quand l'élève fait un choix (téléphones Android ; ignoré ailleurs et si les animations sont réduites).
+ const calme=matchMedia('(prefers-reduced-motion: reduce)');
+ document.addEventListener('click',e=>{
+  if(calme.matches||typeof navigator.vibrate!=='function')return;
+  if(e.target.closest('button[aria-pressed],.sug button,#classes button,[role=option]'))try{navigator.vibrate(15);}catch(err){}
+ });
  document.addEventListener('click',e=>{if(e.target.closest('.skip-link')){e.preventDefault();const m=$('contenu-principal');m?.focus();m?.scrollIntoView();}});
 })();
